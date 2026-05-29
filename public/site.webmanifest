@@ -1,0 +1,21 @@
+{
+  "name": "Projonexa",
+  "short_name": "Projonexa",
+  "description": "Where Innovation Meets Execution. Final year projects, AI/ML, startup MVPs & research assistance — India.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0F1C",
+  "theme_color": "#0A0F1C",
+  "lang": "en-IN",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "education", "productivity"],
+  "scope": "/"
+}

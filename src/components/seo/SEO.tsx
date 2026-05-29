@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async'
-import { BRAND } from '@/data/brand'
-import type { PageSEO } from '@/data/seo'
+import { BRAND, FOUNDER, GEO } from '@/data/brand'
+import { AEO_HOME_FAQ, type PageSEO } from '@/data/seo'
+import { buildStructuredData } from '@/lib/structured-data'
 
 interface SEOProps {
   seo: PageSEO
@@ -9,53 +10,71 @@ interface SEOProps {
 export function SEO({ seo }: SEOProps) {
   const url = `${BRAND.url}${seo.path}`
   const image = `${BRAND.url}/og-image.png`
+  const imageAlt = `${BRAND.name} — ${BRAND.tagline} Final year projects & innovation platform India`
 
-  const structuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: BRAND.name,
-    url: BRAND.url,
-    logo: `${BRAND.url}/favicon.svg`,
+  const extraFaqs = seo.path === '/' ? [...AEO_HOME_FAQ] : undefined
+
+  const schemas = buildStructuredData({
+    title: seo.title,
     description: seo.description,
-    slogan: BRAND.tagline,
-    email: BRAND.email,
-    address: {
-      '@type': 'PostalAddress',
-      addressRegion: 'Maharashtra',
-      addressCountry: 'IN',
-    },
-    founder: {
-      '@type': 'Person',
-      name: 'Nisarga Lokhande',
-      jobTitle: 'Founder & CEO',
-    },
-    sameAs: [
-      'https://www.linkedin.com/in/nslokhande/',
-      'https://github.com/nikobuddy/',
-    ],
-    knowsAbout: seo.keywords,
-  }
+    path: seo.path,
+    breadcrumb: seo.breadcrumb,
+    faqSchema: seo.faqSchema,
+    serviceSchema: seo.serviceSchema,
+    extraFaqs,
+  })
 
   return (
     <Helmet>
+      {/* Primary SEO */}
+      <html lang={GEO.language} />
       <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
       <meta name="keywords" content={seo.keywords.join(', ')} />
+      <meta name="author" content={FOUNDER.name} />
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+      <meta name="googlebot" content="index, follow" />
       <link rel="canonical" href={url} />
 
+      {/* Geographic SEO (GEO) */}
+      <meta name="geo.region" content={`${GEO.countryCode}-${GEO.region}`} />
+      <meta name="geo.placename" content={GEO.placename} />
+      <meta name="geo.position" content={`${GEO.latitude};${GEO.longitude}`} />
+      <meta name="ICBM" content={`${GEO.latitude}, ${GEO.longitude}`} />
+      <meta name="language" content="English" />
+      <meta httpEquiv="content-language" content={GEO.language} />
+
+      {/* Open Graph */}
       <meta property="og:type" content="website" />
       <meta property="og:url" content={url} />
       <meta property="og:title" content={seo.title} />
       <meta property="og:description" content={seo.description} />
       <meta property="og:image" content={image} />
+      <meta property="og:image:alt" content={imageAlt} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
       <meta property="og:site_name" content={BRAND.name} />
+      <meta property="og:locale" content={GEO.locale} />
+      <meta property="og:locale:alternate" content="en_US" />
 
+      {/* Twitter / X Card */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={seo.title} />
       <meta name="twitter:description" content={seo.description} />
       <meta name="twitter:image" content={image} />
+      <meta name="twitter:image:alt" content={imageAlt} />
 
-      <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+      {/* App / theme */}
+      <meta name="theme-color" content="#0A0F1C" />
+      <meta name="application-name" content={BRAND.name} />
+      <meta name="apple-mobile-web-app-title" content={BRAND.name} />
+
+      {/* Structured data — SEO + AEO + GEO */}
+      {schemas.map((schema) => (
+        <script key={JSON.stringify(schema).slice(0, 48)} type="application/ld+json">
+          {JSON.stringify(schema)}
+        </script>
+      ))}
     </Helmet>
   )
 }

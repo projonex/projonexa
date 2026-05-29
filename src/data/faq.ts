@@ -45,6 +45,11 @@ export const FAQ_ITEMS: FAQItem[] = [
       'Yes. We build lean, scalable MVPs designed for investor demos, user testing, and rapid iteration. Our startup packages include technical architecture, analytics setup, and a clear roadmap for post-MVP growth.',
   },
   {
+    question: 'Does Projonexa serve students outside Maharashtra?',
+    answer:
+      'Yes. Projonexa is based in Maharashtra, India but serves students and clients across the entire country — including Mumbai, Pune, Nagpur, Delhi, Bangalore, and internationally through remote collaboration.',
+  },
+  {
     question: 'How do I get started?',
     answer:
       'Visit our Contact page, fill out the project inquiry form, or email us at nisargalokhande@gmail.com. Our team responds within 24 hours with next steps.',

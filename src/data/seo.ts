@@ -1,11 +1,33 @@
-import { BRAND } from './brand'
+import { BRAND, GEO } from './brand'
+
+export interface BreadcrumbItem {
+  name: string
+  path: string
+}
 
 export interface PageSEO {
   title: string
   description: string
   keywords: string[]
   path: string
+  breadcrumb?: BreadcrumbItem[]
+  /** Include FAQPage schema (AEO) */
+  faqSchema?: boolean
+  /** Include Service catalog schema */
+  serviceSchema?: boolean
 }
+
+const GEO_KEYWORDS = [
+  'final year projects India',
+  'engineering projects Maharashtra',
+  'project development Pune',
+  'project development Mumbai',
+  'academic projects India',
+  'BE project help India',
+  'BTech final year project',
+  'MCA project development',
+  'student project assistance India',
+]
 
 const BASE_KEYWORDS = [
   'final year projects',
@@ -16,85 +38,135 @@ const BASE_KEYWORDS = [
   'software development',
   'project assistance',
   'academic projects',
+  'mini projects',
+  'internship projects',
+  'IEEE research paper',
+  'IoT projects',
+  'web development projects',
+  'mobile app projects',
   'Projonexa',
+  ...GEO_KEYWORDS,
 ]
 
 export const PAGE_SEO: Record<string, PageSEO> = {
   home: {
-    title: `${BRAND.name} | ${BRAND.tagline}`,
+    title: `${BRAND.name} | Final Year Projects & Innovation Platform — ${GEO.region}, ${GEO.country}`,
     description:
-      'Transform your ideas into real-world innovation. Projonexa delivers final year projects, AI/ML solutions, startup MVPs, research assistance, and end-to-end software development.',
+      'Projonexa is India\'s trusted innovation platform for final year projects, AI/ML, startup MVPs, and research assistance. End-to-end development with documentation, deployment & viva prep. Based in Maharashtra — serving students & clients nationwide.',
     keywords: BASE_KEYWORDS,
     path: '/',
+    faqSchema: true,
+    serviceSchema: true,
   },
   about: {
-    title: `About ${BRAND.name} | Innovation Platform`,
+    title: `About ${BRAND.name} | Innovation Platform — ${GEO.country}`,
     description:
-      'Learn about Projonexa — a technology-driven platform helping students, startups, and businesses turn ideas into impactful products with expert mentorship.',
-    keywords: [...BASE_KEYWORDS, 'about projonexa', 'innovation platform'],
+      `Learn about Projonexa — a Maharashtra, India-based technology platform helping students, colleges, startups, and businesses turn ideas into production-ready projects with expert mentorship and 100+ delivered projects.`,
+    keywords: [...BASE_KEYWORDS, 'about projonexa', 'innovation platform India'],
     path: '/about',
+    breadcrumb: [{ name: 'About', path: '/about' }],
   },
   services: {
-    title: `Services | ${BRAND.name} — Project Development`,
+    title: `Project Development Services | ${BRAND.name} — Final Year, AI, MVP`,
     description:
-      'Explore Projonexa services: final year projects, AI/ML, web & mobile apps, IoT, research papers, startup MVPs, and custom software development.',
-    keywords: [...BASE_KEYWORDS, 'project development services'],
+      'Projonexa services: final year projects, mini projects, AI/ML, web & mobile apps, IoT, research papers, startup MVPs, and custom software. Complete deliverables — code, SRS, PPT, deployment & viva support across India.',
+    keywords: [...BASE_KEYWORDS, 'project development services', 'final year project help'],
     path: '/services',
+    breadcrumb: [{ name: 'Services', path: '/services' }],
+    serviceSchema: true,
   },
   projects: {
-    title: `Projects | ${BRAND.name}`,
+    title: `Projects Portfolio | ${BRAND.name} — 100+ Delivered`,
     description:
-      'Browse successful academic and industry projects delivered by Projonexa across AI, web, mobile, IoT, and enterprise domains.',
-    keywords: [...BASE_KEYWORDS, 'project portfolio'],
+      'Explore 100+ academic and industry projects delivered by Projonexa — AI, web, mobile, IoT, government innovation, and startup solutions for students and businesses in India.',
+    keywords: [...BASE_KEYWORDS, 'project portfolio', 'completed engineering projects'],
     path: '/projects',
+    breadcrumb: [{ name: 'Projects', path: '/projects' }],
   },
   research: {
-    title: `Research | ${BRAND.name} — Paper Assistance`,
+    title: `Research Paper Assistance | ${BRAND.name} — IEEE & Scopus`,
     description:
-      'Research paper assistance, literature review, methodology design, and publication support from Projonexa research experts.',
-    keywords: [...BASE_KEYWORDS, 'research paper help', 'IEEE paper'],
+      'Research paper help from Projonexa: topic selection, literature review, methodology, IEEE/Scopus formatting, plagiarism check, and submission guidance for students and researchers in India.',
+    keywords: [...BASE_KEYWORDS, 'research paper help', 'IEEE paper assistance India'],
     path: '/research',
+    breadcrumb: [{ name: 'Research', path: '/research' }],
   },
   blog: {
-    title: `Blog | ${BRAND.name} — Insights & Guides`,
+    title: `Blog | ${BRAND.name} — Project Guides & Tech Insights`,
     description:
-      'Expert insights on final year projects, AI development, startup MVPs, research methodologies, and technology trends from Projonexa.',
-    keywords: [...BASE_KEYWORDS, 'tech blog', 'project guides'],
+      'Expert guides on final year projects, AI development, startup MVPs, research methodologies, and engineering trends — from the Projonexa team serving students across India.',
+    keywords: [...BASE_KEYWORDS, 'tech blog', 'final year project guide'],
     path: '/blog',
+    breadcrumb: [{ name: 'Blog', path: '/blog' }],
   },
   portfolio: {
-    title: `Portfolio | ${BRAND.name}`,
+    title: `Portfolio | ${BRAND.name} — Academic & Industry Projects`,
     description:
-      'View Projonexa portfolio showcasing 100+ delivered projects across engineering, AI, web, mobile, and startup solutions.',
-    keywords: [...BASE_KEYWORDS, 'project showcase'],
+      'Projonexa portfolio: 100+ delivered projects across engineering, AI, web, mobile, IoT, and startup domains. Trusted by 500+ students and innovators in India and globally.',
+    keywords: [...BASE_KEYWORDS, 'project showcase', 'engineering portfolio'],
     path: '/portfolio',
+    breadcrumb: [{ name: 'Portfolio', path: '/portfolio' }],
   },
   pricing: {
-    title: `Pricing | ${BRAND.name} — Transparent Plans`,
+    title: `Pricing | ${BRAND.name} — Affordable Student Project Plans`,
     description:
-      'Affordable project development pricing for students, startups, and businesses. Transparent packages for mini projects to enterprise solutions.',
-    keywords: [...BASE_KEYWORDS, 'project pricing', 'affordable projects'],
+      'Transparent, student-friendly pricing for mini projects, final year projects, research packages, and startup MVPs. Custom quotes aligned to your college deadline and scope.',
+    keywords: [...BASE_KEYWORDS, 'project pricing India', 'affordable final year project'],
     path: '/pricing',
+    breadcrumb: [{ name: 'Pricing', path: '/pricing' }],
   },
   careers: {
-    title: `Careers | Join ${BRAND.name}`,
+    title: `Careers | Join ${BRAND.name} — 150+ Expert Network`,
     description:
-      'Join Projonexa growing network of 150+ freelancers and core team members. Build the future of innovation with us.',
-    keywords: [...BASE_KEYWORDS, 'freelance developer', 'careers'],
+      'Join Projonexa\'s growing network of 150+ freelancers and core team. Remote opportunities for developers, designers, researchers, and mentors across India.',
+    keywords: [...BASE_KEYWORDS, 'freelance developer India', 'projonexa careers'],
     path: '/careers',
+    breadcrumb: [{ name: 'Careers', path: '/careers' }],
   },
   faq: {
-    title: `FAQ | ${BRAND.name}`,
+    title: `FAQ | ${BRAND.name} — Project Development Questions Answered`,
     description:
-      'Frequently asked questions about Projonexa project development process, deliverables, timelines, pricing, and support.',
-    keywords: [...BASE_KEYWORDS, 'project FAQ'],
+      'Answers to common questions about Projonexa: project types, deliverables, timelines, pricing, documentation, viva prep, research help, and how to get started in India.',
+    keywords: [...BASE_KEYWORDS, 'final year project FAQ', 'project help questions'],
     path: '/faq',
+    breadcrumb: [{ name: 'FAQ', path: '/faq' }],
+    faqSchema: true,
   },
   contact: {
-    title: `Contact ${BRAND.name} — Get Started`,
+    title: `Contact ${BRAND.name} | Start Your Project — ${GEO.region}, ${GEO.country}`,
     description:
-      'Contact Projonexa to start your project. Reach our team for final year projects, MVPs, research assistance, and custom development.',
-    keywords: [...BASE_KEYWORDS, 'contact projonexa'],
+      'Contact Projonexa for final year projects, AI/ML, startup MVPs, and research assistance. Email nisargalokhande@gmail.com — response within 24 hours. Serving students & clients across India.',
+    keywords: [...BASE_KEYWORDS, 'contact projonexa', 'project inquiry India'],
     path: '/contact',
+    breadcrumb: [{ name: 'Contact', path: '/contact' }],
   },
 }
+
+/** Core Q&A pairs surfaced on homepage for AEO (Answer Engine Optimization) */
+export const AEO_HOME_FAQ = [
+  {
+    question: 'What is Projonexa?',
+    answer:
+      'Projonexa is a technology-driven innovation platform based in Maharashtra, India that provides end-to-end project development for students, colleges, startups, and businesses — including final year projects, AI/ML systems, startup MVPs, IoT solutions, and research paper assistance.',
+  },
+  {
+    question: 'Who is Projonexa for?',
+    answer:
+      'Projonexa serves engineering and computer science students, MBA researchers, college faculty, startups, freelancers, and businesses who need professional help building academic projects, research implementations, or production-ready software products.',
+  },
+  {
+    question: 'What does Projonexa deliver with every project?',
+    answer:
+      'Every Projonexa project includes working source code, SRS and design documentation, project report, presentation slides (PPT), database setup, deployment support, demo guidance, and viva preparation — aligned to university evaluation standards.',
+  },
+  {
+    question: 'Where is Projonexa located and who does it serve?',
+    answer:
+      'Projonexa is headquartered in Maharashtra, India and serves clients across India — including Mumbai, Pune, Nagpur, and nationwide — as well as international students and businesses through remote collaboration.',
+  },
+  {
+    question: 'How do I start a project with Projonexa?',
+    answer:
+      'Visit projonexa.com/contact, submit your project requirements, or email nisargalokhande@gmail.com. The team responds within 24 hours with scope, timeline, and next steps.',
+  },
+] as const

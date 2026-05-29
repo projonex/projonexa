@@ -6,6 +6,34 @@ export const BRAND = {
   location: 'Maharashtra, India',
 } as const
 
+/** Geographic & local SEO configuration (GEO) */
+export const GEO = {
+  country: 'India',
+  countryCode: 'IN',
+  region: 'Maharashtra',
+  placename: 'Maharashtra, India',
+  locale: 'en_IN',
+  language: 'en-IN',
+  /** Approximate geo centre — Maharashtra, India */
+  latitude: 19.7515,
+  longitude: 75.7139,
+  areaServed: [
+    'India',
+    'Maharashtra',
+    'Mumbai',
+    'Pune',
+    'Nagpur',
+    'Nashik',
+    'Aurangabad',
+    'Global',
+  ],
+  serviceRadius: 'Worldwide with focus on India',
+} as const
+
+/** One-line definition for AEO / AI answer engines */
+export const AEO_DEFINITION =
+  'Projonexa is a technology-driven innovation platform based in Maharashtra, India that helps students, colleges, startups, and businesses transform ideas into real-world projects — including final year projects, AI/ML systems, startup MVPs, IoT solutions, and research paper assistance with full documentation and mentor support.'
+
 export const FOUNDER = {
   name: 'Nisarga Lokhande',
   title: 'Founder, CEO, Student Entrepreneur & Software Engineer',

@@ -6,15 +6,22 @@ import { Logo } from '@/components/ui/Logo'
 
 export function Footer() {
   return (
-    <footer className="border-t border-black/5 bg-zinc-50 dark:border-white/5 dark:bg-zinc-950">
+    <footer
+      className="border-t border-black/5 bg-zinc-50 dark:border-white/5 dark:bg-zinc-950"
+      itemScope
+      itemType="https://schema.org/Organization"
+    >
+      <meta itemProp="name" content={BRAND.name} />
+      <meta itemProp="url" content={BRAND.url} />
+      <link itemProp="sameAs" href={FOUNDER.linkedin} />
       <div className="container-wide section-padding !py-16">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-1">
             <Logo />
             <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-400">{BRAND.tagline}</p>
             <p className="mt-2 text-sm text-zinc-500">
-              Transforming ideas into real-world innovation for students, startups, and
-              businesses worldwide.
+              End-to-end project development for students, colleges, startups, and businesses —
+              across India and globally.
             </p>
           </div>
 
@@ -57,14 +64,23 @@ export function Footer() {
                 <a
                   href={`mailto:${FOUNDER.email}`}
                   className="flex items-center gap-2 text-sm text-zinc-600 hover:text-brand-primary dark:text-zinc-400"
+                  itemProp="email"
                 >
-                  <Mail className="h-4 w-4" />
+                  <Mail className="h-4 w-4" aria-hidden />
                   {FOUNDER.email}
                 </a>
               </li>
-              <li className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-                <MapPin className="h-4 w-4 shrink-0" />
-                {FOUNDER.location}
+              <li
+                className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400"
+                itemProp="address"
+                itemScope
+                itemType="https://schema.org/PostalAddress"
+              >
+                <MapPin className="h-4 w-4 shrink-0" aria-hidden />
+                <span>
+                  <span itemProp="addressRegion">Maharashtra</span>,{' '}
+                  <span itemProp="addressCountry">India</span>
+                </span>
               </li>
               <li className="flex gap-3 pt-2">
                 <a

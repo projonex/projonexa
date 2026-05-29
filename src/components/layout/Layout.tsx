@@ -13,7 +13,7 @@ export function Layout() {
   return (
     <div className="min-h-screen bg-white text-zinc-900 dark:bg-brand-dark dark:text-zinc-100">
       <Header />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <Outlet />
       </main>
       <Footer />

@@ -1,9 +1,11 @@
 import { SEO } from '@/components/seo/SEO'
 import { Hero } from '@/components/sections/Hero'
 import { Stats } from '@/components/sections/Stats'
+import { AEOOverview } from '@/components/sections/AEOOverview'
 import { ServicesGrid } from '@/components/sections/ServicesGrid'
 import { TechnologyShowcase } from '@/components/sections/TechnologyShowcase'
 import { WhyChoose } from '@/components/sections/WhyChoose'
+import { ServiceArea } from '@/components/sections/ServiceArea'
 import { Founder } from '@/components/sections/Founder'
 import { VisionMission } from '@/components/sections/VisionMission'
 import { CTA } from '@/components/sections/CTA'
@@ -15,9 +17,11 @@ export function HomePage() {
       <SEO seo={PAGE_SEO.home} />
       <Hero />
       <Stats />
+      <AEOOverview />
       <ServicesGrid limit={6} showViewAll />
       <TechnologyShowcase />
       <WhyChoose />
+      <ServiceArea />
       <Founder />
       <VisionMission />
       <CTA />

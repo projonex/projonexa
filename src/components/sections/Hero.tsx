@@ -51,6 +51,15 @@ export function Hero() {
           researchers, and businesses build impactful technology products.
         </motion.p>
 
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="mt-4 text-sm font-medium text-zinc-500 dark:text-zinc-500"
+        >
+          🇮🇳 Serving students &amp; clients across India · Based in Maharashtra
+        </motion.p>
+
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}

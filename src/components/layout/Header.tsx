@@ -13,7 +13,14 @@ export function Header() {
   const location = useLocation()
 
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-black/5 bg-white/80 backdrop-blur-xl dark:border-white/5 dark:bg-brand-dark/80">
+    <>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-brand-primary focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+      >
+        Skip to main content
+      </a>
+      <header className="fixed top-0 z-50 w-full border-b border-black/5 bg-white/80 backdrop-blur-xl dark:border-white/5 dark:bg-brand-dark/80">
       <div className="container-wide flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         <Logo />
 
@@ -101,5 +108,6 @@ export function Header() {
         )}
       </AnimatePresence>
     </header>
+    </>
   )
 }
