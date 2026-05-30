@@ -93,7 +93,7 @@ export function TechStackPanel() {
       }}
     >
       <div className="absolute inset-0 rounded-3xl bg-brand-gradient p-px">
-        <div className="h-full w-full rounded-[calc(1.5rem-1px)] bg-zinc-50 dark:bg-zinc-950" />
+        <div className="h-full w-full rounded-[calc(1.5rem-1px)] bg-zinc-50 dark:bg-black" />
       </div>
 
       <div
@@ -112,7 +112,7 @@ export function TechStackPanel() {
         </div>
 
         {/* Compact spotlight */}
-        <div className="relative mb-4 overflow-hidden rounded-2xl border border-black/[0.06] bg-white/70 backdrop-blur-md dark:border-white/[0.08] dark:bg-zinc-900/45">
+        <div className="relative mb-4 overflow-hidden rounded-2xl border border-black/[0.06] bg-white/70 backdrop-blur-md dark:border-white/[0.08] dark:bg-surface-card/90">
           <AnimatePresence mode="wait">
             <motion.div
               aria-hidden
@@ -151,7 +151,7 @@ export function TechStackPanel() {
               >
                 {hoveredTech ? (
                   <>
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white shadow-sm dark:bg-zinc-800">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white shadow-sm dark:bg-surface-hover">
                       <TechLogo tech={hoveredTech} size="sm" />
                     </div>
                     <div className="min-w-0 flex-1">
@@ -208,7 +208,7 @@ export function TechStackPanel() {
                   {i === activeIndex && (
                     <motion.span
                       layoutId="spotlight-pill"
-                      className="absolute inset-0 rounded-full bg-white shadow-sm ring-1 ring-black/[0.06] dark:bg-zinc-800 dark:ring-white/10"
+                      className="absolute inset-0 rounded-full bg-white shadow-sm ring-1 ring-black/[0.06] dark:bg-surface-hover dark:ring-white/[0.08]"
                       transition={{ type: 'spring', stiffness: 380, damping: 32 }}
                     />
                   )}
@@ -243,14 +243,14 @@ export function TechStackPanel() {
         </div>
 
         {/* Slow dual marquee */}
-        <div className="relative overflow-hidden rounded-2xl border border-black/[0.05] bg-zinc-900/[0.02] py-2.5 dark:border-white/[0.06] dark:bg-white/[0.02]">
+        <div className="relative overflow-hidden rounded-2xl border border-black/[0.05] bg-zinc-900/[0.02] py-2.5 dark:border-white/[0.06] dark:bg-surface-elevated">
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-zinc-50 to-transparent dark:from-zinc-950"
+            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-zinc-50 to-transparent dark:from-black"
           />
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-zinc-50 to-transparent dark:from-zinc-950"
+            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-zinc-50 to-transparent dark:from-black"
           />
 
           <div className={`space-y-2 ${paused ? 'tech-marquee-paused' : ''}`}>
@@ -292,8 +292,8 @@ function CompactTechTile({
       <div
         className={`flex min-h-[52px] flex-col items-center justify-center rounded-lg border px-1 py-1.5 transition-all duration-300 ${
           isHovered
-            ? 'scale-[1.04] border-brand-primary/35 bg-white shadow-glow dark:bg-zinc-900'
-            : 'border-transparent bg-white/50 dark:bg-zinc-900/35'
+            ? 'scale-[1.04] border-brand-primary/35 bg-white shadow-glow dark:bg-surface-card'
+            : 'border-transparent bg-white/50 dark:bg-surface-muted/80'
         }`}
       >
         <div
@@ -331,7 +331,7 @@ function MarqueeRow({
         {[...items, ...items].map((tech, i) => (
           <div
             key={`${tech.id}-${i}`}
-            className="flex shrink-0 items-center gap-2 rounded-full border border-black/[0.06] bg-white/90 px-2.5 py-1 dark:border-white/[0.08] dark:bg-zinc-900/90"
+            className="flex shrink-0 items-center gap-2 rounded-full border border-black/[0.06] bg-white/90 px-2.5 py-1 dark:border-white/[0.08] dark:bg-surface-card"
           >
             <TechLogo tech={tech} size="sm" className="h-4 w-4" />
             <span className="whitespace-nowrap text-[10px] font-medium text-zinc-600 dark:text-zinc-400">

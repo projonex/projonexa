@@ -22,7 +22,7 @@ function FAQAccordionItem({
 }) {
   return (
     <article
-      className="border-b border-black/5 dark:border-white/10"
+      className="border-b border-black/5 dark:border-white/[0.06]"
       itemScope
       itemProp="mainEntity"
       itemType="https://schema.org/Question"

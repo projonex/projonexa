@@ -78,7 +78,7 @@ export function ContactPage() {
                 id="name"
                 name="name"
                 required
-                className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none focus:border-brand-primary dark:border-white/10 dark:bg-white/5"
+                className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-zinc-900 outline-none focus:border-brand-primary dark:border-white/[0.08] dark:bg-surface-card dark:text-zinc-100 dark:placeholder:text-zinc-500"
                 placeholder="Your name"
               />
             </div>
@@ -91,7 +91,7 @@ export function ContactPage() {
                 name="email"
                 type="email"
                 required
-                className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none focus:border-brand-primary dark:border-white/10 dark:bg-white/5"
+                className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-zinc-900 outline-none focus:border-brand-primary dark:border-white/[0.08] dark:bg-surface-card dark:text-zinc-100 dark:placeholder:text-zinc-500"
                 placeholder="you@university.edu"
               />
             </div>
@@ -103,7 +103,7 @@ export function ContactPage() {
                 id="subject"
                 name="subject"
                 required
-                className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none focus:border-brand-primary dark:border-white/10 dark:bg-white/5"
+                className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-zinc-900 outline-none focus:border-brand-primary dark:border-white/[0.08] dark:bg-surface-card dark:text-zinc-100 dark:placeholder:text-zinc-500"
               >
                 <option value="Final Year Project Inquiry">Final Year Project</option>
                 <option value="Mini Project Inquiry">Mini Project</option>
@@ -123,7 +123,7 @@ export function ContactPage() {
                 name="message"
                 required
                 rows={5}
-                className="w-full resize-none rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none focus:border-brand-primary dark:border-white/10 dark:bg-white/5"
+                className="w-full resize-none rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-zinc-900 outline-none focus:border-brand-primary dark:border-white/[0.08] dark:bg-surface-card dark:text-zinc-100 dark:placeholder:text-zinc-500"
                 placeholder="Describe your project idea, deadline, and requirements..."
               />
             </div>

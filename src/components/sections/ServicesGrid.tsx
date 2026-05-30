@@ -42,7 +42,7 @@ export function ServicesGrid({ limit, showViewAll = false }: ServicesGridProps) 
                 <p className="mt-2 flex-1 text-sm text-zinc-600 dark:text-zinc-400">
                   {service.description}
                 </p>
-                <ul className="mt-4 space-y-2 border-t border-white/10 pt-4">
+                <ul className="mt-4 space-y-2 border-t border-black/5 pt-4 dark:border-white/[0.06]">
                   {service.deliverables.map((d) => (
                     <li
                       key={d}

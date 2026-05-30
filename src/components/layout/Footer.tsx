@@ -7,7 +7,7 @@ import { Logo } from '@/components/ui/Logo'
 export function Footer() {
   return (
     <footer
-      className="border-t border-black/5 bg-zinc-50 dark:border-white/5 dark:bg-zinc-950"
+      className="border-t border-black/5 bg-zinc-50 dark:border-white/[0.06] dark:bg-surface-elevated"
       itemScope
       itemType="https://schema.org/Organization"
     >
@@ -19,7 +19,7 @@ export function Footer() {
           <div className="lg:col-span-1">
             <Logo />
             <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-400">{BRAND.tagline}</p>
-            <p className="mt-2 text-sm text-zinc-500">
+            <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-500">
               End-to-end project development for students, colleges, startups, and businesses —
               across India and globally.
             </p>
@@ -106,11 +106,11 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-black/5 pt-8 dark:border-white/5 sm:flex-row">
-          <p className="text-sm text-zinc-500">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-black/5 pt-8 dark:border-white/[0.06] sm:flex-row">
+          <p className="text-sm text-zinc-500 dark:text-zinc-500">
             © {new Date().getFullYear()} {BRAND.name}. All rights reserved.
           </p>
-          <p className="text-sm text-zinc-500">
+          <p className="text-sm text-zinc-500 dark:text-zinc-500">
             Founded by {FOUNDER.name} · {FOUNDER.location}
           </p>
         </div>

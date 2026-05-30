@@ -5,11 +5,11 @@ import { TechStackPanel } from '@/components/sections/TechStackPanel'
 export function TechnologyShowcase() {
   return (
     <section
-      className="relative overflow-hidden section-padding bg-zinc-50 dark:bg-zinc-950/50"
+      className="relative overflow-hidden section-padding section-alt"
       aria-labelledby="tech-showcase-heading"
     >
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.04] dark:opacity-[0.06]"
+        className="pointer-events-none absolute inset-0 opacity-[0.04] dark:opacity-[0.03]"
         style={{
           backgroundImage: `linear-gradient(rgba(0,200,255,0.5) 1px, transparent 1px),
             linear-gradient(90deg, rgba(0,200,255,0.5) 1px, transparent 1px)`,

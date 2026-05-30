@@ -10,7 +10,7 @@ export function VisionMission() {
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative overflow-hidden rounded-3xl border border-brand-primary/20 bg-gradient-to-br from-brand-primary/10 to-brand-secondary/10 p-8 lg:p-10"
+          className="relative overflow-hidden rounded-3xl border border-brand-primary/20 bg-gradient-to-br from-brand-primary/10 to-brand-secondary/10 p-8 dark:border-white/[0.08] dark:from-brand-primary/5 dark:to-brand-secondary/5 dark:bg-surface-card lg:p-10"
         >
           <Eye className="mb-4 h-8 w-8 text-brand-primary" />
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">Our Vision</h2>
@@ -21,7 +21,7 @@ export function VisionMission() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="relative overflow-hidden rounded-3xl border border-brand-secondary/20 bg-gradient-to-br from-brand-secondary/10 to-brand-primary/10 p-8 lg:p-10"
+          className="relative overflow-hidden rounded-3xl border border-brand-secondary/20 bg-gradient-to-br from-brand-secondary/10 to-brand-primary/10 p-8 dark:border-white/[0.08] dark:from-brand-secondary/5 dark:to-brand-primary/5 dark:bg-surface-card lg:p-10"
         >
           <Target className="mb-4 h-8 w-8 text-brand-secondary" />
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">Our Mission</h2>

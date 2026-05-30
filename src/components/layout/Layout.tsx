@@ -11,7 +11,7 @@ export function Layout() {
   }, [pathname])
 
   return (
-    <div className="min-h-screen bg-white text-zinc-900 dark:bg-brand-dark dark:text-zinc-100">
+    <div className="min-h-screen bg-white text-zinc-900 dark:bg-black dark:text-zinc-100">
       <Header />
       <main id="main-content" tabIndex={-1}>
         <Outlet />

@@ -7,11 +7,11 @@ export function Hero() {
   return (
     <section className="relative min-h-screen overflow-hidden pt-16">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(0,200,255,0.15),transparent)]" />
-        <div className="absolute right-0 top-1/4 h-96 w-96 rounded-full bg-brand-secondary/20 blur-[120px]" />
-        <div className="absolute left-0 bottom-1/4 h-80 w-80 rounded-full bg-brand-primary/15 blur-[100px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(0,200,255,0.15),transparent)] dark:bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(0,200,255,0.08),transparent)]" />
+        <div className="absolute right-0 top-1/4 h-96 w-96 rounded-full bg-brand-secondary/20 blur-[120px] dark:bg-brand-secondary/10" />
+        <div className="absolute left-0 bottom-1/4 h-80 w-80 rounded-full bg-brand-primary/15 blur-[100px] dark:bg-brand-primary/8" />
         <div
-          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.06]"
+          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.04]"
           style={{
             backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
               linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
@@ -55,7 +55,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25 }}
-          className="mt-4 text-sm font-medium text-zinc-500 dark:text-zinc-500"
+          className="mt-4 text-sm font-medium text-zinc-500 dark:text-zinc-400"
         >
           🇮🇳 Serving students &amp; clients across India · Based in Maharashtra
         </motion.p>

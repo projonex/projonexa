@@ -38,7 +38,7 @@ export function ServiceArea() {
               <span itemProp="addressRegion">{GEO.region}</span>,{' '}
               <span itemProp="addressCountry">{GEO.country}</span>
             </p>
-            <p className="mt-3 text-xs text-zinc-500">
+            <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-500">
               Coordinates: {GEO.latitude}°N, {GEO.longitude}°E
             </p>
           </motion.div>

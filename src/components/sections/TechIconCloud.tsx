@@ -266,7 +266,7 @@ export function TechIconCloud({ variant = 'default' }: TechIconCloudProps) {
         </div>
 
         <p className="relative z-10 mt-4 w-full text-center text-xs text-zinc-500 sm:text-sm lg:text-right">
-          <span className="inline-flex items-center gap-2 rounded-full border border-black/5 bg-white/80 px-3 py-1.5 backdrop-blur-sm dark:border-white/10 dark:bg-zinc-900/80">
+          <span className="inline-flex items-center gap-2 rounded-full border border-black/5 bg-white/80 px-3 py-1.5 backdrop-blur-sm dark:border-white/[0.08] dark:bg-surface-card">
             <span
               className={`inline-block h-1.5 w-1.5 rounded-full bg-brand-primary transition-opacity duration-300 ${
                 isHovered ? 'opacity-100' : 'animate-pulse opacity-80'
@@ -293,7 +293,7 @@ function CloudSkeleton({ variant }: { variant: 'default' | 'side' }) {
           isSide ? 'h-[min(78vw,440px)] w-[min(78vw,440px)] lg:h-[460px] lg:w-[460px]' : 'h-[min(70vh,520px)] w-[min(70vh,520px)]'
         }`}
       >
-        <div className="absolute inset-0 animate-pulse rounded-full border border-brand-primary/20 bg-zinc-200/50 dark:bg-zinc-800/30" />
+        <div className="absolute inset-0 animate-pulse rounded-full border border-brand-primary/20 bg-zinc-200/50 dark:bg-surface-hover/50" />
         <div className="absolute inset-[18%] rounded-full border border-dashed border-brand-primary/25" />
         <div className="absolute inset-[32%] rounded-full border border-brand-primary/10" />
       </div>

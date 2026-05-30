@@ -20,7 +20,7 @@ export function Header() {
       >
         Skip to main content
       </a>
-      <header className="fixed top-0 z-50 w-full border-b border-black/5 bg-white/80 backdrop-blur-xl dark:border-white/5 dark:bg-brand-dark/80">
+      <header className="fixed top-0 z-50 w-full border-b border-black/5 bg-white/80 backdrop-blur-xl dark:border-white/[0.06] dark:bg-black/85">
       <div className="container-wide flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         <Logo />
 
@@ -44,7 +44,7 @@ export function Header() {
           <button
             type="button"
             onClick={toggleTheme}
-            className="rounded-full p-2 text-zinc-600 transition-colors hover:bg-black/5 dark:text-zinc-400 dark:hover:bg-white/10"
+            className="rounded-full p-2 text-zinc-600 transition-colors hover:bg-black/5 dark:text-zinc-400 dark:hover:bg-surface-hover"
             aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
           >
             {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
@@ -81,7 +81,7 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="border-t border-black/5 bg-white dark:border-white/5 dark:bg-brand-dark lg:hidden"
+            className="border-t border-black/5 bg-white dark:border-white/[0.06] dark:bg-black lg:hidden"
           >
             <nav className="flex flex-col gap-1 px-4 py-4" aria-label="Mobile navigation">
               {NAV_LINKS.map((link) => (

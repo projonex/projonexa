@@ -31,7 +31,7 @@ export function ProjectsGrid() {
             {project.tech.map((t) => (
               <span
                 key={t}
-                className="rounded-full bg-black/5 px-2.5 py-1 text-xs font-medium dark:bg-white/10"
+                className="rounded-full bg-black/5 px-2.5 py-1 text-xs font-medium dark:bg-surface-hover dark:text-zinc-300"
               >
                 {t}
               </span>

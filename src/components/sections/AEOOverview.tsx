@@ -8,7 +8,7 @@ import { SectionHeading } from '@/components/ui/SectionHeading'
 export function AEOOverview() {
   return (
     <section
-      className="section-padding bg-zinc-50 dark:bg-zinc-950/50"
+      className="section-padding section-alt"
       aria-labelledby="aeo-overview-heading"
     >
       <div className="container-wide">
@@ -59,7 +59,7 @@ export function AEOOverview() {
           ))}
         </div>
 
-        <p className="mt-10 text-center text-sm text-zinc-500">
+        <p className="mt-10 text-center text-sm text-zinc-500 dark:text-zinc-500">
           More questions? Visit our{' '}
           <Link to="/faq" className="font-medium text-brand-primary hover:underline">
             FAQ page
