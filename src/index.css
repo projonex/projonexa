@@ -67,4 +67,41 @@
   .tech-stack-scroll::-webkit-scrollbar-thumb:hover {
     background: rgba(0, 200, 255, 0.45);
   }
+
+  .tech-marquee {
+    width: max-content;
+  }
+
+  .tech-marquee-left {
+    animation: tech-marquee-left linear infinite;
+  }
+
+  .tech-marquee-right {
+    animation: tech-marquee-right linear infinite;
+  }
+
+  @keyframes tech-marquee-left {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes tech-marquee-right {
+    from {
+      transform: translateX(-50%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tech-marquee-left,
+    .tech-marquee-right {
+      animation: none;
+    }
+  }
 }
