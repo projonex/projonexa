@@ -1,95 +1,133 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Sparkles } from 'lucide-react'
+import { ArrowRight, MapPin, Sparkles } from 'lucide-react'
 import { BRAND } from '@/data/brand'
 import { Button } from '@/components/ui/Button'
+import { useReducedMotion } from '@/hooks/useReducedMotion'
+
+const fadeUp = (delay: number, reduced: boolean) =>
+  reduced
+    ? { initial: false, animate: { opacity: 1, y: 0 }, transition: { duration: 0 } }
+    : {
+        initial: { opacity: 0, y: 20 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] },
+      }
 
 export function Hero() {
+  const reducedMotion = useReducedMotion()
+
   return (
     <section className="relative min-h-screen overflow-hidden pt-16">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(0,200,255,0.15),transparent)] dark:bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(0,200,255,0.08),transparent)]" />
-        <div className="absolute right-0 top-1/4 h-96 w-96 rounded-full bg-brand-secondary/20 blur-[120px] dark:bg-brand-secondary/10" />
-        <div className="absolute left-0 bottom-1/4 h-80 w-80 rounded-full bg-brand-primary/15 blur-[100px] dark:bg-brand-primary/8" />
+      {/* Ambient background */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <div className="absolute inset-0 bg-gradient-to-b from-zinc-50/90 via-white to-white dark:from-black dark:via-black dark:to-black" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_55%_at_50%_-15%,rgba(0,200,255,0.18),transparent_55%)] dark:bg-[radial-gradient(ellipse_90%_55%_at_50%_-15%,rgba(0,200,255,0.12),transparent_55%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_100%_20%,rgba(108,99,255,0.12),transparent_50%)] dark:bg-[radial-gradient(ellipse_60%_40%_at_100%_20%,rgba(108,99,255,0.08),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_35%_at_0%_70%,rgba(61,139,255,0.1),transparent_50%)] dark:bg-[radial-gradient(ellipse_50%_35%_at_0%_70%,rgba(61,139,255,0.06),transparent_50%)]" />
+        <div className="absolute right-[10%] top-[28%] h-[min(28rem,50vw)] w-[min(28rem,50vw)] rounded-full bg-brand-primary/10 blur-[100px] dark:bg-brand-primary/6" />
+        <div className="absolute left-[5%] bottom-[20%] h-72 w-72 rounded-full bg-brand-secondary/12 blur-[90px] dark:bg-brand-secondary/6" />
         <div
-          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.04]"
+          className="absolute inset-0 opacity-[0.35] dark:opacity-[0.2]"
           style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-            backgroundSize: '64px 64px',
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px)`,
+            backgroundSize: '72px 72px',
+            maskImage: 'radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 75%)',
           }}
         />
+        <div
+          className="absolute inset-0 hidden opacity-[0.15] dark:block dark:opacity-[0.25]"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)`,
+            backgroundSize: '72px 72px',
+            maskImage: 'radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 75%)',
+          }}
+        />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent dark:from-black" />
       </div>
 
-      <div className="container-wide relative flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center px-4 py-24 text-center sm:px-6 lg:px-8">
+      <div className="container-wide relative flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center px-4 py-20 text-center sm:px-6 sm:py-24 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-primary/30 bg-brand-primary/10 px-4 py-1.5 text-sm font-medium text-brand-primary"
+          {...fadeUp(0, reducedMotion)}
+          className="mb-8 inline-flex items-center gap-2 rounded-full border border-brand-primary/25 bg-white/70 px-4 py-2 text-sm font-medium text-brand-mid shadow-sm backdrop-blur-md dark:border-brand-primary/30 dark:bg-white/[0.06] dark:text-brand-accent dark:shadow-glow-sm"
         >
-          <Sparkles className="h-4 w-4" />
-          {BRAND.tagline}
+          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-gradient text-white shadow-glow-sm">
+            <Sparkles className="h-3.5 w-3.5" aria-hidden />
+          </span>
+          <span className="text-zinc-700 dark:text-zinc-200">{BRAND.tagline}</span>
         </motion.div>
 
         <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="max-w-5xl text-4xl font-bold leading-[1.1] tracking-tight text-zinc-900 dark:text-white sm:text-5xl md:text-6xl lg:text-7xl"
+          {...fadeUp(0.08, reducedMotion)}
+          className="max-w-5xl text-balance text-4xl font-bold leading-[1.08] tracking-tight text-zinc-900 dark:text-white sm:text-5xl md:text-6xl lg:text-[4.25rem] lg:leading-[1.05]"
         >
           Transform Your Ideas Into{' '}
           <span className="text-gradient">Real-World Innovation</span>
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-6 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400 sm:text-xl"
+          {...fadeUp(0.16, reducedMotion)}
+          className="mt-7 max-w-2xl text-pretty text-lg leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-xl sm:leading-relaxed"
         >
           From academic projects to startup solutions, Projonexa helps students, innovators,
           researchers, and businesses build impactful technology products.
         </motion.p>
 
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.25 }}
-          className="mt-4 text-sm font-medium text-zinc-500 dark:text-zinc-400"
+        <motion.div
+          {...fadeUp(0.22, reducedMotion)}
+          className="mt-6 inline-flex max-w-xl flex-wrap items-center justify-center gap-2 rounded-full border border-black/[0.06] bg-white/60 px-4 py-2.5 text-sm font-medium text-zinc-600 shadow-sm backdrop-blur-md dark:border-white/[0.08] dark:bg-white/[0.04] dark:text-zinc-300"
         >
-          🇮🇳 Serving students &amp; clients across India · Based in Maharashtra
-        </motion.p>
+          <span className="text-base leading-none" role="img" aria-label="India">
+            🇮🇳
+          </span>
+          <span>Serving students &amp; clients across India</span>
+          <span className="hidden text-zinc-300 sm:inline dark:text-zinc-600" aria-hidden>
+            ·
+          </span>
+          <span className="inline-flex items-center gap-1.5 text-zinc-500 dark:text-zinc-400">
+            <MapPin className="h-3.5 w-3.5 shrink-0 text-brand-primary" aria-hidden />
+            Based in Maharashtra
+          </span>
+        </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-4"
+          {...fadeUp(0.3, reducedMotion)}
+          className="mt-10 flex w-full max-w-md flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4"
         >
-          <Button to="/services" variant="primary">
+          <Button
+            to="/services"
+            variant="primary"
+            className="w-full px-8 py-3.5 text-base shadow-glow sm:w-auto"
+          >
             Explore Services
             <ArrowRight className="h-4 w-4" />
           </Button>
-          <Button to="/contact" variant="outline">
+          <Button
+            to="/contact"
+            variant="outline"
+            className="w-full border-zinc-300/80 bg-white/50 text-zinc-800 backdrop-blur-sm hover:border-brand-primary/40 hover:bg-brand-primary/5 hover:text-brand-mid dark:border-white/15 dark:bg-white/[0.03] dark:text-zinc-100 dark:hover:border-brand-primary/50 dark:hover:bg-brand-primary/10 dark:hover:text-brand-accent sm:w-auto"
+          >
             Get Started
           </Button>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 1 }}
-          className="mt-20 grid w-full max-w-4xl grid-cols-2 gap-4 sm:grid-cols-4"
-        >
-          {['100+ Projects', '150+ Experts', '10+ Domains', '500+ Students'].map((item) => (
-            <div
-              key={item}
-              className="glass rounded-2xl px-4 py-4 text-sm font-semibold text-zinc-700 dark:text-zinc-300"
-            >
-              {item}
+        {!reducedMotion && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.9, duration: 0.8 }}
+            className="pointer-events-none absolute bottom-8 left-1/2 hidden -translate-x-1/2 sm:block"
+            aria-hidden
+          >
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-600">
+                Scroll
+              </span>
+              <div className="h-10 w-px bg-gradient-to-b from-brand-primary/60 to-transparent" />
             </div>
-          ))}
-        </motion.div>
+          </motion.div>
+        )}
       </div>
     </section>
   )
