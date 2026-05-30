@@ -1,4 +1,13 @@
-import { useCallback, useEffect, useMemo, useRef, useState, type MouseEvent, type ReactNode } from 'react'
+import {
+  memo,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type MouseEvent,
+  type ReactNode,
+} from 'react'
 import { Cloud, fetchSimpleIcons, renderSimpleIcon } from 'react-icon-cloud'
 import { ICON_CLOUD_SLUGS } from '@/data/technologies'
 import { useTheme } from '@/context/ThemeContext'
@@ -8,33 +17,35 @@ const IDLE_SPEED: [number, number] = [0.045, -0.035]
 const RAMP_DURATION_MS = 2800
 const LEAVE_SETTLE_MS = 350
 
+/** Stable options — no clickToFront / shuffle so icons keep their positions on hover */
 const CLOUD_OPTIONS = {
   reverse: true,
   depth: 1,
   wheelZoom: false,
   imageScale: 2,
-  activeCursor: 'grab',
+  activeCursor: 'default',
   animTiming: 'Smooth' as const,
   initial: IDLE_SPEED,
-  clickToFront: 500,
+  clickToFront: false,
   maxSpeed: 0.018,
   minSpeed: 0.006,
   decel: 0.88,
   offsetX: 0,
   offsetY: 0,
-  shuffleTags: true,
-  outlineMethod: 'colour' as const,
-  outlineColour: 'rgba(0, 200, 255, 0.35)',
-  outlineThickness: 2,
+  shuffleTags: false,
+  outlineMethod: 'none' as const,
   textColour: '#ffffff',
   textHeight: 15,
   tooltip: 'native' as const,
+  tooltipDelay: 400,
   freezeActive: false,
   freezeDecel: true,
   shape: 'sphere' as const,
   lock: null,
   dragControl: true,
-  dragThreshold: 3,
+  dragThreshold: 4,
+  noSelect: true,
+  frontSelect: false,
 }
 
 type TagCanvasApi = {
@@ -49,6 +60,40 @@ function getTagCanvas(): TagCanvasApi | undefined {
 function smoothstep(t: number) {
   return t * t * (3 - 2 * t)
 }
+
+interface StableCloudProps {
+  icons: ReactNode[]
+  cloudKey: string
+}
+
+/**
+ * Isolated from hover state so react-icon-cloud is not remounted on every pointer enter/leave
+ * (the library assigns a new internal key on each Cloud render, which reshuffles tags).
+ */
+const StableIconCloud = memo(function StableIconCloud({ icons, cloudKey }: StableCloudProps) {
+  const canvasClass = useMemo(
+    () =>
+      'relative z-10 w-full aspect-square max-w-[min(100%,480px)] mx-auto opacity-100 lg:max-w-none lg:mx-0',
+    [],
+  )
+
+  return (
+    <Cloud
+      key={cloudKey}
+      id={CANVAS_ID}
+      options={CLOUD_OPTIONS}
+      containerProps={{
+        className: 'relative z-10 flex w-full items-center justify-center lg:justify-end',
+      }}
+      canvasProps={{
+        className: canvasClass,
+        'aria-label': 'Interactive 3D technology stack — drag to rotate',
+      }}
+    >
+      {icons}
+    </Cloud>
+  )
+})
 
 interface TechIconCloudProps {
   variant?: 'default' | 'side'
@@ -66,6 +111,7 @@ export function TechIconCloud({ variant = 'default' }: TechIconCloudProps) {
 
   const bgHex = theme === 'dark' ? '#09090b' : '#f4f4f5'
   const fallbackHex = theme === 'dark' ? '#00c8ff' : '#18181b'
+  const cloudKey = `${theme}-${variant}`
 
   const cancelRamp = useCallback(() => {
     if (rampFrameRef.current != null) {
@@ -93,10 +139,7 @@ export function TechIconCloud({ variant = 'default' }: TechIconCloudProps) {
       const progress = Math.min(1, (now - start) / RAMP_DURATION_MS)
       const eased = smoothstep(progress)
 
-      setCloudSpeed([
-        IDLE_SPEED[0] * eased,
-        IDLE_SPEED[1] * eased,
-      ])
+      setCloudSpeed([IDLE_SPEED[0] * eased, IDLE_SPEED[1] * eased])
 
       if (progress < 1) {
         rampFrameRef.current = requestAnimationFrame(tick)
@@ -135,19 +178,24 @@ export function TechIconCloud({ variant = 'default' }: TechIconCloudProps) {
     fetchSimpleIcons({ slugs: [...ICON_CLOUD_SLUGS] }).then((data) => {
       if (cancelled) return
 
-      const rendered = Object.values(data.simpleIcons).map((icon) =>
-        renderSimpleIcon({
-          icon,
-          size: isSide ? 44 : 48,
-          bgHex,
-          fallbackHex,
-          minContrastRatio: 2.5,
-          aProps: {
-            onClick: (e: MouseEvent) => e.preventDefault(),
-            title: icon.title,
-          },
-        }),
-      )
+      const rendered = ICON_CLOUD_SLUGS.flatMap((slug) => {
+        const icon = data.simpleIcons[slug]
+        if (!icon) return []
+
+        return [
+          renderSimpleIcon({
+            icon,
+            size: isSide ? 44 : 48,
+            bgHex,
+            fallbackHex,
+            minContrastRatio: 2.5,
+            aProps: {
+              onClick: (e: MouseEvent) => e.preventDefault(),
+              title: icon.title,
+            },
+          }),
+        ]
+      })
 
       setIcons(rendered)
       setReady(true)
@@ -166,7 +214,7 @@ export function TechIconCloud({ variant = 'default' }: TechIconCloudProps) {
     }, 500)
 
     return () => window.clearTimeout(bootTimer)
-  }, [ready, setCloudSpeed, theme, variant])
+  }, [ready, setCloudSpeed, cloudKey])
 
   useEffect(
     () => () => {
@@ -174,17 +222,6 @@ export function TechIconCloud({ variant = 'default' }: TechIconCloudProps) {
       clearLeaveTimer()
     },
     [cancelRamp, clearLeaveTimer],
-  )
-
-  const canvasClass = useMemo(
-    () =>
-      [
-        'relative z-10 w-full aspect-square transition-opacity duration-500',
-        isHovered ? 'cursor-grabbing' : 'cursor-grab',
-        isSide ? 'max-w-[min(100%,480px)] mx-auto lg:max-w-none lg:mx-0' : 'max-w-[min(70vh,520px)] mx-auto',
-        ready ? 'opacity-100' : 'opacity-0',
-      ].join(' '),
-    [ready, isSide, isHovered],
   )
 
   return (
@@ -212,26 +249,21 @@ export function TechIconCloud({ variant = 'default' }: TechIconCloudProps) {
       />
 
       <div
-        className="relative flex flex-col items-center justify-center lg:items-end lg:pr-2"
+        className={`relative flex flex-col items-center justify-center lg:items-end lg:pr-2 ${
+          isHovered ? 'cursor-grabbing' : 'cursor-grab'
+        }`}
         onPointerEnter={handlePointerEnter}
         onPointerLeave={handlePointerLeave}
       >
         {!ready && <CloudSkeleton variant={variant} />}
 
-        <Cloud
-          key={`${theme}-${ready}-${variant}`}
-          id={CANVAS_ID}
-          options={CLOUD_OPTIONS}
-          containerProps={{
-            className: 'relative z-10 flex w-full items-center justify-center lg:justify-end',
-          }}
-          canvasProps={{
-            className: canvasClass,
-            'aria-label': 'Interactive 3D technology stack — drag to rotate',
-          }}
+        <div
+          className={`w-full transition-opacity duration-500 ${ready ? 'opacity-100' : 'opacity-0'}`}
         >
-          {icons}
-        </Cloud>
+          {ready && icons.length > 0 && (
+            <StableIconCloud icons={icons} cloudKey={cloudKey} />
+          )}
+        </div>
 
         <p className="relative z-10 mt-4 w-full text-center text-xs text-zinc-500 sm:text-sm lg:text-right">
           <span className="inline-flex items-center gap-2 rounded-full border border-black/5 bg-white/80 px-3 py-1.5 backdrop-blur-sm dark:border-white/10 dark:bg-zinc-900/80">
