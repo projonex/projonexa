@@ -21,60 +21,96 @@ function ServiceCard({
 }) {
   const Icon = service.icon
   const accent = getServiceAccent(index)
+  const indexLabel = String(index + 1).padStart(2, '0')
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 22 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-32px' }}
-      transition={{ duration: 0.45, delay: (index % (compact ? 2 : 3)) * 0.07, ease: easeSmooth }}
-      whileHover={{ y: -4 }}
+      transition={{ duration: 0.48, delay: (index % (compact ? 2 : 3)) * 0.08, ease: easeSmooth }}
+      whileHover={{ y: -6 }}
       className="group relative flex h-full flex-col"
     >
-      <div className="absolute inset-0 rounded-2xl bg-brand-gradient opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-      <div className="glass relative flex h-full flex-col overflow-hidden rounded-2xl p-5 transition-shadow duration-300 group-hover:shadow-glow-sm sm:p-6">
+      <div
+        className="absolute inset-0 rounded-[1.25rem] opacity-40 transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          background: `linear-gradient(135deg, ${accent}55, transparent 45%, ${accent}33)`,
+        }}
+        aria-hidden
+      />
+
+      <div className="relative flex h-full flex-col overflow-hidden rounded-[1.2rem] border border-black/[0.07] bg-white/55 shadow-card backdrop-blur-xl transition-all duration-300 group-hover:border-brand-primary/25 group-hover:shadow-glow-sm dark:border-white/[0.09] dark:bg-black/45 dark:shadow-card-dark">
         <div
-          className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-100"
-          style={{ background: `${accent}30` }}
+          className="pointer-events-none absolute inset-x-0 top-0 h-1 opacity-80 transition-opacity group-hover:opacity-100"
+          style={{ background: `linear-gradient(90deg, ${accent}, transparent)` }}
           aria-hidden
         />
 
-        <div className="relative mb-4 flex items-start justify-between gap-3">
-          <div
-            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-white shadow-glow-sm"
-            style={{
-              background: `linear-gradient(135deg, ${accent}, ${accent}99)`,
-            }}
-          >
-            <Icon className="h-5 w-5" strokeWidth={2} aria-hidden />
-          </div>
-          <span className="text-[10px] font-bold tabular-nums tracking-wider text-zinc-400 dark:text-zinc-500">
-            {String(index + 1).padStart(2, '0')}
-          </span>
-        </div>
+        <span
+          className="pointer-events-none absolute -right-1 -top-3 select-none text-[4.5rem] font-bold leading-none tabular-nums text-black/[0.04] dark:text-white/[0.05]"
+          aria-hidden
+        >
+          {indexLabel}
+        </span>
 
-        <h3 className="relative text-base font-semibold leading-snug text-zinc-900 transition-colors duration-300 group-hover:text-brand-mid dark:text-white dark:group-hover:text-brand-accent sm:text-lg">
-          {service.title}
-        </h3>
-        <p className="relative mt-2 flex-1 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-          {service.description}
-        </p>
+        <div
+          className="pointer-events-none absolute -left-8 top-1/2 h-32 w-32 -translate-y-1/2 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
+          style={{ background: `${accent}28` }}
+          aria-hidden
+        />
 
-        <ul className="relative mt-4 space-y-2 border-t border-black/[0.06] pt-4 dark:border-white/[0.06]">
-          {service.deliverables.map((d) => (
-            <li
-              key={d}
-              className="flex items-start gap-2 text-xs leading-relaxed text-zinc-500 dark:text-zinc-400"
+        <div className={`relative flex flex-1 flex-col ${compact ? 'p-5' : 'p-6'}`}>
+          <div className="mb-4 flex items-start gap-3">
+            <div
+              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ring-1 ring-black/[0.06] transition-transform duration-300 group-hover:scale-105 dark:ring-white/[0.08]"
+              style={{
+                background: `linear-gradient(145deg, ${accent}40, ${accent}12)`,
+                boxShadow: `0 8px 28px -10px ${accent}88`,
+              }}
             >
-              <Check
-                className="mt-0.5 h-3.5 w-3.5 shrink-0"
-                style={{ color: accent }}
-                aria-hidden
-              />
-              {d}
-            </li>
-          ))}
-        </ul>
+              <Icon className="h-5 w-5" style={{ color: accent }} strokeWidth={2} aria-hidden />
+            </div>
+            <div className="min-w-0 flex-1 pt-0.5">
+              <span
+                className="inline-flex rounded-md px-2 py-0.5 text-[10px] font-bold tabular-nums tracking-widest"
+                style={{
+                  color: accent,
+                  backgroundColor: `${accent}18`,
+                }}
+              >
+                {indexLabel}
+              </span>
+              <h3 className="mt-2 text-base font-semibold leading-snug text-zinc-900 transition-colors duration-300 group-hover:text-brand-mid dark:text-white dark:group-hover:text-brand-accent sm:text-[1.05rem]">
+                {service.title}
+              </h3>
+            </div>
+          </div>
+
+          <p className="relative flex-1 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+            {service.description}
+          </p>
+
+          <div className="relative mt-5">
+            <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-zinc-500 dark:text-zinc-500">
+              What&apos;s included
+            </p>
+            <ul className="flex flex-wrap gap-2">
+              {service.deliverables.map((d) => (
+                <li key={d}>
+                  <span className="inline-flex max-w-full items-center gap-1.5 rounded-full border border-black/[0.06] bg-white/60 px-2.5 py-1.5 text-[11px] font-medium leading-tight text-zinc-600 backdrop-blur-sm transition-colors duration-300 group-hover:border-brand-primary/15 group-hover:bg-white/80 dark:border-white/[0.08] dark:bg-white/[0.06] dark:text-zinc-300 dark:group-hover:border-brand-primary/20 sm:text-xs">
+                    <Check
+                      className="h-3 w-3 shrink-0"
+                      style={{ color: accent }}
+                      aria-hidden
+                    />
+                    {d}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     </motion.article>
   )
