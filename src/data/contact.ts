@@ -54,10 +54,10 @@ export const CONTACT_INFO_CARDS: {
 ]
 
 export const CONTACT_FORM_HINTS = [
-  'Students: college, branch, deadline, and viva needs',
-  'Startups: MVP scope, timeline, and budget range',
-  'Tech stack or must-have features',
-  'Links to references or college guidelines',
+  'Your branch, year, and college deadline',
+  'Tech stack or features you have in mind',
+  'Whether you need viva or documentation support',
+  'Budget range if you already have one',
 ] as const
 
 export const CONTACT_QUICK_LINKS = [

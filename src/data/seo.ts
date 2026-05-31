@@ -148,7 +148,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
   contact: {
     title: `Contact ${BRAND.name} | Start Your Project — ${GEO.region}, ${GEO.country}`,
     description:
-      'Contact Projonexa for final year projects, mini projects, AI/ML, web & mobile apps, IoT, and startup MVPs. Choose a student or corporate inquiry form — response within 24 hours.',
+      'Contact Projonexa for final year projects, mini projects, AI/ML, web & mobile apps, IoT, and startup MVPs. Submit an inquiry — response within 24 hours across India and globally.',
     keywords: [...BASE_KEYWORDS, 'contact projonexa', 'project inquiry India'],
     path: '/contact',
     breadcrumb: [{ name: 'Contact', path: '/contact' }],
@@ -212,6 +212,6 @@ export const AEO_HOME_FAQ = [
   {
     question: 'How do I start a project with Projonexa?',
     answer:
-      'Visit projonexa.com/contact and choose the student or corporate inquiry form, or email nisargalokhande@gmail.com. The team responds within 24 hours with scope, timeline, and next steps.',
+      'Visit projonexa.com/contact, submit your project requirements, or email nisargalokhande@gmail.com. The team responds within 24 hours with scope, timeline, and next steps.',
   },
 ] as const

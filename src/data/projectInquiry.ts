@@ -31,24 +31,6 @@ export const CORPORATE_INQUIRY_SECTION = {
     'MVPs, custom software, web & mobile apps — share your business goals, timeline, and scope.',
 } as const
 
-export const INQUIRY_HUB = {
-  eyebrow: 'Project inquiry',
-  title: 'Choose your inquiry type',
-  lead: 'Select the form that matches you — we respond within 24 hours with scope and next steps.',
-  studentCard: {
-    title: 'Student projects',
-    description:
-      'Final year & mini projects, AI/ML, web/mobile, IoT — with documentation, deployment, and viva support.',
-    cta: 'Student inquiry form',
-  },
-  corporateCard: {
-    title: 'Corporate & startups',
-    description:
-      'Startup MVPs, custom software, product builds, and enhancements for teams and businesses.',
-    cta: 'Corporate inquiry form',
-  },
-} as const
-
 export const INQUIRY_TIMELINE_OPTIONS = [
   { value: 'urgent-1-2w', label: 'Urgent — within 2 weeks' },
   { value: 'standard-3-6w', label: 'Standard — 3 to 6 weeks' },
