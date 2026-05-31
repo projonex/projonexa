@@ -7,7 +7,7 @@ import { Logo } from '@/components/ui/Logo'
 export function Footer() {
   return (
     <footer
-      className="border-t border-black/5 bg-zinc-50 dark:border-white/[0.06] dark:bg-surface-elevated"
+      className="relative z-10 border-t border-black/5 bg-zinc-50/80 backdrop-blur-md dark:border-white/[0.06] dark:bg-[#0a0a0a]/80"
       itemScope
       itemType="https://schema.org/Organization"
     >

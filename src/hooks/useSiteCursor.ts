@@ -1,8 +1,7 @@
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useMotionValue } from 'framer-motion'
 
-export function useHeroCursor(enabled: boolean) {
-  const sectionRef = useRef<HTMLElement>(null)
+export function useSiteCursor(enabled: boolean) {
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
   const parallaxX = useMotionValue(0)
@@ -10,11 +9,9 @@ export function useHeroCursor(enabled: boolean) {
   const isActive = useMotionValue(0)
 
   const centerCursor = useCallback(() => {
-    const el = sectionRef.current
-    if (!el) return
-    const { width, height } = el.getBoundingClientRect()
-    mouseX.set(width / 2)
-    mouseY.set(height * 0.42)
+    if (typeof window === 'undefined') return
+    mouseX.set(window.innerWidth / 2)
+    mouseY.set(window.innerHeight * 0.38)
     parallaxX.set(0)
     parallaxY.set(0)
     isActive.set(0)
@@ -29,14 +26,11 @@ export function useHeroCursor(enabled: boolean) {
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
-      if (!enabled || !sectionRef.current) return
-      const rect = sectionRef.current.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const y = e.clientY - rect.top
-      mouseX.set(x)
-      mouseY.set(y)
-      parallaxX.set(x / rect.width - 0.5)
-      parallaxY.set(y / rect.height - 0.5)
+      if (!enabled) return
+      mouseX.set(e.clientX)
+      mouseY.set(e.clientY)
+      parallaxX.set(e.clientX / window.innerWidth - 0.5)
+      parallaxY.set(e.clientY / window.innerHeight - 0.5)
       isActive.set(1)
     },
     [enabled, mouseX, mouseY, parallaxX, parallaxY, isActive],
@@ -47,7 +41,6 @@ export function useHeroCursor(enabled: boolean) {
   }, [centerCursor])
 
   return {
-    sectionRef,
     mouseX,
     mouseY,
     parallaxX,

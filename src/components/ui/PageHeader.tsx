@@ -8,8 +8,7 @@ interface PageHeaderProps {
 
 export function PageHeader({ title, description, eyebrow }: PageHeaderProps) {
   return (
-    <section className="relative overflow-hidden border-b border-black/5 bg-zinc-50 pt-32 pb-16 dark:border-white/[0.06] dark:bg-black">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(0,200,255,0.12)_0%,_transparent_60%)] dark:bg-[radial-gradient(ellipse_at_top,_rgba(0,200,255,0.08)_0%,_transparent_55%)]" />
+    <section className="relative overflow-hidden border-b border-black/5 bg-white/50 pt-32 pb-16 backdrop-blur-sm dark:border-white/[0.06] dark:bg-black/40">
       <div className="container-narrow relative px-4 sm:px-6 lg:px-8">
         {eyebrow && (
           <motion.p

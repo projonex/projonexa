@@ -1,10 +1,7 @@
-import { useEffect } from 'react'
-import { motion, useSpring, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { ArrowRight, MapPin } from 'lucide-react'
 import { BRAND } from '@/data/brand'
 import { Button } from '@/components/ui/Button'
-import { HeroBackground } from '@/components/sections/HeroBackground'
-import { useHeroCursor } from '@/hooks/useHeroCursor'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 
 const fadeUp = (delay: number, reduced: boolean) =>
@@ -15,8 +12,6 @@ const fadeUp = (delay: number, reduced: boolean) =>
         animate: { opacity: 1, y: 0 },
         transition: { duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] },
       }
-
-const contentSpring = { stiffness: 100, damping: 26, mass: 0.5 }
 
 function HeroTagline({ reducedMotion }: { reducedMotion: boolean }) {
   const { prefix, bridge, suffix } = BRAND.taglineHero
@@ -64,50 +59,10 @@ function HeroTagline({ reducedMotion }: { reducedMotion: boolean }) {
 
 export function Hero() {
   const reducedMotion = useReducedMotion()
-  const showCursor = !reducedMotion
-
-  const {
-    sectionRef,
-    mouseX,
-    mouseY,
-    parallaxX,
-    parallaxY,
-    isActive,
-    handleMouseMove,
-    handleMouseLeave,
-  } = useHeroCursor(showCursor)
-
-  const contentX = useSpring(useTransform(parallaxX, (v) => v * 16), contentSpring)
-  const contentY = useSpring(useTransform(parallaxY, (v) => v * 12), contentSpring)
-
-  useEffect(() => {
-    if (reducedMotion) {
-      parallaxX.set(0)
-      parallaxY.set(0)
-    }
-  }, [reducedMotion, parallaxX, parallaxY])
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative min-h-screen overflow-hidden pt-16"
-      onMouseMove={showCursor ? handleMouseMove : undefined}
-      onMouseLeave={showCursor ? handleMouseLeave : undefined}
-    >
-      <HeroBackground
-        reducedMotion={reducedMotion}
-        showCursor={showCursor}
-        mouseX={mouseX}
-        mouseY={mouseY}
-        parallaxX={parallaxX}
-        parallaxY={parallaxY}
-        isActive={isActive}
-      />
-
-      <motion.div
-        className="container-wide pointer-events-none relative z-10 flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center px-4 py-20 text-center sm:px-6 sm:py-24 lg:px-8"
-        style={showCursor ? { x: contentX, y: contentY } : undefined}
-      >
+    <section className="relative min-h-screen overflow-hidden pt-16">
+      <div className="container-wide relative flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center px-4 py-20 text-center sm:px-6 sm:py-24 lg:px-8">
         <HeroTagline reducedMotion={reducedMotion} />
 
         <motion.h1
@@ -145,7 +100,7 @@ export function Hero() {
 
         <motion.div
           {...fadeUp(0.3, reducedMotion)}
-          className="pointer-events-auto mt-10 flex w-full max-w-md flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4"
+          className="mt-10 flex w-full max-w-md flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4"
         >
           <Button
             to="/services"
@@ -169,7 +124,7 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.9, duration: 0.8 }}
-            className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 sm:block"
+            className="pointer-events-none absolute bottom-8 left-1/2 hidden -translate-x-1/2 sm:block"
             aria-hidden
           >
             <div className="flex flex-col items-center gap-2">
@@ -184,7 +139,7 @@ export function Hero() {
             </div>
           </motion.div>
         )}
-      </motion.div>
+      </div>
     </section>
   )
 }

@@ -46,7 +46,12 @@
   }
 
   .section-alt {
-    @apply bg-zinc-50 dark:bg-surface-elevated;
+    @apply border-y border-black/[0.04] bg-zinc-50/75 backdrop-blur-md;
+  }
+
+  .dark .section-alt {
+    border-color: rgba(255, 255, 255, 0.04);
+    background-color: rgba(10, 10, 10, 0.72);
   }
 
   .section-padding {
