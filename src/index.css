@@ -352,6 +352,101 @@
       0 28px 64px -32px rgba(0, 200, 255, 0.14);
   }
 
+  .careers-apply-standalone {
+    overflow-x: clip;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .careers-form-input {
+    min-height: 3rem;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  @media (min-width: 640px) {
+    .careers-form-input {
+      min-height: 2.75rem;
+      font-size: 0.875rem;
+    }
+  }
+
+  .careers-form-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    min-height: 3.25rem;
+    padding-left: 1rem;
+    padding-right: 2.75rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    color: #18181b;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      background-color 0.2s ease;
+  }
+
+  .careers-form-select:hover {
+    border-color: rgba(0, 200, 255, 0.35);
+  }
+
+  .careers-form-select:focus {
+    outline: none;
+    border-color: #00c8ff;
+    box-shadow:
+      0 0 0 3px rgba(0, 200, 255, 0.2),
+      0 1px 2px rgba(0, 0, 0, 0.04);
+  }
+
+  .dark .careers-form-select {
+    border-color: rgba(255, 255, 255, 0.12);
+    background-color: rgba(24, 24, 27, 0.95);
+    color: #f4f4f5;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .dark .careers-form-select:hover {
+    border-color: rgba(0, 200, 255, 0.4);
+    background-color: rgba(24, 24, 27, 1);
+  }
+
+  .dark .careers-form-select:focus {
+    border-color: #5ee9ff;
+    box-shadow: 0 0 0 3px rgba(0, 200, 255, 0.22);
+  }
+
+  .careers-form-select option {
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+    background-color: #ffffff;
+    color: #18181b;
+  }
+
+  .dark .careers-form-select option {
+    background-color: #18181b;
+    color: #f4f4f5;
+  }
+
+  @media (min-width: 640px) {
+    .careers-form-select {
+      min-height: 3rem;
+      font-size: 0.875rem;
+    }
+
+    .careers-form-select option {
+      font-size: 0.875rem;
+    }
+  }
+
   .careers-form-panel {
     background: rgba(255, 255, 255, 0.96);
     border: 1px solid rgba(0, 0, 0, 0.08);
