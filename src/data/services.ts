@@ -10,7 +10,6 @@ import {
   Lightbulb,
   Rocket,
   Smartphone,
-  BookOpen,
   Briefcase,
 } from 'lucide-react'
 
@@ -20,6 +19,32 @@ export interface Service {
   description: string
   deliverables: string[]
   icon: LucideIcon
+}
+
+export const SERVICES_SECTION = {
+  eyebrow: 'Services',
+  title: 'End-to-End Project Development',
+  lead: 'From mini projects to startup MVPs — comprehensive solutions tailored to your goals.',
+  body: 'Whether you need a final-year submission, a production-ready prototype, or an investor-ready product, Projonexa pairs expert developers with structured delivery — code, documentation, demos, and mentor support in one place.',
+} as const
+
+const SERVICE_ACCENTS = [
+  '#00C8FF',
+  '#6C63FF',
+  '#3D8BFF',
+  '#67E8F9',
+  '#00C8FF',
+  '#6C63FF',
+  '#3D8BFF',
+  '#67E8F9',
+  '#00C8FF',
+  '#6C63FF',
+  '#3D8BFF',
+  '#67E8F9',
+] as const
+
+export function getServiceAccent(index: number): string {
+  return SERVICE_ACCENTS[index % SERVICE_ACCENTS.length]
 }
 
 export const SERVICES: Service[] = [
@@ -52,7 +77,7 @@ export const SERVICES: Service[] = [
     title: 'AI & Machine Learning',
     description:
       'Intelligent systems using deep learning, NLP, computer vision, and predictive analytics with reproducible results.',
-    deliverables: ['Trained models', 'Dataset pipeline', 'Evaluation metrics', 'Research summary'],
+    deliverables: ['Trained models', 'Dataset pipeline', 'Evaluation metrics', 'Results report'],
     icon: Brain,
   },
   {
@@ -70,14 +95,6 @@ export const SERVICES: Service[] = [
       'Cross-platform and native mobile applications for Android and iOS with intuitive UX and backend connectivity.',
     deliverables: ['Mobile APK/build', 'UI/UX screens', 'Backend APIs', 'App store guidance'],
     icon: Smartphone,
-  },
-  {
-    id: 'research-paper',
-    title: 'Research Paper Assistance',
-    description:
-      'End-to-end research support from topic selection to IEEE/Scopus-ready paper formatting and submission guidance.',
-    deliverables: ['Literature review', 'Methodology', 'Formatted paper', 'Plagiarism check'],
-    icon: BookOpen,
   },
   {
     id: 'iot',

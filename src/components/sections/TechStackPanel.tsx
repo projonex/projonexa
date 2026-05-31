@@ -1,4 +1,10 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { TechLogo } from '@/components/ui/TechLogo'
+import {
+  TECH_CATEGORIES,
+  TECHNOLOGIES,
+  type TechCategory,
+  type TechItem,
+} from '@/data/technologies'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   Brain,
@@ -11,13 +17,7 @@ import {
   Wrench,
   type LucideIcon,
 } from 'lucide-react'
-import { TechLogo } from '@/components/ui/TechLogo'
-import {
-  TECH_CATEGORIES,
-  TECHNOLOGIES,
-  type TechCategory,
-  type TechItem,
-} from '@/data/technologies'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 const CATEGORY_META: Record<
   TechCategory,
@@ -38,7 +38,11 @@ const AUTO_CYCLE_MS = 6500
 const MARQUEE_SPEED_LEFT = 280
 const MARQUEE_SPEED_RIGHT = 320
 
-export function TechStackPanel() {
+interface TechStackPanelProps {
+  onTechHover?: (tech: TechItem | null) => void
+}
+
+export function TechStackPanel({ onTechHover }: TechStackPanelProps) {
   const grouped = useMemo(
     () =>
       [...TECH_CATEGORIES]
@@ -53,7 +57,7 @@ export function TechStackPanel() {
   )
 
   const [activeIndex, setActiveIndex] = useState(0)
-  const [paused, setPaused] = useState(false)
+  const [cyclePaused, setCyclePaused] = useState(false)
   const [hoveredId, setHoveredId] = useState<string | null>(null)
 
   const active = grouped[activeIndex]
@@ -61,21 +65,31 @@ export function TechStackPanel() {
     ? TECHNOLOGIES.find((t) => t.id === hoveredId)
     : null
 
+  const emitHover = useCallback(
+    (id: string | null) => {
+      setHoveredId(id)
+      if (!onTechHover) return
+      const tech = id ? TECHNOLOGIES.find((t) => t.id === id) ?? null : null
+      onTechHover(tech)
+    },
+    [onTechHover],
+  )
+
   const selectCategory = useCallback((index: number) => {
     setActiveIndex(index)
-    setHoveredId(null)
-  }, [])
+    emitHover(null)
+  }, [emitHover])
 
   const advance = useCallback(() => {
     setActiveIndex((i) => (i + 1) % grouped.length)
-    setHoveredId(null)
-  }, [grouped.length])
+    emitHover(null)
+  }, [grouped.length, emitHover])
 
   useEffect(() => {
-    if (paused || grouped.length <= 1) return
+    if (cyclePaused || grouped.length <= 1) return
     const timer = window.setInterval(advance, AUTO_CYCLE_MS)
     return () => window.clearInterval(timer)
-  }, [paused, advance, grouped.length])
+  }, [cyclePaused, advance, grouped.length])
 
   const marqueeRowA = useMemo(() => [...TECHNOLOGIES, ...TECHNOLOGIES], [])
   const marqueeRowB = useMemo(
@@ -86,14 +100,14 @@ export function TechStackPanel() {
   return (
     <div
       className="tech-stack-premium relative overflow-hidden rounded-3xl shadow-[0_20px_60px_-24px_rgba(0,200,255,0.2)] dark:shadow-[0_20px_60px_-24px_rgba(0,200,255,0.12)]"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => {
-        setPaused(false)
-        setHoveredId(null)
+      onMouseLeave={(e) => {
+        const next = e.relatedTarget as Node | null
+        if (next && e.currentTarget.contains(next)) return
+        emitHover(null)
       }}
     >
       <div className="absolute inset-0 rounded-3xl bg-brand-gradient p-px">
-        <div className="h-full w-full rounded-[calc(1.5rem-1px)] bg-zinc-50 dark:bg-zinc-950" />
+        <div className="h-full w-full rounded-[calc(1.5rem-1px)] bg-white/45 backdrop-blur-xl dark:bg-black/40" />
       </div>
 
       <div
@@ -102,17 +116,30 @@ export function TechStackPanel() {
       />
 
       <div className="relative z-10 flex flex-col p-5 sm:p-6">
-        <div className="mb-4">
-          <h3 className="text-lg font-bold tracking-tight text-zinc-900 dark:text-white sm:text-xl">
-            Tools we ship with
-          </h3>
-          <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
-            Curated stack for projects that need to look and perform premium.
-          </p>
+        <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-primary">
+              Interactive stack
+            </p>
+            <h3 className="mt-1 text-lg font-bold tracking-tight text-zinc-900 dark:text-white sm:text-xl">
+              Browse by domain
+            </h3>
+          </div>
+          <span className="rounded-full border border-black/[0.06] bg-white/50 px-3 py-1 text-[11px] font-medium tabular-nums text-zinc-600 backdrop-blur-sm dark:border-white/[0.08] dark:bg-black/40 dark:text-zinc-400">
+            {grouped.length} domains
+          </span>
         </div>
 
-        {/* Compact spotlight */}
-        <div className="relative mb-4 overflow-hidden rounded-2xl border border-black/[0.06] bg-white/70 backdrop-blur-md dark:border-white/[0.08] dark:bg-zinc-900/45">
+        {/* Compact spotlight — pause domain auto-cycle only here, not the marquee */}
+        <div
+          className="relative mb-4 overflow-hidden rounded-2xl border border-black/[0.06] bg-white/50 backdrop-blur-xl dark:border-white/[0.08] dark:bg-black/45"
+          onMouseEnter={() => setCyclePaused(true)}
+          onMouseLeave={(e) => {
+            const next = e.relatedTarget as Node | null
+            if (next && e.currentTarget.contains(next)) return
+            setCyclePaused(false)
+          }}
+        >
           <AnimatePresence mode="wait">
             <motion.div
               aria-hidden
@@ -151,7 +178,7 @@ export function TechStackPanel() {
               >
                 {hoveredTech ? (
                   <>
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white shadow-sm dark:bg-zinc-800">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white shadow-sm dark:bg-surface-hover">
                       <TechLogo tech={hoveredTech} size="sm" />
                     </div>
                     <div className="min-w-0 flex-1">
@@ -192,7 +219,7 @@ export function TechStackPanel() {
             </AnimatePresence>
           </div>
 
-          <div className="relative z-[2] overflow-x-auto px-3.5 py-2.5 sm:px-4">
+          <div className="relative z-[2] -mx-1 overflow-x-auto overscroll-x-contain px-3.5 py-2.5 [-webkit-overflow-scrolling:touch] sm:mx-0 sm:px-4">
             <div className="relative flex min-w-max gap-1.5">
               {grouped.map((group, i) => (
                 <button
@@ -208,17 +235,26 @@ export function TechStackPanel() {
                   {i === activeIndex && (
                     <motion.span
                       layoutId="spotlight-pill"
-                      className="absolute inset-0 rounded-full bg-white shadow-sm ring-1 ring-black/[0.06] dark:bg-zinc-800 dark:ring-white/10"
+                      className="absolute inset-0 rounded-full bg-white shadow-sm ring-1 ring-black/[0.06] dark:bg-surface-hover dark:ring-white/[0.08]"
                       transition={{ type: 'spring', stiffness: 380, damping: 32 }}
                     />
                   )}
-                  <span className="relative z-10">{group.label.split(' ')[0]}</span>
+                  <span className="relative z-10 whitespace-nowrap">
+                    {group.label.length > 14 ? group.label.split(' ')[0] : group.label}
+                  </span>
                 </button>
               ))}
             </div>
           </div>
 
-          <div className="relative z-[2] px-3.5 pb-3.5 sm:px-4 sm:pb-4">
+          <div
+            className="relative z-[2] px-3.5 pb-3.5 sm:px-4 sm:pb-4"
+            onMouseLeave={(e) => {
+              const next = e.relatedTarget as Node | null
+              if (next && e.currentTarget.contains(next)) return
+              emitHover(null)
+            }}
+          >
             <AnimatePresence mode="wait">
               <motion.div
                 key={active.id}
@@ -234,7 +270,7 @@ export function TechStackPanel() {
                     tech={tech}
                     index={index}
                     isHovered={hoveredId === tech.id}
-                    onHover={setHoveredId}
+                    onHover={emitHover}
                   />
                 ))}
               </motion.div>
@@ -243,19 +279,29 @@ export function TechStackPanel() {
         </div>
 
         {/* Slow dual marquee */}
-        <div className="relative overflow-hidden rounded-2xl border border-black/[0.05] bg-zinc-900/[0.02] py-2.5 dark:border-white/[0.06] dark:bg-white/[0.02]">
+        <div className="relative overflow-hidden rounded-2xl border border-black/[0.05] bg-white/35 py-2.5 backdrop-blur-md dark:border-white/[0.06] dark:bg-black/35">
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-zinc-50 to-transparent dark:from-zinc-950"
+            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-zinc-50 to-transparent dark:from-black"
           />
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-zinc-50 to-transparent dark:from-zinc-950"
+            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-zinc-50 to-transparent dark:from-black"
           />
 
-          <div className={`space-y-2 ${paused ? 'tech-marquee-paused' : ''}`}>
-            <MarqueeRow items={marqueeRowA} direction="left" speed={MARQUEE_SPEED_LEFT} />
-            <MarqueeRow items={marqueeRowB} direction="right" speed={MARQUEE_SPEED_RIGHT} />
+          <div className="space-y-2">
+            <MarqueeRow
+              items={marqueeRowA}
+              direction="left"
+              speed={MARQUEE_SPEED_LEFT}
+              onHover={emitHover}
+            />
+            <MarqueeRow
+              items={marqueeRowB}
+              direction="right"
+              speed={MARQUEE_SPEED_RIGHT}
+              onHover={emitHover}
+            />
           </div>
         </div>
       </div>
@@ -283,8 +329,6 @@ function CompactTechTile({
       transition={{ delay: index * 0.025, duration: 0.28 }}
       onMouseEnter={() => onHover(tech.id)}
       onFocus={() => onHover(tech.id)}
-      onMouseLeave={() => onHover(null)}
-      onBlur={() => onHover(null)}
       tabIndex={0}
       title={tech.name}
       className="group relative outline-none"
@@ -292,8 +336,8 @@ function CompactTechTile({
       <div
         className={`flex min-h-[52px] flex-col items-center justify-center rounded-lg border px-1 py-1.5 transition-all duration-300 ${
           isHovered
-            ? 'scale-[1.04] border-brand-primary/35 bg-white shadow-glow dark:bg-zinc-900'
-            : 'border-transparent bg-white/50 dark:bg-zinc-900/35'
+            ? 'scale-[1.04] border-brand-primary/35 bg-white/70 shadow-glow backdrop-blur-md dark:bg-black/50'
+            : 'border-transparent bg-white/40 backdrop-blur-sm dark:bg-black/30'
         }`}
       >
         <div
@@ -315,10 +359,12 @@ function MarqueeRow({
   items,
   direction,
   speed,
+  onHover,
 }: {
   items: TechItem[]
   direction: 'left' | 'right'
   speed: number
+  onHover?: (id: string | null) => void
 }) {
   return (
     <div className="flex overflow-hidden">
@@ -331,7 +377,8 @@ function MarqueeRow({
         {[...items, ...items].map((tech, i) => (
           <div
             key={`${tech.id}-${i}`}
-            className="flex shrink-0 items-center gap-2 rounded-full border border-black/[0.06] bg-white/90 px-2.5 py-1 dark:border-white/[0.08] dark:bg-zinc-900/90"
+            onMouseEnter={() => onHover?.(tech.id)}
+            className="flex shrink-0 cursor-default items-center gap-2 rounded-full border border-black/[0.06] bg-white/55 px-2.5 py-1 backdrop-blur-md transition-colors duration-300 hover:border-brand-primary/30 hover:bg-white/80 dark:border-white/[0.08] dark:bg-black/45 dark:hover:border-brand-primary/35"
           >
             <TechLogo tech={tech} size="sm" className="h-4 w-4" />
             <span className="whitespace-nowrap text-[10px] font-medium text-zinc-600 dark:text-zinc-400">

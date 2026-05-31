@@ -27,7 +27,7 @@ export function PricingPage() {
               transition={{ delay: i * 0.08 }}
               className={`flex flex-col rounded-2xl p-6 ${
                 plan.highlighted
-                  ? 'border-2 border-brand-primary bg-brand-primary/5 shadow-glow'
+                  ? 'border-2 border-brand-primary bg-brand-primary/5 shadow-glow dark:bg-brand-primary/10 dark:shadow-glow-sm'
                   : 'glass'
               }`}
             >

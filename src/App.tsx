@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import { ThemeProvider } from '@/context/ThemeContext'
 import { Layout } from '@/components/layout/Layout'
@@ -6,13 +6,16 @@ import { HomePage } from '@/pages/HomePage'
 import { AboutPage } from '@/pages/AboutPage'
 import { ServicesPage } from '@/pages/ServicesPage'
 import { ProjectsPage } from '@/pages/ProjectsPage'
-import { ResearchPage } from '@/pages/ResearchPage'
+import { ProjectDetailPage } from '@/pages/ProjectDetailPage'
 import { BlogPage } from '@/pages/BlogPage'
 import { PortfolioPage } from '@/pages/PortfolioPage'
 import { PricingPage } from '@/pages/PricingPage'
 import { CareersPage } from '@/pages/CareersPage'
+import { CareersApplyPage } from '@/pages/CareersApplyPage'
+import { CorporateInquiryPage } from '@/pages/CorporateInquiryPage'
 import { FAQPage } from '@/pages/FAQPage'
 import { ContactPage } from '@/pages/ContactPage'
+import { StudentInquiryPage } from '@/pages/StudentInquiryPage'
 
 export default function App() {
   return (
@@ -20,12 +23,16 @@ export default function App() {
       <ThemeProvider>
         <BrowserRouter>
           <Routes>
+            <Route path="careers/apply" element={<CareersApplyPage />} />
+            <Route path="inquiry/students" element={<StudentInquiryPage />} />
+            <Route path="inquiry/corporate" element={<CorporateInquiryPage />} />
             <Route element={<Layout />}>
               <Route index element={<HomePage />} />
               <Route path="about" element={<AboutPage />} />
               <Route path="services" element={<ServicesPage />} />
               <Route path="projects" element={<ProjectsPage />} />
-              <Route path="research" element={<ResearchPage />} />
+              <Route path="projects/:slug" element={<ProjectDetailPage />} />
+              <Route path="research" element={<Navigate to="/services" replace />} />
               <Route path="blog" element={<BlogPage />} />
               <Route path="portfolio" element={<PortfolioPage />} />
               <Route path="pricing" element={<PricingPage />} />

@@ -25,7 +25,7 @@ export function TechCard({ tech, index }: TechCardProps) {
       className="group relative"
     >
       <div
-        className="relative overflow-hidden rounded-2xl border border-black/5 bg-white/80 p-5 backdrop-blur-sm transition-all duration-300 dark:border-white/10 dark:bg-zinc-900/60"
+        className="relative overflow-hidden rounded-2xl border border-black/5 bg-white/80 p-5 backdrop-blur-sm transition-all duration-300 dark:border-white/[0.08] dark:bg-surface-card dark:shadow-card-dark"
         style={{
           ['--glow' as string]: glowColor,
         }}
@@ -43,7 +43,7 @@ export function TechCard({ tech, index }: TechCardProps) {
 
         <div className="relative flex flex-col items-center gap-3 text-center">
           <div
-            className="flex h-14 w-14 items-center justify-center rounded-xl border border-black/5 bg-zinc-50 transition-all duration-300 group-hover:border-brand-primary/30 group-hover:shadow-glow dark:border-white/10 dark:bg-zinc-800/80"
+            className="flex h-14 w-14 items-center justify-center rounded-xl border border-black/5 bg-zinc-50 transition-all duration-300 group-hover:border-brand-primary/30 group-hover:shadow-glow dark:border-white/[0.08] dark:bg-surface-hover"
             style={{
               boxShadow: `0 4px 24px -4px ${glowColor}33`,
             }}
@@ -58,7 +58,7 @@ export function TechCard({ tech, index }: TechCardProps) {
             <h4 className="text-sm font-semibold text-zinc-900 transition-colors group-hover:text-brand-primary dark:text-white">
               {tech.name}
             </h4>
-            <p className="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-zinc-400">
+            <p className="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
               {categoryLabel(tech.category)}
             </p>
           </div>

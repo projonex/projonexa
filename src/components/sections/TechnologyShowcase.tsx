@@ -1,54 +1,97 @@
-import { SectionHeading } from '@/components/ui/SectionHeading'
+import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { TechIconCloud } from '@/components/sections/TechIconCloud'
 import { TechStackPanel } from '@/components/sections/TechStackPanel'
+import { getIconCloudSlug, TECH_SECTION, type TechItem } from '@/data/technologies'
 
-export function TechnologyShowcase() {
+const easeSmooth = [0.22, 1, 0.36, 1] as const
+
+function TechnologyHeading({ className = '' }: { className?: string }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -16 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.55, ease: easeSmooth }}
+      className={className}
+    >
+      <div className="flex items-center gap-3">
+        <span
+          className="h-px w-10 bg-gradient-to-r from-brand-primary to-transparent"
+          aria-hidden
+        />
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-primary">
+          {TECH_SECTION.eyebrow}
+        </p>
+      </div>
+
+      <h2
+        id="tech-showcase-heading"
+        className="section-display-title mt-5"
+      >
+        {TECH_SECTION.title}
+      </h2>
+
+      <p className="mt-4 max-w-2xl text-lg font-medium leading-relaxed text-zinc-700 dark:text-zinc-300">
+        {TECH_SECTION.lead}
+      </p>
+    </motion.div>
+  )
+}
+
+interface TechnologyShowcaseProps {
+  /** Home: nested inside TechnologyWhySection — no extra section shell */
+  variant?: 'section' | 'grouped'
+}
+
+export function TechnologyShowcase({ variant = 'section' }: TechnologyShowcaseProps) {
+  const [hoveredTech, setHoveredTech] = useState<TechItem | null>(null)
+  const highlightSlug = hoveredTech ? getIconCloudSlug(hoveredTech) : null
+
+  const content = (
+    <div className="container-wide">
+      <TechnologyHeading className="mb-8 max-w-3xl sm:mb-10 lg:mb-12" />
+
+      <div className="grid grid-cols-1 items-start gap-8 sm:gap-10 lg:grid-cols-[minmax(0,1.06fr)_minmax(0,0.94fr)] lg:gap-12 xl:gap-14">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.55, ease: easeSmooth }}
+          className="min-w-0 w-full"
+        >
+          <TechStackPanel onTechHover={setHoveredTech} />
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.55, delay: 0.08, ease: easeSmooth }}
+          className="flex w-full min-w-0 items-center justify-center lg:sticky lg:top-28 lg:justify-center"
+        >
+          <div className="w-full max-w-[min(100%,480px)] lg:max-w-[460px]">
+            <TechIconCloud
+              variant="side"
+              highlightSlug={highlightSlug}
+              highlightLabel={hoveredTech?.name ?? null}
+            />
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  )
+
+  if (variant === 'grouped') {
+    return content
+  }
+
   return (
     <section
-      className="relative overflow-hidden section-padding bg-zinc-50 dark:bg-zinc-950/50"
+      className="section-padding section-frosted overflow-hidden"
       aria-labelledby="tech-showcase-heading"
     >
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.04] dark:opacity-[0.06]"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0,200,255,0.5) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0,200,255,0.5) 1px, transparent 1px)`,
-          backgroundSize: '48px 48px',
-        }}
-      />
-
-      <div className="container-wide relative z-10">
-        <SectionHeading
-          eyebrow="Technology"
-          title="Built With Industry-Leading Stack"
-          description="Modern technologies across frontend, AI, cloud, IoT, and more — powering projects for students and clients worldwide."
-        />
-
-        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-12 xl:gap-16">
-          {/* Left: tech logos & stack */}
-          <div className="order-1 lg:sticky lg:top-24 lg:min-h-[520px]">
-            <TechStackPanel />
-          </div>
-
-          {/* Right: rotating icon cloud */}
-          <div className="order-2 lg:sticky lg:top-24">
-            <TechIconCloud variant="side" />
-          </div>
-        </div>
-
-        {/* <p className="mt-12 text-center text-sm text-zinc-500">
-          Logos provided via{' '}
-          <a
-            href="https://simpleicons.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-brand-primary hover:underline"
-          >
-            Simple Icons
-          </a>
-          . Custom stacks available for every college syllabus and project requirement.
-        </p> */}
-      </div>
+      {content}
     </section>
   )
 }

@@ -12,7 +12,7 @@ export function BlogPage() {
       <PageHeader
         eyebrow="Blog"
         title="Insights, Guides & Innovation Stories"
-        description="Expert perspectives on project development, AI trends, research methodologies, and startup building."
+        description="Expert perspectives on project development, AI trends, engineering best practices, and startup building."
       />
       <section className="section-padding">
         <div className="container-wide grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -32,7 +32,7 @@ export function BlogPage() {
                 {post.title}
               </h3>
               <p className="mt-2 flex-1 text-sm text-zinc-600 dark:text-zinc-400">{post.excerpt}</p>
-              <div className="mt-4 flex items-center gap-4 text-xs text-zinc-500">
+              <div className="mt-4 flex items-center gap-4 text-xs text-zinc-500 dark:text-zinc-500">
                 <span className="flex items-center gap-1">
                   <Calendar className="h-3.5 w-3.5" />
                   {new Date(post.date).toLocaleDateString('en-IN', {

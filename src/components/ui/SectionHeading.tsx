@@ -5,6 +5,8 @@ interface SectionHeadingProps {
   title: string
   description?: string
   align?: 'left' | 'center'
+  /** Frosted glass panel — use on sections where ambient background shows through */
+  frosted?: boolean
 }
 
 export function SectionHeading({
@@ -12,6 +14,7 @@ export function SectionHeading({
   title,
   description,
   align = 'center',
+  frosted = false,
 }: SectionHeadingProps) {
   const alignClass = align === 'center' ? 'text-center mx-auto' : 'text-left'
 
@@ -21,18 +24,18 @@ export function SectionHeading({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.5 }}
-      className={`mb-14 max-w-3xl ${alignClass}`}
+      className={`mb-10 max-w-3xl sm:mb-14 ${alignClass} ${frosted ? 'section-heading-panel' : ''}`}
     >
       {eyebrow && (
         <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-brand-primary">
           {eyebrow}
         </p>
       )}
-      <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl lg:text-5xl">
+      <h2 className="text-pretty text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl md:text-4xl lg:text-5xl">
         {title}
       </h2>
       {description && (
-        <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">{description}</p>
+        <p className="mt-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-lg">{description}</p>
       )}
     </motion.div>
   )
