@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, Check } from 'lucide-react'
 import { getServiceAccent, SERVICES, SERVICES_SECTION } from '@/data/services'
@@ -13,25 +14,16 @@ const easeSmooth = [0.22, 1, 0.36, 1] as const
 function ServiceCard({
   service,
   index,
-  compact,
 }: {
   service: (typeof SERVICES)[number]
   index: number
-  compact: boolean
 }) {
   const Icon = service.icon
   const accent = getServiceAccent(index)
   const indexLabel = String(index + 1).padStart(2, '0')
 
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 22 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-32px' }}
-      transition={{ duration: 0.48, delay: (index % (compact ? 2 : 3)) * 0.08, ease: easeSmooth }}
-      whileHover={{ y: -6 }}
-      className="group relative flex h-full flex-col"
-    >
+    <article className="group relative flex h-full w-full flex-col">
       <div
         className="absolute inset-0 rounded-[1.25rem] opacity-40 transition-opacity duration-300 group-hover:opacity-100"
         style={{
@@ -60,7 +52,7 @@ function ServiceCard({
           aria-hidden
         />
 
-        <div className={`relative flex flex-1 flex-col ${compact ? 'p-5' : 'p-6'}`}>
+        <div className="relative flex flex-1 flex-col p-5 sm:p-6">
           <div className="mb-4 flex items-start gap-3">
             <div
               className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ring-1 ring-black/[0.06] transition-transform duration-300 group-hover:scale-105 dark:ring-white/[0.08]"
@@ -74,14 +66,11 @@ function ServiceCard({
             <div className="min-w-0 flex-1 pt-0.5">
               <span
                 className="inline-flex rounded-md px-2 py-0.5 text-[10px] font-bold tabular-nums tracking-widest"
-                style={{
-                  color: accent,
-                  backgroundColor: `${accent}18`,
-                }}
+                style={{ color: accent, backgroundColor: `${accent}18` }}
               >
                 {indexLabel}
               </span>
-              <h3 className="mt-2 text-base font-semibold leading-snug text-zinc-900 transition-colors duration-300 group-hover:text-brand-mid dark:text-white dark:group-hover:text-brand-accent sm:text-[1.05rem]">
+              <h3 className="mt-2 text-base font-semibold leading-snug text-zinc-900 transition-colors duration-300 group-hover:text-brand-mid dark:text-white dark:group-hover:text-brand-accent sm:text-lg">
                 {service.title}
               </h3>
             </div>
@@ -92,18 +81,14 @@ function ServiceCard({
           </p>
 
           <div className="relative mt-5">
-            <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-zinc-500 dark:text-zinc-500">
+            <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-zinc-500">
               What&apos;s included
             </p>
             <ul className="flex flex-wrap gap-2">
               {service.deliverables.map((d) => (
                 <li key={d}>
                   <span className="inline-flex max-w-full items-center gap-1.5 rounded-full border border-black/[0.06] bg-white/60 px-2.5 py-1.5 text-[11px] font-medium leading-tight text-zinc-600 backdrop-blur-sm transition-colors duration-300 group-hover:border-brand-primary/15 group-hover:bg-white/80 dark:border-white/[0.08] dark:bg-white/[0.06] dark:text-zinc-300 dark:group-hover:border-brand-primary/20 sm:text-xs">
-                    <Check
-                      className="h-3 w-3 shrink-0"
-                      style={{ color: accent }}
-                      aria-hidden
-                    />
+                    <Check className="h-3 w-3 shrink-0" style={{ color: accent }} aria-hidden />
                     {d}
                   </span>
                 </li>
@@ -112,7 +97,115 @@ function ServiceCard({
           </div>
         </div>
       </div>
-    </motion.article>
+    </article>
+  )
+}
+
+function ServiceCardSlide({
+  service,
+  index,
+  onVisible,
+}: {
+  service: (typeof SERVICES)[number]
+  index: number
+  onVisible: (index: number) => void
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.45) {
+          onVisible(index)
+        }
+      },
+      { threshold: [0.45, 0.6] },
+    )
+
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [index, onVisible])
+
+  return (
+    <motion.div
+      ref={ref}
+      className="services-snap-item flex min-h-[min(400px,72vh)] w-full snap-start snap-always items-stretch py-1"
+      initial={{ opacity: 0, x: 48, filter: 'blur(10px)' }}
+      whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+      viewport={{ once: true, amount: 0.35 }}
+      transition={{ duration: 0.55, ease: easeSmooth }}
+    >
+      <ServiceCard service={service} index={index} />
+    </motion.div>
+  )
+}
+
+function ServicesScrollStack({ items }: { items: typeof SERVICES }) {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  const handleVisible = useCallback((index: number) => {
+    setActiveIndex(index)
+  }, [])
+
+  const scrollToIndex = (index: number) => {
+    const container = scrollRef.current
+    const target = container?.querySelector(`[data-service-index="${index}"]`)
+    if (container && target instanceof HTMLElement) {
+      container.scrollTo({ top: target.offsetTop - container.offsetTop, behavior: 'smooth' })
+    }
+  }
+
+  return (
+    <div className="relative lg:pl-2">
+      <div
+        className="pointer-events-none absolute -left-3 top-0 hidden h-full w-px bg-gradient-to-b from-transparent via-brand-primary/30 to-transparent lg:block"
+        aria-hidden
+      />
+
+      <nav
+        className="mb-4 hidden items-center justify-between gap-4 lg:flex"
+        aria-label="Service cards progress"
+      >
+        <p className="text-xs font-medium uppercase tracking-[0.14em] text-zinc-500">
+          Scroll to explore services
+        </p>
+        <div className="flex items-center gap-1.5">
+          {items.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => scrollToIndex(i)}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                i === activeIndex
+                  ? 'w-8 bg-brand-gradient'
+                  : 'w-1.5 bg-zinc-300 hover:bg-brand-primary/40 dark:bg-zinc-600'
+              }`}
+              aria-label={`Go to service ${i + 1}`}
+              aria-current={i === activeIndex ? 'true' : undefined}
+            />
+          ))}
+        </div>
+      </nav>
+
+      <div
+        ref={scrollRef}
+        className="services-scroll-stack -mr-1 flex max-h-none flex-col gap-4 overflow-visible pr-1 lg:max-h-[min(72vh,680px)] lg:overflow-y-auto lg:gap-0"
+      >
+        {items.map((service, i) => (
+          <div key={service.id} data-service-index={i}>
+            <ServiceCardSlide service={service} index={i} onVisible={handleVisible} />
+          </div>
+        ))}
+      </div>
+
+      <p className="mt-4 hidden text-center text-xs text-zinc-500 lg:block">
+        {String(activeIndex + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}
+      </p>
+    </div>
   )
 }
 
@@ -123,7 +216,7 @@ function ServicesIntro({ showViewAll }: { showViewAll: boolean }) {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.55, ease: easeSmooth }}
-      className="max-w-xl lg:sticky lg:top-28"
+      className="max-w-xl lg:sticky lg:top-28 lg:self-start"
     >
       <div className="flex items-center gap-3">
         <span
@@ -145,6 +238,10 @@ function ServicesIntro({ showViewAll }: { showViewAll: boolean }) {
 
       <p className="mt-5 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
         {SERVICES_SECTION.body}
+      </p>
+
+      <p className="mt-6 hidden text-sm text-zinc-500 lg:block">
+        Scroll through each service on the right — cards swipe in as you explore.
       </p>
 
       {showViewAll && (
@@ -186,7 +283,17 @@ export function ServicesGrid({ limit, showViewAll = false }: ServicesGridProps) 
 
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {items.map((service, i) => (
-              <ServiceCard key={service.id} service={service} index={i} compact={false} />
+              <motion.div
+                key={service.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-24px' }}
+                transition={{ duration: 0.45, delay: (i % 3) * 0.06, ease: easeSmooth }}
+                whileHover={{ y: -4 }}
+                className="h-full"
+              >
+                <ServiceCard service={service} index={i} />
+              </motion.div>
             ))}
           </div>
         </div>
@@ -197,20 +304,28 @@ export function ServicesGrid({ limit, showViewAll = false }: ServicesGridProps) 
   return (
     <section className="section-padding">
       <div className="container-wide">
-        <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:gap-16 xl:gap-20">
-          <ServicesIntro showViewAll={showViewAll} />
+        <div className="mb-10 lg:hidden">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-primary">
+            {SERVICES_SECTION.eyebrow}
+          </p>
+          <h2 className="mt-3 text-3xl font-bold text-zinc-900 dark:text-white">
+            {SERVICES_SECTION.title}
+          </h2>
+          <p className="mt-3 text-base text-zinc-600 dark:text-zinc-400">{SERVICES_SECTION.lead}</p>
+        </div>
+
+        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:gap-16 xl:gap-20">
+          <div className="hidden lg:block">
+            <ServicesIntro showViewAll={showViewAll} />
+          </div>
 
           <motion.div
-            initial={{ opacity: 0, x: 16 }}
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55, delay: 0.06, ease: easeSmooth }}
           >
-            <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
-              {items.map((service, i) => (
-                <ServiceCard key={service.id} service={service} index={i} compact />
-              ))}
-            </div>
+            <ServicesScrollStack items={items} />
 
             {showViewAll && (
               <div className="mt-8 text-center lg:hidden">
