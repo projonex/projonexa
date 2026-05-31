@@ -1,24 +1,36 @@
-import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail, MapPin } from 'lucide-react'
 import { FOUNDER, FOUNDER_SECTION } from '@/data/brand'
+import { Github, Linkedin, Mail } from 'lucide-react'
+
+import founderPhoto from '@/assets/img/nisargalokhande.png'
 import { Button } from '@/components/ui/Button'
+import { motion } from 'framer-motion'
 
 const easeSmooth = [0.22, 1, 0.36, 1] as const
 
 export function Founder() {
-  const storyParagraphs = FOUNDER.story.split('\n\n')
+  const storyParagraphs = FOUNDER.story.split('\n\n').filter(Boolean)
 
   return (
     <section
-      className="section-padding section-frosted"
+      className="section-padding section-frosted overflow-hidden"
       aria-labelledby="founder-heading"
       itemScope
       itemType="https://schema.org/Person"
     >
       <meta itemProp="name" content={FOUNDER.name} />
       <meta itemProp="jobTitle" content={FOUNDER.role} />
+      <link itemProp="image" href={founderPhoto} />
 
-      <div className="container-wide">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-32 top-1/3 h-80 w-80 rounded-full bg-brand-primary/10 blur-[120px]"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-24 bottom-0 h-64 w-64 rounded-full bg-brand-secondary/10 blur-[100px]"
+      />
+
+      <div className="container-wide relative">
         <div className="grid items-end gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-12">
           <motion.div
             initial={{ opacity: 0, x: -16 }}
@@ -59,47 +71,90 @@ export function Founder() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.55, delay: 0.08, ease: easeSmooth }}
-          className="founder-panel mx-auto mt-10 max-w-3xl rounded-3xl border border-black/[0.07] bg-white/50 p-8 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)] backdrop-blur-xl dark:border-white/[0.08] dark:bg-black/40 sm:p-10 lg:mt-12"
+          className="founder-panel relative mt-10 overflow-hidden rounded-3xl border border-black/[0.07] bg-white/55 p-6 backdrop-blur-xl dark:border-white/[0.08] dark:bg-black/40 sm:p-8 lg:mt-12 lg:p-10"
         >
-          <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:gap-8 sm:text-left">
-            <div
-              className="mb-6 flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient text-3xl font-bold text-white shadow-glow sm:mb-0"
-              aria-hidden
-            >
-              NL
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand-primary/[0.04] via-transparent to-brand-secondary/[0.05]"
+          />
+
+          <div className="relative grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,240px)_minmax(0,1fr)] lg:gap-10 xl:grid-cols-[minmax(0,260px)_minmax(0,1fr)] xl:gap-12">
+            <div className="mx-auto w-full max-w-[260px] lg:mx-0 lg:max-w-none">
+              <div className="founder-photo-ring relative rounded-2xl p-[3px]">
+                <div className="overflow-hidden rounded-[calc(1rem-1px)] bg-zinc-100 dark:bg-zinc-900">
+                  <img
+                    src={founderPhoto}
+                    alt={`Portrait of ${FOUNDER.name}, ${FOUNDER.role} of Projonexa`}
+                    width={520}
+                    height={650}
+                    className="aspect-[4/5] h-auto w-full object-cover object-top"
+                    loading="lazy"
+                    decoding="async"
+                    itemProp="image"
+                  />
+                </div>
+              </div>
             </div>
 
-            <div className="min-w-0 flex-1">
-              <h3 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
-                {FOUNDER.name}
-              </h3>
-              <p className="mt-1 text-sm font-semibold text-brand-primary">{FOUNDER.role}</p>
-              <p className="mt-2 inline-flex items-center justify-center gap-1.5 text-sm text-zinc-500 dark:text-zinc-400 sm:justify-start">
-                <MapPin className="h-3.5 w-3.5 shrink-0 text-brand-primary" aria-hidden />
-                {FOUNDER.location}
-              </p>
+            <div className="flex min-w-0 flex-col">
+              <div className="border-b border-black/[0.06] pb-6 dark:border-white/[0.08]">
+                <h3
+                  className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-[1.65rem]"
+                  itemProp="name"
+                >
+                  {FOUNDER.name}
+                </h3>
+                <p className="mt-1.5 text-sm font-semibold uppercase tracking-[0.12em] text-brand-primary">
+                  {FOUNDER.role}
+                </p>
+              </div>
+
+              <div className="mt-6 space-y-4">
+                {storyParagraphs.map((p, index) => {
+                  const isIntro = index === 0
+                  const isMission = p.startsWith('Our mission')
+
+                  if (isMission) {
+                    return (
+                      <p
+                        key={p}
+                        className="founder-mission-callout rounded-xl border border-brand-primary/15 bg-brand-primary/[0.06] px-4 py-3.5 text-sm font-medium leading-relaxed text-zinc-800 dark:border-brand-primary/25 dark:bg-brand-primary/10 dark:text-zinc-200 sm:text-[15px]"
+                      >
+                        {p}
+                      </p>
+                    )
+                  }
+
+                  return (
+                    <p
+                      key={p.slice(0, 40)}
+                      className={
+                        isIntro
+                          ? 'text-base font-medium leading-relaxed text-zinc-800 dark:text-zinc-200 sm:text-[17px]'
+                          : 'text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-[15px] sm:leading-[1.7]'
+                      }
+                    >
+                      {p}
+                    </p>
+                  )
+                })}
+              </div>
+
+              <div className="mt-8 flex flex-wrap gap-3 border-t border-black/[0.06] pt-8 dark:border-white/[0.08]">
+                <Button href={FOUNDER.linkedin} variant="outline">
+                  <Linkedin className="h-4 w-4" />
+                  LinkedIn
+                </Button>
+                <Button href={FOUNDER.github} variant="ghost">
+                  <Github className="h-4 w-4" />
+                  GitHub
+                </Button>
+                <Button href={`mailto:${FOUNDER.email}`} variant="ghost">
+                  <Mail className="h-4 w-4" />
+                  Email
+                </Button>
+              </div>
             </div>
-          </div>
-
-          <div className="mt-8 space-y-4 border-t border-black/[0.06] pt-8 text-sm leading-relaxed text-zinc-600 dark:border-white/[0.08] dark:text-zinc-400 sm:text-[15px] sm:leading-relaxed">
-            {storyParagraphs.map((p) => (
-              <p key={p.slice(0, 32)}>{p}</p>
-            ))}
-          </div>
-
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:justify-start">
-            <Button href={FOUNDER.linkedin} variant="outline">
-              <Linkedin className="h-4 w-4" />
-              LinkedIn
-            </Button>
-            <Button href={FOUNDER.github} variant="ghost">
-              <Github className="h-4 w-4" />
-              GitHub
-            </Button>
-            <Button href={`mailto:${FOUNDER.email}`} variant="ghost">
-              <Mail className="h-4 w-4" />
-              Email
-            </Button>
           </div>
         </motion.div>
       </div>

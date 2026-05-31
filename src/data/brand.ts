@@ -122,7 +122,6 @@ export const FOUNDER = {
   linkedin: 'https://www.linkedin.com/in/nslokhande/',
   github: 'https://github.com/nikobuddy/',
   email: 'nisargalokhande@gmail.com',
-  location: 'Maharashtra, India',
   story: `Hi, I'm Nisarga Lokhande.
 
 Like many students, I once struggled to turn ideas into working projects — missing the right guidance, documentation, and technical support when it mattered most.
