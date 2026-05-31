@@ -58,7 +58,7 @@ export const MY_PROJECTS: MyProject[] = [
     iconUrl:
       'https://play-lh.googleusercontent.com/of2gZbbEmBSFeXvVn1hRpcWuvO9JJ-m-P8OyIPNCmq82WlIR9-7n0sQw2pm1Z6C0K_s=w240-h480',
     thumbnailUrl:
-      'https://play-lh.googleusercontent.com/0kFfQGDf2jf0JO-KJjeC1w2V0Pd_65qMOKjF0s5YafGiH4Kb1gEvpBddJXtp4hohAu4p=w1052-h592',
+      'https://play-lh.googleusercontent.com/vXsbN6_7lkrU1nJ5NXRJfufy3rhFX2PiI7fq1TjouFZc7kxQFIDcZZcdHJ4kyc3OvmnE=w480-h960',
     techStack: ['React Native', 'Firebase', 'Android', 'Google Play', 'AI Chatbot'],
     contentHighlights: [
       'Unit-wise notes',

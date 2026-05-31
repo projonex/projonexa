@@ -39,34 +39,12 @@ export function ProjectDetailPage() {
     <div className="project-detail-page">
       <SEO seo={buildProjectSEO(project)} />
 
-      <section className="relative pt-24 sm:pt-28">
-        <div className="container-wide">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, ease: easeSmooth }}
-            className="project-detail-banner relative aspect-[2.4/1] max-h-[280px] overflow-hidden rounded-3xl bg-zinc-200 dark:bg-zinc-900 sm:aspect-[21/8] sm:max-h-[320px]"
-          >
-            <img
-              src={project.thumbnailUrl}
-              alt={`${project.name} preview`}
-              className="h-full w-full object-cover object-top"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/90 via-zinc-900/35 to-zinc-900/10" />
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand-primary/10 via-transparent to-brand-secondary/10"
-            />
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="relative z-10 border-b border-black/[0.06] bg-zinc-50/90 pb-10 pt-0 backdrop-blur-sm dark:border-white/[0.06] dark:bg-zinc-950/80 sm:pb-12">
-        <div className="container-wide -mt-14 sm:-mt-16">
+      <section className="relative border-b border-black/[0.06] bg-zinc-50/90 pt-24 backdrop-blur-sm dark:border-white/[0.06] dark:bg-zinc-950/80 sm:pt-28">
+        <div className="container-wide pb-10 sm:pb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.06, ease: easeSmooth }}
+            transition={{ duration: 0.5, ease: easeSmooth }}
             className="project-detail-hero-card relative overflow-hidden rounded-3xl p-6 sm:p-8 lg:p-10"
           >
             <div
@@ -85,7 +63,7 @@ export function ProjectDetailPage() {
 
               <nav
                 aria-label="Breadcrumb"
-                className="mb-6 flex flex-wrap items-center gap-1.5 text-sm text-zinc-500 dark:text-zinc-400"
+                className="mb-8 flex flex-wrap items-center gap-1.5 text-sm text-zinc-500 dark:text-zinc-400"
               >
                 <Link
                   to="/projects"
@@ -97,56 +75,85 @@ export function ProjectDetailPage() {
                 <span className="font-semibold text-zinc-900 dark:text-white">{project.name}</span>
               </nav>
 
-              <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
-                <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-6">
-                  <div className="project-detail-app-icon-ring shrink-0 rounded-[1.35rem] p-[3px]">
-                    <img
-                      src={project.iconUrl}
-                      alt=""
-                      className="h-20 w-20 rounded-[calc(1.35rem-3px)] border border-white/30 bg-white object-cover shadow-md sm:h-24 sm:w-24"
-                    />
-                  </div>
-
-                  <div className="min-w-0">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/35 bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-800 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-300">
-                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden />
-                        {project.status === 'live' ? 'Live on Google Play' : 'In development'}
-                      </span>
-                      <span className="project-detail-meta-pill rounded-full px-3 py-1 text-xs font-semibold">
-                        {project.category}
-                      </span>
-                      <span className="project-detail-meta-pill rounded-full px-3 py-1 text-xs font-semibold">
-                        {project.platform}
-                      </span>
-                      {project.updatedAt && (
-                        <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">
-                          Updated {project.updatedAt}
-                        </span>
-                      )}
+              <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(280px,340px)] lg:gap-12 xl:grid-cols-[minmax(0,1.1fr)_360px]">
+                <div className="min-w-0">
+                  <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-6">
+                    <div className="project-detail-app-icon-ring mx-auto shrink-0 rounded-[1.35rem] p-[3px] sm:mx-0">
+                      <img
+                        src={project.iconUrl}
+                        alt=""
+                        className="h-20 w-20 rounded-[calc(1.35rem-3px)] border border-white/30 bg-white object-cover shadow-md sm:h-24 sm:w-24"
+                      />
                     </div>
 
-                    <h1 className="mt-4 text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
-                      {project.name}
-                    </h1>
-                    <p className="mt-3 max-w-2xl text-base leading-relaxed text-zinc-600 dark:text-zinc-300 sm:text-lg">
-                      {project.tagline}
-                    </p>
+                    <div className="min-w-0 flex-1 text-center sm:text-left">
+                      <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-start">
+                        <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/35 bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-800 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-300">
+                          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden />
+                          {project.status === 'live' ? 'Live on Google Play' : 'In development'}
+                        </span>
+                        <span className="project-detail-meta-pill rounded-full px-3 py-1 text-xs font-semibold">
+                          {project.category}
+                        </span>
+                        <span className="project-detail-meta-pill rounded-full px-3 py-1 text-xs font-semibold">
+                          {project.platform}
+                        </span>
+                      </div>
+
+                      <h1 className="mt-4 text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
+                        {project.name}
+                      </h1>
+                      <p className="mt-3 text-base leading-relaxed text-zinc-600 dark:text-zinc-300 sm:text-lg">
+                        {project.tagline}
+                      </p>
+                      {project.updatedAt && (
+                        <p className="mt-2 text-xs font-medium text-zinc-500 dark:text-zinc-400">
+                          Last updated {project.updatedAt}
+                        </p>
+                      )}
+                    </div>
                   </div>
+
+                  {primaryLink && (
+                    <div className="mt-8 flex justify-center sm:justify-start">
+                      <Button
+                        href={primaryLink.url}
+                        variant="primary"
+                        className="w-full shadow-glow-sm sm:w-auto"
+                      >
+                        {primaryLink.label}
+                        <ArrowUpRight className="h-4 w-4" aria-hidden />
+                      </Button>
+                    </div>
+                  )}
                 </div>
 
-                {primaryLink && (
-                  <div className="shrink-0 lg:pl-4">
-                    <Button
-                      href={primaryLink.url}
-                      variant="primary"
-                      className="w-full shadow-glow-sm sm:w-auto"
-                    >
-                      {primaryLink.label}
-                      <ArrowUpRight className="h-4 w-4" aria-hidden />
-                    </Button>
+                <div className="project-detail-thumbnail-column mx-auto w-full max-w-[300px] lg:mx-0 lg:max-w-none lg:justify-self-end">
+                  <p className="mb-3 text-center text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400 lg:text-left">
+                    App preview
+                  </p>
+                  <div className="project-detail-device-frame relative mx-auto w-full max-w-[300px] lg:mx-0">
+                    <div className="project-detail-device-bezel overflow-hidden rounded-[2rem] p-2 sm:p-2.5">
+                      <div className="relative aspect-[9/19] w-full overflow-hidden rounded-[1.5rem] bg-zinc-900">
+                        <img
+                          src={project.thumbnailUrl}
+                          alt={`${project.name} app screenshot`}
+                          className="h-full w-full object-cover object-top"
+                          loading="eager"
+                          decoding="async"
+                        />
+                        <div
+                          aria-hidden
+                          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-zinc-950/30 via-transparent to-transparent"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      aria-hidden
+                      className="pointer-events-none absolute -inset-3 -z-10 rounded-[2.25rem] bg-brand-primary/15 blur-2xl dark:bg-brand-primary/10"
+                    />
                   </div>
-                )}
+                </div>
               </div>
             </div>
           </motion.div>
