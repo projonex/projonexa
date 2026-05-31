@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowLeft, Moon, Sun } from 'lucide-react'
 import { ApplyPageBrand } from '@/components/careers/ApplyPageBrand'
+import { BrandWordmark } from '@/components/ui/BrandWordmark'
 import { SEO } from '@/components/seo/SEO'
 import { useTheme } from '@/context/ThemeContext'
 import type { PageSEO } from '@/data/seo'
@@ -86,14 +87,17 @@ export function InquiryStandaloneShell({
 
         <main className="w-full min-w-0 flex-1">{children}</main>
 
-        <footer className="mt-8 flex shrink-0 justify-center pb-1 sm:mt-10">
-          <Link
-            to={backTo}
-            className="inline-flex items-center gap-2 text-sm font-medium text-zinc-500 transition-colors hover:text-brand-primary dark:text-zinc-400 dark:hover:text-brand-accent"
-          >
-            <ArrowLeft className="h-4 w-4" aria-hidden />
-            {backLabel}
-          </Link>
+        <footer className="inquiry-standalone-footer mt-8 shrink-0 pb-1 sm:mt-10">
+          <BrandWordmark variant="subtle" className="inquiry-footer-wordmark" />
+          <div className="relative z-10 mt-6 flex justify-center sm:mt-8">
+            <Link
+              to={backTo}
+              className="inline-flex items-center gap-2 text-sm font-medium text-zinc-500 transition-colors hover:text-brand-primary dark:text-zinc-400 dark:hover:text-brand-accent"
+            >
+              <ArrowLeft className="h-4 w-4" aria-hidden />
+              {backLabel}
+            </Link>
+          </div>
         </footer>
       </div>
     </div>

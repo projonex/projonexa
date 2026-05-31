@@ -1120,7 +1120,116 @@
   }
 
   .page-header-band {
-    @apply border-b border-black/5 bg-white/50 pt-24 pb-12 backdrop-blur-sm dark:border-white/[0.06] dark:bg-black/40 sm:pt-28 sm:pb-14 md:pt-32 md:pb-16;
+    @apply overflow-hidden border-b border-black/5 bg-white/50 pt-24 pb-12 backdrop-blur-sm dark:border-white/[0.06] dark:bg-black/40 sm:pt-28 sm:pb-14 md:pt-32 md:pb-16;
+  }
+
+  .page-header-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.75rem;
+  }
+
+  .page-header-content {
+    position: relative;
+    z-index: 2;
+    min-width: 0;
+    max-width: 40rem;
+  }
+
+  .page-header-description {
+    position: relative;
+    z-index: 1;
+  }
+
+  .page-header-wordmark {
+    position: relative;
+    z-index: 0;
+    flex-shrink: 0;
+    align-self: center;
+    width: 100%;
+    justify-content: center;
+    padding: 0 0.5rem;
+    overflow: visible;
+  }
+
+  .page-header-wordmark .brand-wordmark-display {
+    font-size: clamp(2.75rem, 16vw, 5rem);
+    letter-spacing: -0.04em;
+    padding: 0 0.2em;
+  }
+
+  @media (min-width: 768px) {
+    .page-header-inner {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem 2.5rem;
+    }
+
+    .page-header-content {
+      flex: 1 1 52%;
+      max-width: none;
+    }
+
+    .page-header-wordmark {
+      flex: 0 1 46%;
+      align-self: center;
+      justify-content: flex-end;
+      max-width: 420px;
+      padding: 0;
+    }
+
+    .page-header-wordmark .brand-wordmark-display {
+      font-size: clamp(3.25rem, 7.5vw, 7rem);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .page-header-content {
+      flex-basis: 55%;
+    }
+
+    .page-header-wordmark {
+      flex-basis: 42%;
+      max-width: 480px;
+    }
+
+    .page-header-wordmark .brand-wordmark-display {
+      font-size: clamp(3.75rem, 6.5vw, 8rem);
+      letter-spacing: -0.045em;
+    }
+
+    .page-header-wordmark .brand-wordmark-display::before {
+      -webkit-text-stroke-width: 2px;
+    }
+  }
+
+  .inquiry-standalone-footer {
+    position: relative;
+    overflow: hidden;
+    padding-top: 0.5rem;
+  }
+
+  .inquiry-footer-wordmark {
+    position: relative;
+    width: 100%;
+    padding: 0.25rem 0.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+  }
+
+  .inquiry-footer-wordmark .brand-wordmark-display {
+    font-size: clamp(2.5rem, 14vw, 5.5rem);
+    letter-spacing: -0.04em;
+  }
+
+  @media (min-width: 640px) {
+    .inquiry-footer-wordmark .brand-wordmark-display {
+      font-size: clamp(3rem, 10vw, 6.5rem);
+    }
   }
 
   .scroll-mt-header {
