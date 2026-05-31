@@ -1,4 +1,10 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { TechLogo } from '@/components/ui/TechLogo'
+import {
+  TECH_CATEGORIES,
+  TECHNOLOGIES,
+  type TechCategory,
+  type TechItem,
+} from '@/data/technologies'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   Brain,
@@ -11,13 +17,7 @@ import {
   Wrench,
   type LucideIcon,
 } from 'lucide-react'
-import { TechLogo } from '@/components/ui/TechLogo'
-import {
-  TECH_CATEGORIES,
-  TECHNOLOGIES,
-  type TechCategory,
-  type TechItem,
-} from '@/data/technologies'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 const CATEGORY_META: Record<
   TechCategory,
@@ -110,9 +110,6 @@ export function TechStackPanel() {
             <h3 className="mt-1 text-lg font-bold tracking-tight text-zinc-900 dark:text-white sm:text-xl">
               Browse by domain
             </h3>
-            <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
-              Tap a category or hover a logo — auto-cycles when idle.
-            </p>
           </div>
           <span className="rounded-full border border-black/[0.06] bg-white/50 px-3 py-1 text-[11px] font-medium tabular-nums text-zinc-600 backdrop-blur-sm dark:border-white/[0.08] dark:bg-black/40 dark:text-zinc-400">
             {grouped.length} domains
