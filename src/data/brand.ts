@@ -64,12 +64,10 @@ export const SERVICE_AREA_CLIENTS = [
   {
     title: 'Startups & entrepreneurs',
     detail: 'MVPs, prototypes, and product validation',
-    priority: true,
   },
   {
     title: 'Businesses & international clients',
     detail: 'Custom software, AI systems, and long-term delivery',
-    priority: true,
   },
   {
     title: 'Engineering & CS students',

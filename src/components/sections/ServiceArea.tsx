@@ -155,31 +155,12 @@ export function ServiceArea() {
             <ul className="flex flex-col gap-3">
               {SERVICE_AREA_CLIENTS.map((client, i) => {
                 const ClientIcon = CLIENT_ICONS[i] ?? Users
-                const isPriority = 'priority' in client && client.priority
                 return (
-                  <li
-                    key={client.title}
-                    className={`flex gap-3 rounded-xl px-2 py-2 ${
-                      isPriority
-                        ? 'border border-brand-primary/15 bg-brand-primary/[0.06] dark:border-brand-primary/20 dark:bg-brand-primary/[0.08]'
-                        : ''
-                    }`}
-                  >
-                    <span
-                      className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border text-brand-primary ${
-                        isPriority
-                          ? 'border-brand-primary/30 bg-brand-primary/15 dark:bg-brand-primary/20'
-                          : 'border-black/[0.06] bg-white/70 dark:border-white/[0.08] dark:bg-black/50'
-                      }`}
-                    >
+                  <li key={client.title} className="flex gap-3">
+                    <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-black/[0.06] bg-white/70 text-brand-primary dark:border-white/[0.08] dark:bg-black/50">
                       <ClientIcon className="h-3.5 w-3.5" strokeWidth={2} aria-hidden />
                     </span>
                     <span className="min-w-0">
-                      {isPriority && (
-                        <span className="mb-1 block text-[10px] font-bold uppercase tracking-[0.14em] text-brand-primary">
-                          Priority
-                        </span>
-                      )}
                       <span className="block text-sm font-semibold text-zinc-800 dark:text-zinc-200">
                         {client.title}
                       </span>
