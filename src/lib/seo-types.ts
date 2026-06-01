@@ -7,6 +7,11 @@ export interface BreadcrumbItem {
   path: string
 }
 
+export interface FAQItem {
+  question: string
+  answer: string
+}
+
 export interface PageSEO {
   title: string
   description: string
@@ -18,6 +23,7 @@ export interface PageSEO {
   audience: Audience
   conversionGoal: string
   aeoQuestions?: string[]
+  faqItems?: FAQItem[]
   breadcrumb?: BreadcrumbItem[]
   faqSchema?: boolean
   serviceSchema?: boolean

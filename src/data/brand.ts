@@ -16,6 +16,7 @@ export const BRAND = {
 export const GEO = {
   country: 'India',
   countryCode: 'IN',
+  regionCode: 'MH',
   region: 'Maharashtra',
   placename: 'Maharashtra, India',
   locale: 'en_IN',

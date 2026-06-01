@@ -1,23 +1,71 @@
-import { PAGE_SEO } from '../src/data/seo.ts'
-import { SEO_RULES } from '../src/lib/seo-rules.ts'
+import { mkdtemp, rm, writeFile } from 'node:fs/promises'
+import { tmpdir } from 'node:os'
+import path from 'node:path'
+import { pathToFileURL } from 'node:url'
+import { build } from 'esbuild'
+
+async function loadSeoData() {
+  const tempDir = await mkdtemp(path.join(tmpdir(), 'projonexa-seo-'))
+  const entryFile = path.join(tempDir, 'entry.ts')
+  const bundleFile = path.join(tempDir, 'bundle.mjs')
+
+  const repoRoot = process.cwd()
+  const seoPath = path.join(repoRoot, 'src/data/seo.ts').replaceAll('\\', '/')
+  const rulesPath = path.join(repoRoot, 'src/lib/seo-rules.ts').replaceAll('\\', '/')
+
+  await writeFile(
+    entryFile,
+    `export { PAGE_SEO } from '${seoPath}';\nexport { SEO_RULES } from '${rulesPath}';\n`,
+    'utf8'
+  )
+
+  try {
+    await build({
+      entryPoints: [entryFile],
+      bundle: true,
+      platform: 'node',
+      format: 'esm',
+      target: 'node20',
+      outfile: bundleFile,
+      logLevel: 'silent',
+    })
+
+    const mod = await import(`${pathToFileURL(bundleFile).href}?v=${Date.now()}`)
+    return mod
+  } finally {
+    await rm(tempDir, { recursive: true, force: true })
+  }
+}
+
+const { PAGE_SEO, SEO_RULES } = await loadSeoData()
 
 const errors = []
 const warnings = []
 const seenPaths = new Set()
 const seenTitles = new Set()
 const seenPrimaryKeywords = new Set()
+const mustHaveAeoSchema = new Set(['home', 'services', 'pricing', 'faq', 'contact'])
 
 for (const [pageKey, page] of Object.entries(PAGE_SEO)) {
-  if (!page.title?.trim()) errors.push(`${pageKey}: missing title`)
-  if (!page.description?.trim()) errors.push(`${pageKey}: missing description`)
-  if (!page.path?.trim()) errors.push(`${pageKey}: missing path`)
-  if (!page.primaryKeyword?.trim()) errors.push(`${pageKey}: missing primaryKeyword`)
+  const hasTitle = Boolean(page.title?.trim())
+  const hasDescription = Boolean(page.description?.trim())
+  const hasPath = Boolean(page.path?.trim())
+  const hasPrimaryKeyword = Boolean(page.primaryKeyword?.trim())
+
+  if (!hasTitle) errors.push(`${pageKey}: missing title`)
+  if (!hasDescription) errors.push(`${pageKey}: missing description`)
+  if (!hasPath) errors.push(`${pageKey}: missing path`)
+  if (!hasPrimaryKeyword) errors.push(`${pageKey}: missing primaryKeyword`)
   if (!Array.isArray(page.secondaryKeywords) || page.secondaryKeywords.length === 0) {
     errors.push(`${pageKey}: missing secondaryKeywords`)
   }
   if (!page.intent?.trim()) errors.push(`${pageKey}: missing intent`)
   if (!page.audience?.trim()) errors.push(`${pageKey}: missing audience`)
   if (!page.conversionGoal?.trim()) errors.push(`${pageKey}: missing conversionGoal`)
+
+  if (!hasTitle || !hasDescription || !hasPath || !hasPrimaryKeyword) {
+    continue
+  }
 
   if (seenPaths.has(page.path)) {
     errors.push(`${pageKey}: duplicate canonical path "${page.path}"`)
@@ -54,6 +102,12 @@ for (const [pageKey, page] of Object.entries(PAGE_SEO)) {
   }
 }
 
+for (const pageKey of mustHaveAeoSchema) {
+  if (!PAGE_SEO[pageKey]?.faqSchema) {
+    errors.push(`${pageKey}: faqSchema must be enabled for AEO tier-1 page`)
+  }
+}
+
 if (warnings.length > 0) {
   console.warn(warnings.join('\n'))
 }
@@ -63,4 +117,4 @@ if (errors.length > 0) {
   process.exit(1)
 }
 
-console.log('SEO validation passed')
+console.log(warnings.length > 0 ? 'SEO validation passed with warnings' : 'SEO validation passed')

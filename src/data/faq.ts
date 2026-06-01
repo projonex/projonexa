@@ -13,7 +13,7 @@ export interface FAQCategory {
 export const FAQ_SECTION = {
   eyebrow: 'FAQ',
   title: 'Frequently Asked Questions',
-  lead: 'Clear answers about how Projonexa works — from project types and deliverables to pricing, timelines, careers, and getting started.',
+  lead: 'Get direct answers first: project scope, deliverables, timelines, pricing, careers, and how to start with Projonexa.',
 } as const
 
 export const FAQ_CATEGORIES: FAQCategory[] = [
@@ -74,7 +74,7 @@ export const FAQ_CATEGORIES: FAQCategory[] = [
       {
         question: 'What deliverables are included with a project?',
         answer:
-          'Depending on scope, deliverables typically include full source code, SRS and design documentation, project report, presentation slides (PPT), testing notes, deployment or hosting guidance, demo support, and viva preparation. Startup and MVP engagements add architecture docs and iteration roadmaps.',
+          'Every project includes full source code, SRS and design documentation, project report, presentation slides (PPT), testing notes, deployment or hosting guidance, demo support, and viva preparation. Startup and MVP engagements additionally include architecture documents and iteration roadmaps.',
       },
       {
         question: 'Will I receive complete source code?',
@@ -111,7 +111,7 @@ export const FAQ_CATEGORIES: FAQCategory[] = [
       {
         question: 'How is pricing calculated for a custom project?',
         answer:
-          'Pricing reflects technology stack, feature count, documentation depth, timeline urgency, and support level (mentorship, viva prep, deployment). After a short discovery discussion, we share a clear scope and quote before work begins.',
+          'Pricing is calculated from the technology stack, feature scope, documentation depth, timeline urgency, and support level (mentorship, viva prep, deployment). After a short discovery discussion, we share a clear scope and quote before work begins.',
       },
     ],
   },

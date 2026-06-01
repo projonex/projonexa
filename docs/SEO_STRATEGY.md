@@ -113,7 +113,7 @@ Optimizes content for **AI search** (ChatGPT, Perplexity, Google AI Overviews, C
 |----------|---------|
 | Homepage | `AEOOverview` — 5 core Q&A pairs |
 | FAQ page | 10+ accordion Q&As with microdata |
-| JSON-LD | `FAQPage` schema on home + FAQ |
+| JSON-LD | `FAQPage` schema on home, services, pricing, faq, and contact (page-specific Q&A only) |
 | Brand data | `AEO_DEFINITION` one-liner |
 
 ### Sample AI-Ready Answer
@@ -129,7 +129,7 @@ Optimizes content for **AI search** (ChatGPT, Perplexity, Google AI Overviews, C
 |------|----------------|
 | `/` | final year projects India, innovation platform |
 | `/services` | project development services, engineering projects |
-| `/research` | research paper help, IEEE paper India |
+| `/careers/apply` | apply to Projonexa, developer opportunities |
 | `/pricing` | affordable final year project, student pricing |
 | `/contact` | contact projonexa, project inquiry India |
 | `/faq` | final year project FAQ, project help questions |
@@ -137,6 +137,18 @@ Optimizes content for **AI search** (ChatGPT, Perplexity, Google AI Overviews, C
 ---
 
 ## Monitoring & Maintenance
+
+### Build-Time Workflow
+
+Run this sequence before release builds and after SEO registry/content changes:
+
+1. `npm run seo:validate`
+2. `npm run sitemap:generate`
+3. `npm run build`
+
+Notes:
+- Sitemap is generated from `PAGE_SEO`.
+- Redirect/non-index routes (for example `/research`) are intentionally excluded from sitemap output.
 
 1. **Google Search Console** — impressions, clicks, indexing
 2. **Update sitemap** `lastmod` when pages change significantly

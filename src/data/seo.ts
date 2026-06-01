@@ -1,4 +1,5 @@
 import { BRAND, GEO } from './brand'
+import { FAQ_ITEMS } from './faq'
 import type { PageSEO } from '../lib/seo-types'
 export type { Audience, BreadcrumbItem, PageSEO, SearchIntent } from '../lib/seo-types'
 
@@ -30,6 +31,60 @@ export const BASE_KEYWORDS = [
   'Projonexa',
   ...GEO_KEYWORDS,
 ]
+
+export const SERVICES_PAGE_FAQ = [
+  {
+    question: 'What services does Projonexa provide?',
+    answer:
+      'Projonexa provides end-to-end final year project delivery, AI/ML solutions, web and mobile development, IoT systems, and startup MVP engineering support.',
+  },
+  {
+    question: 'Do services include documentation and deployment?',
+    answer:
+      'Yes. Services include source code, technical documentation, testing support, and deployment guidance based on your project scope.',
+  },
+  {
+    question: 'Who are these services designed for?',
+    answer:
+      'Services are designed for students, startups, and businesses that need reliable delivery with clear milestones and mentoring support.',
+  },
+] as const
+
+export const PRICING_PAGE_FAQ = [
+  {
+    question: 'How much does a final year project usually cost?',
+    answer:
+      'Final pricing depends on complexity, timeline, and deliverables, and every quote is shared clearly before implementation begins.',
+  },
+  {
+    question: 'Are custom pricing plans available?',
+    answer:
+      'Yes. Projonexa provides custom pricing for student, startup, and business requirements with transparent scope mapping.',
+  },
+  {
+    question: 'Does pricing include documentation and support?',
+    answer:
+      'Yes. Pricing plans include required documentation and delivery support aligned to academic or product goals.',
+  },
+] as const
+
+export const CONTACT_PAGE_FAQ = [
+  {
+    question: 'How can I contact Projonexa?',
+    answer:
+      'You can contact Projonexa via the contact form or email, and share project scope, timeline, and goals for a faster response.',
+  },
+  {
+    question: 'When will I get a response?',
+    answer:
+      'Projonexa generally responds within 24 hours on business days with next steps and scope clarification.',
+  },
+  {
+    question: 'What details should I include in my inquiry?',
+    answer:
+      'Include your project type, deadline, expected deliverables, and preferred technology stack so the team can provide an accurate plan.',
+  },
+] as const
 
 export const PAGE_SEO: Record<string, PageSEO> = {
   home: {
@@ -80,6 +135,8 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'Can Projonexa build startup MVPs?',
       'Do services include documentation and deployment?',
     ],
+    faqItems: [...SERVICES_PAGE_FAQ],
+    faqSchema: true,
     breadcrumb: [{ name: 'Services', path: '/services' }],
     serviceSchema: true,
   },
@@ -145,6 +202,8 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'Are custom pricing plans available?',
       'Does pricing include documentation and support?',
     ],
+    faqItems: [...PRICING_PAGE_FAQ],
+    faqSchema: true,
     breadcrumb: [{ name: 'Pricing', path: '/pricing' }],
   },
   careers: {
@@ -197,6 +256,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'What deliverables are included?',
       'How quickly does your team respond?',
     ],
+    faqItems: [...FAQ_ITEMS],
     breadcrumb: [{ name: 'FAQ', path: '/faq' }],
     faqSchema: true,
   },
@@ -216,6 +276,8 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'What details should I share in the inquiry?',
       'When will I receive a response?',
     ],
+    faqItems: [...CONTACT_PAGE_FAQ],
+    faqSchema: true,
     breadcrumb: [{ name: 'Contact', path: '/contact' }],
   },
   studentInquiry: {

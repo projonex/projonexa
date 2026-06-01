@@ -25,6 +25,38 @@ export function FAQPage() {
         title={FAQ_SECTION.title}
         description={FAQ_SECTION.lead}
       />
+      <section className="section-padding border-b border-black/[0.04] dark:border-white/[0.04]">
+        <div className="container-wide">
+          <div className="mx-auto grid max-w-5xl gap-4 md:grid-cols-3">
+            <article className="rounded-2xl border border-black/[0.07] bg-white/60 p-5 dark:border-white/[0.08] dark:bg-white/[0.03]">
+              <h2 className="text-base font-semibold text-zinc-900 dark:text-white">Do you handle complete projects?</h2>
+              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+                Yes. We deliver source code, documentation, and support from idea to final handoff.
+              </p>
+            </article>
+            <article className="rounded-2xl border border-black/[0.07] bg-white/60 p-5 dark:border-white/[0.08] dark:bg-white/[0.03]">
+              <h2 className="text-base font-semibold text-zinc-900 dark:text-white">Are timelines fixed to deadlines?</h2>
+              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+                Yes. We map milestones around your submission date or launch plan and share response SLAs up front.
+              </p>
+            </article>
+            <article className="rounded-2xl border border-black/[0.07] bg-white/60 p-5 dark:border-white/[0.08] dark:bg-white/[0.03]">
+              <h2 className="text-base font-semibold text-zinc-900 dark:text-white">Need a direct estimate?</h2>
+              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+                Start with pricing details, then contact us with your scope for a tailored quote.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <Button to="/pricing" variant="secondary" className="px-4 py-2 text-xs">
+                  Pricing
+                </Button>
+                <Button to="/contact" variant="secondary" className="px-4 py-2 text-xs">
+                  Contact
+                </Button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
 
       <section
         className="section-padding border-b border-black/[0.04] bg-zinc-50/50 dark:border-white/[0.04] dark:bg-transparent"

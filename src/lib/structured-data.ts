@@ -1,6 +1,5 @@
 import { BRAND, FOUNDER, GEO, AEO_DEFINITION } from '@/data/brand'
-import type { BreadcrumbItem } from '@/data/seo'
-import { FAQ_ITEMS } from '@/data/faq'
+import type { BreadcrumbItem, SearchIntent } from '@/data/seo'
 import { SERVICES } from '@/data/services'
 
 type FAQ = { question: string; answer: string }
@@ -211,10 +210,11 @@ export function buildStructuredData(options: {
   title: string
   description: string
   path: string
+  intent: SearchIntent
   breadcrumb?: BreadcrumbItem[]
   faqSchema?: boolean
   serviceSchema?: boolean
-  extraFaqs?: FAQ[]
+  faqItems?: FAQ[]
 }) {
   const schemas: object[] = [
     organizationSchema(options.description),
@@ -228,11 +228,17 @@ export function buildStructuredData(options: {
   }
 
   if (options.faqSchema) {
-    const faqs = options.extraFaqs ?? FAQ_ITEMS
-    schemas.push(faqPageSchema(faqs))
+    const faqs = options.faqItems ?? []
+    if (faqs.length > 0) {
+      schemas.push(faqPageSchema(faqs))
+    }
   }
 
-  if (options.serviceSchema) {
+  if (
+    options.intent === 'commercial' ||
+    options.intent === 'transactional' ||
+    options.serviceSchema
+  ) {
     schemas.push(serviceCatalogSchema())
   }
 

@@ -37,7 +37,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "seo:validate": "node --experimental-strip-types scripts/validate-seo.mjs"
+    "seo:validate": "node scripts/validate-seo.mjs",
+    "sitemap:generate": "node scripts/generate-sitemap.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.15.0",

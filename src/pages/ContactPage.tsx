@@ -20,7 +20,7 @@ import {
   CONTACT_QUICK_LINKS,
   CONTACT_SECTION,
 } from '@/data/contact'
-import { PAGE_SEO } from '@/data/seo'
+import { CONTACT_PAGE_FAQ, PAGE_SEO } from '@/data/seo'
 
 const easeSmooth = [0.22, 1, 0.36, 1] as const
 
@@ -39,6 +39,44 @@ export function ContactPage() {
         title={CONTACT_SECTION.title}
         description={CONTACT_SECTION.lead}
       />
+      <section className="section-padding border-b border-black/[0.04] dark:border-white/[0.04]">
+        <div className="container-wide">
+          <div className="mx-auto max-w-4xl rounded-3xl border border-black/[0.08] bg-white/70 p-6 dark:border-white/[0.1] dark:bg-white/[0.03]">
+            <h2 className="text-xl font-bold text-zinc-900 dark:text-white">When should you contact us?</h2>
+            <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-base">
+              Contact us as soon as you define your idea or deadline. We usually respond within 24 hours
+              on business days and share the right next steps for students, startups, and business teams.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Button to="/services" variant="secondary">
+                View services
+              </Button>
+              <Button to="/pricing" variant="secondary">
+                Check pricing
+              </Button>
+              <Button to="/faq" variant="secondary">
+                Read FAQ first
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding border-b border-black/[0.04] bg-zinc-50/50 dark:border-white/[0.04] dark:bg-transparent">
+        <div className="container-wide">
+          <div className="mx-auto grid max-w-5xl gap-4 md:grid-cols-3">
+            {CONTACT_PAGE_FAQ.map((item) => (
+              <article
+                key={item.question}
+                className="rounded-2xl border border-black/[0.07] bg-white/60 p-5 dark:border-white/[0.08] dark:bg-white/[0.03]"
+              >
+                <h2 className="text-base font-semibold text-zinc-900 dark:text-white">{item.question}</h2>
+                <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{item.answer}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="section-padding border-b border-black/[0.04] bg-zinc-50/50 dark:border-white/[0.04] dark:bg-transparent">
         <div className="container-wide">

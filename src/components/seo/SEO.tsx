@@ -12,16 +12,17 @@ export function SEO({ seo }: SEOProps) {
   const image = `${BRAND.url}/og-image.png`
   const imageAlt = `${BRAND.name} — ${BRAND.tagline} Final year projects & innovation platform India`
 
-  const extraFaqs = seo.path === '/' ? [...AEO_HOME_FAQ] : undefined
+  const faqItems = seo.faqItems ?? (seo.path === '/' ? [...AEO_HOME_FAQ] : undefined)
 
   const schemas = buildStructuredData({
     title: seo.title,
     description: seo.description,
     path: seo.path,
+    intent: seo.intent,
     breadcrumb: seo.breadcrumb,
     faqSchema: seo.faqSchema,
     serviceSchema: seo.serviceSchema,
-    extraFaqs,
+    faqItems,
   })
 
   return (
@@ -37,7 +38,7 @@ export function SEO({ seo }: SEOProps) {
       <link rel="canonical" href={url} />
 
       {/* Geographic SEO (GEO) */}
-      <meta name="geo.region" content={`${GEO.countryCode}-${GEO.region}`} />
+      <meta name="geo.region" content={`${GEO.countryCode}-${GEO.regionCode}`} />
       <meta name="geo.placename" content={GEO.placename} />
       <meta name="geo.position" content={`${GEO.latitude};${GEO.longitude}`} />
       <meta name="ICBM" content={`${GEO.latitude}, ${GEO.longitude}`} />
