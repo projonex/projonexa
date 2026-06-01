@@ -1,4 +1,4 @@
-import { type CSSProperties } from 'react'
+import { WHY_BENEFIT_GROUPS, WHY_CHOOSE, WHY_PILLARS, WHY_SECTION } from '@/data/brand'
 import { motion } from 'framer-motion'
 import {
   BadgeDollarSign,
@@ -15,7 +15,7 @@ import {
   Zap,
   type LucideIcon,
 } from 'lucide-react'
-import { WHY_BENEFIT_GROUPS, WHY_CHOOSE, WHY_PILLARS, WHY_SECTION } from '@/data/brand'
+import { type CSSProperties } from 'react'
 
 const easeSmooth = [0.22, 1, 0.36, 1] as const
 
@@ -140,7 +140,7 @@ export function WhyChoose({ variant = 'section', className }: WhyChooseProps) {
         className="pointer-events-none absolute -left-20 bottom-0 h-64 w-64 rounded-full bg-brand-secondary/10 blur-[90px]"
       />
 
-      <div className="container-wide relative">
+      <div className="container-wide relative mb-8">
         <div className="grid items-end gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-10">
           <motion.div
             initial={{ opacity: 0, x: -16 }}

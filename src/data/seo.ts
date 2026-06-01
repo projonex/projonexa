@@ -1,21 +1,7 @@
 import { BRAND, GEO } from './brand'
-
-export interface BreadcrumbItem {
-  name: string
-  path: string
-}
-
-export interface PageSEO {
-  title: string
-  description: string
-  keywords: string[]
-  path: string
-  breadcrumb?: BreadcrumbItem[]
-  /** Include FAQPage schema (AEO) */
-  faqSchema?: boolean
-  /** Include Service catalog schema */
-  serviceSchema?: boolean
-}
+import { FAQ_ITEMS } from './faq'
+import type { PageSEO } from '../lib/seo-types'
+export type { Audience, BreadcrumbItem, PageSEO, SearchIntent } from '../lib/seo-types'
 
 const GEO_KEYWORDS = [
   'final year projects India',
@@ -46,37 +32,138 @@ export const BASE_KEYWORDS = [
   ...GEO_KEYWORDS,
 ]
 
+export const SERVICES_PAGE_FAQ = [
+  {
+    question: 'What services does Projonexa provide?',
+    answer:
+      'Projonexa provides end-to-end final year project delivery, AI/ML solutions, web and mobile development, IoT systems, and startup MVP engineering support.',
+  },
+  {
+    question: 'Do services include documentation and deployment?',
+    answer:
+      'Yes. Services include source code, technical documentation, testing support, and deployment guidance based on your project scope.',
+  },
+  {
+    question: 'Who are these services designed for?',
+    answer:
+      'Services are designed for students, startups, and businesses that need reliable delivery with clear milestones and mentoring support.',
+  },
+] as const
+
+export const PRICING_PAGE_FAQ = [
+  {
+    question: 'How much does a final year project usually cost?',
+    answer:
+      'Final pricing depends on complexity, timeline, and deliverables, and every quote is shared clearly before implementation begins.',
+  },
+  {
+    question: 'Are custom pricing plans available?',
+    answer:
+      'Yes. Projonexa provides custom pricing for student, startup, and business requirements with transparent scope mapping.',
+  },
+  {
+    question: 'Does pricing include documentation and support?',
+    answer:
+      'Yes. Pricing plans include required documentation and delivery support aligned to academic or product goals.',
+  },
+] as const
+
+export const CONTACT_PAGE_FAQ = [
+  {
+    question: 'How can I contact Projonexa?',
+    answer:
+      'You can contact Projonexa via the contact form or email, and share project scope, timeline, and goals for a faster response.',
+  },
+  {
+    question: 'When will I get a response?',
+    answer:
+      'Projonexa generally responds within 24 hours on business days with next steps and scope clarification.',
+  },
+  {
+    question: 'What details should I include in my inquiry?',
+    answer:
+      'Include your project type, deadline, expected deliverables, and preferred technology stack so the team can provide an accurate plan.',
+  },
+] as const
+
 export const PAGE_SEO: Record<string, PageSEO> = {
   home: {
-    title: `${BRAND.name} | Final Year Projects & Innovation Platform — ${GEO.region}, ${GEO.country}`,
+    title: `${BRAND.name} | Final Year Projects & MVP Development India`,
     description:
-      'Projonexa is India\'s trusted innovation platform for final year projects, AI/ML, and startup MVPs. End-to-end development with documentation, deployment & viva prep — serving students & clients across India and globally.',
+      'Projonexa builds final year projects, AI/ML systems, and startup MVPs with end-to-end documentation, deployment support, and viva guidance across India.',
     keywords: BASE_KEYWORDS,
     path: '/',
+    primaryKeyword: 'final year projects India',
+    secondaryKeywords: ['engineering projects Maharashtra', 'startup MVP development India'],
+    intent: 'commercial',
+    audience: 'mixed',
+    conversionGoal: 'contact-inquiry',
+    aeoQuestions: [
+      'What is Projonexa?',
+      'Who is Projonexa for?',
+      'What deliverables are included with every project?',
+    ],
+    ctrVariants: {
+      titles: [
+        `${BRAND.name} | Final Year Projects, AI and MVP Experts`,
+        `${BRAND.name} | India's Final Year Project and MVP Partner`,
+      ],
+      descriptions: [
+        'Get final year projects, AI/ML systems, and startup MVP development with complete documentation, deployment guidance, and mentor-led viva support.',
+        'Projonexa helps students and startups build production-ready projects with clear milestones, technical documentation, and mentoring support.',
+      ],
+    },
     faqSchema: true,
     serviceSchema: true,
   },
   about: {
     title: `About ${BRAND.name} | Innovation Platform — ${GEO.country}`,
     description:
-      `Learn about Projonexa — a Maharashtra, India-based technology platform helping students, colleges, startups, and businesses turn ideas into production-ready projects with expert mentorship and 100+ delivered projects.`,
+      `Learn how Projonexa helps students, colleges, startups, and businesses turn ideas into production-ready projects with expert mentorship and proven delivery.`,
     keywords: [...BASE_KEYWORDS, 'about projonexa', 'innovation platform India'],
     path: '/about',
+    primaryKeyword: 'about Projonexa',
+    secondaryKeywords: ['innovation platform India', 'project development team India'],
+    intent: 'informational',
+    audience: 'mixed',
+    conversionGoal: 'learn-about-brand',
     breadcrumb: [{ name: 'About', path: '/about' }],
   },
   services: {
     title: `Project Development Services | ${BRAND.name} — Final Year, AI, MVP`,
     description:
-      'Projonexa services: final year projects, mini projects, AI/ML, web & mobile apps, IoT, startup MVPs, and custom software. Complete deliverables — code, SRS, PPT, deployment & viva support across India.',
+      'Projonexa delivers final year projects, AI/ML systems, web and mobile apps, IoT builds, startup MVPs, and custom software with complete documentation and support.',
     keywords: [...BASE_KEYWORDS, 'project development services', 'final year project help'],
     path: '/services',
+    primaryKeyword: 'project development services India',
+    secondaryKeywords: ['final year project help', 'startup MVP development India'],
+    intent: 'commercial',
+    audience: 'mixed',
+    conversionGoal: 'service-inquiry',
+    aeoQuestions: [
+      'What services does Projonexa provide?',
+      'Can Projonexa build startup MVPs?',
+      'Do services include documentation and deployment?',
+    ],
+    ctrVariants: {
+      titles: [
+        `Project Development Services India | ${BRAND.name}`,
+        `${BRAND.name} Services | Final Year, AI and MVP Development`,
+      ],
+      descriptions: [
+        'Explore final year project delivery, AI solutions, web and mobile development, IoT builds, and startup MVP engineering with complete support.',
+        'Choose Projonexa services for end-to-end project development, technical documentation, deployment guidance, and deadline-focused execution plans.',
+      ],
+    },
+    faqItems: [...SERVICES_PAGE_FAQ],
+    faqSchema: true,
     breadcrumb: [{ name: 'Services', path: '/services' }],
     serviceSchema: true,
   },
   projects: {
-    title: `My Projects | ${BRAND.name} — SPPU BUDDY & More`,
+    title: `Projects Portfolio | ${BRAND.name} — SPPU BUDDY & More`,
     description:
-      'Explore live products from Projonexa — including SPPU BUDDY, the free Android app for Savitribai Phule Pune University students with notes, PYQs, syllabus, dark mode, and SGPA tools.',
+      'Explore live products from Projonexa, including SPPU BUDDY, a free Android app for SPPU students with notes, PYQs, syllabus, dark mode, and SGPA tools.',
     keywords: [
       ...BASE_KEYWORDS,
       'SPPU BUDDY',
@@ -86,6 +173,11 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'my projects portfolio',
     ],
     path: '/projects',
+    primaryKeyword: 'student project portfolio India',
+    secondaryKeywords: ['SPPU BUDDY app', 'engineering project examples'],
+    intent: 'informational',
+    audience: 'mixed',
+    conversionGoal: 'explore-projects',
     breadcrumb: [{ name: 'Projects', path: '/projects' }],
   },
   blog: {
@@ -94,14 +186,24 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'Expert guides on final year projects, AI development, startup MVPs, and engineering trends — from the Projonexa team serving students across India.',
     keywords: [...BASE_KEYWORDS, 'tech blog', 'final year project guide'],
     path: '/blog',
+    primaryKeyword: 'final year project guide',
+    secondaryKeywords: ['AI development blog India', 'startup MVP insights'],
+    intent: 'informational',
+    audience: 'students',
+    conversionGoal: 'read-blog',
     breadcrumb: [{ name: 'Blog', path: '/blog' }],
   },
   portfolio: {
     title: `Portfolio | ${BRAND.name} — Academic & Industry Projects`,
     description:
-      'Projonexa portfolio: 100+ delivered projects across engineering, AI, web, mobile, IoT, and startup domains. Trusted by 500+ students and innovators in India and globally.',
+      'Projonexa portfolio includes 100+ projects across engineering, AI, web, mobile, IoT, and startup domains, trusted by students and innovators.',
     keywords: [...BASE_KEYWORDS, 'project showcase', 'engineering portfolio'],
     path: '/portfolio',
+    primaryKeyword: 'engineering project portfolio India',
+    secondaryKeywords: ['project showcase', 'AI web mobile portfolio'],
+    intent: 'commercial',
+    audience: 'mixed',
+    conversionGoal: 'portfolio-inquiry',
     breadcrumb: [{ name: 'Portfolio', path: '/portfolio' }],
   },
   pricing: {
@@ -110,22 +212,54 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'Transparent, student-friendly pricing for mini projects, final year projects, and startup MVPs. Custom quotes aligned to your college deadline and scope.',
     keywords: [...BASE_KEYWORDS, 'project pricing India', 'affordable final year project'],
     path: '/pricing',
+    primaryKeyword: 'final year project pricing India',
+    secondaryKeywords: ['project pricing India', 'startup MVP pricing'],
+    intent: 'transactional',
+    audience: 'students',
+    conversionGoal: 'pricing-inquiry',
+    aeoQuestions: [
+      'How much does a final year project cost?',
+      'Are custom pricing plans available?',
+      'Does pricing include documentation and support?',
+    ],
+    ctrVariants: {
+      titles: [
+        `Pricing Plans | ${BRAND.name} Final Year and MVP Services`,
+        `${BRAND.name} Pricing | Transparent Plans for Projects`,
+      ],
+      descriptions: [
+        'View transparent pricing for final year projects and startup MVPs with custom quotes based on complexity, technical scope, timeline, and deliverables.',
+        'Get affordable student and startup project pricing with clear scope mapping, documentation coverage, milestone-based execution, and support details.',
+      ],
+    },
+    faqItems: [...PRICING_PAGE_FAQ],
+    faqSchema: true,
     breadcrumb: [{ name: 'Pricing', path: '/pricing' }],
   },
   careers: {
-    title: `Careers | Join ${BRAND.name} Team`,
+    title: `Careers at ${BRAND.name} | Developers, Mentors and Interns`,
     description:
-      'Explore roles at Projonexa — developers, designers, QA, mentors, interns, and more. Apply online to join our innovation team.',
+      'Explore roles for developers, designers, QA, mentors, and interns at Projonexa, and apply online to join our innovation team across India and globally.',
     keywords: [...BASE_KEYWORDS, 'freelance developer India', 'projonexa careers'],
     path: '/careers',
+    primaryKeyword: 'Projonexa careers',
+    secondaryKeywords: ['freelance developer India', 'innovation team roles'],
+    intent: 'navigational',
+    audience: 'mixed',
+    conversionGoal: 'careers-apply',
     breadcrumb: [{ name: 'Careers', path: '/careers' }],
   },
   careersApply: {
-    title: `Apply to Join ${BRAND.name}`,
+    title: `Apply at ${BRAND.name} | Submit Your Career Application`,
     description:
       'Submit your application to join the Projonexa team. Share your role, skills, experience, and availability — we respond within a few business days.',
     keywords: [...BASE_KEYWORDS, 'projonexa apply', 'join projonexa team'],
     path: '/careers/apply',
+    primaryKeyword: 'apply to Projonexa',
+    secondaryKeywords: ['join Projonexa team', 'careers apply form'],
+    intent: 'transactional',
+    audience: 'mixed',
+    conversionGoal: 'submit-application',
     breadcrumb: [
       { name: 'Careers', path: '/careers' },
       { name: 'Apply', path: '/careers/apply' },
@@ -142,19 +276,62 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'project deliverables India',
     ],
     path: '/faq',
+    primaryKeyword: 'final year project FAQ India',
+    secondaryKeywords: ['project deliverables India', 'student project support FAQ'],
+    intent: 'informational',
+    audience: 'mixed',
+    conversionGoal: 'contact-inquiry',
+    aeoQuestions: [
+      'What project types do you support?',
+      'What deliverables are included?',
+      'How quickly does your team respond?',
+    ],
+    ctrVariants: {
+      titles: [
+        `${BRAND.name} FAQ | Projects, Pricing and Delivery Answers`,
+        `Final Year Project FAQ India | ${BRAND.name} Support Team`,
+      ],
+      descriptions: [
+        'Read direct answers on project types, deliverables, pricing, timelines, and support options for students, startups, and business teams in India.',
+        'Find quick answers about final year projects, MVP development, documentation, response times, and the inquiry process with the Projonexa team.',
+      ],
+    },
+    faqItems: [...FAQ_ITEMS],
     breadcrumb: [{ name: 'FAQ', path: '/faq' }],
     faqSchema: true,
   },
   contact: {
     title: `Contact ${BRAND.name} | Start Your Project — ${GEO.region}, ${GEO.country}`,
     description:
-      'Contact Projonexa for final year projects, mini projects, AI/ML, web & mobile apps, IoT, and startup MVPs. Submit an inquiry — response within 24 hours across India and globally.',
+      'Contact Projonexa for final year projects, AI/ML, web and mobile apps, IoT, and startup MVPs. Submit an inquiry for a response within 24 hours.',
     keywords: [...BASE_KEYWORDS, 'contact projonexa', 'project inquiry India'],
     path: '/contact',
+    primaryKeyword: 'contact Projonexa',
+    secondaryKeywords: ['project inquiry India', 'final year project consultation'],
+    intent: 'transactional',
+    audience: 'mixed',
+    conversionGoal: 'submit-contact-form',
+    aeoQuestions: [
+      'How can I contact Projonexa?',
+      'What details should I share in the inquiry?',
+      'When will I receive a response?',
+    ],
+    ctrVariants: {
+      titles: [
+        `Contact ${BRAND.name} | Project Consultation in India`,
+        `${BRAND.name} Contact | Start Your Final Year or MVP Project`,
+      ],
+      descriptions: [
+        'Contact Projonexa for final year projects, AI/ML, web and mobile apps, IoT, and startup MVP support with a fast response within 24 business hours.',
+        'Submit your project scope, timeline, and goals to get a clear consultation response for student, startup, or business requirements in India.',
+      ],
+    },
+    faqItems: [...CONTACT_PAGE_FAQ],
+    faqSchema: true,
     breadcrumb: [{ name: 'Contact', path: '/contact' }],
   },
   studentInquiry: {
-    title: `Student Project Inquiry | ${BRAND.name} — Final Year & Academic Projects`,
+    title: `Student Project Inquiry | ${BRAND.name} — Final Year Projects`,
     description:
       'Submit a student project inquiry to Projonexa: final year, mini, AI/ML, web, mobile, and IoT projects with documentation, deployment, and viva support across India.',
     keywords: [
@@ -164,6 +341,11 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'BE project help',
     ],
     path: '/inquiry/students',
+    primaryKeyword: 'student project inquiry India',
+    secondaryKeywords: ['final year project inquiry', 'BE project help form'],
+    intent: 'transactional',
+    audience: 'students',
+    conversionGoal: 'submit-student-inquiry',
     breadcrumb: [
       { name: 'Contact', path: '/contact' },
       { name: 'Student inquiry', path: '/inquiry/students' },
@@ -180,6 +362,11 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'corporate project inquiry',
     ],
     path: '/inquiry/corporate',
+    primaryKeyword: 'startup MVP inquiry India',
+    secondaryKeywords: ['corporate project inquiry', 'custom software development India'],
+    intent: 'transactional',
+    audience: 'businesses',
+    conversionGoal: 'submit-corporate-inquiry',
     breadcrumb: [
       { name: 'Contact', path: '/contact' },
       { name: 'Corporate inquiry', path: '/inquiry/corporate' },

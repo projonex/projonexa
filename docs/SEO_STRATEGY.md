@@ -41,8 +41,10 @@ Complete search optimization strategy for [projonexa.com](https://projonexa.com)
 | Sitemap | `public/sitemap.xml` |
 | Robots | `public/robots.txt` |
 | Web manifest | `public/site.webmanifest` |
-| Favicon | `public/favicon.svg` |
-| OG image | `public/og-image.png` *(add 1200×630)* |
+| Favicon | `public/favicon-32.png`, `public/apple-touch-icon.png` |
+| Logo | `public/logo.png` |
+| OG image | `public/og-image.svg` *(1200×630 social share asset)* |
+| LLM instructions | `public/llms.txt` |
 
 ### Structured Data (JSON-LD)
 
@@ -113,7 +115,7 @@ Optimizes content for **AI search** (ChatGPT, Perplexity, Google AI Overviews, C
 |----------|---------|
 | Homepage | `AEOOverview` — 5 core Q&A pairs |
 | FAQ page | 10+ accordion Q&As with microdata |
-| JSON-LD | `FAQPage` schema on home + FAQ |
+| JSON-LD | `FAQPage` schema on home, services, pricing, faq, and contact (page-specific Q&A only) |
 | Brand data | `AEO_DEFINITION` one-liner |
 
 ### Sample AI-Ready Answer
@@ -129,7 +131,7 @@ Optimizes content for **AI search** (ChatGPT, Perplexity, Google AI Overviews, C
 |------|----------------|
 | `/` | final year projects India, innovation platform |
 | `/services` | project development services, engineering projects |
-| `/research` | research paper help, IEEE paper India |
+| `/careers/apply` | apply to Projonexa, developer opportunities |
 | `/pricing` | affordable final year project, student pricing |
 | `/contact` | contact projonexa, project inquiry India |
 | `/faq` | final year project FAQ, project help questions |
@@ -137,6 +139,34 @@ Optimizes content for **AI search** (ChatGPT, Perplexity, Google AI Overviews, C
 ---
 
 ## Monitoring & Maintenance
+
+### Operations Documents
+
+- Weekly operations: `docs/SEO_OPERATIONS_PLAYBOOK.md`
+- Monthly review: `docs/SEO_MONTHLY_REVIEW_TEMPLATE.md`
+
+### CTR Optimization Workflow
+
+For high-intent pages (`/`, `/services`, `/pricing`, `/faq`, `/contact`), maintain at least 2 title variants and 2 description variants in `src/data/seo.ts` under `ctrVariants`.
+
+Operational workflow:
+
+1. `npm run seo:validate`
+2. `npm run seo:ctr:export`
+3. Review generated `docs/SEO_CTR_VARIANTS.csv`
+4. Test one title + description pair per page in Search Console windows (14-21 days) and keep only proven winners.
+
+### Build-Time Workflow
+
+Run this sequence before release builds and after SEO registry/content changes:
+
+1. `npm run seo:validate`
+2. `npm run sitemap:generate`
+3. `npm run build`
+
+Notes:
+- Sitemap is generated from `PAGE_SEO`.
+- Redirect/non-index routes (for example `/research`) are intentionally excluded from sitemap output.
 
 1. **Google Search Console** — impressions, clicks, indexing
 2. **Update sitemap** `lastmod` when pages change significantly

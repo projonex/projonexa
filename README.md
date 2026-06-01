@@ -11,7 +11,7 @@
 
 <br />
 
-<img src="public/favicon.svg" alt="Projonexa Logo" width="88" height="88" />
+<img src="public/logo.png" alt="Projonexa Logo" width="88" height="88" />
 
 <br />
 
@@ -261,7 +261,7 @@ Projonexa works across the **full technology spectrum** — every stack, framewo
 <table>
 <tr>
 <td width="100" align="center">
-<img src="public/favicon.svg" alt="Nisarga Lokhande" width="72" height="72" />
+<img src="public/logo.png" alt="Projonexa" width="72" height="72" />
 <br /><br />
 <strong>Nisarga Lokhande</strong>
 </td>
@@ -339,7 +339,7 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for deployment notes and SEO 
 
 ```
 projonexa/
-├── public/                 # Static assets, favicon, sitemap, robots.txt
+├── public/                 # Static assets, logo, favicons, sitemap, robots.txt
 ├── src/
 │   ├── components/         # Layout, sections, UI, SEO
 │   ├── context/            # Theme provider (dark/light)

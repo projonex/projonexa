@@ -1,22 +1,57 @@
 import { Link } from 'react-router-dom'
+import { BrandLogoImage } from '@/components/ui/BrandLogoImage'
+import { BrandNameWordmark } from '@/components/ui/BrandNameWordmark'
+
+type LogoPlacement = 'nav' | 'footer' | 'prominent'
+type LogoLayout = 'inline' | 'stacked'
 
 interface LogoProps {
   className?: string
+  showName?: boolean
+  placement?: LogoPlacement
+  layout?: LogoLayout
 }
 
-export function Logo({ className = '' }: LogoProps) {
+const nameSizeClass: Record<LogoPlacement, string> = {
+  nav: 'site-brand-name--default',
+  footer: 'site-brand-name--footer',
+  prominent: 'site-brand-name--large',
+}
+
+export function Logo({
+  className = '',
+  showName = true,
+  placement = 'nav',
+  layout = 'inline',
+}: LogoProps) {
+  const isStacked = layout === 'stacked'
+  const isProminent = placement === 'prominent'
+
   return (
-    <Link to="/" className={`group flex items-center gap-3 ${className}`} aria-label="Projonexa Home">
-      <span className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-brand-gradient shadow-glow transition-transform duration-300 group-hover:scale-[1.03] sm:h-9 sm:w-9">
-        <span
-          className="pointer-events-none absolute inset-0 rounded-xl bg-white/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          aria-hidden
+    <Link
+      to="/"
+      className={[
+        'site-brand-link group',
+        isStacked ? 'site-brand-link--stacked' : 'site-brand-link--inline',
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')}
+      aria-label="Projonexa Home"
+    >
+      <span
+        className={[
+          'site-logo-mark',
+          isProminent ? 'site-logo-mark--large' : 'site-logo-mark--default',
+        ].join(' ')}
+      >
+        <BrandLogoImage
+          className="site-logo-image"
+          decorative
+          priority={placement === 'nav' && !isStacked}
         />
-        <span className="relative text-sm font-extrabold text-white">P</span>
       </span>
-      <span className="text-lg font-bold tracking-tight text-zinc-900 dark:text-white">
-        Projo<span className="text-gradient">nexa</span>
-      </span>
+      {showName && <BrandNameWordmark className={nameSizeClass[placement]} />}
     </Link>
   )
 }
