@@ -1,12 +1,14 @@
-import { ArrowUpRight, ExternalLink, Github, Globe, Smartphone } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
+import { ArrowUpRight, ExternalLink, Globe, Smartphone } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
+import { GitHubIcon } from '@/components/ui/SocialIcons'
 import type { DeploymentLink, DeploymentLinkType } from '@/data/projects'
 
-const deploymentIcons: Record<DeploymentLinkType, typeof Globe> = {
+const deploymentIcons: Record<DeploymentLinkType, LucideIcon> = {
   'play-store': Smartphone,
   'app-store': Smartphone,
   web: Globe,
-  github: Github,
+  github: GitHubIcon as LucideIcon,
   demo: ExternalLink,
 }
 

@@ -3,6 +3,7 @@ import { ArrowRight, MapPin } from 'lucide-react'
 import { BRAND } from '@/data/brand'
 import { Button } from '@/components/ui/Button'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { easeSmooth } from '@/lib/motion'
 
 const fadeUp = (delay: number, reduced: boolean) =>
   reduced
@@ -10,7 +11,7 @@ const fadeUp = (delay: number, reduced: boolean) =>
     : {
         initial: { opacity: 0, y: 20 },
         animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] },
+        transition: { duration: 0.55, delay, ease: easeSmooth },
       }
 
 function HeroTagline({ reducedMotion }: { reducedMotion: boolean }) {
