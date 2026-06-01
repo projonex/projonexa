@@ -9,6 +9,7 @@ import { useBodyScrollLock } from '@/hooks/useBodyScrollLock'
 import { isNavLinkActive } from '@/lib/navigation'
 import { Logo } from '@/components/ui/Logo'
 import { Button } from '@/components/ui/Button'
+import { easeSmooth } from '@/lib/motion'
 
 function ThemeToggleButton({
   theme,
@@ -135,7 +136,7 @@ export function Header() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.28, ease: easeSmooth }}
               className="mobile-nav-panel lg:hidden"
             >
               <nav

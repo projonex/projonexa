@@ -18,6 +18,7 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
+import { easeSmooth } from '@/lib/motion'
 
 const CATEGORY_META: Record<
   TechCategory,
@@ -147,7 +148,7 @@ export function TechStackPanel({ onTechHover }: TechStackPanelProps) {
               initial={{ opacity: 0, scale: 1.04 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.98 }}
-              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.55, ease: easeSmooth }}
               className="pointer-events-none absolute inset-0"
               style={{
                 background: `radial-gradient(ellipse 75% 60% at 18% 0%, ${active.meta.accent}24, transparent 74%)`,
@@ -161,7 +162,7 @@ export function TechStackPanel({ onTechHover }: TechStackPanelProps) {
               aria-hidden
               initial={{ x: '-120%', opacity: 0 }}
               animate={{ x: '120%', opacity: [0, 0.35, 0] }}
-              transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.85, ease: easeSmooth }}
               className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-transparent via-white/25 to-transparent dark:via-white/10"
             />
           </AnimatePresence>
@@ -173,7 +174,7 @@ export function TechStackPanel({ onTechHover }: TechStackPanelProps) {
                 initial={{ opacity: 0, y: 10, filter: 'blur(8px)' }}
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 exit={{ opacity: 0, y: -8, filter: 'blur(6px)' }}
-                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.45, ease: easeSmooth }}
                 className="flex items-center gap-3"
               >
                 {hoveredTech ? (
@@ -261,7 +262,7 @@ export function TechStackPanel({ onTechHover }: TechStackPanelProps) {
                 initial={{ opacity: 0, y: 12, filter: 'blur(10px)' }}
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 exit={{ opacity: 0, y: -10, filter: 'blur(8px)' }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.5, ease: easeSmooth }}
                 className="grid grid-cols-4 gap-1.5 sm:grid-cols-5 sm:gap-2"
               >
                 {active.items.map((tech, index) => (

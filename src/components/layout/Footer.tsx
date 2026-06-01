@@ -1,5 +1,6 @@
 import { BRAND, FOUNDER } from '@/data/brand'
-import { Github, Linkedin, Mail, MapPin } from 'lucide-react'
+import { Mail, MapPin } from 'lucide-react'
+import { GitHubIcon, LinkedInIcon } from '@/components/ui/SocialIcons'
 
 import { BrandWordmark } from '@/components/ui/BrandWordmark'
 import { FOOTER_LINKS } from '@/data/navigation'
@@ -50,7 +51,7 @@ export function Footer() {
                 className="footer-social-link rounded-lg p-2.5 text-zinc-500 dark:text-zinc-400"
                 aria-label="LinkedIn"
               >
-                <Linkedin className="h-5 w-5" />
+                <LinkedInIcon className="h-5 w-5" />
               </a>
               <a
                 href={FOUNDER.github}
@@ -59,7 +60,7 @@ export function Footer() {
                 className="footer-social-link rounded-lg p-2.5 text-zinc-500 dark:text-zinc-400"
                 aria-label="GitHub"
               >
-                <Github className="h-5 w-5" />
+                <GitHubIcon className="h-5 w-5" />
               </a>
               <a
                 href={`mailto:${FOUNDER.email}`}

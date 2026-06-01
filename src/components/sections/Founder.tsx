@@ -1,5 +1,6 @@
 import { FOUNDER, FOUNDER_SECTION } from '@/data/brand'
-import { Github, Linkedin, Mail } from 'lucide-react'
+import { Mail } from 'lucide-react'
+import { GitHubIcon, LinkedInIcon } from '@/components/ui/SocialIcons'
 
 import founderPhoto from '@/assets/img/nisargalokhande.png'
 import { Button } from '@/components/ui/Button'
@@ -143,11 +144,11 @@ export function Founder({ variant = 'section' }: FounderProps) {
 
               <div className="mt-8 flex flex-wrap gap-3 border-t border-black/[0.06] pt-8 dark:border-white/[0.08]">
                 <Button href={FOUNDER.linkedin} variant="outline">
-                  <Linkedin className="h-4 w-4" />
+                  <LinkedInIcon className="h-4 w-4" />
                   LinkedIn
                 </Button>
                 <Button href={FOUNDER.github} variant="ghost">
-                  <Github className="h-4 w-4" />
+                  <GitHubIcon className="h-4 w-4" />
                   GitHub
                 </Button>
                 <Button href={`mailto:${FOUNDER.email}`} variant="ghost">
