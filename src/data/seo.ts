@@ -103,6 +103,16 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'Who is Projonexa for?',
       'What deliverables are included with every project?',
     ],
+    ctrVariants: {
+      titles: [
+        `${BRAND.name} | Final Year Projects, AI and MVP Experts`,
+        `${BRAND.name} | India's Final Year Project and MVP Partner`,
+      ],
+      descriptions: [
+        'Get final year projects, AI/ML systems, and startup MVP development with complete documentation, deployment guidance, and mentor-led viva support.',
+        'Projonexa helps students and startups build production-ready projects with clear milestones, technical documentation, and mentoring support.',
+      ],
+    },
     faqSchema: true,
     serviceSchema: true,
   },
@@ -135,6 +145,16 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'Can Projonexa build startup MVPs?',
       'Do services include documentation and deployment?',
     ],
+    ctrVariants: {
+      titles: [
+        `Project Development Services India | ${BRAND.name}`,
+        `${BRAND.name} Services | Final Year, AI and MVP Development`,
+      ],
+      descriptions: [
+        'Explore final year project delivery, AI solutions, web and mobile development, IoT builds, and startup MVP engineering with complete support.',
+        'Choose Projonexa services for end-to-end project development, technical documentation, deployment guidance, and deadline-focused execution plans.',
+      ],
+    },
     faqItems: [...SERVICES_PAGE_FAQ],
     faqSchema: true,
     breadcrumb: [{ name: 'Services', path: '/services' }],
@@ -202,6 +222,16 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'Are custom pricing plans available?',
       'Does pricing include documentation and support?',
     ],
+    ctrVariants: {
+      titles: [
+        `Pricing Plans | ${BRAND.name} Final Year and MVP Services`,
+        `${BRAND.name} Pricing | Transparent Plans for Projects`,
+      ],
+      descriptions: [
+        'View transparent pricing for final year projects and startup MVPs with custom quotes based on complexity, technical scope, timeline, and deliverables.',
+        'Get affordable student and startup project pricing with clear scope mapping, documentation coverage, milestone-based execution, and support details.',
+      ],
+    },
     faqItems: [...PRICING_PAGE_FAQ],
     faqSchema: true,
     breadcrumb: [{ name: 'Pricing', path: '/pricing' }],
@@ -256,6 +286,16 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'What deliverables are included?',
       'How quickly does your team respond?',
     ],
+    ctrVariants: {
+      titles: [
+        `${BRAND.name} FAQ | Projects, Pricing and Delivery Answers`,
+        `Final Year Project FAQ India | ${BRAND.name} Support Team`,
+      ],
+      descriptions: [
+        'Read direct answers on project types, deliverables, pricing, timelines, and support options for students, startups, and business teams in India.',
+        'Find quick answers about final year projects, MVP development, documentation, response times, and the inquiry process with the Projonexa team.',
+      ],
+    },
     faqItems: [...FAQ_ITEMS],
     breadcrumb: [{ name: 'FAQ', path: '/faq' }],
     faqSchema: true,
@@ -276,6 +316,16 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'What details should I share in the inquiry?',
       'When will I receive a response?',
     ],
+    ctrVariants: {
+      titles: [
+        `Contact ${BRAND.name} | Project Consultation in India`,
+        `${BRAND.name} Contact | Start Your Final Year or MVP Project`,
+      ],
+      descriptions: [
+        'Contact Projonexa for final year projects, AI/ML, web and mobile apps, IoT, and startup MVP support with a fast response within 24 business hours.',
+        'Submit your project scope, timeline, and goals to get a clear consultation response for student, startup, or business requirements in India.',
+      ],
+    },
     faqItems: [...CONTACT_PAGE_FAQ],
     faqSchema: true,
     breadcrumb: [{ name: 'Contact', path: '/contact' }],

@@ -12,6 +12,11 @@ export interface FAQItem {
   answer: string
 }
 
+export interface CTRVariantSet {
+  titles: string[]
+  descriptions: string[]
+}
+
 export interface PageSEO {
   title: string
   description: string
@@ -23,6 +28,7 @@ export interface PageSEO {
   audience: Audience
   conversionGoal: string
   aeoQuestions?: string[]
+  ctrVariants?: CTRVariantSet
   faqItems?: FAQItem[]
   breadcrumb?: BreadcrumbItem[]
   faqSchema?: boolean

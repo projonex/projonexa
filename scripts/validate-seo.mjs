@@ -62,6 +62,17 @@ for (const [pageKey, page] of Object.entries(PAGE_SEO)) {
   if (!page.intent?.trim()) errors.push(`${pageKey}: missing intent`)
   if (!page.audience?.trim()) errors.push(`${pageKey}: missing audience`)
   if (!page.conversionGoal?.trim()) errors.push(`${pageKey}: missing conversionGoal`)
+  if (page.ctrVariants) {
+    if (!Array.isArray(page.ctrVariants.titles) || page.ctrVariants.titles.length < 2) {
+      errors.push(`${pageKey}: ctrVariants.titles must include at least 2 variants`)
+    }
+    if (
+      !Array.isArray(page.ctrVariants.descriptions) ||
+      page.ctrVariants.descriptions.length < 2
+    ) {
+      errors.push(`${pageKey}: ctrVariants.descriptions must include at least 2 variants`)
+    }
+  }
 
   if (!hasTitle || !hasDescription || !hasPath || !hasPrimaryKeyword) {
     continue
@@ -99,6 +110,51 @@ for (const [pageKey, page] of Object.entries(PAGE_SEO)) {
     warnings.push(
       `${pageKey}: description length ${page.description.length} outside ${SEO_RULES.descriptionMin}-${SEO_RULES.descriptionMax}`
     )
+  }
+
+  if (page.ctrVariants?.titles) {
+    const seenCtrTitles = new Set()
+    for (const [index, title] of page.ctrVariants.titles.entries()) {
+      const normalized = title.toLowerCase().trim()
+      if (!normalized) {
+        errors.push(`${pageKey}: ctr title variant ${index + 1} is empty`)
+        continue
+      }
+      if (seenCtrTitles.has(normalized)) {
+        warnings.push(`${pageKey}: duplicate ctr title variant "${title}"`)
+      } else {
+        seenCtrTitles.add(normalized)
+      }
+      if (title.length < SEO_RULES.titleMin || title.length > SEO_RULES.titleMax) {
+        warnings.push(
+          `${pageKey}: ctr title variant ${index + 1} length ${title.length} outside ${SEO_RULES.titleMin}-${SEO_RULES.titleMax}`
+        )
+      }
+    }
+  }
+
+  if (page.ctrVariants?.descriptions) {
+    const seenCtrDescriptions = new Set()
+    for (const [index, description] of page.ctrVariants.descriptions.entries()) {
+      const normalized = description.toLowerCase().trim()
+      if (!normalized) {
+        errors.push(`${pageKey}: ctr description variant ${index + 1} is empty`)
+        continue
+      }
+      if (seenCtrDescriptions.has(normalized)) {
+        warnings.push(`${pageKey}: duplicate ctr description variant "${description}"`)
+      } else {
+        seenCtrDescriptions.add(normalized)
+      }
+      if (
+        description.length < SEO_RULES.descriptionMin ||
+        description.length > SEO_RULES.descriptionMax
+      ) {
+        warnings.push(
+          `${pageKey}: ctr description variant ${index + 1} length ${description.length} outside ${SEO_RULES.descriptionMin}-${SEO_RULES.descriptionMax}`
+        )
+      }
+    }
   }
 }
 

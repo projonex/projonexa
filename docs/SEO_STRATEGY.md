@@ -138,6 +138,17 @@ Optimizes content for **AI search** (ChatGPT, Perplexity, Google AI Overviews, C
 
 ## Monitoring & Maintenance
 
+### CTR Optimization Workflow
+
+For high-intent pages (`/`, `/services`, `/pricing`, `/faq`, `/contact`), maintain at least 2 title variants and 2 description variants in `src/data/seo.ts` under `ctrVariants`.
+
+Operational workflow:
+
+1. `npm run seo:validate`
+2. `npm run seo:ctr:export`
+3. Review generated `docs/SEO_CTR_VARIANTS.csv`
+4. Test one title + description pair per page in Search Console windows (14-21 days) and keep only proven winners.
+
 ### Build-Time Workflow
 
 Run this sequence before release builds and after SEO registry/content changes:
