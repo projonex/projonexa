@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { BrandLogoImage } from '@/components/ui/BrandLogoImage'
+import { BrandNameWordmark } from '@/components/ui/BrandNameWordmark'
 
 type LogoPlacement = 'nav' | 'footer' | 'prominent'
 type LogoLayout = 'inline' | 'stacked'
@@ -9,6 +10,12 @@ interface LogoProps {
   showName?: boolean
   placement?: LogoPlacement
   layout?: LogoLayout
+}
+
+const nameSizeClass: Record<LogoPlacement, string> = {
+  nav: 'site-brand-name--default',
+  footer: 'site-brand-name--footer',
+  prominent: 'site-brand-name--large',
 }
 
 export function Logo({
@@ -44,21 +51,7 @@ export function Logo({
           priority={placement === 'nav' && !isStacked}
         />
       </span>
-      {showName && (
-        <span
-          className={[
-            'site-brand-name',
-            placement === 'footer' && 'site-brand-name--footer',
-            isProminent && 'site-brand-name--large',
-            !isProminent && placement === 'nav' && 'site-brand-name--default',
-          ]
-            .filter(Boolean)
-            .join(' ')}
-        >
-          <span className="site-brand-name-projo">Projo</span>
-          <span className="site-brand-name-nexa">nexa</span>
-        </span>
-      )}
+      {showName && <BrandNameWordmark className={nameSizeClass[placement]} />}
     </Link>
   )
 }
