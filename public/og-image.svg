@@ -1,28 +1,59 @@
-<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-label="Projonexa — Final Year Projects, AI/ML and MVP Development">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#0A0F1C" />
-      <stop offset="1" stop-color="#111827" />
+      <stop stop-color="#000000" />
+      <stop offset="0.55" stop-color="#050810" />
+      <stop offset="1" stop-color="#0A1220" />
     </linearGradient>
-    <linearGradient id="accent" x1="180" y1="420" x2="1020" y2="220" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#06B6D4" />
-      <stop offset="1" stop-color="#3B82F6" />
+    <linearGradient id="accent" x1="120" y1="520" x2="1080" y2="120" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00C8FF" />
+      <stop offset="0.5" stop-color="#3D8BFF" />
+      <stop offset="1" stop-color="#6C63FF" />
     </linearGradient>
+    <radialGradient id="glow-cyan" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(920 140) rotate(90) scale(220)">
+      <stop stop-color="#00C8FF" stop-opacity="0.28" />
+      <stop offset="1" stop-color="#00C8FF" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="glow-violet" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(220 500) rotate(90) scale(260)">
+      <stop stop-color="#6C63FF" stop-opacity="0.22" />
+      <stop offset="1" stop-color="#6C63FF" stop-opacity="0" />
+    </radialGradient>
+    <filter id="logo-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#00C8FF" flood-opacity="0.35" />
+    </filter>
   </defs>
+
   <rect width="1200" height="630" fill="url(#bg)" />
-  <circle cx="1040" cy="110" r="180" fill="#06B6D4" fill-opacity="0.16" />
-  <circle cx="180" cy="520" r="220" fill="#3B82F6" fill-opacity="0.12" />
-  <rect x="120" y="96" width="960" height="438" rx="30" fill="#0F172A" fill-opacity="0.88" stroke="url(#accent)" stroke-opacity="0.45" stroke-width="2" />
-  <text x="170" y="230" fill="#E2E8F0" font-family="Inter, Arial, sans-serif" font-size="38" font-weight="700">
-    Projonexa
+  <circle cx="920" cy="140" r="220" fill="url(#glow-cyan)" />
+  <circle cx="220" cy="500" r="260" fill="url(#glow-violet)" />
+
+  <rect x="72" y="72" width="1056" height="486" rx="28" fill="#000000" fill-opacity="0.55" stroke="url(#accent)" stroke-opacity="0.35" stroke-width="2" />
+
+  <g filter="url(#logo-shadow)">
+    <image
+      xlink:href="https://projonexa.com/logo.png"
+      x="120"
+      y="168"
+      width="220"
+      height="220"
+      preserveAspectRatio="xMidYMid meet"
+    />
+  </g>
+
+  <text x="380" y="248" fill="#67E8F9" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="34" font-weight="700" letter-spacing="0.08em">
+    PROJONEXA
   </text>
-  <text x="170" y="294" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="64" font-weight="800">
+
+  <text x="380" y="318" fill="#F8FAFC" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="52" font-weight="800" letter-spacing="-0.02em">
     Final Year Projects,
   </text>
-  <text x="170" y="366" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="64" font-weight="800">
-    AI/ML and MVP Development
+  <text x="380" y="382" fill="#F8FAFC" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="52" font-weight="800" letter-spacing="-0.02em">
+    AI/ML &amp; MVP Development
   </text>
-  <text x="170" y="438" fill="#94A3B8" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="500">
-    Where Innovation Meets Execution " Maharashtra, India
+
+  <text x="380" y="448" fill="#94A3B8" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="28" font-weight="500">
+    Where Innovation Meets Execution · Maharashtra, India
   </text>
+
+  <rect x="380" y="478" width="320" height="4" rx="2" fill="url(#accent)" fill-opacity="0.85" />
 </svg>

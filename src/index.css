@@ -986,9 +986,6 @@
       padding: 0.25rem 1rem;
     }
 
-    .footer-wordmark .brand-wordmark-display {
-      font-size: clamp(2.75rem, 6.5vw, 7rem);
-    }
   }
 
   .brand-wordmark {
@@ -1001,78 +998,32 @@
     -webkit-user-select: none;
   }
 
-  .brand-wordmark-display {
-    position: relative;
-    z-index: 1;
-    margin: 0;
-    width: max-content;
-    max-width: none;
-    padding: 0 0.2em;
-    box-sizing: content-box;
-    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-    font-size: clamp(3.25rem, 15vw, 10.5rem);
-    font-weight: 600;
-    line-height: 1;
-    letter-spacing: -0.04em;
-    text-align: center;
-    white-space: nowrap;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
+  .brand-wordmark-image {
+    display: block;
+    height: auto;
+    width: auto;
+    max-width: min(100%, 22rem);
+    object-fit: contain;
   }
 
-  .brand-wordmark-display::before {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    padding: inherit;
-    font: inherit;
-    letter-spacing: inherit;
-    line-height: inherit;
-    text-align: center;
-    white-space: nowrap;
-    color: transparent;
-    z-index: 0;
-    pointer-events: none;
+  .brand-wordmark--subtle .brand-wordmark-image {
+    opacity: 0.2;
+    filter: saturate(0.85) brightness(1.05);
   }
 
-  .brand-wordmark--subtle .brand-wordmark-display {
-    background-image: linear-gradient(
-      180deg,
-      rgba(63, 63, 70, 0.22) 0%,
-      rgba(63, 63, 70, 0.1) 42%,
-      rgba(63, 63, 70, 0.04) 100%
-    );
+  .dark .brand-wordmark--subtle .brand-wordmark-image {
+    opacity: 0.28;
+    filter: saturate(0.9) brightness(1.1);
   }
 
-  .brand-wordmark--subtle .brand-wordmark-display::before {
-    -webkit-text-stroke: 1.5px rgba(0, 200, 255, 0.14);
-  }
-
-  .dark .brand-wordmark--subtle .brand-wordmark-display {
-    background-image: linear-gradient(
-      180deg,
-      rgba(228, 228, 231, 0.16) 0%,
-      rgba(228, 228, 231, 0.07) 42%,
-      rgba(228, 228, 231, 0.03) 100%
-    );
-  }
-
-  .dark .brand-wordmark--subtle .brand-wordmark-display::before {
-    -webkit-text-stroke: 1.5px rgba(0, 200, 255, 0.12);
-  }
-
-  .footer-wordmark .brand-wordmark-display {
-    font-size: clamp(3.25rem, 15vw, 10.5rem);
+  .footer-wordmark .brand-wordmark-image {
+    width: clamp(7.5rem, 42vw, 16rem);
+    max-width: min(100%, 16rem);
   }
 
   @media (max-width: 480px) {
-    .footer-wordmark .brand-wordmark-display {
-      font-size: clamp(2.75rem, 16vw, 4.25rem);
-      letter-spacing: -0.035em;
+    .footer-wordmark .brand-wordmark-image {
+      width: clamp(6.5rem, 48vw, 10rem);
     }
   }
 
@@ -1093,14 +1044,8 @@
       padding: 0.25rem 1.25rem;
     }
 
-    .footer-wordmark .brand-wordmark-display {
-      font-size: clamp(3.75rem, 7vw, 9rem);
-      letter-spacing: -0.045em;
-      padding: 0 0.25em;
-    }
-
-    .footer-wordmark .brand-wordmark-display::before {
-      -webkit-text-stroke-width: 2px;
+    .footer-wordmark .brand-wordmark-image {
+      width: clamp(8.5rem, 14vw, 15rem);
     }
   }
 
@@ -1115,18 +1060,11 @@
     transform: translate(-50%, -50%);
   }
 
-  .brand-wordmark--on-gradient .brand-wordmark-display {
-    font-size: clamp(2.5rem, 16vw, 8rem);
-    background-image: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.28) 0%,
-      rgba(255, 255, 255, 0.12) 45%,
-      rgba(255, 255, 255, 0.04) 100%
-    );
-  }
-
-  .brand-wordmark--on-gradient .brand-wordmark-display::before {
-    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.2);
+  .brand-wordmark--on-gradient .brand-wordmark-image {
+    width: clamp(8rem, 52vw, 18rem);
+    max-width: min(100%, 18rem);
+    opacity: 0.22;
+    filter: brightness(1.35) saturate(0.75);
   }
 
   @media (min-width: 640px) {
@@ -1135,19 +1073,14 @@
       padding: 0 1.75rem;
     }
 
-    .brand-wordmark--on-gradient .brand-wordmark-display {
-      font-size: clamp(3.25rem, 14vw, 7.5rem);
+    .brand-wordmark--on-gradient .brand-wordmark-image {
+      width: clamp(9rem, 40vw, 16rem);
     }
   }
 
   @media (min-width: 1024px) {
-    .brand-wordmark--on-gradient .brand-wordmark-display {
-      font-size: clamp(4rem, 11vw, 8.5rem);
-      padding: 0 0.25em;
-    }
-
-    .brand-wordmark--on-gradient .brand-wordmark-display::before {
-      -webkit-text-stroke-width: 2px;
+    .brand-wordmark--on-gradient .brand-wordmark-image {
+      width: clamp(10rem, 28vw, 17rem);
     }
   }
 
@@ -1303,10 +1236,9 @@
     overflow: visible;
   }
 
-  .page-header-wordmark .brand-wordmark-display {
-    font-size: clamp(2.75rem, 16vw, 5rem);
-    letter-spacing: -0.04em;
-    padding: 0 0.2em;
+  .page-header-wordmark .brand-wordmark-image {
+    width: clamp(6.5rem, 36vw, 11rem);
+    max-width: min(100%, 11rem);
   }
 
   @media (min-width: 768px) {
@@ -1330,8 +1262,9 @@
       padding: 0;
     }
 
-    .page-header-wordmark .brand-wordmark-display {
-      font-size: clamp(3.25rem, 7.5vw, 7rem);
+    .page-header-wordmark .brand-wordmark-image {
+      width: clamp(7.5rem, 12vw, 12rem);
+      max-width: 12rem;
     }
   }
 
@@ -1345,13 +1278,9 @@
       max-width: 480px;
     }
 
-    .page-header-wordmark .brand-wordmark-display {
-      font-size: clamp(3.75rem, 6.5vw, 8rem);
-      letter-spacing: -0.045em;
-    }
-
-    .page-header-wordmark .brand-wordmark-display::before {
-      -webkit-text-stroke-width: 2px;
+    .page-header-wordmark .brand-wordmark-image {
+      width: clamp(8rem, 10vw, 13rem);
+      max-width: 13rem;
     }
   }
 
@@ -1371,14 +1300,14 @@
     overflow: visible;
   }
 
-  .inquiry-footer-wordmark .brand-wordmark-display {
-    font-size: clamp(2.5rem, 14vw, 5.5rem);
-    letter-spacing: -0.04em;
+  .inquiry-footer-wordmark .brand-wordmark-image {
+    width: clamp(6rem, 34vw, 10rem);
+    max-width: min(100%, 10rem);
   }
 
   @media (min-width: 640px) {
-    .inquiry-footer-wordmark .brand-wordmark-display {
-      font-size: clamp(3rem, 10vw, 6.5rem);
+    .inquiry-footer-wordmark .brand-wordmark-image {
+      width: clamp(7rem, 22vw, 11rem);
     }
   }
 

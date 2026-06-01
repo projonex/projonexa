@@ -1,4 +1,4 @@
-import { BRAND } from '@/data/brand'
+import { BrandLogoImage } from '@/components/ui/BrandLogoImage'
 
 type BrandWordmarkVariant = 'subtle' | 'on-gradient'
 
@@ -13,9 +13,7 @@ export function BrandWordmark({ variant = 'subtle', className = '' }: BrandWordm
       className={`brand-wordmark brand-wordmark--${variant} ${className}`.trim()}
       aria-hidden
     >
-      <p className="brand-wordmark-display" data-text={BRAND.name}>
-        {BRAND.name}
-      </p>
+      <BrandLogoImage className="brand-wordmark-image" decorative />
     </div>
   )
 }

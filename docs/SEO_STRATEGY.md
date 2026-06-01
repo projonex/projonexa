@@ -41,7 +41,8 @@ Complete search optimization strategy for [projonexa.com](https://projonexa.com)
 | Sitemap | `public/sitemap.xml` |
 | Robots | `public/robots.txt` |
 | Web manifest | `public/site.webmanifest` |
-| Favicon | `public/favicon.svg` |
+| Favicon | `public/favicon-32.png`, `public/apple-touch-icon.png` |
+| Logo | `public/logo.png` |
 | OG image | `public/og-image.svg` *(1200×630 social share asset)* |
 | LLM instructions | `public/llms.txt` |
 
