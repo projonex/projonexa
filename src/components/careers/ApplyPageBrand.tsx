@@ -1,5 +1,5 @@
 import { Logo } from '@/components/ui/Logo'
 
 export function ApplyPageBrand() {
-  return <Logo size="large" layout="stacked" />
+  return <Logo placement="prominent" layout="stacked" />
 }

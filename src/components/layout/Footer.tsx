@@ -34,7 +34,7 @@ export function Footer() {
       <div className="container-wide section-padding !py-12 sm:!py-14">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-12">
           <div className="min-w-0 lg:col-span-4">
-            <Logo />
+            <Logo placement="footer" />
             <p className="mt-4 max-w-sm text-sm font-medium leading-relaxed text-zinc-700 dark:text-zinc-300">
               {BRAND.tagline}
             </p>
