@@ -88,9 +88,9 @@ export const CONTACT_PAGE_FAQ = [
 
 export const PAGE_SEO: Record<string, PageSEO> = {
   home: {
-    title: `${BRAND.name} | Final Year Projects & Innovation Platform — ${GEO.region}, ${GEO.country}`,
+    title: `${BRAND.name} | Final Year Projects & MVP Development India`,
     description:
-      'Projonexa is India\'s trusted innovation platform for final year projects, AI/ML, and startup MVPs. End-to-end development with documentation, deployment & viva prep — serving students & clients across India and globally.',
+      'Projonexa builds final year projects, AI/ML systems, and startup MVPs with end-to-end documentation, deployment support, and viva guidance across India.',
     keywords: BASE_KEYWORDS,
     path: '/',
     primaryKeyword: 'final year projects India',
@@ -109,7 +109,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
   about: {
     title: `About ${BRAND.name} | Innovation Platform — ${GEO.country}`,
     description:
-      `Learn about Projonexa — a Maharashtra, India-based technology platform helping students, colleges, startups, and businesses turn ideas into production-ready projects with expert mentorship and 100+ delivered projects.`,
+      `Learn how Projonexa helps students, colleges, startups, and businesses turn ideas into production-ready projects with expert mentorship and proven delivery.`,
     keywords: [...BASE_KEYWORDS, 'about projonexa', 'innovation platform India'],
     path: '/about',
     primaryKeyword: 'about Projonexa',
@@ -122,7 +122,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
   services: {
     title: `Project Development Services | ${BRAND.name} — Final Year, AI, MVP`,
     description:
-      'Projonexa services: final year projects, mini projects, AI/ML, web & mobile apps, IoT, startup MVPs, and custom software. Complete deliverables — code, SRS, PPT, deployment & viva support across India.',
+      'Projonexa delivers final year projects, AI/ML systems, web and mobile apps, IoT builds, startup MVPs, and custom software with complete documentation and support.',
     keywords: [...BASE_KEYWORDS, 'project development services', 'final year project help'],
     path: '/services',
     primaryKeyword: 'project development services India',
@@ -141,9 +141,9 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     serviceSchema: true,
   },
   projects: {
-    title: `My Projects | ${BRAND.name} — SPPU BUDDY & More`,
+    title: `Projects Portfolio | ${BRAND.name} — SPPU BUDDY & More`,
     description:
-      'Explore live products from Projonexa — including SPPU BUDDY, the free Android app for Savitribai Phule Pune University students with notes, PYQs, syllabus, dark mode, and SGPA tools.',
+      'Explore live products from Projonexa, including SPPU BUDDY, a free Android app for SPPU students with notes, PYQs, syllabus, dark mode, and SGPA tools.',
     keywords: [
       ...BASE_KEYWORDS,
       'SPPU BUDDY',
@@ -176,7 +176,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
   portfolio: {
     title: `Portfolio | ${BRAND.name} — Academic & Industry Projects`,
     description:
-      'Projonexa portfolio: 100+ delivered projects across engineering, AI, web, mobile, IoT, and startup domains. Trusted by 500+ students and innovators in India and globally.',
+      'Projonexa portfolio includes 100+ projects across engineering, AI, web, mobile, IoT, and startup domains, trusted by students and innovators.',
     keywords: [...BASE_KEYWORDS, 'project showcase', 'engineering portfolio'],
     path: '/portfolio',
     primaryKeyword: 'engineering project portfolio India',
@@ -207,9 +207,9 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     breadcrumb: [{ name: 'Pricing', path: '/pricing' }],
   },
   careers: {
-    title: `Careers | Join ${BRAND.name} Team`,
+    title: `Careers at ${BRAND.name} | Developers, Mentors and Interns`,
     description:
-      'Explore roles at Projonexa — developers, designers, QA, mentors, interns, and more. Apply online to join our innovation team.',
+      'Explore roles for developers, designers, QA, mentors, and interns at Projonexa, and apply online to join our innovation team across India and globally.',
     keywords: [...BASE_KEYWORDS, 'freelance developer India', 'projonexa careers'],
     path: '/careers',
     primaryKeyword: 'Projonexa careers',
@@ -220,7 +220,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     breadcrumb: [{ name: 'Careers', path: '/careers' }],
   },
   careersApply: {
-    title: `Apply to Join ${BRAND.name}`,
+    title: `Apply at ${BRAND.name} | Submit Your Career Application`,
     description:
       'Submit your application to join the Projonexa team. Share your role, skills, experience, and availability — we respond within a few business days.',
     keywords: [...BASE_KEYWORDS, 'projonexa apply', 'join projonexa team'],
@@ -263,7 +263,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
   contact: {
     title: `Contact ${BRAND.name} | Start Your Project — ${GEO.region}, ${GEO.country}`,
     description:
-      'Contact Projonexa for final year projects, mini projects, AI/ML, web & mobile apps, IoT, and startup MVPs. Submit an inquiry — response within 24 hours across India and globally.',
+      'Contact Projonexa for final year projects, AI/ML, web and mobile apps, IoT, and startup MVPs. Submit an inquiry for a response within 24 hours.',
     keywords: [...BASE_KEYWORDS, 'contact projonexa', 'project inquiry India'],
     path: '/contact',
     primaryKeyword: 'contact Projonexa',
@@ -281,7 +281,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     breadcrumb: [{ name: 'Contact', path: '/contact' }],
   },
   studentInquiry: {
-    title: `Student Project Inquiry | ${BRAND.name} — Final Year & Academic Projects`,
+    title: `Student Project Inquiry | ${BRAND.name} — Final Year Projects`,
     description:
       'Submit a student project inquiry to Projonexa: final year, mini, AI/ML, web, mobile, and IoT projects with documentation, deployment, and viva support across India.',
     keywords: [
