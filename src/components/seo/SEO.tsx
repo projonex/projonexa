@@ -9,7 +9,7 @@ interface SEOProps {
 
 export function SEO({ seo }: SEOProps) {
   const url = `${BRAND.url}${seo.path}`
-  const image = `${BRAND.url}/og-image.png`
+  const image = `${BRAND.url}/og-image.svg`
   const imageAlt = `${BRAND.name} — ${BRAND.tagline} Final year projects & innovation platform India`
 
   const faqItems = seo.faqItems ?? (seo.path === '/' ? [...AEO_HOME_FAQ] : undefined)

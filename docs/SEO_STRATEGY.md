@@ -42,7 +42,8 @@ Complete search optimization strategy for [projonexa.com](https://projonexa.com)
 | Robots | `public/robots.txt` |
 | Web manifest | `public/site.webmanifest` |
 | Favicon | `public/favicon.svg` |
-| OG image | `public/og-image.png` *(add 1200×630)* |
+| OG image | `public/og-image.svg` *(1200×630 social share asset)* |
+| LLM instructions | `public/llms.txt` |
 
 ### Structured Data (JSON-LD)
 
