@@ -2,7 +2,7 @@ interface BrandNameWordmarkProps {
   className?: string
 }
 
-/** Inline “projonexa” wordmark — white letters + gradient “x” (matches brand asset) */
+/** Inline “Projonexa” wordmark — capital P, gradient “x” accent */
 export function BrandNameWordmark({ className = '' }: BrandNameWordmarkProps) {
   return (
     <span className={['site-brand-name', className].filter(Boolean).join(' ')} aria-hidden>
