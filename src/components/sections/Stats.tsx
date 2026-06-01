@@ -4,11 +4,12 @@ import { STATS, STATS_SECTION } from '@/data/brand'
 import { useInView } from '@/hooks/useInView'
 import { useCountUp } from '@/hooks/useCountUp'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { easeSmooth } from '@/lib/motion'
 
 const COUNT_DURATION_MS = 3000
 const HOLD_AFTER_COUNT_MS = 2000
 
-const slideTransition = { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const }
+const slideTransition = { duration: 0.55, ease: easeSmooth }
 
 const contentStagger = {
   initial: {},
@@ -17,7 +18,7 @@ const contentStagger = {
 
 const fadeUpItem = {
   initial: { opacity: 0, y: 12 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.4, ease: easeSmooth } },
 }
 
 function StatSpotlight({
@@ -155,7 +156,7 @@ export function Stats() {
             initial={{ opacity: 0, x: -16 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.55, ease: easeSmooth }}
             className="max-w-xl lg:sticky lg:top-28"
           >
             <div className="flex items-center gap-3">
@@ -185,7 +186,7 @@ export function Stats() {
             initial={{ opacity: 0, x: 16 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.55, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.55, delay: 0.06, ease: easeSmooth }}
             className="lg:pl-4 xl:pl-8"
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}

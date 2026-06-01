@@ -170,7 +170,7 @@ export function AEOOverview() {
             initial={{ opacity: 0, x: -16 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.55, ease: easeSmooth }}
             className="lg:sticky lg:top-28"
           >
             <div className="flex items-center gap-3">
@@ -231,7 +231,7 @@ export function AEOOverview() {
             initial={{ opacity: 0, x: 16 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.55, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.55, delay: 0.06, ease: easeSmooth }}
           >
             <p className="mb-5 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-500">
               Common questions
