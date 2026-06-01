@@ -1,21 +1,6 @@
 import { BRAND, GEO } from './brand'
-
-export interface BreadcrumbItem {
-  name: string
-  path: string
-}
-
-export interface PageSEO {
-  title: string
-  description: string
-  keywords: string[]
-  path: string
-  breadcrumb?: BreadcrumbItem[]
-  /** Include FAQPage schema (AEO) */
-  faqSchema?: boolean
-  /** Include Service catalog schema */
-  serviceSchema?: boolean
-}
+import type { PageSEO } from '../lib/seo-types'
+export type { Audience, BreadcrumbItem, PageSEO, SearchIntent } from '../lib/seo-types'
 
 const GEO_KEYWORDS = [
   'final year projects India',
@@ -53,6 +38,16 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'Projonexa is India\'s trusted innovation platform for final year projects, AI/ML, and startup MVPs. End-to-end development with documentation, deployment & viva prep — serving students & clients across India and globally.',
     keywords: BASE_KEYWORDS,
     path: '/',
+    primaryKeyword: 'final year projects India',
+    secondaryKeywords: ['engineering projects Maharashtra', 'startup MVP development India'],
+    intent: 'commercial',
+    audience: 'mixed',
+    conversionGoal: 'contact-inquiry',
+    aeoQuestions: [
+      'What is Projonexa?',
+      'Who is Projonexa for?',
+      'What deliverables are included with every project?',
+    ],
     faqSchema: true,
     serviceSchema: true,
   },
@@ -62,6 +57,11 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       `Learn about Projonexa — a Maharashtra, India-based technology platform helping students, colleges, startups, and businesses turn ideas into production-ready projects with expert mentorship and 100+ delivered projects.`,
     keywords: [...BASE_KEYWORDS, 'about projonexa', 'innovation platform India'],
     path: '/about',
+    primaryKeyword: 'about Projonexa',
+    secondaryKeywords: ['innovation platform India', 'project development team India'],
+    intent: 'informational',
+    audience: 'mixed',
+    conversionGoal: 'learn-about-brand',
     breadcrumb: [{ name: 'About', path: '/about' }],
   },
   services: {
@@ -70,6 +70,16 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'Projonexa services: final year projects, mini projects, AI/ML, web & mobile apps, IoT, startup MVPs, and custom software. Complete deliverables — code, SRS, PPT, deployment & viva support across India.',
     keywords: [...BASE_KEYWORDS, 'project development services', 'final year project help'],
     path: '/services',
+    primaryKeyword: 'project development services India',
+    secondaryKeywords: ['final year project help', 'startup MVP development India'],
+    intent: 'commercial',
+    audience: 'mixed',
+    conversionGoal: 'service-inquiry',
+    aeoQuestions: [
+      'What services does Projonexa provide?',
+      'Can Projonexa build startup MVPs?',
+      'Do services include documentation and deployment?',
+    ],
     breadcrumb: [{ name: 'Services', path: '/services' }],
     serviceSchema: true,
   },
@@ -86,6 +96,11 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'my projects portfolio',
     ],
     path: '/projects',
+    primaryKeyword: 'student project portfolio India',
+    secondaryKeywords: ['SPPU BUDDY app', 'engineering project examples'],
+    intent: 'informational',
+    audience: 'mixed',
+    conversionGoal: 'explore-projects',
     breadcrumb: [{ name: 'Projects', path: '/projects' }],
   },
   blog: {
@@ -94,6 +109,11 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'Expert guides on final year projects, AI development, startup MVPs, and engineering trends — from the Projonexa team serving students across India.',
     keywords: [...BASE_KEYWORDS, 'tech blog', 'final year project guide'],
     path: '/blog',
+    primaryKeyword: 'final year project guide',
+    secondaryKeywords: ['AI development blog India', 'startup MVP insights'],
+    intent: 'informational',
+    audience: 'students',
+    conversionGoal: 'read-blog',
     breadcrumb: [{ name: 'Blog', path: '/blog' }],
   },
   portfolio: {
@@ -102,6 +122,11 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'Projonexa portfolio: 100+ delivered projects across engineering, AI, web, mobile, IoT, and startup domains. Trusted by 500+ students and innovators in India and globally.',
     keywords: [...BASE_KEYWORDS, 'project showcase', 'engineering portfolio'],
     path: '/portfolio',
+    primaryKeyword: 'engineering project portfolio India',
+    secondaryKeywords: ['project showcase', 'AI web mobile portfolio'],
+    intent: 'commercial',
+    audience: 'mixed',
+    conversionGoal: 'portfolio-inquiry',
     breadcrumb: [{ name: 'Portfolio', path: '/portfolio' }],
   },
   pricing: {
@@ -110,6 +135,16 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'Transparent, student-friendly pricing for mini projects, final year projects, and startup MVPs. Custom quotes aligned to your college deadline and scope.',
     keywords: [...BASE_KEYWORDS, 'project pricing India', 'affordable final year project'],
     path: '/pricing',
+    primaryKeyword: 'final year project pricing India',
+    secondaryKeywords: ['project pricing India', 'startup MVP pricing'],
+    intent: 'transactional',
+    audience: 'students',
+    conversionGoal: 'pricing-inquiry',
+    aeoQuestions: [
+      'How much does a final year project cost?',
+      'Are custom pricing plans available?',
+      'Does pricing include documentation and support?',
+    ],
     breadcrumb: [{ name: 'Pricing', path: '/pricing' }],
   },
   careers: {
@@ -118,6 +153,11 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'Explore roles at Projonexa — developers, designers, QA, mentors, interns, and more. Apply online to join our innovation team.',
     keywords: [...BASE_KEYWORDS, 'freelance developer India', 'projonexa careers'],
     path: '/careers',
+    primaryKeyword: 'Projonexa careers',
+    secondaryKeywords: ['freelance developer India', 'innovation team roles'],
+    intent: 'navigational',
+    audience: 'mixed',
+    conversionGoal: 'careers-apply',
     breadcrumb: [{ name: 'Careers', path: '/careers' }],
   },
   careersApply: {
@@ -126,6 +166,11 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'Submit your application to join the Projonexa team. Share your role, skills, experience, and availability — we respond within a few business days.',
     keywords: [...BASE_KEYWORDS, 'projonexa apply', 'join projonexa team'],
     path: '/careers/apply',
+    primaryKeyword: 'apply to Projonexa',
+    secondaryKeywords: ['join Projonexa team', 'careers apply form'],
+    intent: 'transactional',
+    audience: 'mixed',
+    conversionGoal: 'submit-application',
     breadcrumb: [
       { name: 'Careers', path: '/careers' },
       { name: 'Apply', path: '/careers/apply' },
@@ -142,6 +187,16 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'project deliverables India',
     ],
     path: '/faq',
+    primaryKeyword: 'final year project FAQ India',
+    secondaryKeywords: ['project deliverables India', 'student project support FAQ'],
+    intent: 'informational',
+    audience: 'mixed',
+    conversionGoal: 'contact-inquiry',
+    aeoQuestions: [
+      'What project types do you support?',
+      'What deliverables are included?',
+      'How quickly does your team respond?',
+    ],
     breadcrumb: [{ name: 'FAQ', path: '/faq' }],
     faqSchema: true,
   },
@@ -151,6 +206,16 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'Contact Projonexa for final year projects, mini projects, AI/ML, web & mobile apps, IoT, and startup MVPs. Submit an inquiry — response within 24 hours across India and globally.',
     keywords: [...BASE_KEYWORDS, 'contact projonexa', 'project inquiry India'],
     path: '/contact',
+    primaryKeyword: 'contact Projonexa',
+    secondaryKeywords: ['project inquiry India', 'final year project consultation'],
+    intent: 'transactional',
+    audience: 'mixed',
+    conversionGoal: 'submit-contact-form',
+    aeoQuestions: [
+      'How can I contact Projonexa?',
+      'What details should I share in the inquiry?',
+      'When will I receive a response?',
+    ],
     breadcrumb: [{ name: 'Contact', path: '/contact' }],
   },
   studentInquiry: {
@@ -164,6 +229,11 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'BE project help',
     ],
     path: '/inquiry/students',
+    primaryKeyword: 'student project inquiry India',
+    secondaryKeywords: ['final year project inquiry', 'BE project help form'],
+    intent: 'transactional',
+    audience: 'students',
+    conversionGoal: 'submit-student-inquiry',
     breadcrumb: [
       { name: 'Contact', path: '/contact' },
       { name: 'Student inquiry', path: '/inquiry/students' },
@@ -180,6 +250,11 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'corporate project inquiry',
     ],
     path: '/inquiry/corporate',
+    primaryKeyword: 'startup MVP inquiry India',
+    secondaryKeywords: ['corporate project inquiry', 'custom software development India'],
+    intent: 'transactional',
+    audience: 'businesses',
+    conversionGoal: 'submit-corporate-inquiry',
     breadcrumb: [
       { name: 'Contact', path: '/contact' },
       { name: 'Corporate inquiry', path: '/inquiry/corporate' },

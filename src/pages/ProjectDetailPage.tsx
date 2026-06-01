@@ -17,6 +17,11 @@ function buildProjectSEO(project: NonNullable<ReturnType<typeof getProjectBySlug
     description: project.description,
     keywords: [...BASE_KEYWORDS, project.name, project.category, ...project.techStack],
     path: projectPath(project.id),
+    primaryKeyword: project.name,
+    secondaryKeywords: [project.category, ...project.techStack.slice(0, 3)],
+    intent: 'informational',
+    audience: 'mixed',
+    conversionGoal: 'explore-projects',
     breadcrumb: [
       { name: 'Projects', path: '/projects' },
       { name: project.name, path: projectPath(project.id) },
