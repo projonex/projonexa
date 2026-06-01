@@ -138,6 +138,11 @@ Optimizes content for **AI search** (ChatGPT, Perplexity, Google AI Overviews, C
 
 ## Monitoring & Maintenance
 
+### Operations Documents
+
+- Weekly operations: `docs/SEO_OPERATIONS_PLAYBOOK.md`
+- Monthly review: `docs/SEO_MONTHLY_REVIEW_TEMPLATE.md`
+
 ### CTR Optimization Workflow
 
 For high-intent pages (`/`, `/services`, `/pricing`, `/faq`, `/contact`), maintain at least 2 title variants and 2 description variants in `src/data/seo.ts` under `ctrVariants`.
