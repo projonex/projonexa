@@ -365,6 +365,7 @@ Full architecture → [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
 | [SEO_STRATEGY.md](docs/SEO_STRATEGY.md) | Meta tags, keywords, sitemap |
 | [IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md) | Build phases and roadmap |
 | [GITHUB_REPOSITORY_SETUP.md](docs/GITHUB_REPOSITORY_SETUP.md) | GitHub About, CI, labels checklist |
+| [GITHUB_MILESTONES.md](docs/GITHUB_MILESTONES.md) | 10-milestone roadmap, issue checklists, progress |
 | [CHANGELOG.md](CHANGELOG.md) | Version history |
 
 ---

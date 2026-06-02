@@ -112,8 +112,12 @@ Additional governance files:
 | `needs-triage` | `#fbca04` | Awaiting review |
 | `good first issue` | `#7057ff` | Starter tasks |
 | `help wanted` | `#008672` | Community help |
-| `dependencies` | `#0366d6` | Dependabot PRs |
+| `dependencies` | `#0366d6` | Dependabot PRs (required by Dependabot config) |
 | `github-actions` | `#000000` | CI/CD |
+
+**Milestone & scope labels:** See [GITHUB_MILESTONES.md](./GITHUB_MILESTONES.md) for `milestone-*`, `repo:website`, `ops:infra`, and related labels.
+
+**Roadmap:** Create GitHub Milestones from [GITHUB_MILESTONES.md](./GITHUB_MILESTONES.md) and attach issues using the checklists and issue templates there.
 
 ---
 

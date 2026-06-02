@@ -33,9 +33,38 @@ linear-gradient(135deg, #00C8FF 0%, #3D8BFF 50%, #6C63FF 100%);
 
 ## Logo
 
-- Wordmark: **Projo** (default) + **nexa** (gradient text)
-- Icon: Rounded square with gradient background and white “P”
-- Minimum clear space: height of the “P” icon on all sides
+### Assets (repository)
+
+| Asset | Path | Use |
+|-------|------|-----|
+| Primary mark | `public/logo.png` | Navbar, footer, OG image, structured data |
+| Favicon | `public/favicon-32.png` | Browser tab |
+| Apple touch icon | `public/apple-touch-icon.png` | iOS home screen |
+| PWA icon | `public/icon-512.png` | `site.webmanifest` |
+| Social preview | `public/og-image.svg` | Open Graph / Twitter cards |
+
+### Wordmark (UI)
+
+- Display: **Projone** + gradient **x** + **a** (capital **P** → “Projonexa”)
+- Font: Nunito (800), inline next to the logo mark in header/footer
+- Gradient on **x:** `#00C8FF` → `#3D8BFF` → `#6C63FF`
+- Implementation: `BrandNameWordmark` component
+
+### Logo mark (UI)
+
+- Frosted dark-glass container in light mode; translucent panel in dark mode
+- Image uses `mix-blend-mode: screen` so the PNG black plate blends on the tile
+- Do not place the raw PNG on white without the mark container
+
+### Clear space
+
+- Minimum padding: equal to the height of the logo mark on all sides
+- Do not crowd the wordmark with nav items or badges
+
+### Horizontal variation (planned)
+
+- Wide lockup: mark + wordmark on one line for print, email headers, and banners  
+- Track under **Milestone 1** in [GITHUB_MILESTONES.md](./GITHUB_MILESTONES.md)
 
 ## Voice & Tone
 
