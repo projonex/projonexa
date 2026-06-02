@@ -10,10 +10,10 @@ Official roadmap for tracking Projonexa growth across GitHub **Milestones**, **I
 
 ## How to use this on GitHub
 
-1. **Milestones** — In GitHub: **Issues → Milestones → New milestone**. Create one milestone per section below (titles match this doc).
-2. **Issues** — Copy checklist items into individual issues. Link each issue to the correct milestone.
-3. **Labels** — Apply scope labels so work is filterable (see [Label conventions](#label-conventions)).
-4. **Status** — Mark items in the tables below as done in issue comments or close issues when complete. Update the **Progress snapshot** when major blocks ship.
+1. **Milestones** — In GitHub: **Issues → Milestones → New milestone**. Create one milestone per section below (titles must match exactly).
+2. **Labels** — Create labels from [GITHUB_LABELS_SETUP.md](./GITHUB_LABELS_SETUP.md) (includes required `dependencies` label).
+3. **Issues** — Use [GITHUB_ISSUES_BACKLOG.md](./GITHUB_ISSUES_BACKLOG.md) (copy-paste) or run `node scripts/create-github-issues.mjs` after `gh auth login`.
+4. **Status** — Close completed issues; update the **Progress snapshot** when milestones ship.
 
 > **Scope note:** This repository is the **marketing website and platform docs**. Educational project libraries, separate GitHub org repos, and social channel setup are tracked here but often implemented outside this codebase.
 
@@ -457,6 +457,8 @@ One sentence describing the outcome.
 
 | Document | Purpose |
 |----------|---------|
+| [GITHUB_ISSUES_BACKLOG.md](./GITHUB_ISSUES_BACKLOG.md) | **29 ready-to-create issues** + 8 close-when-done |
+| [GITHUB_LABELS_SETUP.md](./GITHUB_LABELS_SETUP.md) | Label names and colors |
 | [BRAND_GUIDELINES.md](./BRAND_GUIDELINES.md) | Colors, logo, voice |
 | [GITHUB_REPOSITORY_SETUP.md](./GITHUB_REPOSITORY_SETUP.md) | About, labels, CI |
 | [IMPLEMENTATION_PLAN.md](./IMPLEMENTATION_PLAN.md) | Technical build phases |

@@ -117,7 +117,7 @@ Additional governance files:
 
 **Milestone & scope labels:** See [GITHUB_MILESTONES.md](./GITHUB_MILESTONES.md) for `milestone-*`, `repo:website`, `ops:infra`, and related labels.
 
-**Roadmap:** Create GitHub Milestones from [GITHUB_MILESTONES.md](./GITHUB_MILESTONES.md) and attach issues using the checklists and issue templates there.
+**Roadmap:** Create milestones from [GITHUB_MILESTONES.md](./GITHUB_MILESTONES.md), labels from [GITHUB_LABELS_SETUP.md](./GITHUB_LABELS_SETUP.md), then open issues from [GITHUB_ISSUES_BACKLOG.md](./GITHUB_ISSUES_BACKLOG.md) or run `node scripts/create-github-issues.mjs`.
 
 ---
 

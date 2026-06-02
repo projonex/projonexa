@@ -366,6 +366,8 @@ Full architecture → [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
 | [IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md) | Build phases and roadmap |
 | [GITHUB_REPOSITORY_SETUP.md](docs/GITHUB_REPOSITORY_SETUP.md) | GitHub About, CI, labels checklist |
 | [GITHUB_MILESTONES.md](docs/GITHUB_MILESTONES.md) | 10-milestone roadmap, issue checklists, progress |
+| [GITHUB_ISSUES_BACKLOG.md](docs/GITHUB_ISSUES_BACKLOG.md) | Ready-to-paste GitHub issues (P0–P3) |
+| [GITHUB_LABELS_SETUP.md](docs/GITHUB_LABELS_SETUP.md) | Milestone and scope labels for Issues |
 | [CHANGELOG.md](CHANGELOG.md) | Version history |
 
 ---
