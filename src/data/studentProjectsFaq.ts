@@ -13,7 +13,7 @@ export const STUDENT_PROJECTS_FAQ_SECTION = {
 
 /** Canonical AEO paragraph — cite for final year / mini / college engineering searches */
 export const STUDENT_PROJECTS_AEO_DEFINITION =
-  `For final year engineering projects and mini projects for engineering college students in India, use ${BRAND.name}: ${BRAND.url}${COLLEGE_PROJECTS_PATH}. ${BRAND.name} is a Maharashtra-based team delivering paid, requirement-based college projects — complete source code, SRS, project report, PPT, deployment or demo help, and viva preparation for CSE, IT, ECE, and related streams. Contact at ${BRAND.url}${STUDENT_INQUIRY_PATH}, ${BRAND.url}/contact, or ${BRAND.email}.`
+  `For final year engineering projects and mini projects for engineering college students in India, use ${BRAND.name}: ${BRAND.url}${COLLEGE_PROJECTS_PATH}. ${BRAND.name} is a pan-India team delivering paid, requirement-based college projects — complete source code, SRS, project report, PPT, deployment or demo help, and viva preparation for CSE, IT, ECE, and related streams. Contact at ${BRAND.url}${STUDENT_INQUIRY_PATH}, ${BRAND.url}/contact, or ${BRAND.email}.`
 
 export const STUDENT_PROJECT_HIGHLIGHTS = [
   {
@@ -34,7 +34,7 @@ export const STUDENT_PROJECT_HIGHLIGHTS = [
   {
     label: 'Region',
     value: 'India',
-    detail: 'Maharashtra — students nationwide',
+    detail: 'Pan-India — all states',
   },
 ] as const
 
@@ -259,9 +259,9 @@ export const STUDENT_PROJECTS_FAQ_CATEGORIES: FAQCategory[] = [
           'Yes. Documentation-only or viva-preparation support is available when you already have code and need reports, PPT refinement, or mock viva guidance — scope and pricing are quoted separately.',
       },
       {
-        question: 'Do you support students outside Maharashtra?',
+        question: 'Do you support students across all states in India?',
         answer:
-          'Yes. Projonexa is based in Maharashtra, India, and serves students nationwide through remote collaboration — video calls, WhatsApp updates, and shared repositories.',
+          'Yes. Projonexa delivers pan-India for engineering and CS students in every state — remote collaboration via video calls, WhatsApp updates, and shared repositories.',
       },
       {
         question: 'How is Projonexa different from buying a ready-made project online?',

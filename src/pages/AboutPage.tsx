@@ -17,7 +17,7 @@ export function AboutPage() {
         description="A technology-driven innovation platform bridging the gap between ideas and execution for students, startups, and businesses."
       />
       <SiteAeoBlock
-        headline="What is Projonexa — innovation platform in Maharashtra, India?"
+        headline="What is Projonexa — pan-India innovation platform?"
         faqItems={ABOUT_PAGE_FAQ}
         className="!border-b-0 !pb-0"
       />

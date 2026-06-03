@@ -25,7 +25,7 @@ export const FAQ_CATEGORIES: FAQCategory[] = [
       {
         question: 'What is Projonexa?',
         answer:
-          'Projonexa is a technology-driven innovation platform based in Maharashtra, India. We help students, colleges, startups, and businesses turn ideas into real-world software — including final year projects, AI/ML systems, web and mobile apps, IoT solutions, and startup MVPs with full documentation and mentor support.',
+          'Projonexa is a technology-driven innovation platform based in India, serving students pan-India. We help students, colleges, startups, and businesses turn ideas into real-world software — including final year projects, AI/ML systems, web and mobile apps, IoT solutions, and startup MVPs with full documentation and mentor support.',
       },
       {
         question: 'Who can work with Projonexa?',

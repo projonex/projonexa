@@ -65,7 +65,6 @@ export function ServiceArea({ variant = 'section' }: ServiceAreaProps) {
     <>
       <meta itemProp="name" content="Projonexa" />
       <meta itemProp="areaServed" content={GEO.serviceRadius} />
-      <meta itemProp="addressRegion" content={GEO.region} />
       <meta itemProp="addressCountry" content={GEO.country} />
 
       <div className="container-wide">

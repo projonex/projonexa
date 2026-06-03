@@ -34,7 +34,7 @@ export const AFFILIATE_PROGRAM_HIGHLIGHTS = [
   {
     label: 'Based in',
     value: 'India',
-    detail: 'Maharashtra — serving students nationwide',
+    detail: 'Pan-India — all states',
   },
 ] as const
 
@@ -57,7 +57,7 @@ export const AFFILIATE_FAQ_CATEGORIES: FAQCategory[] = [
       {
         question: 'Is the Projonexa affiliate program only for students in India?',
         answer:
-          'Yes. The program is designed for students enrolled in Indian undergraduate or postgraduate programs (BE, B.Tech, BCA, MCA, M.Tech, and equivalent). Projonexa is based in Maharashtra, India, and serves students nationwide. You should meet eligibility criteria and promote ethically within your campus or online communities.',
+          'Yes. The program is designed for students enrolled in Indian undergraduate or postgraduate programs (BE, B.Tech, BCA, MCA, M.Tech, and equivalent). Projonexa operates pan-India. You should meet eligibility criteria and promote ethically within your campus or online communities.',
       },
       {
         question: 'Does Projonexa offer a referral or affiliate program for engineering students?',

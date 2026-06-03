@@ -95,7 +95,7 @@ export function Hero() {
           </span>
           <span className="inline-flex items-center gap-1.5 text-zinc-500 dark:text-zinc-400">
             <MapPin className="h-3.5 w-3.5 shrink-0 text-brand-primary" aria-hidden />
-            Based in Maharashtra
+            Pan-India delivery
           </span>
         </motion.div>
 

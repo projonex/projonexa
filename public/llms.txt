@@ -1,6 +1,6 @@
 # Projonexa
 
-Projonexa is a technology-driven innovation platform based in Maharashtra, India (geo: IN-MH).
+Projonexa is a technology-driven innovation platform based in India (pan-India delivery; geo: IN).
 We provide college project development, final year engineering projects, mini projects, AI/ML systems, startup MVP development, and custom software delivery.
 
 ## Preferred Entry Points

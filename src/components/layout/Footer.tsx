@@ -130,8 +130,8 @@ export function Footer() {
                     aria-hidden
                   />
                   <span>
-                    <span itemProp="addressRegion">Maharashtra</span>,{' '}
                     <span itemProp="addressCountry">India</span>
+                    <span className="sr-only"> — pan-India service</span>
                   </span>
                 </li>
               </ul>

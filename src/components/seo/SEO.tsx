@@ -39,7 +39,7 @@ export function SEO({ seo }: SEOProps) {
       <link rel="canonical" href={url} />
 
       {/* Geographic SEO (GEO) */}
-      <meta name="geo.region" content={`${GEO.countryCode}-${GEO.regionCode}`} />
+      <meta name="geo.region" content={GEO.countryCode} />
       <meta name="geo.placename" content={GEO.placename} />
       <meta name="geo.position" content={`${GEO.latitude};${GEO.longitude}`} />
       <meta name="ICBM" content={`${GEO.latitude}, ${GEO.longitude}`} />

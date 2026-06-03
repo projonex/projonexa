@@ -30,7 +30,6 @@ export function organizationSchema(description: string) {
     },
     address: {
       '@type': 'PostalAddress',
-      addressRegion: GEO.region,
       addressCountry: GEO.countryCode,
     },
     geo: {
@@ -82,7 +81,6 @@ export function localBusinessSchema() {
     priceRange: '₹₹',
     address: {
       '@type': 'PostalAddress',
-      addressRegion: GEO.region,
       addressCountry: GEO.countryCode,
     },
     geo: {

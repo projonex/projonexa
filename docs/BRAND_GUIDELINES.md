@@ -101,4 +101,4 @@ linear-gradient(135deg, #00C8FF 0%, #3D8BFF 50%, #6C63FF 100%);
 - **Email:** nisargalokhande@gmail.com
 - **LinkedIn:** https://www.linkedin.com/in/nslokhande/
 - **GitHub:** https://github.com/nikobuddy/
-- **Location:** Maharashtra, India
+- **Location:** India (pan-India delivery)

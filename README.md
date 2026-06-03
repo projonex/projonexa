@@ -268,7 +268,7 @@ Projonexa works across the **full technology spectrum** — every stack, framewo
 <td>
 
 **Founder, CEO, Student Entrepreneur & Software Engineer**  
-Maharashtra, India
+India (pan-India)
 
 Like many students, Nisarga struggled to transform ideas into working projects — lacking resources, guidance, and technical support. That experience inspired **Projonexa**: a platform helping students, innovators, researchers, startups, and businesses turn ideas into reality.
 
@@ -407,7 +407,7 @@ Full architecture → [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
 | **Careers / Freelancers** | [projonexa.com/careers](https://projonexa.com/careers) |
 | **FAQ & Pricing** | [projonexa.com/faq](https://projonexa.com/faq) |
 | **LinkedIn** | [linkedin.com/in/nslokhande](https://www.linkedin.com/in/nslokhande/) |
-| **Location** | Maharashtra, India |
+| **Location** | India (pan-India) |
 
 ---
 

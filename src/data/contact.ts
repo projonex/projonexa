@@ -42,7 +42,7 @@ export const CONTACT_INFO_CARDS: {
   {
     id: 'location',
     title: 'Based in',
-    detail: 'Maharashtra, India',
+    detail: 'India (pan-India delivery)',
     description: 'Serving students and clients across India and globally.',
   },
   {

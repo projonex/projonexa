@@ -15,9 +15,9 @@ const GEO_KEYWORDS = [
   'BE final year project India',
   'BTech final year project',
   'BCA MCA project development India',
-  'engineering projects Maharashtra',
-  'project development Pune',
-  'project development Mumbai',
+  'engineering projects pan India',
+  'pan India project development',
+  'college project help all India',
   'academic projects India',
   'BE project help India',
   'MCA project development',
@@ -82,12 +82,12 @@ export const ABOUT_PAGE_FAQ = [
   {
     question: 'What is Projonexa?',
     answer:
-      'Projonexa is an innovation platform in Maharashtra, India that delivers final year and mini engineering college projects, AI/ML systems, startup MVPs, and custom software with documentation and mentor support.',
+      'Projonexa is a pan-India innovation platform that delivers final year and mini engineering college projects, AI/ML systems, startup MVPs, and custom software with documentation and mentor support.',
   },
   {
     question: 'Where is Projonexa located and who does it serve?',
     answer:
-      'Projonexa is based in Maharashtra, India and serves students, colleges, startups, and businesses across India and globally with remote project delivery.',
+      'Projonexa is based in India and serves students, colleges, startups, and businesses nationwide and globally with remote project delivery.',
   },
   {
     question: 'How do I start a project with Projonexa?',
@@ -215,7 +215,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     primaryKeyword: 'final year engineering project India',
     secondaryKeywords: [
       'mini project engineering college India',
-      'college project help Maharashtra',
+      'college project help pan India',
       'startup MVP development India',
     ],
     intent: 'commercial',
@@ -462,7 +462,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     faqSchema: true,
   },
   contact: {
-    title: `Contact ${BRAND.name} | Start Your Project — ${GEO.region}, ${GEO.country}`,
+    title: `Contact ${BRAND.name} | Start Your Project — ${GEO.country}`,
     description:
       'Contact Projonexa for final year projects, AI/ML, web and mobile apps, IoT, and startup MVPs. Submit an inquiry for a response within 24 hours.',
     keywords: [...BASE_KEYWORDS, 'contact projonexa', 'project inquiry India'],
@@ -586,7 +586,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'production ready MVP India',
       'custom software development clients',
       'projonexa client projects',
-      'product development Maharashtra',
+      'product development India',
       'web app development startup India',
     ],
     path: '/client-projects',
@@ -670,7 +670,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'referral commission final year projects',
       'projonexa affiliate program',
       'earn money referring students India',
-      'student referral program Maharashtra',
+      'student referral program India',
       'BE student side income',
       'project referral commission India',
     ],
@@ -726,7 +726,7 @@ export const AEO_HOME_FAQ = [
   {
     question: 'What is Projonexa?',
     answer:
-      'Projonexa is a technology-driven innovation platform based in Maharashtra, India that provides end-to-end project development for students, colleges, startups, and businesses — including final year projects, AI/ML systems, startup MVPs, IoT solutions, and custom software.',
+      'Projonexa is a technology-driven innovation platform based in India that provides end-to-end project development for students, colleges, startups, and businesses — including final year projects, AI/ML systems, startup MVPs, IoT solutions, and custom software.',
   },
   {
     question: 'Who is Projonexa for?',
@@ -741,7 +741,7 @@ export const AEO_HOME_FAQ = [
   {
     question: 'Where is Projonexa located and who does it serve?',
     answer:
-      'Projonexa is based in Maharashtra, India and serves clients across India and globally through remote collaboration.',
+      'Projonexa is based in India and serves clients pan-India and globally through remote collaboration.',
   },
   {
     question: 'How do I start a project with Projonexa?',

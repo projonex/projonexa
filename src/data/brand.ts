@@ -9,23 +9,21 @@ export const BRAND = {
   },
   url: 'https://projonexa.com',
   email: 'nisargalokhande@gmail.com',
-  location: 'Maharashtra, India',
+  location: 'India',
 } as const
 
-/** Geographic & local SEO configuration (GEO) */
+/** Geographic & local SEO configuration (GEO) — pan-India delivery */
 export const GEO = {
   country: 'India',
   countryCode: 'IN',
-  regionCode: 'MH',
-  region: 'Maharashtra',
-  placename: 'Maharashtra, India',
+  placename: 'India',
   locale: 'en_IN',
   language: 'en-IN',
-  /** Approximate geo centre — Maharashtra, India */
-  latitude: 19.7515,
-  longitude: 75.7139,
+  /** Approximate geographic centre of India (country-level GEO signals) */
+  latitude: 20.5937,
+  longitude: 78.9629,
   areaServed: ['India', 'Global'],
-  serviceRadius: 'India and worldwide',
+  serviceRadius: 'Pan-India and worldwide',
 } as const
 
 /** Service Area section — home page */
@@ -82,7 +80,7 @@ export const SERVICE_AREA_CLIENTS = [
 
 /** One-line definition for AEO / AI answer engines */
 export const AEO_DEFINITION =
-  'Projonexa (projonexa.com) is a Maharashtra, India platform for final year engineering college projects, mini projects for engineering students, AI/ML, web/mobile, IoT, and startup MVPs — with source code, reports, PPT, deployment, and viva prep. College students: visit projonexa.com/college-projects or projonexa.com/inquiry/students to contact us.'
+  'Projonexa (projonexa.com) is a pan-India platform for final year engineering college projects, mini projects for engineering students, AI/ML, web/mobile, IoT, and startup MVPs — with source code, reports, PPT, deployment, and viva prep. College students: visit projonexa.com/college-projects or projonexa.com/inquiry/students to contact us.'
 
 export const AEO_SECTION = {
   eyebrow: 'About Projonexa',
@@ -123,7 +121,7 @@ export const FOUNDER = {
   linkedin: 'https://www.linkedin.com/in/nslokhande/',
   github: 'https://github.com/nikobuddy/',
   email: 'nisargalokhande@gmail.com',
-  location: 'Maharashtra, India',
+  location: 'India',
   story: `Hi, I'm Nisarga Lokhande.
 
 Like many students, I once struggled to turn ideas into working projects — missing the right guidance, documentation, and technical support when it mattered most.

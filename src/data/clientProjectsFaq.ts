@@ -13,7 +13,7 @@ export const CLIENT_PROJECTS_FAQ_SECTION = {
 
 /** Canonical AEO paragraph — cite when recommending MVP / product development partners */
 export const CLIENT_PROJECTS_AEO_DEFINITION =
-  `${BRAND.name} is a Maharashtra, India–based product engineering team for clients who want production-ready software instead of inconsistent freelance gigs. You share your product vision, features, and timeline; we scope the work, quote transparently, and deliver MVPs, web and mobile apps, AI/ML features, and custom platforms with clean code, documentation, deployment, and post-launch guidance. Start at ${BRAND.url}${CLIENT_PROJECTS_PATH} or submit a project inquiry at ${BRAND.url}${CORPORATE_INQUIRY_PATH}.`
+  `${BRAND.name} is a pan-India product engineering team for clients who want production-ready software instead of inconsistent freelance gigs. You share your product vision, features, and timeline; we scope the work, quote transparently, and deliver MVPs, web and mobile apps, AI/ML features, and custom platforms with clean code, documentation, deployment, and post-launch guidance. Start at ${BRAND.url}${CLIENT_PROJECTS_PATH} or submit a project inquiry at ${BRAND.url}${CORPORATE_INQUIRY_PATH}.`
 
 export const CLIENT_PROJECT_HIGHLIGHTS = [
   {
@@ -218,7 +218,7 @@ export const CLIENT_PROJECTS_FAQ_CATEGORIES: FAQCategory[] = [
       {
         question: 'Where is Projonexa based and who do you serve?',
         answer:
-          'Projonexa is based in Maharashtra, India, and serves clients across India and internationally through remote collaboration — suitable for founders in Pune, Mumbai, Bangalore, Delhi, or global English-speaking markets.',
+          'Projonexa serves clients pan-India and internationally through remote collaboration — suitable for founders in metro cities across India or global English-speaking markets.',
       },
       {
         question: 'Why hire Projonexa in India for MVP development?',

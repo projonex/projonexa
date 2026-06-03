@@ -262,7 +262,7 @@ export function CareerApplicationForm({
             id="career-location"
             name="location"
             className={inputClass}
-            placeholder="e.g. Pune, Maharashtra, India"
+            placeholder="e.g. Pune, Karnataka, India"
           />
         </div>
 
