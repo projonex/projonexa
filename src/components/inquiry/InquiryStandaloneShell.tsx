@@ -24,6 +24,8 @@ interface InquiryStandaloneShellProps {
   sidebarItems?: string[]
   /** Rich sidebar block (e.g. eligibility criteria) — replaces sidebarItems when set. */
   sidebarAside?: ReactNode
+  /** Optional link or note below the page description (e.g. FAQ link). */
+  headerExtra?: ReactNode
   children: ReactNode
 }
 
@@ -38,6 +40,7 @@ export function InquiryStandaloneShell({
   desktopSplit = false,
   sidebarItems,
   sidebarAside,
+  headerExtra,
   children,
 }: InquiryStandaloneShellProps) {
   const splitBullets =
@@ -131,6 +134,7 @@ export function InquiryStandaloneShell({
               {title}
             </h1>
             {description && <p className={descriptionClassName}>{description}</p>}
+            {headerExtra}
             {badge && (
               <p className="mx-auto mt-3 max-w-full break-words rounded-full border border-brand-primary/25 bg-brand-primary/10 px-3 py-1.5 text-xs font-semibold text-brand-mid dark:text-brand-accent sm:mt-4 sm:px-4 sm:text-sm lg:mx-0 lg:inline-block">
                 {badge}

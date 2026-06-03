@@ -17,6 +17,7 @@ import { FAQPage } from '@/pages/FAQPage'
 import { ContactPage } from '@/pages/ContactPage'
 import { StudentInquiryPage } from '@/pages/StudentInquiryPage'
 import { AffiliateInquiryPage } from '@/pages/AffiliateInquiryPage'
+import { AffiliateProgramPage } from '@/pages/AffiliateProgramPage'
 
 export default function App() {
   return (
@@ -40,6 +41,7 @@ export default function App() {
               <Route path="pricing" element={<PricingPage />} />
               <Route path="careers" element={<CareersPage />} />
               <Route path="faq" element={<FAQPage />} />
+              <Route path="affiliate-program" element={<AffiliateProgramPage />} />
               <Route path="contact" element={<ContactPage />} />
             </Route>
           </Routes>

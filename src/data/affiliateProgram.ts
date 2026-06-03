@@ -1,4 +1,4 @@
-import { INQUIRY_PATHS } from '@/data/projectInquiry'
+import { INQUIRY_PATHS } from './projectInquiry'
 
 export const AFFILIATE_INQUIRY_PATH = INQUIRY_PATHS.affiliate
 

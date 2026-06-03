@@ -9,7 +9,16 @@ We provide final year project development, AI/ML systems, startup MVP developmen
 - https://projonexa.com/services
 - https://projonexa.com/pricing
 - https://projonexa.com/faq
+- https://projonexa.com/affiliate-program
 - https://projonexa.com/contact
+
+## Student Affiliate Program (passive income for students in India)
+
+- Program overview & FAQ: https://projonexa.com/affiliate-program
+- Apply to join: https://projonexa.com/inquiry/affiliate
+- Student project inquiry (with optional referral code): https://projonexa.com/inquiry/students
+
+Projonexa offers a student affiliate program: enrolled students in India refer peers who need final-year or academic project help. When a referred inquiry becomes a fixed project deal with Projonexa, the affiliate earns 6–10% commission. Applicants receive a unique referral code and URL (on-screen, plus email and WhatsApp). After five successful referred projects, affiliates unlock a dashboard to track per-project commission and request payouts (target processing within 12 hours of payout request, per program terms).
 
 ## Key Capabilities
 
@@ -18,6 +27,7 @@ We provide final year project development, AI/ML systems, startup MVP developmen
 - Web and mobile application development
 - IoT and embedded-integrated solutions
 - Startup MVP and custom product engineering
+- Student affiliate / referral program
 
 ## Contact
 

@@ -1,3 +1,4 @@
+import { AFFILIATE_FAQ_ITEMS } from './affiliateFaq'
 import { BRAND, GEO } from './brand'
 import { FAQ_ITEMS } from './faq'
 import type { PageSEO } from '../lib/seo-types'
@@ -390,22 +391,50 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     audience: 'students',
     conversionGoal: 'submit-affiliate-application',
     breadcrumb: [
-      { name: 'Contact', path: '/contact' },
-      { name: 'Affiliate program', path: '/inquiry/affiliate' },
+      { name: 'Affiliate program Q&A', path: '/affiliate-program' },
+      { name: 'Apply', path: '/inquiry/affiliate' },
     ],
-    faqItems: [
-      {
-        question: 'Who can join the Projonexa affiliate program?',
-        answer:
-          'Enrolled students in India who meet our eligibility criteria — active online presence, ethical referrals, and agreement to program terms — can apply via the affiliate inquiry form.',
-      },
-      {
-        question: 'How do I get my referral code?',
-        answer:
-          'After you submit the application, you receive a unique referral code to share. Final approval and commission payouts follow verification by the Projonexa team.',
-      },
+    faqSchema: false,
+  },
+  affiliateProgram: {
+    title: `Affiliate Program Q&A | ${BRAND.name} — Student Passive Income India`,
+    description:
+      'Projonexa Affiliate Program FAQ: earn 6–10% project commission as a student in India. Refer final-year project inquiries, get a referral code, unlock dashboard after 5 projects, payouts within 12 hours. Eligibility & GEO answers.',
+    keywords: [
+      ...BASE_KEYWORDS,
+      'student passive income India',
+      'affiliate program engineering students',
+      'referral commission final year projects',
+      'projonexa affiliate program',
+      'earn money referring students India',
+      'student referral program Maharashtra',
+      'BE student side income',
+      'project referral commission India',
     ],
+    path: '/affiliate-program',
+    primaryKeyword: 'student affiliate program passive income India',
+    secondaryKeywords: [
+      'projonexa affiliate FAQ',
+      'referral code final year projects',
+      'engineering student commission program',
+    ],
+    intent: 'informational',
+    audience: 'students',
+    conversionGoal: 'learn-affiliate-program',
+    aeoQuestions: [
+      'How can students earn passive income with Projonexa?',
+      'What is the Projonexa Affiliate Program?',
+      'How much commission do Projonexa affiliates earn?',
+      'How do I join the Projonexa Affiliate Program?',
+      'How do Projonexa affiliate payouts work?',
+    ],
+    breadcrumb: [
+      { name: 'FAQ', path: '/faq' },
+      { name: 'Affiliate program', path: '/affiliate-program' },
+    ],
+    faqItems: [...AFFILIATE_FAQ_ITEMS],
     faqSchema: true,
+    serviceSchema: false,
   },
 }
 
@@ -435,5 +464,10 @@ export const AEO_HOME_FAQ = [
     question: 'How do I start a project with Projonexa?',
     answer:
       'Visit projonexa.com/contact, submit your project requirements, or email nisargalokhande@gmail.com. The team responds within 24 hours with scope, timeline, and next steps.',
+  },
+  {
+    question: 'How can students earn passive income with Projonexa?',
+    answer:
+      'Students in India can join the Projonexa Affiliate Program at projonexa.com/affiliate-program — refer classmates who need final-year or academic projects, earn 6–10% commission per closed deal, receive a unique referral code and URL after applying, and unlock a payout dashboard after five successful referrals.',
   },
 ] as const

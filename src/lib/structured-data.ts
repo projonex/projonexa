@@ -53,6 +53,8 @@ export function organizationSchema(description: string) {
       'Mobile Application Development',
       'IoT Development',
       'Technical Documentation',
+      'Student Affiliate Program',
+      'Referral Commission Programs',
     ],
     contactPoint: {
       '@type': 'ContactPoint',
