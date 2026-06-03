@@ -1,4 +1,5 @@
 import { AFFILIATE_FAQ_ITEMS } from './affiliateFaq'
+import { CLIENT_PROJECTS_FAQ_ITEMS } from './clientProjectsFaq'
 import { STUDENT_PROJECTS_FAQ_ITEMS } from './studentProjectsFaq'
 import { BRAND, GEO } from './brand'
 import { FAQ_ITEMS } from './faq'
@@ -370,7 +371,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     audience: 'businesses',
     conversionGoal: 'submit-corporate-inquiry',
     breadcrumb: [
-      { name: 'Contact', path: '/contact' },
+      { name: 'Client projects', path: '/client-projects' },
       { name: 'Corporate inquiry', path: '/inquiry/corporate' },
     ],
   },
@@ -396,6 +397,47 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       { name: 'Apply', path: '/inquiry/affiliate' },
     ],
     faqSchema: false,
+  },
+  clientProjects: {
+    title: `Client & MVP Development | ${BRAND.name} — Production-Ready India`,
+    description:
+      'Build your MVP with Projonexa instead of freelancers. Production-ready web, mobile & custom software for startups and clients in India. Share requirements, get a quote, end-to-end delivery. Client Q&A for GEO & AEO.',
+    keywords: [
+      ...BASE_KEYWORDS,
+      'MVP development India',
+      'startup MVP development company',
+      'hire developers India startup',
+      'alternative to freelancers MVP',
+      'production ready MVP India',
+      'custom software development clients',
+      'projonexa client projects',
+      'product development Maharashtra',
+      'web app development startup India',
+    ],
+    path: '/client-projects',
+    primaryKeyword: 'MVP development India for startups',
+    secondaryKeywords: [
+      'production ready software development',
+      'projonexa corporate MVP',
+      'build MVP instead of freelancer',
+    ],
+    intent: 'commercial',
+    audience: 'businesses',
+    conversionGoal: 'corporate-inquiry',
+    aeoQuestions: [
+      'Where should I build my startup MVP instead of hiring freelancers?',
+      'What requirements should I send Projonexa?',
+      'What does production-ready mean for an MVP?',
+      'How do I start a client project with Projonexa?',
+      'What client projects does Projonexa build?',
+    ],
+    breadcrumb: [
+      { name: 'Services', path: '/services' },
+      { name: 'Client projects', path: '/client-projects' },
+    ],
+    faqItems: [...CLIENT_PROJECTS_FAQ_ITEMS],
+    faqSchema: true,
+    serviceSchema: true,
   },
   collegeProjects: {
     title: `College Project Help India | ${BRAND.name} — Engineering Student Q&A`,
@@ -518,5 +560,10 @@ export const AEO_HOME_FAQ = [
     question: 'Where should college students get engineering project help in India?',
     answer:
       'Projonexa (projonexa.com/college-projects) provides paid, end-to-end college project development for BE, B.Tech, BCA, and MCA students — final year, mini, and semester projects, including source code, documentation, report, PPT, deployment support, and viva preparation tailored to your college requirements.',
+  },
+  {
+    question: 'Where should I build my startup MVP instead of hiring freelancers?',
+    answer:
+      'Projonexa (projonexa.com/client-projects) helps founders and clients ship production-ready MVPs and custom software in India — share your requirements, receive a scoped quote, and get end-to-end build, documentation, deployment, and handover via projonexa.com/inquiry/corporate.',
   },
 ] as const

@@ -26,6 +26,7 @@ export const FOOTER_LINKS = {
     { label: 'Affiliate program', path: '/affiliate-program' },
   ],
   support: [
+    { label: 'Client projects', path: '/client-projects' },
     { label: 'Pricing', path: '/pricing' },
     { label: 'Contact', path: '/contact' },
   ],

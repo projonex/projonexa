@@ -62,6 +62,7 @@ export const CONTACT_FORM_HINTS = [
 
 export const CONTACT_QUICK_LINKS = [
   { label: 'College project Q&A', path: '/college-projects' },
+  { label: 'Client & MVP Q&A', path: '/client-projects' },
   { label: 'Student inquiry', path: '/inquiry/students' },
   { label: 'Affiliate program Q&A', path: '/affiliate-program' },
   { label: 'Apply as affiliate', path: '/inquiry/affiliate' },
