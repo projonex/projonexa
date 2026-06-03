@@ -2,7 +2,6 @@ import { useMemo, useState, type FormEvent } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, CheckCircle2, HandCoins } from 'lucide-react'
 import { FormSelectField } from '@/components/careers/FormSelectField'
-import { AffiliateCriteriaPanel } from '@/components/inquiry/AffiliateCriteriaPanel'
 import {
   inquiryInputClass,
   inquiryLabelClass,
@@ -13,7 +12,6 @@ import { Button } from '@/components/ui/Button'
 import {
   AFFILIATE_HEAR_ABOUT_OPTIONS,
   AFFILIATE_PROMOTION_CHANNEL_OPTIONS,
-  AFFILIATE_YEAR_OPTIONS,
   labelForAffiliateOption,
 } from '@/data/affiliateProgram'
 import { PROJECT_INQUIRY_EMAIL, studentInquiryPath } from '@/data/projectInquiry'
@@ -29,7 +27,6 @@ interface AffiliateProgramInquiryFormProps {
 export function AffiliateProgramInquiryForm({ layout = 'default' }: AffiliateProgramInquiryFormProps) {
   const [submitted, setSubmitted] = useState(false)
   const [issuedReferralCode, setIssuedReferralCode] = useState('')
-  const [year, setYear] = useState<string>(AFFILIATE_YEAR_OPTIONS[2].value)
   const [hearAbout, setHearAbout] = useState<string>(AFFILIATE_HEAR_ABOUT_OPTIONS[3].value)
   const [promotionChannel, setPromotionChannel] = useState<string>(
     AFFILIATE_PROMOTION_CHANNEL_OPTIONS[2].value,
@@ -57,9 +54,6 @@ export function AffiliateProgramInquiryForm({ layout = 'default' }: AffiliatePro
     const name = String(data.get('name') ?? '').trim()
     const email = String(data.get('email') ?? '').trim()
     const phone = String(data.get('phone') ?? '').trim()
-    const college = String(data.get('college') ?? '').trim()
-    const branch = String(data.get('branch') ?? '').trim()
-    const social = String(data.get('socialProfile') ?? '').trim()
     const motivation = String(data.get('motivation') ?? '').trim()
     const referralCode = generateReferralCode()
 
@@ -70,10 +64,6 @@ export function AffiliateProgramInquiryForm({ layout = 'default' }: AffiliatePro
         `Applicant: ${name}`,
         `Email: ${email}`,
         `Phone / WhatsApp: ${phone}`,
-        `College / University: ${college}`,
-        branch ? `Branch / Department: ${branch}` : null,
-        `Year: ${labelForAffiliateOption(AFFILIATE_YEAR_OPTIONS, String(data.get('year') ?? ''))}`,
-        `Primary social profile: ${social}`,
         `How they heard about us: ${labelForAffiliateOption(AFFILIATE_HEAR_ABOUT_OPTIONS, String(data.get('hearAbout') ?? ''))}`,
         `Planned promotion channel: ${labelForAffiliateOption(AFFILIATE_PROMOTION_CHANNEL_OPTIONS, String(data.get('promotionChannel') ?? ''))}`,
         '',
@@ -143,14 +133,16 @@ export function AffiliateProgramInquiryForm({ layout = 'default' }: AffiliatePro
       onSubmit={handleSubmit}
       className={panelClass}
     >
-      <AffiliateCriteriaPanel />
-
-      <p className="mb-5 mt-6 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 sm:mb-6">
+      <p className="mb-5 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 sm:mb-6">
         Fields marked with <InquiryRequired /> are required.
       </p>
 
-      <div className="flex flex-col gap-5">
-        <div className="careers-form-field w-full min-w-0">
+      <div className="flex flex-col gap-6">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-primary dark:text-brand-accent">
+          Contact details
+        </p>
+
+        <div className="careers-form-field w-full min-w-0 -mt-2">
           <label htmlFor="affiliate-name" className={inquiryLabelClass}>
             Full name <InquiryRequired />
           </label>
@@ -195,67 +187,11 @@ export function AffiliateProgramInquiryForm({ layout = 'default' }: AffiliatePro
           </div>
         </div>
 
-        <div className="careers-form-field w-full min-w-0">
-          <label htmlFor="affiliate-college" className={inquiryLabelClass}>
-            College / University <InquiryRequired />
-          </label>
-          <input
-            id="affiliate-college"
-            name="college"
-            required
-            className={inquiryInputClass}
-            placeholder="Institution name"
-          />
-        </div>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-primary dark:text-brand-accent">
+          How you will promote
+        </p>
 
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-          <FormSelectField
-            id="affiliate-year"
-            name="year"
-            required
-            value={year}
-            onChange={(e) => setYear(e.target.value)}
-            label={
-              <>
-                Year of study <InquiryRequired />
-              </>
-            }
-          >
-            {AFFILIATE_YEAR_OPTIONS.map((opt) => (
-              <option key={opt.value} value={opt.value}>
-                {opt.label}
-              </option>
-            ))}
-          </FormSelectField>
-
-          <div className="careers-form-field min-w-0">
-            <label htmlFor="affiliate-branch" className={inquiryLabelClass}>
-              Branch / Department
-            </label>
-            <input
-              id="affiliate-branch"
-              name="branch"
-              className={inquiryInputClass}
-              placeholder="e.g. Computer Engineering"
-            />
-          </div>
-        </div>
-
-        <div className="careers-form-field w-full min-w-0">
-          <label htmlFor="affiliate-social" className={inquiryLabelClass}>
-            Primary social profile <InquiryRequired />
-          </label>
-          <input
-            id="affiliate-social"
-            name="socialProfile"
-            type="url"
-            required
-            className={inquiryInputClass}
-            placeholder="LinkedIn or Instagram profile URL"
-          />
-        </div>
-
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 -mt-2">
           <FormSelectField
             id="affiliate-hear-about"
             name="hearAbout"

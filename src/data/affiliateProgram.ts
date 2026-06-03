@@ -64,14 +64,6 @@ export const AFFILIATE_PROMOTION_CHANNEL_OPTIONS = [
   { value: 'other', label: 'Other' },
 ] as const
 
-export const AFFILIATE_YEAR_OPTIONS = [
-  { value: 'second', label: '2nd year' },
-  { value: 'third', label: '3rd year' },
-  { value: 'final', label: 'Final year (BE / B.Tech / BCA)' },
-  { value: 'pg', label: 'Postgraduate (MCA / M.Tech / MSc)' },
-  { value: 'other', label: 'Other' },
-] as const
-
 export function labelForAffiliateOption<T extends { value: string; label: string }>(
   options: readonly T[],
   value: string | null | undefined,

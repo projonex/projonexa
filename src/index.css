@@ -1635,6 +1635,35 @@
     letter-spacing: -0.04em;
   }
 
+  .affiliate-criteria-index {
+    color: var(--color-brand-mid, #3d8bff);
+    background: linear-gradient(
+      145deg,
+      rgba(0, 200, 255, 0.14) 0%,
+      rgba(108, 99, 255, 0.12) 100%
+    );
+    border: 1px solid rgba(0, 200, 255, 0.22);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  }
+
+  .dark .affiliate-criteria-index {
+    color: var(--color-brand-accent, #67e8f9);
+    background: rgba(0, 200, 255, 0.1);
+    border-color: rgba(0, 200, 255, 0.28);
+  }
+
+  .affiliate-criteria-sidebar .affiliate-criteria-index {
+    border-radius: 0.65rem;
+  }
+
+  @media (min-width: 1024px) {
+    .inquiry-standalone-split .affiliate-criteria-sidebar {
+      position: sticky;
+      top: 5.5rem;
+      align-self: start;
+    }
+  }
+
   .inquiry-sidebar-wordmark {
     position: relative;
     width: 100%;

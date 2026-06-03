@@ -22,6 +22,8 @@ interface InquiryStandaloneShellProps {
   desktopSplit?: boolean
   /** Custom bullet list for split layout sidebar (defaults to student inquiry copy). */
   sidebarItems?: string[]
+  /** Rich sidebar block (e.g. eligibility criteria) — replaces sidebarItems when set. */
+  sidebarAside?: ReactNode
   children: ReactNode
 }
 
@@ -35,17 +37,20 @@ export function InquiryStandaloneShell({
   backLabel,
   desktopSplit = false,
   sidebarItems,
+  sidebarAside,
   children,
 }: InquiryStandaloneShellProps) {
   const splitBullets =
-    sidebarItems ??
-    (desktopSplit
-      ? [
-          'Final year, mini, AI/ML, IoT & more',
-          'Pick a date & time for your consultation',
-          'Confirmation within 24 hours on business days',
-        ]
-      : null)
+    sidebarAside != null
+      ? null
+      : (sidebarItems ??
+        (desktopSplit
+          ? [
+              'Final year, mini, AI/ML, IoT & more',
+              'Pick a date & time for your consultation',
+              'Confirmation within 24 hours on business days',
+            ]
+          : null))
   const { theme, toggleTheme } = useTheme()
 
   useEffect(() => {
@@ -102,7 +107,11 @@ export function InquiryStandaloneShell({
         <div
           className={
             desktopSplit
-              ? 'flex flex-1 flex-col lg:grid lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-start lg:gap-12 xl:gap-16'
+              ? `flex flex-1 flex-col lg:grid lg:items-start lg:gap-12 xl:gap-16${
+                  sidebarAside
+                    ? ' lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]'
+                    : ' lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]'
+                }`
               : 'flex flex-1 flex-col'
           }
         >
@@ -127,6 +136,7 @@ export function InquiryStandaloneShell({
                 {badge}
               </p>
             )}
+            {desktopSplit && sidebarAside}
             {desktopSplit && splitBullets && (
               <ul className="mx-auto mt-6 hidden max-w-md space-y-2.5 text-left text-sm text-zinc-600 dark:text-zinc-400 lg:mx-0 lg:block lg:max-w-sm">
                 {splitBullets.map((item) => (
@@ -143,7 +153,7 @@ export function InquiryStandaloneShell({
             {desktopSplit && (
               <BrandWordmark
                 variant="subtle"
-                className="inquiry-sidebar-wordmark mt-8 hidden lg:flex"
+                className={`inquiry-sidebar-wordmark hidden lg:flex${sidebarAside ? ' mt-6' : ' mt-8'}`}
               />
             )}
           </motion.header>

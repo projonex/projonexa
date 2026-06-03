@@ -1,6 +1,7 @@
+import { AffiliateCriteriaPanel } from '@/components/inquiry/AffiliateCriteriaPanel'
 import { AffiliateProgramInquiryForm } from '@/components/inquiry/AffiliateProgramInquiryForm'
 import { InquiryStandaloneShell } from '@/components/inquiry/InquiryStandaloneShell'
-import { AFFILIATE_INQUIRY_SECTION, AFFILIATE_SIDEBAR_ITEMS } from '@/data/affiliateProgram'
+import { AFFILIATE_INQUIRY_SECTION } from '@/data/affiliateProgram'
 import { PAGE_SEO } from '@/data/seo'
 
 export function AffiliateInquiryPage() {
@@ -13,7 +14,7 @@ export function AffiliateInquiryPage() {
       backTo="/contact"
       backLabel="Back to contact"
       desktopSplit
-      sidebarItems={[...AFFILIATE_SIDEBAR_ITEMS]}
+      sidebarAside={<AffiliateCriteriaPanel variant="sidebar" />}
     >
       <AffiliateProgramInquiryForm layout="split" />
     </InquiryStandaloneShell>
