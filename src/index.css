@@ -1530,6 +1530,37 @@
     background: linear-gradient(to top, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.45) 55%, transparent 100%);
   }
 
+  .why-card-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .why-card-stage-inner {
+    width: 100%;
+    max-width: 18.125rem;
+  }
+
+  .why-vertical-fade-top,
+  .why-vertical-fade-bottom {
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2rem;
+    z-index: 5;
+  }
+
+  .why-vertical-fade-top {
+    top: 0;
+    background: linear-gradient(to bottom, rgba(8, 12, 20, 0.65), transparent);
+  }
+
+  .why-vertical-fade-bottom {
+    bottom: 0;
+    background: linear-gradient(to top, rgba(8, 12, 20, 0.65), transparent);
+  }
+
   .why-cards-row {
     padding-bottom: 0.5rem;
   }
