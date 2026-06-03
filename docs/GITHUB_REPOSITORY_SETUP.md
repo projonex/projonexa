@@ -177,7 +177,7 @@ Additional governance files:
 
 | Service | Purpose |
 |---------|---------|
-| **Vercel** or **Netlify** | Deploy website from `main` |
+| **Vercel** (primary) | Deploy from `main` — see [`VERCEL_DEPLOYMENT.md`](VERCEL_DEPLOYMENT.md) |
 | **GitHub Pages** | Alternative static hosting |
 | **Dependabot** | Already configured via `.github/dependabot.yml` |
 | **GitHub Discussions** | Optional Q&A (Settings → Features → Discussions) |

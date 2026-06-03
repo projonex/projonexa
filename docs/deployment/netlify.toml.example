@@ -1,0 +1,31 @@
+# Optional Netlify config (not used on Vercel).
+# Copy to repo root as netlify.toml if you deploy to Netlify instead.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[redirects]]
+  from = "/final-year-projects"
+  to = "/college-projects"
+  status = 301
+
+[[redirects]]
+  from = "/research"
+  to = "/services"
+  status = 301
+
+[[redirects]]
+  from = "/college-projects"
+  to = "/college-projects/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/client-projects"
+  to = "/client-projects/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

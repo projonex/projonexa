@@ -323,15 +323,26 @@ cp .env.example .env.local
 
 Only variables prefixed with `VITE_` are exposed to the client. Never commit `.env` or `.env.local` files.
 
-### Deployment
+### Deployment (Vercel — recommended)
 
-Build the static site and deploy the `dist/` folder to **Vercel**, **Netlify**, or any static host.
+The site is configured for **[Vercel](https://vercel.com)** via [`vercel.json`](vercel.json):
 
-```bash
-npm run build
-```
+- **Build:** `npm run build` → `dist/` (sitemap, OG images, prerendered share meta per route)
+- **Routing:** SPA fallback + per-route HTML for correct WhatsApp/LinkedIn previews
+- **Redirects:** `/final-year-projects` → `/college-projects`, `/research` → `/services`
 
-See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for deployment notes and SEO configuration.
+**Quick setup**
+
+1. Import the GitHub repo in Vercel  
+2. If the repo root is the parent folder, set **Root Directory** to `projonexa-main-website`  
+3. Deploy (Vercel reads `vercel.json` automatically)  
+4. Add custom domain `projonexa.com` in project settings  
+
+Full guide: [`docs/VERCEL_DEPLOYMENT.md`](docs/VERCEL_DEPLOYMENT.md)
+
+Optional Netlify config: [`docs/deployment/netlify.toml.example`](docs/deployment/netlify.toml.example)
+
+See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for architecture and SEO notes.
 
 ---
 

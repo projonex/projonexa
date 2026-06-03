@@ -1,0 +1,2 @@
+# Local Vercel CLI artifacts only (project settings come from vercel.json)
+.vercel
