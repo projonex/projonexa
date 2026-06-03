@@ -7,7 +7,8 @@ import { getProjectBySlug, projectPath } from '@/data/projects'
 import { BASE_KEYWORDS, type PageSEO } from '@/data/seo'
 import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowUpRight, ChevronRight } from 'lucide-react'
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import { NotFoundPage } from '@/pages/NotFoundPage'
 
 const easeSmooth = [0.22, 1, 0.36, 1] as const
 
@@ -41,7 +42,7 @@ export function ProjectDetailPage() {
   const project = getProjectBySlug(slug)
 
   if (!project) {
-    return <Navigate to="/projects" replace />
+    return <NotFoundPage />
   }
 
   const primaryLink =

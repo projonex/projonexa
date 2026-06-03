@@ -708,6 +708,22 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     faqSchema: true,
     serviceSchema: false,
   },
+  notFound: {
+    title: `Page Not Found | ${BRAND.name}`,
+    shareTitle: `Page Not Found | ${BRAND.name}`,
+    shareDescription:
+      'This page could not be found. Visit Projonexa for college projects, client MVPs, or contact us.',
+    description:
+      'The page you requested was not found on Projonexa. Go home or explore college projects, services, and contact.',
+    keywords: [...BASE_KEYWORDS, 'page not found'],
+    path: '/404',
+    primaryKeyword: 'page not found',
+    secondaryKeywords: ['projonexa site navigation'],
+    intent: 'navigational',
+    audience: 'mixed',
+    conversionGoal: 'recover-navigation',
+    robotsNoIndex: true,
+  },
 }
 
 /** Core Q&A pairs surfaced on homepage for AEO (Answer Engine Optimization) */

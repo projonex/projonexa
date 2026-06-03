@@ -20,6 +20,7 @@ import { AffiliateInquiryPage } from '@/pages/AffiliateInquiryPage'
 import { AffiliateProgramPage } from '@/pages/AffiliateProgramPage'
 import { CollegeProjectsPage } from '@/pages/CollegeProjectsPage'
 import { ClientProjectsPage } from '@/pages/ClientProjectsPage'
+import { NotFoundPage } from '@/pages/NotFoundPage'
 
 export default function App() {
   return (
@@ -51,7 +52,10 @@ export default function App() {
                 element={<Navigate to="/college-projects" replace />}
               />
               <Route path="contact" element={<ContactPage />} />
+              <Route path="404" element={<NotFoundPage />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Route>
+            <Route path="*" element={<Navigate to="/404" replace />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

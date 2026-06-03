@@ -61,10 +61,14 @@ function resolveShare(page) {
   return { title, description, url, image, imageAlt }
 }
 
-function buildShareMetaBlock(share) {
+function buildShareMetaBlock(share, options = {}) {
+  const robotsMeta = options.noindex
+    ? '<meta name="robots" content="noindex, follow" />'
+    : '<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />'
   return `<!-- prerender-share-meta -->
     <title>${escapeHtml(share.title)}</title>
     <meta name="description" content="${escapeHtml(share.description)}" />
+    ${robotsMeta}
     <link rel="canonical" href="${escapeHtml(share.url)}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="${escapeHtml(share.url)}" />
@@ -85,8 +89,8 @@ function buildShareMetaBlock(share) {
     <meta name="twitter:image:alt" content="${escapeHtml(share.imageAlt)}" />`
 }
 
-function injectShareMeta(html, share) {
-  const block = buildShareMetaBlock(share)
+function injectShareMeta(html, share, options = {}) {
+  const block = buildShareMetaBlock(share, options)
   let next = html
     .replace(/<!-- prerender-share-meta -->[\s\S]*?(?=\n  <\/head>)/, '')
     .replace(/<title>[^<]*<\/title>\s*/i, '')
@@ -158,11 +162,19 @@ let count = 0
 for (const page of pages) {
   if (!page.path || page.path.includes(':')) continue
   const share = resolveShare(page)
-  const html = injectShareMeta(template, share)
+  const html = injectShareMeta(template, share, { noindex: page.robotsNoIndex })
   const outFile = distPathForRoute(page.path)
   await mkdir(path.dirname(outFile), { recursive: true })
   await writeFile(outFile, html, 'utf8')
   count += 1
+}
+
+const notFoundPage = PAGE_SEO.notFound
+if (notFoundPage) {
+  const share404 = resolveShare(notFoundPage)
+  const html404 = injectShareMeta(template, share404, { noindex: true })
+  await writeFile(path.join(DIST_DIR, '404.html'), html404, 'utf8')
+  console.log('  ✓ 404.html (Vercel / static host not-found page)')
 }
 
 console.log(`Prerendered share meta for ${count} routes`)

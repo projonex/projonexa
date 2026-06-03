@@ -40,4 +40,6 @@ export interface PageSEO {
   /** Path or absolute URL; defaults from route → /og/*.png */
   ogImage?: string
   ogImageAlt?: string
+  /** When true, adds noindex for error/utility pages */
+  robotsNoIndex?: boolean
 }

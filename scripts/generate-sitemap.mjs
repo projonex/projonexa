@@ -7,7 +7,7 @@ import { build } from 'esbuild'
 
 const BASE_URL = 'https://projonexa.com'
 const OUTPUT_FILE = new URL('../public/sitemap.xml', import.meta.url)
-const EXCLUDED_PATHS = new Set(['/research', '/inquiry/students', '/inquiry/corporate'])
+const EXCLUDED_PATHS = new Set(['/research', '/inquiry/students', '/inquiry/corporate', '/404'])
 
 async function loadSeoData() {
   const tempDir = await mkdtemp(path.join(tmpdir(), 'projonexa-sitemap-'))

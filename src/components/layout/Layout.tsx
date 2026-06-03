@@ -23,6 +23,7 @@ export function Layout() {
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    document.getElementById('main-content')?.focus({ preventScroll: true })
   }, [pathname])
 
   return (

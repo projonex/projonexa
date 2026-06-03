@@ -28,7 +28,7 @@ If the repository root **is** `projonexa-main-website`, leave Root Directory emp
 
 - **Permanent redirects:** `/final-year-projects` → `/college-projects`, `/research` → `/services`  
 - **Rewrites:** each marketing route serves its prerendered `*/index.html` so crawlers see the right share title and thumbnail  
-- **SPA fallback:** all other paths → `/index.html`  
+- **404:** unknown URLs serve `404.html` (HTTP 404) with correct title; in-app routing uses the React 404 page  
 - **Headers:** long cache for `/og/*` and `/assets/*`; basic security headers sitewide  
 
 ## Custom domain

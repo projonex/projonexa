@@ -34,7 +34,14 @@ export function SEO({ seo }: SEOProps) {
       <meta name="description" content={seo.description} />
       <meta name="keywords" content={seo.keywords.join(', ')} />
       <meta name="author" content={FOUNDER.name} />
-      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+      <meta
+        name="robots"
+        content={
+          seo.robotsNoIndex
+            ? 'noindex, follow'
+            : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
+        }
+      />
       <meta name="googlebot" content="index, follow" />
       <link rel="canonical" href={url} />
 

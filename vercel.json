@@ -34,8 +34,7 @@
     { "source": "/careers/apply", "destination": "/careers/apply/index.html" },
     { "source": "/inquiry/corporate", "destination": "/inquiry/corporate/index.html" },
     { "source": "/inquiry/students", "destination": "/inquiry/students/index.html" },
-    { "source": "/inquiry/affiliate", "destination": "/inquiry/affiliate/index.html" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/inquiry/affiliate", "destination": "/inquiry/affiliate/index.html" }
   ],
   "headers": [
     {
