@@ -1,6 +1,6 @@
 import { StudentProjectInquiryForm } from '@/components/inquiry/StudentProjectInquiryForm'
 import { InquiryStandaloneShell } from '@/components/inquiry/InquiryStandaloneShell'
-import { FINAL_YEAR_PROJECTS_PATH } from '@/data/studentProjectsFaq'
+import { COLLEGE_PROJECTS_PATH } from '@/data/studentProjectsFaq'
 import { STUDENT_INQUIRY_SECTION } from '@/data/projectInquiry'
 import { Link } from 'react-router-dom'
 import { PAGE_SEO } from '@/data/seo'
@@ -20,10 +20,10 @@ export function StudentInquiryPage() {
       description={STUDENT_INQUIRY_SECTION.description}
       headerExtra={
         <Link
-          to={FINAL_YEAR_PROJECTS_PATH}
+          to={COLLEGE_PROJECTS_PATH}
           className="mx-auto mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-primary hover:underline dark:text-brand-accent lg:mx-0"
         >
-          Student project doubts &amp; deliverables (Q&amp;A)
+          College project doubts &amp; deliverables (Q&amp;A)
           <span aria-hidden>→</span>
         </Link>
       }
