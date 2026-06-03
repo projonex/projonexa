@@ -100,7 +100,7 @@ function VerticalScrollAnimation({
   )
 }
 
-/** Card 2 — three rows fill to 100% one-by-one, then scroll window */
+/** Card 2 — scrolling pill rows with animated progress bars */
 function StackedProgressAnimation({
   items,
   accent,
@@ -115,6 +115,8 @@ function StackedProgressAnimation({
   const [completedRows, setCompletedRows] = useState<boolean[]>([false, false, false])
   const rafRef = useRef<number | null>(null)
   const timeoutRef = useRef<number | null>(null)
+
+  const progressTargets = [92, 88, 95, 90, 85]
 
   const clearTimers = useCallback(() => {
     if (rafRef.current !== null) {
@@ -143,14 +145,16 @@ function StackedProgressAnimation({
 
     clearTimers()
     setProgress(0)
-    let startTime = performance.now()
+    const startTime = performance.now()
+    const target =
+      progressTargets[(windowStart + fillingRow) % progressTargets.length] ?? 90
 
     const animateFill = () => {
       const elapsed = performance.now() - startTime
-      const nextProgress = Math.min(100, (elapsed / FILL_DURATION_MS) * 100)
+      const nextProgress = Math.min(target, (elapsed / FILL_DURATION_MS) * target)
       setProgress(nextProgress)
 
-      if (nextProgress < 100) {
+      if (nextProgress < target) {
         rafRef.current = requestAnimationFrame(animateFill)
         return
       }
@@ -186,55 +190,69 @@ function StackedProgressAnimation({
   })
 
   return (
-    <div className="mx-auto w-full max-w-[270px] px-1">
+    <div className="mx-auto w-full max-w-[290px] px-1">
       <div className="relative h-[220px] overflow-hidden">
         <AnimatePresence mode="popLayout">
           <motion.div
             key={windowStart}
-            initial={{ opacity: 0.85, y: 14 }}
+            initial={{ opacity: 0.85, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0.85, y: -14 }}
+            exit={{ opacity: 0.85, y: -16 }}
             transition={{ duration: 0.45, ease: easeSmooth }}
             className="flex flex-col gap-2.5"
           >
             {visibleItems.map((label, row) => {
               const isComplete = completedRows[row]
               const isFilling = row === fillingRow && !isComplete
-              const rowProgress = isComplete ? 100 : isFilling ? progress : 0
+              const target =
+                progressTargets[(windowStart + row) % progressTargets.length] ?? 90
+              const rowProgress = isComplete ? target : isFilling ? progress : 0
               const isActive = isComplete || isFilling
 
               return (
                 <div
                   key={`${label}-${row}`}
-                  className={`why-crisp-text rounded-2xl border px-3 py-2.5 transition-colors duration-300 ${
+                  className={`why-crisp-text flex min-h-[52px] items-center gap-3 rounded-full border px-2 py-1.5 pr-5 transition-all duration-300 sm:min-h-[56px] ${
                     isActive
-                      ? 'border-white/30 bg-white shadow-[0_8px_28px_-8px_rgba(0,0,0,0.45)]'
-                      : 'border-white/10 bg-white/[0.07]'
+                      ? 'border-white/40 bg-white shadow-[0_8px_28px_-8px_rgba(0,0,0,0.45)]'
+                      : 'border-white/15 bg-white/[0.08]'
                   }`}
                 >
-                  <div className="flex items-center justify-between gap-3">
+                  <div
+                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border sm:h-10 sm:w-10 ${
+                      isActive ? 'border-zinc-100 bg-zinc-50' : 'border-white/20 bg-white/10'
+                    }`}
+                  >
                     <span
-                      className={`truncate text-[13px] font-semibold leading-tight sm:text-sm ${
-                        isActive ? 'text-zinc-900' : 'text-white/80'
-                      }`}
-                      style={isActive ? ({ color: accent } as CSSProperties) : undefined}
-                    >
-                      {label}
-                    </span>
-                    <span
-                      className={`shrink-0 text-xs font-semibold tabular-nums ${
-                        isActive ? 'text-zinc-700' : 'text-white/45'
-                      }`}
-                    >
-                      {Math.round(rowProgress)}%
-                    </span>
-                  </div>
-                  <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-zinc-200/80">
-                    <motion.div
-                      className="h-full rounded-full"
-                      style={{ backgroundColor: accent, width: `${rowProgress}%` }}
-                      transition={{ duration: 0.15, ease: 'linear' }}
+                      className="h-2.5 w-2.5 rounded-full"
+                      style={{ backgroundColor: isActive ? accent : 'rgba(255,255,255,0.35)' }}
                     />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center justify-between gap-2">
+                      <span
+                        className={`truncate text-[13px] font-semibold leading-tight sm:text-sm ${
+                          isActive ? 'text-zinc-900' : 'text-white/75'
+                        }`}
+                        style={isActive ? ({ color: accent } as CSSProperties) : undefined}
+                      >
+                        {label}
+                      </span>
+                      <span
+                        className={`shrink-0 text-xs font-semibold tabular-nums ${
+                          isActive ? 'text-zinc-600' : 'text-white/40'
+                        }`}
+                      >
+                        {Math.round(rowProgress)}%
+                      </span>
+                    </div>
+                    <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-zinc-200/80">
+                      <motion.div
+                        className="h-full rounded-full"
+                        style={{ backgroundColor: accent, width: `${rowProgress}%` }}
+                        transition={{ duration: 0.15, ease: 'linear' }}
+                      />
+                    </div>
                   </div>
                 </div>
               )
@@ -246,7 +264,7 @@ function StackedProgressAnimation({
   )
 }
 
-/** Card 3 — circular orbit, one highlighted petal at a time */
+/** Card 1 — rotating orbit of highlight pills (Slice-style carousel) */
 function OrbitAnimation({
   items,
   accent,
@@ -258,48 +276,26 @@ function OrbitAnimation({
   const [activeIndex, setActiveIndex] = useState(0)
   const count = items.length
   const stepAngle = 360 / count
-  const radius = 78
+  const radius = 88
 
   useEffect(() => {
     if (reducedMotion || count <= 1) return
     const id = window.setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % count)
-    }, 2600)
+    }, 2800)
     return () => window.clearInterval(id)
   }, [count, reducedMotion])
 
   return (
-    <div className="relative mx-auto flex h-[220px] w-full max-w-[260px] items-center justify-center">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute bottom-[12%] left-1/2 z-20 flex -translate-x-1/2 items-center justify-center rounded-full border border-white/30 bg-white/[0.1] px-3 py-1.5"
-        style={{
-          boxShadow: `0 0 0 1px ${accent}40, 0 12px 32px -10px ${accent}55`,
-        }}
-      >
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={items[activeIndex]}
-            initial={{ opacity: 0, y: 8, scale: 0.92 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -8, scale: 0.92 }}
-            transition={{ duration: 0.35, ease: easeSmooth }}
-          >
-            <CrispLabel active accent={accent} className="text-[11px] sm:text-xs">
-              {items[activeIndex]}
-            </CrispLabel>
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
+    <div className="relative mx-auto flex h-[230px] w-full max-w-[280px] items-center justify-center">
       <motion.div
-        className="relative h-[170px] w-[170px]"
+        className="relative h-[190px] w-[190px]"
         animate={{ rotate: -activeIndex * stepAngle }}
-        transition={{ duration: 0.7, ease: easeSmooth }}
+        transition={{ duration: 0.75, ease: easeSmooth }}
         aria-live="polite"
       >
         {items.map((item, index) => {
-          const angleDeg = index * stepAngle + 90
+          const angleDeg = index * stepAngle
           const rad = (angleDeg * Math.PI) / 180
           const x = Math.cos(rad) * radius
           const y = Math.sin(rad) * radius
@@ -309,29 +305,135 @@ function OrbitAnimation({
             <motion.div
               key={item}
               className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-              style={{ x, y }}
-              animate={{
-                opacity: isActive ? 0 : 0.42,
-                scale: isActive ? 1 : 0.88,
-              }}
+              animate={{ x, y, opacity: isActive ? 1 : 0.38, scale: isActive ? 1.08 : 0.92 }}
               transition={{ duration: 0.45, ease: easeSmooth }}
             >
               <motion.div
                 animate={{ rotate: activeIndex * stepAngle }}
-                transition={{ duration: 0.7, ease: easeSmooth }}
+                transition={{ duration: 0.75, ease: easeSmooth }}
               >
-                <CrispLabel
-                  active={isActive}
-                  accent={accent}
-                  className="text-[11px] sm:text-xs"
-                >
-                  {item}
-                </CrispLabel>
+                {isActive ? (
+                  <div className="-ml-2 -mt-1 inline-flex items-center rounded-full border border-white/40 bg-white/20 py-1 pl-2 pr-6 backdrop-blur-sm">
+                    <span className="why-crisp-text inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-zinc-100 bg-white px-3 py-2 text-xs font-semibold text-zinc-900 shadow-sm sm:text-sm">
+                      <span
+                        className="h-2 w-2 shrink-0 rounded-full"
+                        style={{ backgroundColor: accent }}
+                      />
+                      {item}
+                    </span>
+                  </div>
+                ) : (
+                  <span className="why-crisp-text inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-zinc-100/80 bg-white px-3 py-2 text-xs font-medium text-zinc-800 sm:text-sm">
+                    <span className="h-2 w-2 shrink-0 rounded-full bg-zinc-300" />
+                    {item}
+                  </span>
+                )}
               </motion.div>
             </motion.div>
           )
         })}
       </motion.div>
+    </div>
+  )
+}
+
+const CHART_PATH =
+  'M-38 81.7729L27.7914 106.358C29.211 106.889 30.7787 106.862 32.1796 106.284L67.8275 91.5797C69.2242 91.0036 70.3521 89.9218 70.9859 88.5504L94.558 37.549C96.1035 34.2052 100.269 33.0307 103.334 35.0747L166.533 77.2287C166.897 77.4717 167.287 77.6741 167.695 77.8323L210.446 94.3882C211.772 94.9017 213.237 94.9276 214.581 94.4613L261.5 78.1736C262.589 77.7954 263.764 77.7392 264.885 78.0117L334.143 94.8537C335.036 95.0707 335.966 95.08 336.863 94.8807L392.952 82.416C394.776 82.0106 396.307 80.7787 397.094 79.0838L433 1.68359'
+
+/** Card 3 — animated growth line with moving highlight */
+function ChartLineAnimation({
+  accent,
+  metric = 'Fast delivery',
+}: {
+  accent: string
+  metric?: string
+}) {
+  const reducedMotion = useReducedMotion()
+  const [cursorX, setCursorX] = useState(55)
+  const pathRef = useRef<SVGPathElement>(null)
+  const [pathLength, setPathLength] = useState(900)
+
+  useEffect(() => {
+    const path = pathRef.current
+    if (path) setPathLength(path.getTotalLength())
+  }, [])
+
+  useEffect(() => {
+    if (reducedMotion) {
+      setCursorX(83)
+      return
+    }
+
+    let frame = 0
+    let start = performance.now()
+    const duration = 4200
+
+    const tick = (now: number) => {
+      const elapsed = (now - start) % (duration * 2)
+      const t = elapsed < duration ? elapsed / duration : 2 - elapsed / duration
+      setCursorX(18 + t * 72)
+      frame = requestAnimationFrame(tick)
+    }
+
+    frame = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(frame)
+  }, [reducedMotion])
+
+  const dashOffset = pathLength * (1 - cursorX / 100)
+
+  return (
+    <div className="relative mx-auto w-full max-w-[290px] px-2">
+      <div className="relative aspect-[370/111] w-full">
+        <svg
+          viewBox="0 0 370 111"
+          fill="none"
+          className="h-full w-full"
+          preserveAspectRatio="xMidYMid meet"
+          aria-hidden
+        >
+          <path
+            ref={pathRef}
+            d={CHART_PATH}
+            stroke="rgba(255,255,255,0.25)"
+            strokeWidth="8"
+            strokeLinecap="round"
+          />
+          <motion.path
+            d={CHART_PATH}
+            stroke="#fff"
+            strokeWidth="8"
+            strokeLinecap="round"
+            fill="none"
+            strokeDasharray={pathLength}
+            animate={{ strokeDashoffset: dashOffset }}
+            transition={{ duration: 0.12, ease: 'linear' }}
+          />
+        </svg>
+
+        <motion.div
+          className="pointer-events-none absolute top-0 bottom-0 rounded bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0.28)_50%,rgba(255,255,255,0)_100%)]"
+          style={{ width: 28 }}
+          animate={{ left: `calc(${cursorX}% - 14px)` }}
+          transition={{ duration: 0.12, ease: 'linear' }}
+        />
+
+        <motion.div
+          className="absolute z-10 inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-white/30 bg-white px-3 py-1.5 shadow-sm sm:px-4 sm:py-2"
+          animate={{
+            left: `${cursorX}%`,
+            top: `${36 - Math.sin((cursorX / 100) * Math.PI) * 18}%`,
+          }}
+          style={{ x: '-100%', y: '-120%' }}
+          transition={{ duration: 0.12, ease: 'linear' }}
+        >
+          <span
+            className="why-crisp-text text-xs font-semibold tabular-nums text-zinc-800 sm:text-sm"
+            style={{ color: accent }}
+          >
+            {metric}
+          </span>
+        </motion.div>
+      </div>
     </div>
   )
 }
@@ -349,6 +451,15 @@ function CardAnimation({
 
   if (animation === 'orbit') {
     return <OrbitAnimation items={card.highlights} accent={card.accent} />
+  }
+
+  if (animation === 'chart') {
+    return (
+      <ChartLineAnimation
+        accent={card.accent}
+        metric={'chartMetric' in card ? card.chartMetric : undefined}
+      />
+    )
   }
 
   return <VerticalScrollAnimation items={card.highlights} accent={card.accent} />
@@ -467,7 +578,7 @@ export function WhyChoose({ variant = 'section', className }: WhyChooseProps) {
   if (variant === 'grouped') {
     return (
       <div
-        className={className ? `relative pb-10 sm:pb-14 lg:pb-16 ${className}` : 'relative pb-10 sm:pb-14 lg:pb-16'}
+        className={className ? `relative ${className}` : 'relative'}
         aria-labelledby="why-projonexa-heading"
       >
         {content}

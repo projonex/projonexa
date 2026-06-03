@@ -220,7 +220,7 @@ export const WHY_CARDS = [
     ],
     accent: '#00c8ff',
     gradient: 'linear-gradient(145deg, #0a1628 0%, #0d2847 42%, #1a4a6e 100%)',
-    animation: 'vertical',
+    animation: 'orbit',
   },
   {
     title: 'Academic Rigor',
@@ -253,7 +253,8 @@ export const WHY_CARDS = [
     ],
     accent: '#00e5a0',
     gradient: 'linear-gradient(145deg, #0a1f18 0%, #0d3d2e 42%, #145a42 100%)',
-    animation: 'orbit',
+    animation: 'chart',
+    chartMetric: '2-week MVP',
   },
 ] as const
 
