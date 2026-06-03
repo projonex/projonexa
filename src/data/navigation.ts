@@ -22,6 +22,7 @@ export const FOOTER_LINKS = {
     { label: 'Projects', path: '/projects' },
     { label: 'Blog', path: '/blog' },
     { label: 'FAQ', path: '/faq' },
+    { label: 'Final year projects', path: '/final-year-projects' },
     { label: 'Affiliate program', path: '/affiliate-program' },
   ],
   support: [

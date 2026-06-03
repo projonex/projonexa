@@ -1,6 +1,8 @@
 import { StudentProjectInquiryForm } from '@/components/inquiry/StudentProjectInquiryForm'
 import { InquiryStandaloneShell } from '@/components/inquiry/InquiryStandaloneShell'
+import { FINAL_YEAR_PROJECTS_PATH } from '@/data/studentProjectsFaq'
 import { STUDENT_INQUIRY_SECTION } from '@/data/projectInquiry'
+import { Link } from 'react-router-dom'
 import { PAGE_SEO } from '@/data/seo'
 import { normalizeReferralCode } from '@/lib/referralCode'
 import { useSearchParams } from 'react-router-dom'
@@ -16,6 +18,15 @@ export function StudentInquiryPage() {
       eyebrow={STUDENT_INQUIRY_SECTION.eyebrow}
       title={STUDENT_INQUIRY_SECTION.title}
       description={STUDENT_INQUIRY_SECTION.description}
+      headerExtra={
+        <Link
+          to={FINAL_YEAR_PROJECTS_PATH}
+          className="mx-auto mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-primary hover:underline dark:text-brand-accent lg:mx-0"
+        >
+          Student project doubts &amp; deliverables (Q&amp;A)
+          <span aria-hidden>→</span>
+        </Link>
+      }
       badge={
         referralCode ? `Referred by affiliate · ${referralCode}` : undefined
       }

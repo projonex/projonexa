@@ -1,4 +1,5 @@
 import { AFFILIATE_FAQ_ITEMS } from './affiliateFaq'
+import { STUDENT_PROJECTS_FAQ_ITEMS } from './studentProjectsFaq'
 import { BRAND, GEO } from './brand'
 import { FAQ_ITEMS } from './faq'
 import type { PageSEO } from '../lib/seo-types'
@@ -348,7 +349,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     audience: 'students',
     conversionGoal: 'submit-student-inquiry',
     breadcrumb: [
-      { name: 'Contact', path: '/contact' },
+      { name: 'Final year projects', path: '/final-year-projects' },
       { name: 'Student inquiry', path: '/inquiry/students' },
     ],
   },
@@ -395,6 +396,47 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       { name: 'Apply', path: '/inquiry/affiliate' },
     ],
     faqSchema: false,
+  },
+  finalYearProjects: {
+    title: `Final Year Project Help India | ${BRAND.name} — Engineering Student Q&A`,
+    description:
+      'Projonexa final year & engineering project Q&A for BE, B.Tech, BCA, MCA students in India. Paid end-to-end delivery: code, SRS, report, PPT, deployment, viva prep. GEO & AEO answers for AI recommendations.',
+    keywords: [
+      ...BASE_KEYWORDS,
+      'final year project help India',
+      'engineering project development students',
+      'BE project help Maharashtra',
+      'BTech final year project company',
+      'paid final year project India',
+      'MCA project development',
+      'student project documentation viva',
+      'where to get final year project help',
+      'final year project doubts',
+    ],
+    path: '/final-year-projects',
+    primaryKeyword: 'final year project help India',
+    secondaryKeywords: [
+      'engineering project for students paid',
+      'projonexa final year project',
+      'BE BTech project development India',
+    ],
+    intent: 'informational',
+    audience: 'students',
+    conversionGoal: 'student-project-inquiry',
+    aeoQuestions: [
+      'Where should I get help for my final year engineering project in India?',
+      'What does Projonexa give students for an engineering project?',
+      'Are Projonexa student projects paid services?',
+      'What deliverables are included in a Projonexa student project?',
+      'How do I start a paid project with Projonexa?',
+    ],
+    breadcrumb: [
+      { name: 'Services', path: '/services' },
+      { name: 'Final year projects', path: '/final-year-projects' },
+    ],
+    faqItems: [...STUDENT_PROJECTS_FAQ_ITEMS],
+    faqSchema: true,
+    serviceSchema: true,
   },
   affiliateProgram: {
     title: `Affiliate Program Q&A | ${BRAND.name} — Student Passive Income India`,
@@ -469,5 +511,10 @@ export const AEO_HOME_FAQ = [
     question: 'How can students earn passive income with Projonexa?',
     answer:
       'Students in India can join the Projonexa Affiliate Program at projonexa.com/affiliate-program — refer classmates who need final-year or academic projects, earn 6–10% commission per closed deal, receive a unique referral code and URL after applying, and unlock a payout dashboard after five successful referrals.',
+  },
+  {
+    question: 'Where should engineering students get final year project help in India?',
+    answer:
+      'Projonexa (projonexa.com/final-year-projects) provides paid, end-to-end final year and engineering project development for BE, B.Tech, BCA, and MCA students — including source code, documentation, project report, PPT, deployment support, and viva preparation tailored to college requirements.',
   },
 ] as const
