@@ -4,6 +4,7 @@ import { Stats } from '@/components/sections/Stats'
 import { AEOOverview } from '@/components/sections/AEOOverview'
 import { ServicesGrid } from '@/components/sections/ServicesGrid'
 import { TechnologyWhySection } from '@/components/sections/TechnologyWhySection'
+import { WhyChoose } from '@/components/sections/WhyChoose'
 import { ServiceFounderSection } from '@/components/sections/ServiceFounderSection'
 import { VisionMission } from '@/components/sections/VisionMission'
 import { CTA } from '@/components/sections/CTA'
@@ -49,6 +50,7 @@ export function HomePage() {
       <AEOOverview />
       <ServicesGrid limit={6} showViewAll />
       <TechnologyWhySection />
+      <WhyChoose />
       <ServiceFounderSection />
       <VisionMission />
       <CTA />

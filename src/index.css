@@ -1520,21 +1520,30 @@
       0 32px 72px -28px rgba(0, 200, 255, 0.22);
   }
 
-  .why-scroll-mask {
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      transparent 0%,
-      black 28%,
-      black 72%,
-      transparent 100%
-    );
-    mask-image: linear-gradient(
-      to bottom,
-      transparent 0%,
-      black 28%,
-      black 72%,
-      transparent 100%
-    );
+  .why-crisp-text {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  .why-premium-card-footer {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.45) 55%, transparent 100%);
+  }
+
+  .why-cards-row {
+    padding-bottom: 0.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .why-cards-row {
+      padding-bottom: 1rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .why-cards-row {
+      padding-bottom: 1.5rem;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
