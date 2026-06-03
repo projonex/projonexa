@@ -1,6 +1,7 @@
-import { BRAND, FOUNDER, GEO, AEO_DEFINITION } from '@/data/brand'
-import type { BreadcrumbItem, SearchIntent } from '@/data/seo'
-import { SERVICES } from '@/data/services'
+import { AEO_DEFINITION, BRAND, FOUNDER, GEO } from '@/data/brand';
+import type { BreadcrumbItem, SearchIntent } from '@/data/seo';
+
+import { SERVICES } from '@/data/services';
 
 type FAQ = { question: string; answer: string }
 
@@ -20,7 +21,7 @@ export function organizationSchema(description: string) {
     description,
     slogan: BRAND.tagline,
     email: BRAND.email,
-    foundingDate: '2024',
+    foundingDate: '2026',
     founder: {
       '@type': 'Person',
       name: FOUNDER.name,
@@ -41,7 +42,7 @@ export function organizationSchema(description: string) {
       '@type': 'Place',
       name: place,
     })),
-    sameAs: [FOUNDER.linkedin, FOUNDER.github, 'https://github.com/nikobuddy/projonexa'],
+    sameAs: [FOUNDER.linkedin, FOUNDER.github, 'https://github.com/projonexa/projonexa'],
     knowsAbout: [
       'Final Year Projects',
       'Engineering Projects',
