@@ -263,6 +263,13 @@ export function AEOOverview() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
+                  to="/client-projects"
+                  className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/50 px-5 py-2.5 text-sm font-semibold text-zinc-800 backdrop-blur-sm transition-colors hover:border-brand-primary/30 hover:text-brand-primary dark:border-white/[0.1] dark:bg-black/40 dark:text-zinc-100"
+                >
+                  Client & MVP
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
                   to="/inquiry/students"
                   className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/50 px-5 py-2.5 text-sm font-semibold text-zinc-800 backdrop-blur-sm transition-colors hover:border-brand-primary/30 hover:text-brand-primary dark:border-white/[0.1] dark:bg-black/40 dark:text-zinc-100"
                 >

@@ -22,11 +22,17 @@ export function ServicesPage() {
               <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{item.answer}</p>
               {index === SERVICES_PAGE_FAQ.length - 1 ? (
                 <div className="mt-4 flex flex-wrap gap-2">
+                  <Button to="/college-projects" variant="secondary" className="px-4 py-2 text-xs">
+                    College projects
+                  </Button>
+                  <Button to="/client-projects" variant="secondary" className="px-4 py-2 text-xs">
+                    Client MVP
+                  </Button>
                   <Button to="/pricing" variant="secondary" className="px-4 py-2 text-xs">
                     Pricing
                   </Button>
-                  <Button to="/faq" variant="secondary" className="px-4 py-2 text-xs">
-                    FAQ
+                  <Button to="/contact" variant="secondary" className="px-4 py-2 text-xs">
+                    Contact
                   </Button>
                 </div>
               ) : null}

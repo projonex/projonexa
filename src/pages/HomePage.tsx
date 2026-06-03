@@ -8,6 +8,7 @@ import { ServiceFounderSection } from '@/components/sections/ServiceFounderSecti
 import { VisionMission } from '@/components/sections/VisionMission'
 import { CTA } from '@/components/sections/CTA'
 import { Button } from '@/components/ui/Button'
+import { AEO_DEFINITION } from '@/data/brand'
 import { PAGE_SEO } from '@/data/seo'
 
 export function HomePage() {
@@ -25,18 +26,20 @@ export function HomePage() {
               What does Projonexa do?
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-base">
-              Projonexa builds final year projects, AI/ML systems, startup MVPs, and custom software
-              with complete documentation, deployment guidance, and mentor support.
+              {AEO_DEFINITION}
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
+              <Button to="/college-projects" variant="primary" className="shadow-glow-sm">
+                College projects
+              </Button>
+              <Button to="/client-projects" variant="secondary">
+                Client & MVP
+              </Button>
               <Button to="/services" variant="secondary">
-                Explore services
+                Services
               </Button>
-              <Button to="/pricing" variant="secondary">
-                View pricing
-              </Button>
-              <Button to="/faq" variant="secondary">
-                Read FAQ
+              <Button to="/contact" variant="secondary">
+                Contact us
               </Button>
             </div>
           </div>

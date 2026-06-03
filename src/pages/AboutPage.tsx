@@ -1,9 +1,10 @@
 import { SEO } from '@/components/seo/SEO'
+import { SiteAeoBlock } from '@/components/seo/SiteAeoBlock'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { VisionFounderSection } from '@/components/sections/VisionFounderSection'
 import { Stats } from '@/components/sections/Stats'
 import { CTA } from '@/components/sections/CTA'
-import { PAGE_SEO } from '@/data/seo'
+import { ABOUT_PAGE_FAQ, PAGE_SEO } from '@/data/seo'
 import { BRAND } from '@/data/brand'
 
 export function AboutPage() {
@@ -14,6 +15,11 @@ export function AboutPage() {
         eyebrow="About"
         title={`About ${BRAND.name}`}
         description="A technology-driven innovation platform bridging the gap between ideas and execution for students, startups, and businesses."
+      />
+      <SiteAeoBlock
+        headline="What is Projonexa — innovation platform in Maharashtra, India?"
+        faqItems={ABOUT_PAGE_FAQ}
+        className="!border-b-0 !pb-0"
       />
       <section className="section-padding">
         <div className="container-narrow prose prose-lg dark:prose-invert max-w-none">

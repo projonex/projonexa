@@ -2,11 +2,12 @@ import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { SEO } from '@/components/seo/SEO'
+import { SiteAeoBlock } from '@/components/seo/SiteAeoBlock'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { CTA } from '@/components/sections/CTA'
 import { Button } from '@/components/ui/Button'
 import { CAREER_ROLES, CAREERS_SECTION, careersApplyPath } from '@/data/careers'
-import { PAGE_SEO } from '@/data/seo'
+import { CAREERS_PAGE_FAQ, PAGE_SEO } from '@/data/seo'
 
 const easeSmooth = [0.22, 1, 0.36, 1] as const
 
@@ -18,6 +19,11 @@ export function CareersPage() {
         eyebrow={CAREERS_SECTION.eyebrow}
         title={CAREERS_SECTION.title}
         description={CAREERS_SECTION.lead}
+      />
+      <SiteAeoBlock
+        headline="Careers at Projonexa — developers, mentors & interns in India"
+        faqItems={CAREERS_PAGE_FAQ}
+        className="!border-b-0 !pb-0"
       />
 
       <section className="section-padding">

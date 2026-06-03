@@ -3,6 +3,7 @@ import { Mail, MapPin } from 'lucide-react'
 import { GitHubIcon, LinkedInIcon } from '@/components/ui/SocialIcons'
 
 import { BrandWordmark } from '@/components/ui/BrandWordmark'
+import { SiteAeoPillarLinks } from '@/components/seo/SiteAeoPillarLinks'
 import { FOOTER_LINKS } from '@/data/navigation'
 import { Link } from 'react-router-dom'
 import { Logo } from '@/components/ui/Logo'
@@ -43,6 +44,7 @@ export function Footer() {
               End-to-end project development for students, colleges, startups, and businesses —
               across India and globally.
             </p>
+            <SiteAeoPillarLinks className="mt-4" />
             <div className="mt-5 flex items-center gap-1">
               <a
                 href={FOUNDER.linkedin}

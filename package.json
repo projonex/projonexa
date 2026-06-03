@@ -35,7 +35,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "npm run seo:validate && tsc -b && vite build",
     "preview": "vite preview",
     "brand:icons": "node scripts/generate-brand-icons.mjs",
     "seo:validate": "node scripts/validate-seo.mjs",

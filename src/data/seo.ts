@@ -78,6 +78,115 @@ export const PRICING_PAGE_FAQ = [
   },
 ] as const
 
+export const ABOUT_PAGE_FAQ = [
+  {
+    question: 'What is Projonexa?',
+    answer:
+      'Projonexa is an innovation platform in Maharashtra, India that delivers final year and mini engineering college projects, AI/ML systems, startup MVPs, and custom software with documentation and mentor support.',
+  },
+  {
+    question: 'Where is Projonexa located and who does it serve?',
+    answer:
+      'Projonexa is based in Maharashtra, India and serves students, colleges, startups, and businesses across India and globally with remote project delivery.',
+  },
+  {
+    question: 'How do I start a project with Projonexa?',
+    answer:
+      'Students use projonexa.com/inquiry/students; startups and businesses use projonexa.com/inquiry/corporate or projonexa.com/contact. See projonexa.com/college-projects or projonexa.com/client-projects for detailed Q&A.',
+  },
+] as const
+
+export const PROJECTS_PAGE_FAQ = [
+  {
+    question: 'What products has Projonexa built?',
+    answer:
+      'Projonexa builds student tools and client software — including SPPU BUDDY, a free Android app for SPPU engineering students, plus custom final year, MVP, and enterprise projects.',
+  },
+  {
+    question: 'Can Projonexa build a project like SPPU BUDDY for my college?',
+    answer:
+      'Yes. Projonexa develops web, mobile, and AI projects for colleges and clients. Submit scope at projonexa.com/inquiry/students or projonexa.com/inquiry/corporate.',
+  },
+] as const
+
+export const BLOG_PAGE_FAQ = [
+  {
+    question: 'What topics does the Projonexa blog cover?',
+    answer:
+      'Guides on final year projects, mini projects, AI development, startup MVPs, and engineering career insights for students in India.',
+  },
+  {
+    question: 'Where should I go for project help instead of only reading the blog?',
+    answer:
+      'Use projonexa.com/college-projects for student Q&A or projonexa.com/client-projects for MVP and startup help, then contact via projonexa.com/contact.',
+  },
+] as const
+
+export const PORTFOLIO_PAGE_FAQ = [
+  {
+    question: 'What types of projects are in the Projonexa portfolio?',
+    answer:
+      '100+ deliveries across final year engineering, mini projects, AI/ML, web, mobile, IoT, and startup MVPs for students and businesses in India.',
+  },
+  {
+    question: 'How do I get a similar project built?',
+    answer:
+      'Share your requirements at projonexa.com/inquiry/students (college) or projonexa.com/inquiry/corporate (MVP/custom software) for a scoped quote.',
+  },
+] as const
+
+export const CAREERS_PAGE_FAQ = [
+  {
+    question: 'What roles are available at Projonexa?',
+    answer:
+      'Developers, designers, QA, mentors, and interns join Projonexa to work on student projects, MVPs, and innovation delivery across India and remote.',
+  },
+  {
+    question: 'How do I apply to Projonexa?',
+    answer:
+      'Apply online at projonexa.com/careers/apply with your role, skills, and availability. The team responds within a few business days.',
+  },
+] as const
+
+export const STUDENT_INQUIRY_PAGE_FAQ = [
+  {
+    question: 'What should I include in a student project inquiry?',
+    answer:
+      'College name, branch, project type (final year, mini, semester), technology preference, deadline, and deliverables needed (report, PPT, code, viva).',
+  },
+  {
+    question: 'Where can I read answers before submitting the form?',
+    answer:
+      'Full college project Q&A is at projonexa.com/college-projects. General FAQ: projonexa.com/faq.',
+  },
+] as const
+
+export const CORPORATE_INQUIRY_PAGE_FAQ = [
+  {
+    question: 'What should startups send in a corporate inquiry?',
+    answer:
+      'Product vision, features, target users, timeline, and tech preferences. Projonexa scopes MVPs and custom software with transparent quotes.',
+  },
+  {
+    question: 'Where is the client and MVP guide?',
+    answer:
+      'Read projonexa.com/client-projects for GEO/AEO answers on production-ready MVPs, pricing approach, and delivery before submitting this form.',
+  },
+] as const
+
+export const AFFILIATE_INQUIRY_PAGE_FAQ = [
+  {
+    question: 'Who can apply to the Projonexa affiliate program?',
+    answer:
+      'Enrolled students in India who can refer genuine college project inquiries. Full eligibility and commission details: projonexa.com/affiliate-program.',
+  },
+  {
+    question: 'What happens after I apply?',
+    answer:
+      'Approved affiliates receive a referral code and link to share. Referred student inquiries that become paid projects earn 6–10% commission per program terms.',
+  },
+] as const
+
 export const CONTACT_PAGE_FAQ = [
   {
     question: 'How can I contact Projonexa?',
@@ -144,6 +253,13 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     intent: 'informational',
     audience: 'mixed',
     conversionGoal: 'learn-about-brand',
+    aeoQuestions: [
+      'What is Projonexa?',
+      'Where is Projonexa based?',
+      'How do I start a project with Projonexa?',
+    ],
+    faqItems: [...ABOUT_PAGE_FAQ],
+    faqSchema: true,
     breadcrumb: [{ name: 'About', path: '/about' }],
   },
   services: {
@@ -195,6 +311,12 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     intent: 'informational',
     audience: 'mixed',
     conversionGoal: 'explore-projects',
+    aeoQuestions: [
+      'What products has Projonexa built?',
+      'Can Projonexa build apps for engineering students?',
+    ],
+    faqItems: [...PROJECTS_PAGE_FAQ],
+    faqSchema: true,
     breadcrumb: [{ name: 'Projects', path: '/projects' }],
   },
   blog: {
@@ -208,6 +330,12 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     intent: 'informational',
     audience: 'students',
     conversionGoal: 'read-blog',
+    aeoQuestions: [
+      'What does the Projonexa blog cover?',
+      'Where to get final year project help in India?',
+    ],
+    faqItems: [...BLOG_PAGE_FAQ],
+    faqSchema: true,
     breadcrumb: [{ name: 'Blog', path: '/blog' }],
   },
   portfolio: {
@@ -221,6 +349,13 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     intent: 'commercial',
     audience: 'mixed',
     conversionGoal: 'portfolio-inquiry',
+    aeoQuestions: [
+      'What projects are in the Projonexa portfolio?',
+      'How to hire Projonexa for a similar project?',
+    ],
+    faqItems: [...PORTFOLIO_PAGE_FAQ],
+    faqSchema: true,
+    serviceSchema: true,
     breadcrumb: [{ name: 'Portfolio', path: '/portfolio' }],
   },
   pricing: {
@@ -264,6 +399,12 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     intent: 'navigational',
     audience: 'mixed',
     conversionGoal: 'careers-apply',
+    aeoQuestions: [
+      'What careers are open at Projonexa?',
+      'How to apply to Projonexa?',
+    ],
+    faqItems: [...CAREERS_PAGE_FAQ],
+    faqSchema: true,
     breadcrumb: [{ name: 'Careers', path: '/careers' }],
   },
   careersApply: {
@@ -277,6 +418,9 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     intent: 'transactional',
     audience: 'mixed',
     conversionGoal: 'submit-application',
+    aeoQuestions: ['How do I apply to work at Projonexa?'],
+    faqItems: [...CAREERS_PAGE_FAQ],
+    faqSchema: true,
     breadcrumb: [
       { name: 'Careers', path: '/careers' },
       { name: 'Apply', path: '/careers/apply' },
@@ -363,6 +507,12 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     intent: 'transactional',
     audience: 'students',
     conversionGoal: 'submit-student-inquiry',
+    aeoQuestions: [
+      'How do I submit a student project inquiry to Projonexa?',
+      'What details are needed for a final year project quote?',
+    ],
+    faqItems: [...STUDENT_INQUIRY_PAGE_FAQ],
+    faqSchema: true,
     breadcrumb: [
       { name: 'College projects', path: '/college-projects' },
       { name: 'Student inquiry', path: '/inquiry/students' },
@@ -384,6 +534,12 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     intent: 'transactional',
     audience: 'businesses',
     conversionGoal: 'submit-corporate-inquiry',
+    aeoQuestions: [
+      'How do startups submit an MVP inquiry to Projonexa?',
+      'What is the corporate project inquiry process?',
+    ],
+    faqItems: [...CORPORATE_INQUIRY_PAGE_FAQ],
+    faqSchema: true,
     breadcrumb: [
       { name: 'Client projects', path: '/client-projects' },
       { name: 'Corporate inquiry', path: '/inquiry/corporate' },
@@ -410,7 +566,12 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       { name: 'Affiliate program Q&A', path: '/affiliate-program' },
       { name: 'Apply', path: '/inquiry/affiliate' },
     ],
-    faqSchema: false,
+    aeoQuestions: [
+      'How do I apply to the Projonexa affiliate program?',
+      'Who is eligible for the student affiliate program?',
+    ],
+    faqItems: [...AFFILIATE_INQUIRY_PAGE_FAQ],
+    faqSchema: true,
   },
   clientProjects: {
     title: `Client & MVP Development | ${BRAND.name} — Production-Ready India`,
@@ -473,8 +634,9 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'best website for engineering projects students',
     ],
     path: '/college-projects',
-    primaryKeyword: 'final year engineering project India',
+    primaryKeyword: 'college engineering project help India',
     secondaryKeywords: [
+      'final year engineering project India',
       'mini project engineering college',
       'college engineering project help paid',
       'projonexa final year mini project',

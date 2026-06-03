@@ -44,7 +44,25 @@ const warnings = []
 const seenPaths = new Set()
 const seenTitles = new Set()
 const seenPrimaryKeywords = new Set()
-const mustHaveAeoSchema = new Set(['home', 'services', 'pricing', 'faq', 'contact'])
+const mustHaveAeoSchema = new Set([
+  'home',
+  'about',
+  'services',
+  'projects',
+  'blog',
+  'portfolio',
+  'pricing',
+  'faq',
+  'contact',
+  'careers',
+  'careersApply',
+  'studentInquiry',
+  'corporateInquiry',
+  'affiliateInquiry',
+  'collegeProjects',
+  'clientProjects',
+  'affiliateProgram',
+])
 
 for (const [pageKey, page] of Object.entries(PAGE_SEO)) {
   const hasTitle = Boolean(page.title?.trim())

@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion'
 import { Calendar, Clock } from 'lucide-react'
 import { SEO } from '@/components/seo/SEO'
+import { SiteAeoBlock } from '@/components/seo/SiteAeoBlock'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { BLOG_POSTS } from '@/data/blog'
-import { PAGE_SEO } from '@/data/seo'
+import { BLOG_PAGE_FAQ, PAGE_SEO } from '@/data/seo'
 
 export function BlogPage() {
   return (
@@ -13,6 +14,11 @@ export function BlogPage() {
         eyebrow="Blog"
         title="Insights, Guides & Innovation Stories"
         description="Expert perspectives on project development, AI trends, engineering best practices, and startup building."
+      />
+      <SiteAeoBlock
+        headline="Projonexa blog — final year, mini projects & engineering guides"
+        faqItems={BLOG_PAGE_FAQ}
+        className="!border-b-0 !pb-0"
       />
       <section className="section-padding">
         <div className="container-wide grid gap-6 md:grid-cols-2 lg:grid-cols-3">
