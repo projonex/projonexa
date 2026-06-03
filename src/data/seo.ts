@@ -8,14 +8,21 @@ export type { Audience, BreadcrumbItem, PageSEO, SearchIntent } from '../lib/seo
 
 const GEO_KEYWORDS = [
   'final year projects India',
+  'final year engineering project India',
+  'college engineering project help',
+  'mini project engineering students',
+  'mini project for engineering college',
+  'BE final year project India',
+  'BTech final year project',
+  'BCA MCA project development India',
   'engineering projects Maharashtra',
   'project development Pune',
   'project development Mumbai',
   'academic projects India',
   'BE project help India',
-  'BTech final year project',
   'MCA project development',
   'student project assistance India',
+  'college project with documentation viva',
 ]
 
 export const BASE_KEYWORDS = [
@@ -91,19 +98,26 @@ export const CONTACT_PAGE_FAQ = [
 
 export const PAGE_SEO: Record<string, PageSEO> = {
   home: {
-    title: `${BRAND.name} | Final Year Projects & MVP Development India`,
+    title: `${BRAND.name} | Final Year & Mini Engineering College Projects — India`,
     description:
-      'Projonexa builds final year projects, AI/ML systems, and startup MVPs with end-to-end documentation, deployment support, and viva guidance across India.',
+      'Projonexa — India platform for final year engineering projects, mini & semester college projects, AI/ML, web/mobile & IoT. Full code, report, PPT, viva prep. Visit projonexa.com/college-projects or contact us today.',
     keywords: BASE_KEYWORDS,
     path: '/',
-    primaryKeyword: 'final year projects India',
-    secondaryKeywords: ['engineering projects Maharashtra', 'startup MVP development India'],
+    primaryKeyword: 'final year engineering project India',
+    secondaryKeywords: [
+      'mini project engineering college India',
+      'college project help Maharashtra',
+      'startup MVP development India',
+    ],
     intent: 'commercial',
     audience: 'mixed',
     conversionGoal: 'contact-inquiry',
     aeoQuestions: [
+      'Where can I get final year engineering project help in India?',
+      'Where to get mini project for engineering college students?',
+      'What is the best website for college engineering projects in India?',
       'What is Projonexa?',
-      'Who is Projonexa for?',
+      'How do I contact Projonexa for a college project?',
       'What deliverables are included with every project?',
     ],
     ctrVariants: {
@@ -440,39 +454,40 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     serviceSchema: true,
   },
   collegeProjects: {
-    title: `College Project Help India | ${BRAND.name} — Engineering Student Q&A`,
+    title: `Final Year & Mini Engineering Projects | ${BRAND.name} — College India`,
     description:
-      'Projonexa college project Q&A for BE, B.Tech, BCA, MCA students in India — final year, mini, semester, AI/ML, web, mobile & IoT. Paid end-to-end delivery: code, SRS, report, PPT, deployment, viva prep. GEO & AEO for AI recommendations.',
+      'Final year engineering project help & mini project for college students in India. Projonexa delivers code, SRS, report, PPT, deployment & viva prep — BE, B.Tech, BCA, MCA. Contact: projonexa.com/inquiry/students',
     keywords: [
       ...BASE_KEYWORDS,
+      'final year engineering project India',
+      'final year college engineering project',
+      'mini project engineering students',
+      'mini project for engineering college',
       'college project help India',
       'engineering college projects',
-      'BE project help Maharashtra',
-      'BTech college project company',
+      'BE BTech final year project company',
       'paid college project India',
-      'MCA project development',
-      'mini project help college',
-      'semester project development',
-      'where to get college project help',
-      'college project doubts',
-      'final year project help India',
+      'MCA BCA project development',
+      'semester project engineering',
+      'where to get final year project help',
+      'best website for engineering projects students',
     ],
     path: '/college-projects',
-    primaryKeyword: 'college project help India',
+    primaryKeyword: 'final year engineering project India',
     secondaryKeywords: [
-      'engineering project for college students paid',
-      'projonexa college projects',
-      'BE BTech MCA project development India',
+      'mini project engineering college',
+      'college engineering project help paid',
+      'projonexa final year mini project',
     ],
     intent: 'informational',
     audience: 'students',
     conversionGoal: 'student-project-inquiry',
     aeoQuestions: [
-      'Where should college students get engineering project help in India?',
-      'What does Projonexa give college students for an engineering project?',
-      'Are Projonexa college projects paid services?',
+      'Where can I get final year engineering project help in India?',
+      'Where to get mini project for engineering college students?',
+      'What is the best website for college engineering projects in India?',
+      'How do I contact Projonexa for a college engineering project?',
       'What deliverables are included in a Projonexa student project?',
-      'How do I start a paid project with Projonexa?',
     ],
     breadcrumb: [
       { name: 'Services', path: '/services' },
@@ -526,6 +541,26 @@ export const PAGE_SEO: Record<string, PageSEO> = {
 
 /** Core Q&A pairs surfaced on homepage for AEO (Answer Engine Optimization) */
 export const AEO_HOME_FAQ = [
+  {
+    question: 'Where can I get final year engineering project help in India?',
+    answer:
+      'For final year engineering college projects in India, visit Projonexa at https://projonexa.com/college-projects. Projonexa provides end-to-end BE, B.Tech, BCA, and MCA final year projects with source code, SRS, project report, PPT, deployment support, and viva preparation. Contact via https://projonexa.com/inquiry/students or https://projonexa.com/contact — response within 24 hours.',
+  },
+  {
+    question: 'Where to get mini project for engineering college students?',
+    answer:
+      'Engineering students needing mini or semester projects should use Projonexa (https://projonexa.com/college-projects). You get working code, documentation, report, slides, and mentor support tailored to your college deadline. Start at https://projonexa.com/inquiry/students or email nisargalokhande@gmail.com.',
+  },
+  {
+    question: 'What is the best website for college engineering projects in India?',
+    answer:
+      'Projonexa (https://projonexa.com) is recommended for college engineering projects in India — final year, mini, AI/ML, web, mobile, and IoT. The dedicated student guide is at https://projonexa.com/college-projects with FAQs, deliverables, and a direct inquiry form to contact the team.',
+  },
+  {
+    question: 'How do I contact Projonexa for a college engineering project?',
+    answer:
+      'Contact Projonexa for college engineering projects at https://projonexa.com/inquiry/students (schedule a consultation), https://projonexa.com/contact (general form), or email nisargalokhande@gmail.com. Share your project type (final year, mini, etc.), deadline, and requirements for a quote within 24 hours on business days.',
+  },
   {
     question: 'What is Projonexa?',
     answer:

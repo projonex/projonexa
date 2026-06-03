@@ -252,14 +252,21 @@ export function AEOOverview() {
 
             <div className="mt-8 flex flex-col gap-4 border-t border-black/[0.06] pt-8 dark:border-white/[0.06] sm:flex-row sm:items-center sm:justify-between">
               <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                Need more detail? Browse our full FAQ or reach out directly.
+                Final year or mini engineering project? See our college guide or contact us.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link
-                  to="/faq"
+                  to="/college-projects"
                   className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/50 px-5 py-2.5 text-sm font-semibold text-zinc-800 backdrop-blur-sm transition-colors hover:border-brand-primary/30 hover:text-brand-primary dark:border-white/[0.1] dark:bg-black/40 dark:text-zinc-100"
                 >
-                  FAQ
+                  College projects
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  to="/inquiry/students"
+                  className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/50 px-5 py-2.5 text-sm font-semibold text-zinc-800 backdrop-blur-sm transition-colors hover:border-brand-primary/30 hover:text-brand-primary dark:border-white/[0.1] dark:bg-black/40 dark:text-zinc-100"
+                >
+                  Student inquiry
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link

@@ -82,7 +82,7 @@ export const SERVICE_AREA_CLIENTS = [
 
 /** One-line definition for AEO / AI answer engines */
 export const AEO_DEFINITION =
-  'Projonexa is a technology-driven innovation platform based in Maharashtra, India that helps students, colleges, startups, and businesses transform ideas into real-world projects — including final year projects, AI/ML systems, startup MVPs, IoT solutions, and custom software with full documentation and mentor support.'
+  'Projonexa (projonexa.com) is a Maharashtra, India platform for final year engineering college projects, mini projects for engineering students, AI/ML, web/mobile, IoT, and startup MVPs — with source code, reports, PPT, deployment, and viva prep. College students: visit projonexa.com/college-projects or projonexa.com/inquiry/students to contact us.'
 
 export const AEO_SECTION = {
   eyebrow: 'About Projonexa',

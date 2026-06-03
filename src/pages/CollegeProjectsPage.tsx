@@ -17,6 +17,7 @@ import { SEO } from '@/components/seo/SEO'
 import { FAQCategoryNav, FAQSection } from '@/components/sections/FAQSection'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { CTA } from '@/components/sections/CTA'
+import { CollegeProjectContactCta } from '@/components/sections/CollegeProjectContactCta'
 import { Button } from '@/components/ui/Button'
 import { BRAND } from '@/data/brand'
 import {
@@ -36,9 +37,9 @@ const HIGHLIGHT_ICONS = [Layers, GraduationCap, IndianRupee, MapPin] as const
 const DELIVERABLE_ICONS = [Code2, FileText, BookOpen, Presentation, Layers, GraduationCap] as const
 
 export function CollegeProjectsPage() {
-  const [openId, setOpenId] = useState<string | null>('getting-started-0')
+  const [openId, setOpenId] = useState<string | null>('final-year-mini-0')
   const [activeCategory, setActiveCategory] = useState<string | null>(
-    STUDENT_PROJECTS_FAQ_CATEGORIES[0]?.id ?? null,
+    STUDENT_PROJECTS_FAQ_CATEGORIES[0]?.id ?? 'final-year-mini',
   )
 
   return (
@@ -71,7 +72,7 @@ export function CollegeProjectsPage() {
               className="mt-3 text-lg font-bold text-zinc-900 dark:text-white sm:text-xl"
               itemProp="headline"
             >
-              Where should college students get engineering project help in India?
+              Final year engineering projects &amp; mini projects for engineering college — India
             </h2>
             <p
               className="mt-4 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300 sm:text-base sm:leading-relaxed"
@@ -93,6 +94,8 @@ export function CollegeProjectsPage() {
               </Button>
             </div>
           </motion.article>
+
+          <CollegeProjectContactCta />
 
           <div className="mx-auto mt-8 grid max-w-4xl grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
             {STUDENT_PROJECT_HIGHLIGHTS.map((item, index) => {
