@@ -253,7 +253,7 @@ export const WHY_CARDS = [
     ],
     accent: '#00e5a0',
     gradient: 'linear-gradient(145deg, #0a1f18 0%, #0d3d2e 42%, #145a42 100%)',
-    animation: 'marquee',
+    animation: 'orbit',
   },
 ] as const
 
