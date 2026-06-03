@@ -33,4 +33,11 @@ export interface PageSEO {
   breadcrumb?: BreadcrumbItem[]
   faqSchema?: boolean
   serviceSchema?: boolean
+  /** Shorter title for WhatsApp / LinkedIn / X link previews */
+  shareTitle?: string
+  /** Shorter description for social crawlers (≤200 chars recommended) */
+  shareDescription?: string
+  /** Path or absolute URL; defaults from route → /og/*.png */
+  ogImage?: string
+  ogImageAlt?: string
 }

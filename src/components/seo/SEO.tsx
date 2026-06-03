@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import { BRAND_ICONS } from '@/constants/brand-assets'
 import { BRAND, FOUNDER, GEO } from '@/data/brand'
 import { AEO_HOME_FAQ, type PageSEO } from '@/data/seo'
+import { resolveShareMeta } from '@/lib/social-share'
 import { buildStructuredData } from '@/lib/structured-data'
 
 interface SEOProps {
@@ -9,9 +10,8 @@ interface SEOProps {
 }
 
 export function SEO({ seo }: SEOProps) {
-  const url = `${BRAND.url}${seo.path}`
-  const image = `${BRAND.url}/og-image.svg`
-  const imageAlt = `${BRAND.name} — ${BRAND.tagline} Final year projects & innovation platform India`
+  const share = resolveShareMeta(seo)
+  const url = share.url
 
   const faqItems = seo.faqItems ?? (seo.path === '/' ? [...AEO_HOME_FAQ] : undefined)
 
@@ -46,25 +46,27 @@ export function SEO({ seo }: SEOProps) {
       <meta name="language" content="English" />
       <meta httpEquiv="content-language" content={GEO.language} />
 
-      {/* Open Graph */}
+      {/* Open Graph — link previews (WhatsApp, LinkedIn, Facebook, iMessage) */}
       <meta property="og:type" content="website" />
       <meta property="og:url" content={url} />
-      <meta property="og:title" content={seo.title} />
-      <meta property="og:description" content={seo.description} />
-      <meta property="og:image" content={image} />
-      <meta property="og:image:alt" content={imageAlt} />
+      <meta property="og:title" content={share.title} />
+      <meta property="og:description" content={share.description} />
+      <meta property="og:image" content={share.image} />
+      <meta property="og:image:secure_url" content={share.image} />
+      <meta property="og:image:type" content="image/png" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content={share.imageAlt} />
       <meta property="og:site_name" content={BRAND.name} />
       <meta property="og:locale" content={GEO.locale} />
       <meta property="og:locale:alternate" content="en_US" />
 
       {/* Twitter / X Card */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={seo.title} />
-      <meta name="twitter:description" content={seo.description} />
-      <meta name="twitter:image" content={image} />
-      <meta name="twitter:image:alt" content={imageAlt} />
+      <meta name="twitter:title" content={share.title} />
+      <meta name="twitter:description" content={share.description} />
+      <meta name="twitter:image" content={share.image} />
+      <meta name="twitter:image:alt" content={share.imageAlt} />
 
       {/* App / theme */}
       <meta name="theme-color" content="#0A0F1C" />

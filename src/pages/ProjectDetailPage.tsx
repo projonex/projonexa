@@ -12,9 +12,16 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 const easeSmooth = [0.22, 1, 0.36, 1] as const
 
 function buildProjectSEO(project: NonNullable<ReturnType<typeof getProjectBySlug>>): PageSEO {
+  const thumb = project.thumbnailUrl
+  const ogImage = thumb.startsWith('http') ? thumb : thumb.startsWith('/') ? thumb : undefined
+
   return {
     title: `${project.name} | Projects | ${BRAND.name}`,
     description: project.description,
+    shareTitle: `${project.name} | ${BRAND.name}`,
+    shareDescription: project.tagline || project.description,
+    ogImage,
+    ogImageAlt: `${project.name} — ${BRAND.name} project`,
     keywords: [...BASE_KEYWORDS, project.name, project.category, ...project.techStack],
     path: projectPath(project.id),
     primaryKeyword: project.name,

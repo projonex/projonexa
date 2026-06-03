@@ -31,6 +31,9 @@ export function CareersApplyPage() {
           title: role?.title
             ? `Apply — ${role.title} | ${BRAND.name}`
             : PAGE_SEO.careersApply.title,
+          shareTitle: role?.title
+            ? `Apply — ${role.title} | ${BRAND.name}`
+            : PAGE_SEO.careersApply.shareTitle ?? PAGE_SEO.careersApply.title,
         }}
       />
 

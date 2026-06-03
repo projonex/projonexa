@@ -1,0 +1,20 @@
+# Netlify — serve prerendered HTML per route for correct link previews (title + thumbnail)
+/ /index.html 200
+/college-projects /college-projects/index.html 200
+/client-projects /client-projects/index.html 200
+/affiliate-program /affiliate-program/index.html 200
+/inquiry/affiliate /inquiry/affiliate/index.html 200
+/contact /contact/index.html 200
+/services /services/index.html 200
+/pricing /pricing/index.html 200
+/faq /faq/index.html 200
+/about /about/index.html 200
+/projects /projects/index.html 200
+/projects/* /projects/:splat/index.html 200
+/portfolio /portfolio/index.html 200
+/blog /blog/index.html 200
+/careers /careers/index.html 200
+/careers/apply /careers/apply/index.html 200
+/inquiry/corporate /inquiry/corporate/index.html 200
+/inquiry/students /inquiry/students/index.html 200
+/* /index.html 200

@@ -1,0 +1,22 @@
+{
+  "rewrites": [
+    { "source": "/college-projects", "destination": "/college-projects/index.html" },
+    { "source": "/client-projects", "destination": "/client-projects/index.html" },
+    { "source": "/affiliate-program", "destination": "/affiliate-program/index.html" },
+    { "source": "/contact", "destination": "/contact/index.html" },
+    { "source": "/services", "destination": "/services/index.html" },
+    { "source": "/pricing", "destination": "/pricing/index.html" },
+    { "source": "/faq", "destination": "/faq/index.html" },
+    { "source": "/about", "destination": "/about/index.html" },
+    { "source": "/projects", "destination": "/projects/index.html" },
+    { "source": "/projects/:slug", "destination": "/projects/:slug/index.html" },
+    { "source": "/portfolio", "destination": "/portfolio/index.html" },
+    { "source": "/blog", "destination": "/blog/index.html" },
+    { "source": "/careers", "destination": "/careers/index.html" },
+    { "source": "/careers/apply", "destination": "/careers/apply/index.html" },
+    { "source": "/inquiry/corporate", "destination": "/inquiry/corporate/index.html" },
+    { "source": "/inquiry/students", "destination": "/inquiry/students/index.html" },
+    { "source": "/inquiry/affiliate", "destination": "/inquiry/affiliate/index.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

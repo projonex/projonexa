@@ -208,6 +208,9 @@ export const CONTACT_PAGE_FAQ = [
 export const PAGE_SEO: Record<string, PageSEO> = {
   home: {
     title: `${BRAND.name} | Final Year & Mini Engineering College Projects — India`,
+    shareTitle: `${BRAND.name} | Final Year & Mini College Projects — India`,
+    shareDescription:
+      'Final year & mini engineering projects, MVPs & AI/ML — code, report, PPT, viva prep. Pan-India. projonexa.com',
     description:
       'Projonexa — India platform for final year engineering projects, mini & semester college projects, AI/ML, web/mobile & IoT. Full code, report, PPT, viva prep. Visit projonexa.com/college-projects or contact us today.',
     keywords: BASE_KEYWORDS,
@@ -575,6 +578,9 @@ export const PAGE_SEO: Record<string, PageSEO> = {
   },
   clientProjects: {
     title: `Client & MVP Development | ${BRAND.name} — Production-Ready India`,
+    shareTitle: `Client & MVP Development | ${BRAND.name}`,
+    shareDescription:
+      'Production-ready MVPs & custom software for startups in India — scope, quote & end-to-end delivery.',
     description:
       'Build your MVP with Projonexa instead of freelancers. Production-ready web, mobile & custom software for startups and clients in India. Share requirements, get a quote, end-to-end delivery. Client Q&A for GEO & AEO.',
     keywords: [
@@ -616,6 +622,9 @@ export const PAGE_SEO: Record<string, PageSEO> = {
   },
   collegeProjects: {
     title: `Final Year & Mini Engineering Projects | ${BRAND.name} — College India`,
+    shareTitle: `Final Year & Mini Projects | ${BRAND.name}`,
+    shareDescription:
+      'College engineering projects in India — code, SRS, report, PPT & viva prep. BE, B.Tech, BCA, MCA.',
     description:
       'Final year engineering project help & mini project for college students in India. Projonexa delivers code, SRS, report, PPT, deployment & viva prep — BE, B.Tech, BCA, MCA. Contact: projonexa.com/inquiry/students',
     keywords: [

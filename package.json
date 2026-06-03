@@ -35,7 +35,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "npm run seo:validate && tsc -b && vite build",
+    "build": "npm run seo:validate && npm run og:generate && tsc -b && vite build && node scripts/prerender-share-meta.mjs",
+    "og:generate": "node scripts/generate-og-images.mjs",
     "preview": "vite preview",
     "brand:icons": "node scripts/generate-brand-icons.mjs",
     "seo:validate": "node scripts/validate-seo.mjs",
@@ -59,6 +60,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
+    "sharp": "^0.34.5",
     "tailwindcss": "^3.4.16",
     "typescript": "~5.6.3",
     "vite": "^5.4.11"
