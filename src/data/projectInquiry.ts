@@ -1,16 +1,22 @@
 import { CONTACT_EMAIL } from '@/data/contact'
+import { normalizeReferralCode } from '@/lib/referralCode'
 
 export const PROJECT_INQUIRY_EMAIL = CONTACT_EMAIL
 
 export const INQUIRY_PATHS = {
   students: '/inquiry/students',
   corporate: '/inquiry/corporate',
+  affiliate: '/inquiry/affiliate',
 } as const
 
 export type InquiryAudience = keyof typeof INQUIRY_PATHS
 
-export function studentInquiryPath() {
-  return INQUIRY_PATHS.students
+export function studentInquiryPath(referralCode?: string) {
+  const base = INQUIRY_PATHS.students
+  if (!referralCode) return base
+  const ref = normalizeReferralCode(referralCode)
+  if (!ref) return base
+  return `${base}?ref=${encodeURIComponent(ref)}`
 }
 
 export function corporateInquiryPath() {
@@ -21,8 +27,36 @@ export const STUDENT_INQUIRY_SECTION = {
   eyebrow: 'Student project inquiry',
   title: 'Start your academic project',
   description:
-    'Final year, mini, AI/ML, IoT, and more — tell us your college, deadline, and requirements.',
+    'Share your idea and schedule a consultation — we will confirm your meeting and next steps.',
 } as const
+
+/** Consultation slots (IST) — shown after the student picks a date. */
+export const MEETING_TIME_SLOTS = [
+  { value: '10:00', label: '10:00 AM IST' },
+  { value: '11:00', label: '11:00 AM IST' },
+  { value: '12:00', label: '12:00 PM IST' },
+  { value: '14:00', label: '2:00 PM IST' },
+  { value: '15:00', label: '3:00 PM IST' },
+  { value: '16:00', label: '4:00 PM IST' },
+  { value: '17:00', label: '5:00 PM IST' },
+  { value: '18:00', label: '6:00 PM IST' },
+] as const
+
+export function formatMeetingDate(isoDate: string): string {
+  if (!isoDate) return ''
+  const [year, month, day] = isoDate.split('-').map(Number)
+  if (!year || !month || !day) return isoDate
+  return new Date(year, month - 1, day).toLocaleDateString('en-IN', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
+}
+
+export function minMeetingDateIso(): string {
+  return new Date().toISOString().split('T')[0] ?? ''
+}
 
 export const CORPORATE_INQUIRY_SECTION = {
   eyebrow: 'Corporate & startup inquiry',
@@ -44,6 +78,17 @@ export const INQUIRY_BUDGET_OPTIONS = [
   { value: '15k-30k', label: '₹15,000 – ₹30,000' },
   { value: '30k-60k', label: '₹30,000 – ₹60,000' },
   { value: '60k-plus', label: '₹60,000+' },
+  { value: 'undecided', label: 'Not decided yet' },
+] as const
+
+/** Student inquiry budget ranges (student form only). */
+export const STUDENT_BUDGET_OPTIONS = [
+  { value: 'under-5k', label: 'Under ₹5,000' },
+  { value: '5k-10k', label: '₹5,000 – ₹10,000' },
+  { value: '10k-15k', label: '₹10,000 – ₹15,000' },
+  { value: '15k-20k', label: '₹15,000 – ₹20,000' },
+  { value: '20k-30k', label: '₹20,000 – ₹30,000' },
+  { value: '30k-60k', label: '₹30,000 – ₹60,000' },
   { value: 'undecided', label: 'Not decided yet' },
 ] as const
 

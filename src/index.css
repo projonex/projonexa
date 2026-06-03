@@ -1,3 +1,5 @@
+@import './theme/theme.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,23 +19,23 @@
   }
 
   .dark ::selection {
-    background: rgba(0, 200, 255, 0.35);
+    background: var(--px-selection-dark);
     color: #ffffff;
   }
 
   ::selection {
-    background: rgba(0, 200, 255, 0.25);
+    background: var(--px-selection-light);
   }
 }
 
 @layer utilities {
   .text-gradient {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #00c8ff 0%, #3d8bff 50%, #6c63ff 100%);
+    background-image: var(--px-gradient-brand);
   }
 
   .bg-brand-gradient {
-    background-image: linear-gradient(135deg, #00c8ff 0%, #3d8bff 50%, #6c63ff 100%);
+    background-image: var(--px-gradient-brand);
   }
 
   /* Header / footer logo mark + wordmark */
@@ -632,6 +634,14 @@
     min-height: 3rem;
     font-size: 1rem;
     line-height: 1.5;
+  }
+
+  .careers-form-date {
+    color-scheme: light;
+  }
+
+  .dark .careers-form-date {
+    color-scheme: dark;
   }
 
   @media (min-width: 640px) {
@@ -1623,6 +1633,22 @@
   .inquiry-footer-wordmark .brand-wordmark-display {
     font-size: clamp(2.5rem, 14vw, 5.5rem);
     letter-spacing: -0.04em;
+  }
+
+  .inquiry-sidebar-wordmark {
+    position: relative;
+    width: 100%;
+    max-width: 20rem;
+    justify-content: flex-start;
+    padding: 0;
+    margin-top: 2rem;
+    overflow: visible;
+  }
+
+  .inquiry-sidebar-wordmark .brand-wordmark-display {
+    font-size: clamp(2.75rem, 4.5vw, 4.25rem);
+    letter-spacing: -0.04em;
+    text-align: left;
   }
 
   @media (min-width: 640px) {

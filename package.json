@@ -37,6 +37,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
+    "brand:icons": "node scripts/generate-brand-icons.mjs",
     "seo:validate": "node scripts/validate-seo.mjs",
     "sitemap:generate": "node scripts/generate-sitemap.mjs",
     "seo:ctr:export": "node scripts/export-ctr-variants.mjs"

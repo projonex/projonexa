@@ -16,6 +16,7 @@ import { CorporateInquiryPage } from '@/pages/CorporateInquiryPage'
 import { FAQPage } from '@/pages/FAQPage'
 import { ContactPage } from '@/pages/ContactPage'
 import { StudentInquiryPage } from '@/pages/StudentInquiryPage'
+import { AffiliateInquiryPage } from '@/pages/AffiliateInquiryPage'
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
             <Route path="careers/apply" element={<CareersApplyPage />} />
             <Route path="inquiry/students" element={<StudentInquiryPage />} />
             <Route path="inquiry/corporate" element={<CorporateInquiryPage />} />
+            <Route path="inquiry/affiliate" element={<AffiliateInquiryPage />} />
             <Route element={<Layout />}>
               <Route index element={<HomePage />} />
               <Route path="about" element={<AboutPage />} />

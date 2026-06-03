@@ -1,0 +1,37 @@
+/**
+ * Projonexa CSS variables — source: src/theme/colors.json
+ */
+:root {
+  --px-brand-primary: #00c8ff;
+  --px-brand-secondary: #6c63ff;
+  --px-brand-mid: #3d8bff;
+  --px-brand-accent: #67e8f9;
+  --px-brand-light: #ffffff;
+  --px-brand-dark: #000000;
+
+  --px-surface: #000000;
+  --px-surface-raised: #050505;
+  --px-surface-elevated: #0a0a0a;
+  --px-surface-card: #111111;
+  --px-surface-hover: #1a1a1a;
+  --px-surface-muted: #141414;
+
+  --px-text-primary: #f4f4f5;
+  --px-text-secondary: #d4d4d8;
+  --px-text-muted: #a1a1aa;
+  --px-text-subtle: #71717a;
+  --px-text-faint: #52525b;
+
+  --px-border-default: rgba(255, 255, 255, 0.08);
+  --px-border-strong: rgba(255, 255, 255, 0.1);
+  --px-border-focus: rgba(0, 200, 255, 0.5);
+
+  --px-selection-dark: rgba(0, 200, 255, 0.35);
+  --px-selection-light: rgba(0, 200, 255, 0.25);
+  --px-glow-primary: rgba(0, 200, 255, 0.12);
+  --px-glow-secondary: rgba(108, 99, 255, 0.1);
+
+  --px-gradient-brand: linear-gradient(135deg, #00c8ff 0%, #3d8bff 50%, #6c63ff 100%);
+  --px-gradient-hero-glow: radial-gradient(circle at top, rgba(0, 200, 255, 0.12), transparent 55%);
+  --px-gradient-divider: linear-gradient(to right, rgba(0, 200, 255, 0.5), rgba(61, 139, 255, 0.3), transparent);
+}

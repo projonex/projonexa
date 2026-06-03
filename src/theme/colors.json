@@ -1,0 +1,52 @@
+{
+  "version": "1.0.0",
+  "brand": {
+    "primary": "#00C8FF",
+    "secondary": "#6C63FF",
+    "mid": "#3D8BFF",
+    "accent": "#67E8F9",
+    "light": "#FFFFFF",
+    "dark": "#000000"
+  },
+  "surface": {
+    "default": "#000000",
+    "raised": "#050505",
+    "elevated": "#0A0A0A",
+    "card": "#111111",
+    "hover": "#1A1A1A",
+    "muted": "#141414"
+  },
+  "text": {
+    "primary": "#F4F4F5",
+    "secondary": "#D4D4D8",
+    "muted": "#A1A1AA",
+    "subtle": "#71717A",
+    "faint": "#52525B"
+  },
+  "border": {
+    "default": "#14FFFFFF",
+    "strong": "#1AFFFFFF",
+    "focus": "#8000C8FF"
+  },
+  "effects": {
+    "selectionDark": "rgba(0, 200, 255, 0.35)",
+    "selectionLight": "rgba(0, 200, 255, 0.25)",
+    "primaryGlow": "rgba(0, 200, 255, 0.12)",
+    "secondaryGlow": "rgba(108, 99, 255, 0.10)"
+  },
+  "gradient": {
+    "brand": "linear-gradient(135deg, #00C8FF 0%, #3D8BFF 50%, #6C63FF 100%)",
+    "heroGlow": "radial-gradient(circle at top, rgba(0, 200, 255, 0.12), transparent 55%)",
+    "divider": "linear-gradient(to right, rgba(0, 200, 255, 0.5), rgba(61, 139, 255, 0.3), transparent)"
+  },
+  "shadow": {
+    "glow": "0 0 60px -12px rgba(0, 200, 255, 0.35)",
+    "glowSm": "0 0 30px -8px rgba(0, 200, 255, 0.25)",
+    "card": "0 4px 24px -4px rgba(0, 0, 0, 0.12)",
+    "cardDark": "0 4px 24px -4px rgba(0, 0, 0, 0.6)",
+    "cardDarkLg": "0 8px 40px -8px rgba(0, 0, 0, 0.8)"
+  },
+  "font": {
+    "sans": ["Inter", "ui-sans-serif", "system-ui", "sans-serif"]
+  }
+}

@@ -372,6 +372,41 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       { name: 'Corporate inquiry', path: '/inquiry/corporate' },
     ],
   },
+  affiliateInquiry: {
+    title: `Affiliate Program Application | ${BRAND.name} — Student Referrals`,
+    description:
+      'Apply to Projonexa’s student affiliate program: earn passive income by referring genuine final-year and academic project inquiries. Eligibility criteria and application form.',
+    keywords: [
+      ...BASE_KEYWORDS,
+      'student affiliate program India',
+      'referral program engineering students',
+      'passive income students',
+      'projonexa affiliate',
+    ],
+    path: '/inquiry/affiliate',
+    primaryKeyword: 'student affiliate program India',
+    secondaryKeywords: ['referral program students', 'projonexa affiliate apply'],
+    intent: 'transactional',
+    audience: 'students',
+    conversionGoal: 'submit-affiliate-application',
+    breadcrumb: [
+      { name: 'Contact', path: '/contact' },
+      { name: 'Affiliate program', path: '/inquiry/affiliate' },
+    ],
+    faqItems: [
+      {
+        question: 'Who can join the Projonexa affiliate program?',
+        answer:
+          'Enrolled students in India who meet our eligibility criteria — active online presence, ethical referrals, and agreement to program terms — can apply via the affiliate inquiry form.',
+      },
+      {
+        question: 'How do I get my referral code?',
+        answer:
+          'After you submit the application, you receive a unique referral code to share. Final approval and commission payouts follow verification by the Projonexa team.',
+      },
+    ],
+    faqSchema: true,
+  },
 }
 
 /** Core Q&A pairs surfaced on homepage for AEO (Answer Engine Optimization) */

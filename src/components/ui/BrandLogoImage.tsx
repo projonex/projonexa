@@ -1,4 +1,4 @@
-import { BRAND_LOGO } from '@/constants/brand-assets'
+import { BRAND_LOGO, BRAND_LOGO_SIZES } from '@/constants/brand-assets'
 
 interface BrandLogoImageProps {
   className?: string
@@ -16,6 +16,8 @@ export function BrandLogoImage({
   return (
     <img
       src={BRAND_LOGO.src}
+      srcSet={`${BRAND_LOGO_SIZES.sm} 128w, ${BRAND_LOGO_SIZES.md} 256w, ${BRAND_LOGO.src} 1024w`}
+      sizes="(max-width: 640px) 44px, 42px"
       alt={decorative ? '' : BRAND_LOGO.alt}
       width={BRAND_LOGO.width}
       height={BRAND_LOGO.height}

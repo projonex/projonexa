@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async'
+import { BRAND_ICONS } from '@/constants/brand-assets'
 import { BRAND, FOUNDER, GEO } from '@/data/brand'
 import { AEO_HOME_FAQ, type PageSEO } from '@/data/seo'
 import { buildStructuredData } from '@/lib/structured-data'
@@ -69,6 +70,10 @@ export function SEO({ seo }: SEOProps) {
       <meta name="theme-color" content="#0A0F1C" />
       <meta name="application-name" content={BRAND.name} />
       <meta name="apple-mobile-web-app-title" content={BRAND.name} />
+      <link rel="icon" type="image/png" sizes="16x16" href={BRAND_ICONS.favicon16} />
+      <link rel="icon" type="image/png" sizes="32x32" href={BRAND_ICONS.favicon32} />
+      <link rel="shortcut icon" href={BRAND_ICONS.favicon32} />
+      <link rel="apple-touch-icon" sizes="180x180" href={BRAND_ICONS.appleTouch} />
 
       {/* Structured data — SEO + AEO + GEO */}
       {schemas.map((schema) => (
