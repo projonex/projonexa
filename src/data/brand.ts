@@ -204,6 +204,59 @@ export const WHY_PILLARS = [
   },
 ] as const
 
+export const WHY_CARDS = [
+  {
+    title: 'Technical Depth',
+    description:
+      'Production-grade stacks, scalable architecture, and code you can defend in review.',
+    hoverDescription:
+      'From React and Python to AI/ML and cloud — every layer is built for performance, clarity, and long-term maintainability.',
+    highlights: [
+      'React & Node.js',
+      'AI / ML stacks',
+      'Cloud architecture',
+      'Clean code patterns',
+      'Scalable APIs',
+    ],
+    accent: '#00c8ff',
+    gradient: 'linear-gradient(145deg, #0a1628 0%, #0d2847 42%, #1a4a6e 100%)',
+    animation: 'vertical',
+  },
+  {
+    title: 'Academic Rigor',
+    description: 'SRS, reports, and viva-ready documentation aligned to university standards.',
+    hoverDescription:
+      'Complete documentation packages — SRS, design docs, reports, and viva prep — formatted to your university guidelines.',
+    highlights: [
+      'SRS documentation',
+      'Design reports',
+      'Viva preparation',
+      'University formats',
+      'Presentation decks',
+    ],
+    accent: '#6c63ff',
+    gradient: 'linear-gradient(145deg, #120a28 0%, #1e1248 42%, #3d2a7a 100%)',
+    featured: true,
+    animation: 'stacked',
+  },
+  {
+    title: 'Startup Velocity',
+    description: 'MVPs and prototypes built for real users, demos, and fast iteration.',
+    hoverDescription:
+      'Ship investor-ready MVPs with structured sprints, clear milestones, and demos that prove market fit fast.',
+    highlights: [
+      'MVP development',
+      'Investor demos',
+      'Fast sprints',
+      'User-ready UI',
+      'Launch support',
+    ],
+    accent: '#00e5a0',
+    gradient: 'linear-gradient(145deg, #0a1f18 0%, #0d3d2e 42%, #145a42 100%)',
+    animation: 'marquee',
+  },
+] as const
+
 /** Benefit indices under each pillar column (Technical · Academic · Startup) */
 export const WHY_BENEFIT_GROUPS = [
   [0, 1, 2],
