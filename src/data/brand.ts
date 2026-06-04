@@ -149,6 +149,54 @@ export const MISSION = {
     'To empower students and innovators by providing access to technical expertise, mentorship, development resources, and end-to-end project execution.',
 } as const
 
+export const PURPOSE_CARDS = [
+  {
+    title: 'End-to-end delivery',
+    description:
+      'From first brief to final submission — architecture, build, documentation, and deployment handled in one structured flow.',
+    accent: '#00c8ff',
+    mediaLight: '#c5dce8',
+    mediaDark: '#1e3344',
+    animation: 'pipeline',
+    steps: [
+      'Discovery & scope',
+      'Architecture & design',
+      'Development & testing',
+      'Documentation',
+      'Deployment & handoff',
+    ],
+  },
+  {
+    title: 'Built for every innovator',
+    description:
+      'Students, startups, and businesses each get workflows tuned to academic standards, MVP speed, or enterprise scale.',
+    accent: '#6c63ff',
+    mediaLight: '#d4cfe8',
+    mediaDark: '#2a2444',
+    animation: 'audience',
+    audiences: [
+      { label: 'Students', detail: 'Final-year & academic projects' },
+      { label: 'Startups', detail: 'MVPs & investor-ready demos' },
+      { label: 'Businesses', detail: 'Custom software & integrations' },
+    ],
+  },
+  {
+    title: 'Expert mentorship built in',
+    description:
+      'Developers and mentors guide every phase — so you ship with clarity, quality, and confidence.',
+    accent: '#00e5a0',
+    mediaLight: '#cfe8dc',
+    mediaDark: '#1a3328',
+    animation: 'milestones',
+    milestones: [
+      { label: 'SRS & documentation', time: 'Week 1' },
+      { label: 'Architecture review', time: 'Week 2' },
+      { label: 'Viva preparation', time: 'Pre-submission' },
+      { label: 'Deployment support', time: 'Go-live' },
+    ],
+  },
+] as const
+
 export const STATS_SECTION = {
   eyebrow: 'Impact',
   title: 'Numbers That Define Our Growth',

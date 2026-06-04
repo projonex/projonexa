@@ -1496,6 +1496,28 @@
       0 20px 48px -28px rgba(0, 200, 255, 0.1);
   }
 
+  .purpose-feature-card {
+    box-shadow:
+      0 0 0 1px rgba(0, 0, 0, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.65),
+      0 16px 40px -24px rgba(0, 200, 255, 0.1);
+  }
+
+  .dark .purpose-feature-card {
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      0 16px 40px -24px rgba(0, 200, 255, 0.08);
+  }
+
+  .purpose-card-media {
+    background: var(--purpose-media-bg, #d8dde3);
+  }
+
+  .dark .purpose-card-media {
+    background: var(--purpose-media-bg-dark, #2c2f36);
+  }
+
   .service-area-card {
     box-shadow:
       0 0 0 1px rgba(0, 200, 255, 0.05),
