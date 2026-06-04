@@ -216,7 +216,7 @@ function StackedProgressAnimation({
   return (
     <div className="w-full">
       <div className="relative min-h-[228px] overflow-hidden">
-        <AnimatePresence mode="popLayout">
+        <AnimatePresence mode="wait">
           <motion.div
             key={windowStart}
             initial={{ opacity: 0.9, y: 12 }}

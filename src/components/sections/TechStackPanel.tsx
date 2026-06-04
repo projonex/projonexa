@@ -5,6 +5,7 @@ import {
   type TechCategory,
   type TechItem,
 } from '@/data/technologies'
+import { pointerLeftContainer } from '@/lib/dom-events'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   Brain,
@@ -102,8 +103,7 @@ export function TechStackPanel({ onTechHover }: TechStackPanelProps) {
     <div
       className="tech-stack-premium relative overflow-hidden rounded-3xl shadow-[0_20px_60px_-24px_rgba(0,200,255,0.2)] dark:shadow-[0_20px_60px_-24px_rgba(0,200,255,0.12)]"
       onMouseLeave={(e) => {
-        const next = e.relatedTarget as Node | null
-        if (next && e.currentTarget.contains(next)) return
+        if (!pointerLeftContainer(e.currentTarget, e.relatedTarget)) return
         emitHover(null)
       }}
     >
@@ -136,8 +136,7 @@ export function TechStackPanel({ onTechHover }: TechStackPanelProps) {
           className="relative mb-4 overflow-hidden rounded-2xl border border-black/[0.06] bg-white/50 backdrop-blur-xl dark:border-white/[0.08] dark:bg-black/45"
           onMouseEnter={() => setCyclePaused(true)}
           onMouseLeave={(e) => {
-            const next = e.relatedTarget as Node | null
-            if (next && e.currentTarget.contains(next)) return
+            if (!pointerLeftContainer(e.currentTarget, e.relatedTarget)) return
             setCyclePaused(false)
           }}
         >
@@ -251,8 +250,7 @@ export function TechStackPanel({ onTechHover }: TechStackPanelProps) {
           <div
             className="relative z-[2] px-3.5 pb-3.5 sm:px-4 sm:pb-4"
             onMouseLeave={(e) => {
-              const next = e.relatedTarget as Node | null
-              if (next && e.currentTarget.contains(next)) return
+              if (!pointerLeftContainer(e.currentTarget, e.relatedTarget)) return
               emitHover(null)
             }}
           >
