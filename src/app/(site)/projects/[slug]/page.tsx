@@ -1,8 +1,8 @@
 import { PageSeo } from '@/components/seo/PageSeo'
 import { getProjectBySlug, MY_PROJECTS } from '@/data/projects'
 import { PAGE_SEO } from '@/data/seo'
-import { buildPageMetadata } from '@/lib/page-metadata'
-import { buildProjectSEO } from '@/lib/project-seo'
+import { buildPageMetadata } from '@/lib/seo/page-metadata'
+import { buildProjectSEO } from '@/lib/seo/project-seo'
 import { ProjectDetailPage } from '@/views/ProjectDetailPage'
 
 type Props = { params: Promise<{ slug: string }> }

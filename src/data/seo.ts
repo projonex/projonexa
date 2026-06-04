@@ -3,8 +3,8 @@ import { CLIENT_PROJECTS_FAQ_ITEMS } from './clientProjectsFaq'
 import { STUDENT_PROJECTS_FAQ_ITEMS } from './studentProjectsFaq'
 import { BRAND, GEO } from './brand'
 import { FAQ_ITEMS } from './faq'
-import type { PageSEO } from '../lib/seo-types'
-export type { Audience, BreadcrumbItem, PageSEO, SearchIntent } from '../lib/seo-types'
+import type { PageSEO } from '@/lib/seo/seo-types'
+export type { Audience, BreadcrumbItem, PageSEO, SearchIntent } from '@/lib/seo/seo-types'
 
 const GEO_KEYWORDS = [
   'final year projects India',

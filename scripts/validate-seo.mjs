@@ -11,7 +11,7 @@ async function loadSeoData() {
 
   const repoRoot = process.cwd()
   const seoPath = path.join(repoRoot, 'src/data/seo.ts').replaceAll('\\', '/')
-  const rulesPath = path.join(repoRoot, 'src/lib/seo-rules.ts').replaceAll('\\', '/')
+  const rulesPath = path.join(repoRoot, 'src/lib/seo/seo-rules.ts').replaceAll('\\', '/')
 
   await writeFile(
     entryFile,

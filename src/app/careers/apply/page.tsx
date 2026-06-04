@@ -1,6 +1,6 @@
 import { PageSeo } from '@/components/seo/PageSeo'
-import { buildCareersApplySeo } from '@/lib/careers-apply-seo'
-import { buildPageMetadata } from '@/lib/page-metadata'
+import { buildCareersApplySeo } from '@/lib/seo/careers-apply-seo'
+import { buildPageMetadata } from '@/lib/seo/page-metadata'
 import { Suspense } from 'react'
 import { CareersApplyPage } from '@/views/CareersApplyPage'
 

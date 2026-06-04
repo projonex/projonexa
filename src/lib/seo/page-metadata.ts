@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import { BRAND_ICONS } from '@/constants/brand-assets'
 import { BRAND, FOUNDER, GEO } from '@/data/brand'
 import { AEO_HOME_FAQ } from '@/data/seo'
-import type { PageSEO } from '@/lib/seo-types'
-import { resolveShareMeta } from '@/lib/social-share'
-import { buildStructuredData } from '@/lib/structured-data'
+import type { PageSEO } from './seo-types'
+import { resolveShareMeta } from './social-share'
+import { buildStructuredData } from './structured-data'
 
 export function buildPageMetadata(seo: PageSEO): Metadata {
   const share = resolveShareMeta(seo)

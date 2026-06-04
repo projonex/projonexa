@@ -4,7 +4,7 @@ import {
   collectSitemapEntries,
   sitemapChangeFrequency,
   sitemapPriority,
-} from '@/lib/sitemap-urls'
+} from '@/lib/seo/sitemap-urls'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return collectSitemapEntries().map((entry) => ({

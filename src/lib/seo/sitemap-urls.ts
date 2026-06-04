@@ -1,7 +1,7 @@
 import { BRAND } from '@/data/brand'
 import { MY_PROJECTS, projectPath } from '@/data/projects'
 import { PAGE_SEO } from '@/data/seo'
-import type { PageSEO } from '@/lib/seo-types'
+import type { PageSEO } from './seo-types'
 
 /** Paths omitted from sitemap (redirects or non-indexable). */
 const EXCLUDED_PATHS = new Set(['/research', '/404'])

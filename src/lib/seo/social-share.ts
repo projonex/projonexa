@@ -1,6 +1,6 @@
 import { BRAND } from '@/data/brand'
 import { SOCIAL_IMAGES, type SocialImageKey } from '@/constants/social-images'
-import type { PageSEO } from '@/lib/seo-types'
+import type { PageSEO } from './seo-types'
 
 const PATH_IMAGE_KEY: Record<string, SocialImageKey> = {
   '/': 'home',

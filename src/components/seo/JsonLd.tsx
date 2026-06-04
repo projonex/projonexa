@@ -1,6 +1,6 @@
 import { AEO_HOME_FAQ } from '@/data/seo'
-import type { PageSEO } from '@/lib/seo-types'
-import { buildStructuredData } from '@/lib/structured-data'
+import type { PageSEO } from '@/lib/seo/seo-types'
+import { buildStructuredData } from '@/lib/seo/structured-data'
 
 export function JsonLd({ seo }: { seo: PageSEO }) {
   const faqItems = seo.faqItems ?? (seo.path === '/' ? [...AEO_HOME_FAQ] : undefined)

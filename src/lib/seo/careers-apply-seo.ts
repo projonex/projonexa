@@ -1,7 +1,7 @@
 import { BRAND } from '@/data/brand'
 import { getCareerRoleById, resolveCareerRoleId } from '@/data/careers'
 import { PAGE_SEO } from '@/data/seo'
-import type { PageSEO } from '@/lib/seo-types'
+import type { PageSEO } from './seo-types'
 
 export function buildCareersApplySeo(roleParam: string | null | undefined): PageSEO {
   const roleId = resolveCareerRoleId(roleParam ?? null)

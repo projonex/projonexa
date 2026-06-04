@@ -237,10 +237,9 @@ Projonexa works across the **full technology spectrum** — every stack, framewo
 
 ![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=next.js&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
 ![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=flat&logo=framer&logoColor=white)
-![React Router](https://img.shields.io/badge/React_Router-CA4245?style=flat&logo=reactrouter&logoColor=white)
 
 ---
 
@@ -299,7 +298,7 @@ cd projonexa
 # Install dependencies
 npm install
 
-# Start development server → http://localhost:5173
+# Start development server → http://localhost:3000
 npm run dev
 ```
 
@@ -321,14 +320,14 @@ Copy the example file for local configuration:
 cp .env.example .env.local
 ```
 
-Only variables prefixed with `VITE_` are exposed to the client. Never commit `.env` or `.env.local` files.
+Use `NEXT_PUBLIC_*` only when a value must be exposed to the browser. Never commit `.env` or `.env.local`.
 
 ### Deployment (Vercel — recommended)
 
 The site is configured for **[Vercel](https://vercel.com)** via [`vercel.json`](vercel.json):
 
-- **Build:** `npm run build` → `dist/` (sitemap, OG images, prerendered share meta per route)
-- **Routing:** SPA fallback + per-route HTML for correct WhatsApp/LinkedIn previews
+- **Build:** `npm run build` → `.next/` (sitemap, OG images, SEO validation, static/SSG pages)
+- **SEO:** Server-rendered metadata + JSON-LD per route; `/sitemap.xml` and `/robots.txt` from App Router
 - **Redirects:** `/final-year-projects` → `/college-projects`, `/research` → `/services`
 
 **Quick setup**
@@ -349,22 +348,21 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for architecture and SEO note
 ## Project Structure
 
 ```
-projonexa/
-├── public/                 # Static assets, logo, favicons, sitemap, robots.txt
+projonexa-main-website/
+├── public/                 # Static assets, OG images, sitemap.xml, llms.txt
+├── scripts/                # Build-time SEO & asset generators
 ├── src/
-│   ├── app/                # Next.js App Router (routes + metadata)
-│   ├── components/         # Layout, sections, UI, SEO
-│   ├── context/            # Theme provider (dark/light)
-│   ├── data/               # Content, services, SEO config
-│   ├── hooks/              # Custom React hooks
-│   └── views/              # Page UI (composed by app routes)
-├── docs/                   # Architecture, brand, SEO, GitHub setup
-├── .github/                # CI, templates, Dependabot, CODEOWNERS
-├── LICENSE                 # GNU AGPL v3.0
-└── README.md
+│   ├── app/                # Next.js routes, layouts, metadata
+│   ├── components/         # Layout, sections, forms, UI, SEO helpers
+│   ├── data/               # Content & PAGE_SEO
+│   ├── lib/seo/            # Metadata, JSON-LD, sitemap helpers
+│   ├── theme/              # Design tokens & Tailwind preset
+│   └── views/              # Page UI (wired by app routes)
+├── docs/                   # Architecture, brand, SEO, deployment
+└── .github/                # CI, templates, Dependabot
 ```
 
-Full architecture → [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
+Full tree → [`docs/PROJECT_STRUCTURE.md`](docs/PROJECT_STRUCTURE.md) · Architecture → [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
 
 ---
 
@@ -372,7 +370,8 @@ Full architecture → [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
 
 | Document | Description |
 |----------|-------------|
-| [ARCHITECTURE.md](docs/ARCHITECTURE.md) | Folder layout, routing, deployment |
+| [PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md) | Canonical folder layout & conventions |
+| [ARCHITECTURE.md](docs/ARCHITECTURE.md) | Stack, routing, SEO, deployment |
 | [BRAND_GUIDELINES.md](docs/BRAND_GUIDELINES.md) | Colors, typography, UI standards |
 | [SEO_STRATEGY.md](docs/SEO_STRATEGY.md) | Meta tags, keywords, sitemap |
 | [IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md) | Build phases and roadmap |

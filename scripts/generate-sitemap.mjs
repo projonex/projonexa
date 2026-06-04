@@ -13,7 +13,7 @@ async function loadSitemapHelpers() {
   const bundleFile = path.join(tempDir, 'bundle.mjs')
 
   const repoRoot = process.cwd()
-  const sitemapPath = path.join(repoRoot, 'src/lib/sitemap-urls.ts').replaceAll('\\', '/')
+  const sitemapPath = path.join(repoRoot, 'src/lib/seo/sitemap-urls.ts').replaceAll('\\', '/')
 
   await writeFile(
     entryFile,

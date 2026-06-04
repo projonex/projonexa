@@ -48,7 +48,7 @@ Complete search optimization strategy for [projonexa.com](https://projonexa.com)
 
 ### Structured Data (JSON-LD)
 
-Generated in `src/lib/structured-data.ts`, injected via `src/components/seo/SEO.tsx`:
+Generated in `src/lib/seo/structured-data.ts`, injected via `src/components/seo/PageSeo.tsx` + `JsonLd.tsx`:
 
 | Schema | Purpose |
 |--------|---------|
@@ -181,7 +181,7 @@ Notes:
 ```
 src/
 ├── components/seo/SEO.tsx       # Meta tags + JSON-LD injection
-├── lib/structured-data.ts       # Schema generators
+├── lib/seo/structured-data.ts   # Schema generators
 ├── data/seo.ts                  # Per-page SEO + AEO_HOME_FAQ
 ├── data/brand.ts                # GEO + AEO_DEFINITION
 ├── components/sections/

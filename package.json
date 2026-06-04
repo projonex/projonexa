@@ -41,7 +41,8 @@
     "brand:icons": "node scripts/generate-brand-icons.mjs",
     "seo:validate": "node scripts/validate-seo.mjs",
     "sitemap:generate": "node scripts/generate-sitemap.mjs",
-    "seo:ctr:export": "node scripts/export-ctr-variants.mjs"
+    "seo:ctr:export": "node scripts/export-ctr-variants.mjs",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "framer-motion": "^12.40.0",

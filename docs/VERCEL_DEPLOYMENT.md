@@ -10,26 +10,26 @@ If your Git repository root is the **parent monorepo** (e.g. `Projonexa/`), set 
 |--------|--------|
 | **Root Directory** | `projonexa-main-website` |
 | **Framework Preset** | Next.js (auto-detected) |
-| **Build Command** | `npm run build` (from `vercel.json`) |
-| **Output Directory** | `dist` |
+| **Build Command** | `npm run build` |
+| **Output Directory** | *(leave default — Next.js)* |
 | **Install Command** | `npm ci` |
 
 If the repository root **is** `projonexa-main-website`, leave Root Directory empty.
 
 ## What `npm run build` does
 
-1. `seo:validate` — checks all `PAGE_SEO` entries  
-2. `og:generate` — creates `public/og/*.png` (1200×630 share thumbnails)  
-3. `sitemap:generate` — refreshes `public/sitemap.xml`  
-4. `tsc -b && vite build` — production bundle → `dist/`  
-5. `prerender-share-meta.mjs` — per-route `index.html` with correct **title + Open Graph** for link previews (WhatsApp, LinkedIn, etc.)
+1. `sitemap:generate` — refreshes `public/sitemap.xml`  
+2. `seo:validate` — checks all `PAGE_SEO` entries  
+3. `og:generate` — creates `public/og/*.png` (1200×630 share thumbnails)  
+4. `next build` — production bundle → `.next/` with static/SSG pages and server metadata  
 
-## Vercel routing (`vercel.json`)
+## Routing & SEO on Vercel
 
-- **Permanent redirects:** `/final-year-projects` → `/college-projects`, `/research` → `/services`  
-- **Rewrites:** each marketing route serves its prerendered `*/index.html` so crawlers see the right share title and thumbnail  
-- **404:** unknown URLs serve `404.html` (HTTP 404) with correct title; in-app routing uses the React 404 page  
-- **Headers:** long cache for `/og/*` and `/assets/*`; basic security headers sitewide  
+- **Redirects** (`next.config.ts` + `vercel.json`): `/final-year-projects` → `/college-projects`, `/research` → `/services`  
+- **Metadata:** each route exports `metadata` or `generateMetadata` (Open Graph, canonical, GEO tags)  
+- **JSON-LD:** injected per page via `PageSeo`  
+- **Sitemap / robots:** `src/app/sitemap.ts`, `src/app/robots.ts`  
+- **Headers** (`vercel.json`): long cache for `/og/*`; security headers sitewide  
 
 ## Custom domain
 
@@ -38,30 +38,16 @@ If the repository root **is** `projonexa-main-website`, leave Root Directory emp
 3. Point DNS to Vercel (A/CNAME per Vercel dashboard)  
 4. Enable **Redirect** `www` → apex (or the reverse), per your preference  
 
-## After deploy — verify link previews
-
-Test these URLs in [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) or LinkedIn Post Inspector:
-
-- `https://projonexa.com/`  
-- `https://projonexa.com/college-projects`  
-- `https://projonexa.com/client-projects`  
-- `https://projonexa.com/contact`  
-
-Each should show the matching **title**, **description**, and **PNG thumbnail** from `/og/`.
+Ensure `BRAND.url` in `src/data/brand.ts` matches the live domain (`https://projonexa.com`).
 
 ## Environment variables
 
-No secrets are required for the static marketing site. If you add `VITE_*` variables later, set them under **Settings → Environment Variables** for Production, Preview, and Development.
+Optional overrides via Vercel **Settings** → **Environment Variables**. See [`.env.example`](../.env.example). Most config is in `src/data/` and does not require env vars.
 
-## Local preview (production-like)
+## Local production test
 
 ```bash
 npm run build
-npx serve dist
+npm start
+# → http://localhost:3000
 ```
-
-Note: `serve` does not apply `vercel.json` rewrites; use `npx vercel dev` or deploy to Preview for full routing behavior.
-
-## Netlify (optional)
-
-See [`docs/deployment/netlify.toml.example`](deployment/netlify.toml.example). Vercel is the supported default; do not add `public/_redirects` when using Vercel.
