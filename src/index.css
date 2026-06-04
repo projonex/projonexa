@@ -2025,11 +2025,13 @@
   }
 
   .why-card-media-scrim {
+    z-index: 0;
     background: linear-gradient(
       180deg,
       transparent 0%,
-      rgba(255, 255, 255, 0.35) 72%,
-      rgba(255, 255, 255, 0.92) 100%
+      transparent 55%,
+      rgba(255, 255, 255, 0.25) 78%,
+      rgba(255, 255, 255, 0.55) 100%
     );
   }
 
@@ -2070,32 +2072,62 @@
     max-width: 18.125rem;
   }
 
+  .why-vertical-ticker-window {
+    isolation: isolate;
+  }
+
+  .why-vertical-ticker-slot {
+    border: 2px solid color-mix(in srgb, var(--why-ticker-accent, #00c8ff) 50%, transparent);
+    background: color-mix(in srgb, #ffffff 82%, var(--why-ticker-accent, #00c8ff) 8%);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.9),
+      0 8px 24px -10px color-mix(in srgb, var(--why-ticker-accent, #00c8ff) 35%, transparent);
+  }
+
+  .dark .why-vertical-ticker-slot {
+    border-color: color-mix(in srgb, var(--why-ticker-accent, #00c8ff) 55%, transparent);
+    background: color-mix(in srgb, rgba(255, 255, 255, 0.12) 70%, transparent);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+      0 8px 28px -12px color-mix(in srgb, var(--why-ticker-accent, #00c8ff) 40%, transparent);
+  }
+
+  .why-pill--active {
+    position: relative;
+    z-index: 1;
+    transform: scale(1.02);
+  }
+
+  .why-vertical-ticker-active {
+    text-wrap: balance;
+  }
+
   .why-vertical-fade-top,
   .why-vertical-fade-bottom {
     pointer-events: none;
     position: absolute;
     left: 0;
     right: 0;
-    height: 2rem;
-    z-index: 5;
+    height: 1.75rem;
+    z-index: 3;
   }
 
   .why-vertical-fade-top {
     top: 0;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.92), transparent);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.75), transparent);
   }
 
   .why-vertical-fade-bottom {
     bottom: 0;
-    background: linear-gradient(to top, rgba(255, 255, 255, 0.92), transparent);
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.75), transparent);
   }
 
   .dark .why-vertical-fade-top {
-    background: linear-gradient(to bottom, rgba(8, 12, 20, 0.65), transparent);
+    background: linear-gradient(to bottom, rgba(8, 12, 20, 0.55), transparent);
   }
 
   .dark .why-vertical-fade-bottom {
-    background: linear-gradient(to top, rgba(8, 12, 20, 0.65), transparent);
+    background: linear-gradient(to top, rgba(8, 12, 20, 0.55), transparent);
   }
 
   .why-section.section-frosted {

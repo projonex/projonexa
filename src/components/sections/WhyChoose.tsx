@@ -45,12 +45,16 @@ function Pill({
 
   return (
     <span
-      className={`why-crisp-text inline-flex max-w-full items-center justify-center whitespace-nowrap rounded-full border font-semibold leading-none tracking-tight transition-all duration-300 ${sizeClass} ${className} ${
+      className={`why-crisp-text why-pill inline-flex max-w-full items-center justify-center whitespace-nowrap rounded-full border font-semibold leading-none tracking-tight transition-all duration-300 ${sizeClass} ${className} ${
         active
-          ? 'border-black/[0.1] bg-white text-zinc-900 shadow-[0_8px_28px_-10px_rgba(0,80,120,0.22)] dark:border-white/50 dark:shadow-[0_6px_24px_-6px_rgba(0,0,0,0.4)]'
-          : 'border-black/[0.08] bg-white/75 text-zinc-600 dark:border-white/15 dark:bg-white/[0.1] dark:text-white/80'
+          ? 'why-pill--active border-black/[0.12] bg-white text-zinc-900 shadow-[0_8px_28px_-10px_rgba(0,80,120,0.22)] dark:border-white/50 dark:bg-white dark:shadow-[0_6px_24px_-6px_rgba(0,0,0,0.4)]'
+          : 'border-black/[0.06] bg-white/60 text-zinc-500 opacity-80 dark:border-white/15 dark:bg-white/[0.1] dark:text-white/70 dark:opacity-100'
       }`}
-      style={active ? ({ color: accent } as CSSProperties) : undefined}
+      style={
+        active
+          ? ({ color: accent, borderColor: `color-mix(in srgb, ${accent} 45%, transparent)` } as CSSProperties)
+          : undefined
+      }
     >
       {children}
     </span>
@@ -79,30 +83,46 @@ function VerticalScrollAnimation({
     return () => window.clearInterval(id)
   }, [items.length, reducedMotion])
 
+  const activeLabel = items[activeIndex] ?? items[0]
+
   return (
-    <div className="relative mx-auto w-full">
+    <div className="why-vertical-ticker relative mx-auto w-full">
       <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-1/2 z-10 h-[52px] -translate-y-1/2 rounded-full border border-brand-primary/25 bg-white/90 shadow-[0_4px_20px_-8px_rgba(0,120,180,0.2)] dark:border-white/30 dark:bg-white/[0.08] dark:shadow-none"
-        style={{ boxShadow: `inset 0 0 0 1px color-mix(in srgb, ${accent} 35%, transparent)` }}
-      />
-      <div className="relative overflow-hidden" style={{ height: viewportHeight }}>
+        className="why-vertical-ticker-window relative overflow-hidden rounded-2xl border border-black/[0.08] bg-white/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] dark:border-white/[0.1] dark:bg-black/25"
+        style={{ height: viewportHeight, ['--why-ticker-accent' as string]: accent }}
+      >
+        <div
+          aria-hidden
+          className="why-vertical-ticker-slot pointer-events-none absolute inset-x-2 top-1/2 z-[1] h-[52px] -translate-y-1/2 rounded-full"
+        />
         <div className="why-vertical-fade-top" aria-hidden />
         <div className="why-vertical-fade-bottom" aria-hidden />
         <motion.ul
-          className="relative m-0 list-none p-0"
+          className="why-vertical-ticker-list relative z-[2] m-0 list-none p-0"
           animate={{ y: offsetY }}
           transition={{ duration: 0.55, ease: easeSmooth }}
           aria-live="polite"
         >
           {items.map((item, index) => (
-            <li key={item} className="flex h-[52px] items-center justify-center px-1">
-              <Pill active={index === activeIndex} accent={accent}>
+            <li key={item} className="flex h-[52px] items-center justify-center px-2 sm:px-3">
+              <Pill active={index === activeIndex} accent={accent} className="max-w-full">
                 {item}
               </Pill>
             </li>
           ))}
         </motion.ul>
+      </div>
+      <div className="why-vertical-ticker-status mt-3 space-y-1 text-center">
+        <p className="why-crisp-text text-[11px] font-semibold uppercase tracking-[0.14em] text-zinc-500 dark:text-zinc-400">
+          Core stack
+        </p>
+        <p
+          className="why-vertical-ticker-active why-crisp-text text-sm font-bold sm:text-base"
+          style={{ color: accent }}
+          aria-live="polite"
+        >
+          {activeLabel}
+        </p>
       </div>
     </div>
   )
