@@ -43,13 +43,18 @@ export function Logo({
         className={[
           'site-logo-mark',
           isProminent ? 'site-logo-mark--large' : 'site-logo-mark--default',
-        ].join(' ')}
+          placement === 'nav' ? 'site-logo-mark--nav' : '',
+        ]
+          .filter(Boolean)
+          .join(' ')}
       >
-        <BrandLogoImage
-          className="site-logo-image"
-          decorative
-          priority={placement === 'nav' && !isStacked}
-        />
+        <span className="site-logo-mark-inner" aria-hidden>
+          <BrandLogoImage
+            className="site-logo-image"
+            decorative
+            priority={placement === 'nav' && !isStacked}
+          />
+        </span>
       </span>
       {showName && <BrandNameWordmark className={nameSizeClass[placement]} />}
     </Link>

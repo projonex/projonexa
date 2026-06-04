@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { BRAND_LOGO, BRAND_LOGO_SIZES } from '@/constants/brand-assets'
 
 interface BrandLogoImageProps {
@@ -15,13 +14,17 @@ export function BrandLogoImage({
   priority = false,
 }: BrandLogoImageProps) {
   return (
-    <Image
+    <img
       src={BRAND_LOGO_SIZES.md}
-      alt={decorative ? '' : BRAND_LOGO.alt}
-      fill
-      className={`site-logo-image object-contain ${className}`.trim()}
+      srcSet={`${BRAND_LOGO_SIZES.sm} 128w, ${BRAND_LOGO_SIZES.md} 256w`}
       sizes="(max-width: 640px) 40px, 42px"
-      priority={priority}
+      alt={decorative ? '' : BRAND_LOGO.alt}
+      width={256}
+      height={256}
+      className={className}
+      decoding="async"
+      loading={priority ? 'eager' : 'lazy'}
+      fetchPriority={priority ? 'high' : 'auto'}
       draggable={false}
       {...(decorative ? { 'aria-hidden': true } : {})}
     />
