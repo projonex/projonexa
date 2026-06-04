@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { BRAND_ICONS } from '@/constants/brand-assets'
 import { BRAND, FOUNDER, GEO } from '@/data/brand'
 import { AEO_HOME_FAQ } from '@/data/seo'
 import type { PageSEO } from './seo-types'
@@ -27,11 +26,12 @@ export function buildPageMetadata(seo: PageSEO): Metadata {
       }
 
   return {
-    title: seo.title,
+    title: { absolute: seo.title },
     description: seo.description,
     keywords: seo.keywords,
-    authors: [{ name: FOUNDER.name }],
+    authors: [{ name: FOUNDER.name, url: `${BRAND.url}/about` }],
     creator: FOUNDER.name,
+    publisher: BRAND.name,
     robots,
     alternates: { canonical: share.url },
     openGraph: {
@@ -59,26 +59,6 @@ export function buildPageMetadata(seo: PageSEO): Metadata {
       description: share.description,
       images: [{ url: share.image, alt: share.imageAlt }],
     },
-    other: {
-      'geo.region': GEO.countryCode,
-      'geo.placename': GEO.placename,
-      'geo.position': `${GEO.latitude};${GEO.longitude}`,
-      ICBM: `${GEO.latitude}, ${GEO.longitude}`,
-      language: 'English',
-      'content-language': GEO.language,
-    },
-    icons: {
-      icon: [
-        { url: BRAND_ICONS.favicon16, sizes: '16x16', type: 'image/png' },
-        { url: BRAND_ICONS.favicon32, sizes: '32x32', type: 'image/png' },
-      ],
-      shortcut: BRAND_ICONS.favicon32,
-      apple: { url: BRAND_ICONS.appleTouch, sizes: '180x180' },
-    },
-    applicationName: BRAND.name,
-    appleWebApp: { title: BRAND.name },
-    manifest: '/site.webmanifest',
-    metadataBase: new URL(BRAND.url),
   }
 }
 

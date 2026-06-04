@@ -6,6 +6,7 @@ export type {
 } from './seo-types'
 
 export { buildPageMetadata, structuredDataForPage } from './page-metadata'
+export { buildRootSiteMetadata, SITE_ICONS } from './site-metadata'
 export { buildProjectSEO } from './project-seo'
 export { buildCareersApplySeo } from './careers-apply-seo'
 export {

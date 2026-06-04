@@ -1,7 +1,8 @@
-import type { Metadata, Viewport } from 'next'
+import type { Viewport } from 'next'
 import { Inter, Nunito } from 'next/font/google'
 import { AppProviders } from '@/components/providers/AppProviders'
-import { BRAND, GEO } from '@/data/brand'
+import { GEO } from '@/data/brand'
+import { buildRootSiteMetadata } from '@/lib/seo/site-metadata'
 import '@/index.css'
 
 const inter = Inter({
@@ -17,12 +18,7 @@ const nunito = Nunito({
   display: 'swap',
 })
 
-export const metadata: Metadata = {
-  metadataBase: new URL(BRAND.url),
-  applicationName: BRAND.name,
-  appleWebApp: { title: BRAND.name },
-  manifest: '/site.webmanifest',
-}
+export const metadata = buildRootSiteMetadata()
 
 export const viewport: Viewport = {
   width: 'device-width',
