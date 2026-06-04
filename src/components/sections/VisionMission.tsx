@@ -482,7 +482,7 @@ interface VisionMissionProps {
 export function VisionMission({ variant = 'section' }: VisionMissionProps) {
   const content = (
     <div className="container-wide">
-      <div className="max-w-prose text-left">
+      <div className="grid items-end gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-10">
         <motion.div
           initial={{ opacity: 0, x: -16 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -508,9 +508,8 @@ export function VisionMission({ variant = 'section' }: VisionMissionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.06, ease: easeSmooth }}
-          className="mt-4"
         >
-          <p className="text-lg font-medium leading-relaxed text-zinc-700 dark:text-zinc-300 text-balance">
+          <p className="max-w-xl text-lg font-medium leading-relaxed text-zinc-700 dark:text-zinc-300">
             {VISION_MISSION_SECTION.lead}
           </p>
           <div className="mt-6">
