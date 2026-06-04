@@ -1,5 +1,5 @@
 import { AEO_DEFINITION, BRAND, FOUNDER, GEO } from '@/data/brand';
-import type { BreadcrumbItem, SearchIntent } from '@/data/seo';
+import type { BreadcrumbItem, SearchIntent } from './seo-types'
 
 import { SERVICES } from '@/data/services';
 

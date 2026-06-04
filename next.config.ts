@@ -6,9 +6,6 @@ const nextConfig: NextConfig = {
   images: {
     disableStaticImages: true,
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   typescript: {
     ignoreBuildErrors: false,
   },

@@ -209,6 +209,11 @@ function ServiceDeckCard({
     return total - stackDepth + 10
   })
 
+  const pointerEvents = useTransform(scrollProgress, (p) => {
+    const { phase, stackDepth } = getDeckState(p, index, total)
+    return phase !== 'popped' && stackDepth === 0 ? 'auto' : 'none'
+  })
+
   if (reducedMotion) {
     return (
       <ReducedDeckCard
@@ -219,11 +224,6 @@ function ServiceDeckCard({
       />
     )
   }
-
-  const pointerEvents = useTransform(scrollProgress, (p) => {
-    const { phase, stackDepth } = getDeckState(p, index, total)
-    return phase !== 'popped' && stackDepth === 0 ? 'auto' : 'none'
-  })
 
   return (
     <motion.div

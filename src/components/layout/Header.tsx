@@ -50,7 +50,7 @@ export function Header() {
 
   useEffect(() => {
     setOpen(false)
-  }, [location.pathname])
+  }, [pathname])
 
   useEffect(() => {
     let ticking = false
