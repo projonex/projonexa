@@ -9,7 +9,11 @@ import { buildStructuredData } from '@/lib/structured-data'
 export function buildPageMetadata(seo: PageSEO): Metadata {
   const share = resolveShareMeta(seo)
   const robots = seo.robotsNoIndex
-    ? { index: false as const, follow: true as const }
+    ? {
+        index: false as const,
+        follow: true as const,
+        googleBot: { index: false, follow: true },
+      }
     : {
         index: true as const,
         follow: true as const,
