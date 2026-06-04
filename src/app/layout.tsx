@@ -3,6 +3,7 @@ import { Inter, Nunito } from 'next/font/google'
 import { AppProviders } from '@/components/providers/AppProviders'
 import { GEO } from '@/data/brand'
 import { buildRootSiteMetadata } from '@/lib/seo/site-metadata'
+import { THEME_INIT_SCRIPT } from '@/lib/theme-init'
 import '@/index.css'
 
 const inter = Inter({
@@ -30,7 +31,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang={GEO.language} suppressHydrationWarning>
+    <html lang={GEO.language} className="dark" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
       <body className={`${inter.variable} ${nunito.variable} font-sans antialiased`}>
         <AppProviders>{children}</AppProviders>
       </body>

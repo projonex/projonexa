@@ -1,16 +1,21 @@
 'use client'
 
 import {
+  applyThemeToDocument,
+  readThemeFromDocument,
+  THEME_STORAGE_KEY,
+  type Theme,
+} from '@/lib/theme-init'
+import {
   createContext,
   useCallback,
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
   type ReactNode,
 } from 'react'
-
-type Theme = 'light' | 'dark'
 
 interface ThemeContextValue {
   theme: Theme
@@ -20,23 +25,29 @@ interface ThemeContextValue {
 
 const ThemeContext = createContext<ThemeContextValue | null>(null)
 
-const STORAGE_KEY = 'projonexa-theme'
-
-function getInitialTheme(): Theme {
-  if (typeof window === 'undefined') return 'dark'
-  const stored = localStorage.getItem(STORAGE_KEY) as Theme | null
-  if (stored === 'light' || stored === 'dark') return stored
-  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
-}
+/** SSR + first client render — must stay in sync with default `className` on `<html>`. */
+const SSR_THEME: Theme = 'dark'
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>(getInitialTheme)
+  const [theme, setThemeState] = useState<Theme>(SSR_THEME)
+  const hydratedRef = useRef(false)
 
   useEffect(() => {
-    const root = document.documentElement
-    root.classList.remove('light', 'dark')
-    root.classList.add(theme)
-    localStorage.setItem(STORAGE_KEY, theme)
+    if (!hydratedRef.current) {
+      hydratedRef.current = true
+      const resolved = readThemeFromDocument()
+      if (resolved !== theme) {
+        setThemeState(resolved)
+        return
+      }
+    }
+
+    applyThemeToDocument(theme)
+    try {
+      localStorage.setItem(THEME_STORAGE_KEY, theme)
+    } catch {
+      /* private mode / blocked storage */
+    }
   }, [theme])
 
   const setTheme = useCallback((t: Theme) => setThemeState(t), [])
