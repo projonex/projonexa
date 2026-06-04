@@ -1518,6 +1518,43 @@
     background: var(--purpose-media-bg-dark, #2c2f36);
   }
 
+  .purpose-interactive-panel {
+    cursor: default;
+  }
+
+  .purpose-interactive-item {
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .purpose-interactive-item:hover {
+    transform: translateY(-1px);
+  }
+
+  .purpose-interactive-item:focus-visible {
+    outline: 2px solid rgba(0, 200, 255, 0.55);
+    outline-offset: 2px;
+  }
+
+  .purpose-detail-panel {
+    animation: purposeDetailIn 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes purposeDetailIn {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .service-area-card {
     box-shadow:
       0 0 0 1px rgba(0, 200, 255, 0.05),

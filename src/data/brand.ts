@@ -159,11 +159,31 @@ export const PURPOSE_CARDS = [
     mediaDark: '#1e3344',
     animation: 'pipeline',
     steps: [
-      'Discovery & scope',
-      'Architecture & design',
-      'Development & testing',
-      'Documentation',
-      'Deployment & handoff',
+      {
+        label: 'Discovery & scope',
+        summary: 'Align goals, requirements, and timeline before a line of code is written.',
+        points: ['Requirement workshops', 'Scope & milestone plan', 'Tech stack recommendation'],
+      },
+      {
+        label: 'Architecture & design',
+        summary: 'Solid system design and UI direction so the build stays scalable and clear.',
+        points: ['System architecture', 'Database & API design', 'Wireframes & UI direction'],
+      },
+      {
+        label: 'Development & testing',
+        summary: 'Iterative builds with reviews, QA, and demos at every checkpoint.',
+        points: ['Sprint-based development', 'Code reviews & QA', 'Live progress demos'],
+      },
+      {
+        label: 'Documentation',
+        summary: 'Submission-ready docs — SRS, reports, and diagrams included.',
+        points: ['SRS & technical reports', 'UML & flow diagrams', 'User manuals & guides'],
+      },
+      {
+        label: 'Deployment & handoff',
+        summary: 'Go live with deployment support and a clean handoff you can present confidently.',
+        points: ['Cloud deployment setup', 'Viva & demo prep', 'Post-launch support window'],
+      },
     ],
   },
   {
@@ -175,9 +195,24 @@ export const PURPOSE_CARDS = [
     mediaDark: '#2a2444',
     animation: 'audience',
     audiences: [
-      { label: 'Students', detail: 'Final-year & academic projects' },
-      { label: 'Startups', detail: 'MVPs & investor-ready demos' },
-      { label: 'Businesses', detail: 'Custom software & integrations' },
+      {
+        label: 'Students',
+        detail: 'Final-year & academic projects',
+        summary: 'University-ready projects with documentation, viva prep, and mentor guidance built in.',
+        points: ['IEEE & university formats', 'Plagiarism-safe original code', 'Viva & presentation coaching'],
+      },
+      {
+        label: 'Startups',
+        detail: 'MVPs & investor-ready demos',
+        summary: 'Ship fast with lean architecture, polished demos, and a codebase investors can trust.',
+        points: ['MVP in weeks, not months', 'Pitch-ready product demos', 'Scalable foundation for growth'],
+      },
+      {
+        label: 'Businesses',
+        detail: 'Custom software & integrations',
+        summary: 'Enterprise-grade builds — portals, dashboards, APIs, and integrations that fit your ops.',
+        points: ['Custom web & mobile apps', 'API & third-party integrations', 'Ongoing maintenance options'],
+      },
     ],
   },
   {
@@ -189,10 +224,30 @@ export const PURPOSE_CARDS = [
     mediaDark: '#1a3328',
     animation: 'milestones',
     milestones: [
-      { label: 'SRS & documentation', time: 'Week 1' },
-      { label: 'Architecture review', time: 'Week 2' },
-      { label: 'Viva preparation', time: 'Pre-submission' },
-      { label: 'Deployment support', time: 'Go-live' },
+      {
+        label: 'SRS & documentation',
+        time: 'Week 1',
+        summary: 'Structured requirements and documentation that meet academic and industry standards.',
+        points: ['SRS drafting & review', 'Use-case & sequence diagrams', 'IEEE-format alignment'],
+      },
+      {
+        label: 'Architecture review',
+        time: 'Week 2',
+        summary: 'Senior mentors validate your system design before development accelerates.',
+        points: ['Stack & scalability review', 'Security & data-flow checks', 'Risk mitigation plan'],
+      },
+      {
+        label: 'Viva preparation',
+        time: 'Pre-submission',
+        summary: 'Mock Q&A and demo rehearsals so you present your project with confidence.',
+        points: ['Mock viva sessions', 'Demo script & talking points', 'Common question prep'],
+      },
+      {
+        label: 'Deployment support',
+        time: 'Go-live',
+        summary: 'Hands-on help deploying to cloud or local environments for demos and submissions.',
+        points: ['Cloud & hosting setup', 'Environment configuration', 'Live demo walkthrough'],
+      },
     ],
   },
 ] as const
