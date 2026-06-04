@@ -155,8 +155,8 @@ export const PURPOSE_CARDS = [
     description:
       'From first brief to final submission — architecture, build, documentation, and deployment handled in one structured flow.',
     accent: '#00c8ff',
-    mediaLight: '#c5dce8',
-    mediaDark: '#1e3344',
+    mediaLight: 'linear-gradient(145deg, rgba(0, 200, 255, 0.14) 0%, rgba(61, 139, 255, 0.08) 55%, rgba(255, 255, 255, 0.92) 100%)',
+    mediaDark: 'linear-gradient(145deg, rgba(0, 200, 255, 0.12) 0%, rgba(61, 139, 255, 0.06) 50%, rgba(10, 14, 20, 0.96) 100%)',
     animation: 'pipeline',
     steps: [
       {
@@ -191,8 +191,8 @@ export const PURPOSE_CARDS = [
     description:
       'Students, startups, and businesses each get workflows tuned to academic standards, MVP speed, or enterprise scale.',
     accent: '#6c63ff',
-    mediaLight: '#d4cfe8',
-    mediaDark: '#2a2444',
+    mediaLight: 'linear-gradient(145deg, rgba(108, 99, 255, 0.14) 0%, rgba(61, 139, 255, 0.08) 55%, rgba(255, 255, 255, 0.92) 100%)',
+    mediaDark: 'linear-gradient(145deg, rgba(108, 99, 255, 0.12) 0%, rgba(61, 139, 255, 0.06) 50%, rgba(12, 10, 22, 0.96) 100%)',
     animation: 'audience',
     audiences: [
       {
@@ -219,9 +219,9 @@ export const PURPOSE_CARDS = [
     title: 'Expert mentorship built in',
     description:
       'Developers and mentors guide every phase — so you ship with clarity, quality, and confidence.',
-    accent: '#00e5a0',
-    mediaLight: '#cfe8dc',
-    mediaDark: '#1a3328',
+    accent: '#3d8bff',
+    mediaLight: 'linear-gradient(145deg, rgba(61, 139, 255, 0.16) 0%, rgba(0, 200, 255, 0.08) 55%, rgba(255, 255, 255, 0.92) 100%)',
+    mediaDark: 'linear-gradient(145deg, rgba(61, 139, 255, 0.14) 0%, rgba(0, 200, 255, 0.06) 50%, rgba(8, 12, 20, 0.96) 100%)',
     animation: 'milestones',
     milestones: [
       {

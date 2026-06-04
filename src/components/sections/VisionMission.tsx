@@ -1,8 +1,8 @@
 import { PURPOSE_CARDS, VISION_MISSION_SECTION } from '@/data/brand'
 import { Button } from '@/components/ui/Button'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowLeft, ArrowRight, Check, ChevronRight, Circle } from 'lucide-react'
-import { useEffect, useState, type CSSProperties, type KeyboardEvent } from 'react'
+import { ArrowLeft, ArrowRight, Check, ChevronRight } from 'lucide-react'
+import { useEffect, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from 'react'
 
 const easeSmooth = [0.22, 1, 0.36, 1] as const
 
@@ -10,10 +10,13 @@ type PurposeCard = (typeof PURPOSE_CARDS)[number]
 
 interface InteractiveVisualProps {
   accent: string
+  panelTitle: string
+  panelSubtitle: string
   activeIndex: number
   selectedIndex: number | null
   onSelect: (index: number) => void
   onBack: () => void
+  onHover: (index: number | null) => void
 }
 
 function useReducedMotion() {
@@ -41,60 +44,6 @@ function useCycle(length: number, intervalMs: number, paused: boolean) {
   return index
 }
 
-function DetailPanel({
-  accent,
-  title,
-  subtitle,
-  summary,
-  points,
-  onBack,
-}: {
-  accent: string
-  title: string
-  subtitle?: string
-  summary: string
-  points: readonly string[]
-  onBack: () => void
-}) {
-  return (
-    <div className="purpose-detail-panel w-full max-w-[280px]">
-      <div className="overflow-hidden rounded-lg border border-black/[0.08] bg-white/95 shadow-lg dark:border-white/[0.1] dark:bg-zinc-900/98">
-        <div className="flex items-center gap-2 border-b border-black/[0.06] px-3 py-2.5 dark:border-white/[0.08]">
-          <button
-            type="button"
-            onClick={onBack}
-            className="purpose-interactive-item flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-black/[0.08] bg-zinc-50 text-zinc-600 hover:bg-white hover:text-zinc-900 dark:border-white/[0.1] dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 dark:hover:text-white"
-            aria-label="Back to list"
-          >
-            <ArrowLeft className="h-3.5 w-3.5" aria-hidden />
-          </button>
-          <div className="min-w-0 flex-1">
-            <p className="truncate text-sm font-semibold text-zinc-900 dark:text-white">{title}</p>
-            {subtitle ? (
-              <p className="truncate text-[11px] text-zinc-500 dark:text-zinc-400">{subtitle}</p>
-            ) : null}
-          </div>
-        </div>
-        <div className="space-y-3 px-3 py-3">
-          <p className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-300">{summary}</p>
-          <ul className="m-0 list-none space-y-1.5 p-0">
-            {points.map((point) => (
-              <li key={point} className="flex items-start gap-2 text-xs text-zinc-700 dark:text-zinc-200">
-                <span
-                  className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full"
-                  style={{ backgroundColor: accent }}
-                  aria-hidden
-                />
-                <span className="leading-snug">{point}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 function handleItemKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number, onSelect: (i: number) => void) {
   if (event.key === 'Enter' || event.key === ' ') {
     event.preventDefault()
@@ -102,9 +51,100 @@ function handleItemKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: numbe
   }
 }
 
+function PurposeTechWindow({
+  accent,
+  title,
+  subtitle,
+  badge,
+  children,
+}: {
+  accent: string
+  title: string
+  subtitle?: string
+  badge?: string
+  children: ReactNode
+}) {
+  return (
+    <div
+      className="purpose-tech-window"
+      style={{ '--purpose-accent': accent } as CSSProperties}
+    >
+      <div className="purpose-tech-titlebar">
+        <div className="purpose-tech-dots" aria-hidden>
+          <span />
+          <span />
+          <span />
+        </div>
+        <div className="purpose-tech-titlebar-text">
+          <span className="purpose-tech-titlebar-label">{title}</span>
+          {subtitle ? <span className="purpose-tech-titlebar-sub">{subtitle}</span> : null}
+        </div>
+        {badge ? <span className="purpose-tech-badge">{badge}</span> : null}
+      </div>
+      <div className="purpose-tech-body">{children}</div>
+    </div>
+  )
+}
+
+function PurposeDetailView({
+  accent,
+  panelTitle,
+  panelSubtitle,
+  title,
+  subtitle,
+  summary,
+  points,
+  onBack,
+}: {
+  accent: string
+  panelTitle: string
+  panelSubtitle: string
+  title: string
+  subtitle?: string
+  summary: string
+  points: readonly string[]
+  onBack: () => void
+}) {
+  return (
+    <PurposeTechWindow
+      accent={accent}
+      title={panelTitle}
+      subtitle={panelSubtitle}
+      badge="Details"
+    >
+      <div className="purpose-tech-detail-header">
+        <button type="button" onClick={onBack} className="purpose-tech-back" aria-label="Back to list">
+          <ArrowLeft className="h-3.5 w-3.5" aria-hidden />
+        </button>
+        <div className="purpose-tech-detail-title-wrap">
+          <p className="purpose-tech-detail-title">{title}</p>
+          {subtitle ? <p className="purpose-tech-detail-subtitle">{subtitle}</p> : null}
+        </div>
+      </div>
+
+      <p className="purpose-tech-section-label">Overview</p>
+      <p className="purpose-tech-summary">{summary}</p>
+
+      <p className="purpose-tech-section-label">Includes</p>
+      <ul className="purpose-tech-points">
+        {points.map((point) => (
+          <li key={point} className="purpose-tech-point">
+            <span className="purpose-tech-point-icon" aria-hidden>
+              <Check className="h-2.5 w-2.5" strokeWidth={3} />
+            </span>
+            <span>{point}</span>
+          </li>
+        ))}
+      </ul>
+    </PurposeTechWindow>
+  )
+}
+
 function PipelineVisual({
   steps,
   accent,
+  panelTitle,
+  panelSubtitle,
   activeIndex,
   selectedIndex,
   onSelect,
@@ -112,13 +152,14 @@ function PipelineVisual({
   onHover,
 }: InteractiveVisualProps & {
   steps: (typeof PURPOSE_CARDS)[0]['steps']
-  onHover: (index: number | null) => void
 }) {
   if (selectedIndex !== null) {
     const step = steps[selectedIndex]
     return (
-      <DetailPanel
+      <PurposeDetailView
         accent={accent}
+        panelTitle={panelTitle}
+        panelSubtitle={panelSubtitle}
         title={step.label}
         subtitle={`Step ${selectedIndex + 1} of ${steps.length}`}
         summary={step.summary}
@@ -129,71 +170,48 @@ function PipelineVisual({
   }
 
   return (
-    <div className="purpose-interactive-panel w-full max-w-[280px]">
-      <div className="overflow-hidden rounded-lg border border-black/[0.08] bg-white/90 shadow-lg dark:border-white/[0.1] dark:bg-zinc-900/95">
-        <div className="border-b border-black/[0.06] px-3 py-2.5 dark:border-white/[0.08]">
-          <p className="text-xs font-semibold text-zinc-500 dark:text-zinc-400">Project pipeline</p>
-          <p className="mt-0.5 text-[11px] text-zinc-400 dark:text-zinc-500">Click a step to explore</p>
-        </div>
-        <ul className="m-0 list-none space-y-0 p-2" aria-live="polite">
-          {steps.map((step, index) => {
-            const isActive = index === activeIndex
+    <PurposeTechWindow accent={accent} title={panelTitle} subtitle={panelSubtitle} badge="Pipeline">
+      <p className="purpose-tech-hint">Select a phase to view deliverables</p>
+      <ul className="purpose-tech-list" aria-live="polite">
+        {steps.map((step, index) => {
+          const isActive = index === activeIndex
 
-            return (
-              <li key={step.label} className="relative">
-                {index < steps.length - 1 ? (
-                  <span
-                    aria-hidden
-                    className="absolute left-[17px] top-9 h-[calc(100%-4px)] w-px bg-zinc-200 dark:bg-zinc-700"
-                  />
-                ) : null}
-                <button
-                  type="button"
-                  onClick={() => onSelect(index)}
-                  onMouseEnter={() => onHover(index)}
-                  onMouseLeave={() => onHover(null)}
-                  onKeyDown={(event) => handleItemKeyDown(event, index, onSelect)}
-                  className={`purpose-interactive-item flex w-full items-center gap-2.5 rounded-md px-2 py-2 text-left ${
-                    isActive ? 'bg-brand-primary/[0.08] dark:bg-brand-primary/15' : 'hover:bg-black/[0.03] dark:hover:bg-white/[0.04]'
-                  }`}
-                  aria-label={`View details for ${step.label}`}
-                >
-                  <span
-                    className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-[11px] font-bold ${
-                      isActive
-                        ? 'border-brand-primary bg-white text-brand-primary dark:bg-zinc-900'
-                        : 'border-zinc-200 bg-zinc-50 text-zinc-400 dark:border-zinc-700 dark:bg-zinc-800'
-                    }`}
-                    style={isActive ? ({ borderColor: accent, color: accent } as CSSProperties) : undefined}
-                  >
-                    {index + 1}
-                  </span>
-                  <span
-                    className={`min-w-0 flex-1 truncate text-sm font-medium ${
-                      isActive ? 'text-zinc-900 dark:text-white' : 'text-zinc-500 dark:text-zinc-400'
-                    }`}
-                    style={isActive ? ({ color: accent } as CSSProperties) : undefined}
-                  >
-                    {step.label}
-                  </span>
-                  <ChevronRight
-                    className="ml-auto h-4 w-4 shrink-0 opacity-50"
-                    style={isActive ? ({ color: accent } as CSSProperties) : undefined}
-                    aria-hidden
-                  />
-                </button>
-              </li>
-            )
-          })}
-        </ul>
-      </div>
-    </div>
+          return (
+            <li key={step.label} className="relative">
+              {index < steps.length - 1 ? (
+                <span
+                  aria-hidden
+                  className="absolute left-[21px] top-10 h-[calc(100%-2px)] w-px bg-black/[0.06] dark:bg-white/[0.08]"
+                />
+              ) : null}
+              <button
+                type="button"
+                onClick={() => onSelect(index)}
+                onMouseEnter={() => onHover(index)}
+                onMouseLeave={() => onHover(null)}
+                onKeyDown={(event) => handleItemKeyDown(event, index, onSelect)}
+                className={`purpose-tech-list-item ${isActive ? 'is-active' : ''}`}
+                aria-label={`View details for ${step.label}`}
+              >
+                <span className="purpose-tech-index">{index + 1}</span>
+                <span className="min-w-0 flex-1">
+                  <span className="purpose-tech-item-label">{step.label}</span>
+                </span>
+                <ChevronRight className="h-4 w-4 shrink-0 text-zinc-400 dark:text-zinc-500" aria-hidden />
+              </button>
+            </li>
+          )
+        })}
+      </ul>
+    </PurposeTechWindow>
   )
 }
 
 function AudienceVisual({
   audiences,
   accent,
+  panelTitle,
+  panelSubtitle,
   activeIndex,
   selectedIndex,
   onSelect,
@@ -201,13 +219,14 @@ function AudienceVisual({
   onHover,
 }: InteractiveVisualProps & {
   audiences: (typeof PURPOSE_CARDS)[1]['audiences']
-  onHover: (index: number | null) => void
 }) {
   if (selectedIndex !== null) {
     const audience = audiences[selectedIndex]
     return (
-      <DetailPanel
+      <PurposeDetailView
         accent={accent}
+        panelTitle={panelTitle}
+        panelSubtitle={panelSubtitle}
         title={audience.label}
         subtitle={audience.detail}
         summary={audience.summary}
@@ -218,59 +237,43 @@ function AudienceVisual({
   }
 
   return (
-    <div className="purpose-interactive-panel w-full max-w-[280px] space-y-2">
-      <p className="px-1 text-[11px] text-zinc-500 dark:text-zinc-400">Click an audience to explore</p>
-      {audiences.map((audience, index) => {
-        const isActive = index === activeIndex
+    <PurposeTechWindow accent={accent} title={panelTitle} subtitle={panelSubtitle} badge="Profiles">
+      <p className="purpose-tech-hint">Select a profile to view how we help</p>
+      <ul className="purpose-tech-list space-y-1.5">
+        {audiences.map((audience, index) => {
+          const isActive = index === activeIndex
 
-        return (
-          <button
-            key={audience.label}
-            type="button"
-            onClick={() => onSelect(index)}
-            onMouseEnter={() => onHover(index)}
-            onMouseLeave={() => onHover(null)}
-            onKeyDown={(event) => handleItemKeyDown(event, index, onSelect)}
-            className={`purpose-interactive-item w-full rounded-lg border px-3 py-2.5 text-left shadow-sm ${
-              isActive
-                ? 'border-black/[0.1] bg-white dark:border-white/[0.12] dark:bg-zinc-900/95'
-                : 'border-black/[0.06] bg-white/70 dark:border-white/[0.06] dark:bg-zinc-900/60'
-            } hover:border-black/[0.12] hover:bg-white dark:hover:border-white/[0.14] dark:hover:bg-zinc-900/95`}
-            style={
-              isActive ? ({ boxShadow: `0 8px 24px -8px ${accent}44` } as CSSProperties) : undefined
-            }
-            aria-label={`View details for ${audience.label}`}
-          >
-            <div className="flex items-center gap-2">
-              <span
-                className={`h-2 w-2 shrink-0 rounded-full ${isActive ? '' : 'bg-zinc-300 dark:bg-zinc-600'}`}
-                style={isActive ? ({ backgroundColor: accent } as CSSProperties) : undefined}
-              />
-              <span
-                className={`text-sm font-semibold ${isActive ? 'text-zinc-900 dark:text-white' : 'text-zinc-500'}`}
-                style={isActive ? ({ color: accent } as CSSProperties) : undefined}
+          return (
+            <li key={audience.label}>
+              <button
+                type="button"
+                onClick={() => onSelect(index)}
+                onMouseEnter={() => onHover(index)}
+                onMouseLeave={() => onHover(null)}
+                onKeyDown={(event) => handleItemKeyDown(event, index, onSelect)}
+                className={`purpose-tech-list-item ${isActive ? 'is-active' : ''}`}
+                aria-label={`View details for ${audience.label}`}
               >
-                {audience.label}
-              </span>
-              <ChevronRight className="ml-auto h-4 w-4 shrink-0 text-zinc-400" aria-hidden />
-            </div>
-            <p
-              className={`mt-1 pl-4 text-xs leading-snug ${
-                isActive ? 'text-zinc-600 dark:text-zinc-300' : 'text-zinc-400 dark:text-zinc-500'
-              }`}
-            >
-              {audience.detail}
-            </p>
-          </button>
-        )
-      })}
-    </div>
+                <span className="purpose-tech-status-dot" aria-hidden />
+                <span className="min-w-0 flex-1">
+                  <span className="purpose-tech-item-label">{audience.label}</span>
+                  <span className="purpose-tech-item-meta">{audience.detail}</span>
+                </span>
+                <ChevronRight className="h-4 w-4 shrink-0 text-zinc-400 dark:text-zinc-500" aria-hidden />
+              </button>
+            </li>
+          )
+        })}
+      </ul>
+    </PurposeTechWindow>
   )
 }
 
 function MilestonesVisual({
   milestones,
   accent,
+  panelTitle,
+  panelSubtitle,
   activeIndex,
   selectedIndex,
   onSelect,
@@ -278,13 +281,14 @@ function MilestonesVisual({
   onHover,
 }: InteractiveVisualProps & {
   milestones: (typeof PURPOSE_CARDS)[2]['milestones']
-  onHover: (index: number | null) => void
 }) {
   if (selectedIndex !== null) {
     const milestone = milestones[selectedIndex]
     return (
-      <DetailPanel
+      <PurposeDetailView
         accent={accent}
+        panelTitle={panelTitle}
+        panelSubtitle={panelSubtitle}
         title={milestone.label}
         subtitle={milestone.time}
         summary={milestone.summary}
@@ -295,15 +299,9 @@ function MilestonesVisual({
   }
 
   return (
-    <div className="purpose-interactive-panel w-full max-w-[270px]">
-      <div className="mb-2.5 flex items-center gap-2 rounded-lg border border-black/[0.08] bg-white/90 px-3 py-2 shadow-md dark:border-white/[0.1] dark:bg-zinc-900/95">
-        <Circle className="h-3.5 w-3.5 shrink-0" style={{ color: accent }} fill={accent} aria-hidden />
-        <div className="min-w-0 flex-1">
-          <span className="text-sm font-semibold text-zinc-800 dark:text-zinc-100">Mentorship track</span>
-          <p className="text-[11px] text-zinc-400 dark:text-zinc-500">Click a milestone to explore</p>
-        </div>
-      </div>
-      <ul className="m-0 list-none space-y-1.5 p-0" aria-live="polite">
+    <PurposeTechWindow accent={accent} title={panelTitle} subtitle={panelSubtitle} badge="Track">
+      <p className="purpose-tech-hint">Select a milestone to view mentorship scope</p>
+      <ul className="purpose-tech-list space-y-1.5" aria-live="polite">
         {milestones.map((item, index) => {
           const isActive = index === activeIndex
 
@@ -315,43 +313,37 @@ function MilestonesVisual({
                 onMouseEnter={() => onHover(index)}
                 onMouseLeave={() => onHover(null)}
                 onKeyDown={(event) => handleItemKeyDown(event, index, onSelect)}
-                className={`purpose-interactive-item w-full overflow-hidden rounded-lg border text-left ${
-                  isActive
-                    ? 'border-black/[0.1] bg-white dark:border-white/[0.1] dark:bg-zinc-900/90'
-                    : 'border-black/[0.07] bg-white/85 dark:border-white/[0.08] dark:bg-zinc-900/80'
-                } hover:border-black/[0.12] hover:bg-white dark:hover:border-white/[0.12] dark:hover:bg-zinc-900/95`}
+                className={`purpose-tech-list-item ${isActive ? 'is-active' : ''}`}
                 aria-label={`View details for ${item.label}`}
               >
-                <div className="flex items-center gap-2.5 px-3 py-2.5">
-                  <span
-                    className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${
-                      isActive
-                        ? 'border-transparent text-white'
-                        : 'border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800'
-                    }`}
-                    style={isActive ? ({ backgroundColor: accent } as CSSProperties) : undefined}
-                  >
-                    {isActive ? <Check className="h-3 w-3" strokeWidth={3} /> : null}
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <p
-                      className={`truncate text-sm font-medium leading-tight ${
-                        isActive ? 'text-zinc-900 dark:text-white' : 'text-zinc-500'
-                      }`}
-                    >
-                      {item.label}
-                    </p>
-                    <p className="mt-0.5 text-[11px] text-zinc-500 dark:text-zinc-400">{item.time}</p>
-                  </div>
-                  <ChevronRight className="h-4 w-4 shrink-0 text-zinc-400" aria-hidden />
-                </div>
+                <span
+                  className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${
+                    isActive
+                      ? 'purpose-tech-check-badge border-transparent'
+                      : 'border-black/[0.08] bg-white/80 dark:border-white/[0.1] dark:bg-white/[0.04]'
+                  }`}
+                  aria-hidden
+                >
+                  {isActive ? <Check className="h-2.5 w-2.5" strokeWidth={3} /> : null}
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="purpose-tech-item-label">{item.label}</span>
+                  <span className="purpose-tech-item-meta">{item.time}</span>
+                </span>
+                <ChevronRight className="h-4 w-4 shrink-0 text-zinc-400 dark:text-zinc-500" aria-hidden />
               </button>
             </li>
           )
         })}
       </ul>
-    </div>
+    </PurposeTechWindow>
   )
+}
+
+const PANEL_META: Record<PurposeCard['animation'], { title: string; subtitle: string }> = {
+  pipeline: { title: 'Projonexa · Delivery', subtitle: 'End-to-end project flow' },
+  audience: { title: 'Projonexa · Innovators', subtitle: 'Tailored client workflows' },
+  milestones: { title: 'Projonexa · Mentorship', subtitle: 'Guided delivery track' },
 }
 
 function PurposeCardVisual({
@@ -369,7 +361,17 @@ function PurposeCardVisual({
   onBack: () => void
   onHover: (index: number | null) => void
 }) {
-  const shared = { accent: card.accent, activeIndex, selectedIndex, onSelect, onBack, onHover }
+  const panel = PANEL_META[card.animation]
+  const shared = {
+    accent: card.accent,
+    panelTitle: panel.title,
+    panelSubtitle: panel.subtitle,
+    activeIndex,
+    selectedIndex,
+    onSelect,
+    onBack,
+    onHover,
+  }
 
   if (card.animation === 'pipeline') {
     return <PipelineVisual steps={card.steps} {...shared} />
@@ -411,7 +413,8 @@ function PurposeFeatureCard({ card, index }: { card: PurposeCard; index: number 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.5, delay: index * 0.08, ease: easeSmooth }}
-      className="purpose-feature-card flex h-full flex-col overflow-hidden rounded-2xl border border-black/[0.07] bg-white/60 dark:border-white/[0.08] dark:bg-black/35"
+      className="purpose-feature-card flex h-full flex-col overflow-hidden rounded-2xl border border-black/[0.07] bg-white/70 dark:border-white/[0.08] dark:bg-black/40"
+      style={{ '--purpose-accent': card.accent } as CSSProperties}
     >
       <div className="flex flex-1 flex-col px-6 pb-4 pt-6 sm:px-7 sm:pt-7">
         <h3 className="text-lg font-bold tracking-tight text-zinc-900 dark:text-white sm:text-xl">
@@ -429,6 +432,7 @@ function PurposeFeatureCard({ card, index }: { card: PurposeCard; index: number 
             {
               '--purpose-media-bg': card.mediaLight,
               '--purpose-media-bg-dark': card.mediaDark,
+              '--purpose-accent': card.accent,
             } as CSSProperties
           }
           onMouseEnter={() => setIsMediaHovered(true)}
@@ -437,7 +441,14 @@ function PurposeFeatureCard({ card, index }: { card: PurposeCard; index: number 
             setHoverIndex(null)
           }}
         >
-          <div className="relative flex min-h-[260px] items-center justify-center px-4 py-6 sm:min-h-[280px] sm:px-5 sm:py-7">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 opacity-80"
+            style={{
+              background: `radial-gradient(ellipse 80% 55% at 50% 0%, color-mix(in srgb, ${card.accent} 18%, transparent), transparent 72%)`,
+            }}
+          />
+          <div className="relative flex min-h-[280px] items-center justify-center px-3 py-5 sm:min-h-[300px] sm:px-4 sm:py-6">
             <AnimatePresence mode="wait">
               <motion.div
                 key={selectedIndex ?? 'list'}
