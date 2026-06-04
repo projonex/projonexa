@@ -9,7 +9,7 @@ If your Git repository root is the **parent monorepo** (e.g. `Projonexa/`), set 
 | Setting | Value |
 |--------|--------|
 | **Root Directory** | `projonexa-main-website` |
-| **Framework Preset** | Vite (auto-detected) |
+| **Framework Preset** | Next.js (auto-detected) |
 | **Build Command** | `npm run build` (from `vercel.json`) |
 | **Output Directory** | `dist` |
 | **Install Command** | `npm ci` |

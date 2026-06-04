@@ -70,7 +70,7 @@ This repository contains the **official Projonexa website** and related open-sou
 | Item | Details |
 |------|---------|
 | **Purpose** | Marketing website, brand presence, and developer documentation |
-| **Stack** | React 18 · TypeScript · Vite 5 · Tailwind CSS 3 · Framer Motion |
+| **Stack** | Next.js 15 · React 19 · TypeScript · Tailwind CSS 3 · Framer Motion |
 | **License** | [GNU AGPL v3.0](LICENSE) |
 | **Live URL** | [projonexa.com](https://projonexa.com) |
 | **Maintainer** | [Nisarga Lokhande](https://www.linkedin.com/in/nslokhande/) |
@@ -306,11 +306,11 @@ npm run dev
 ### Build & Preview
 
 ```bash
-# Production build (output: dist/)
+# Production build (output: .next/)
 npm run build
 
-# Preview production build locally
-npm run preview
+# Run production server locally
+npm start
 ```
 
 ### Environment Variables
@@ -352,11 +352,12 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for architecture and SEO note
 projonexa/
 ├── public/                 # Static assets, logo, favicons, sitemap, robots.txt
 ├── src/
+│   ├── app/                # Next.js App Router (routes + metadata)
 │   ├── components/         # Layout, sections, UI, SEO
 │   ├── context/            # Theme provider (dark/light)
 │   ├── data/               # Content, services, SEO config
 │   ├── hooks/              # Custom React hooks
-│   └── pages/              # Route-level page components
+│   └── views/              # Page UI (composed by app routes)
 ├── docs/                   # Architecture, brand, SEO, GitHub setup
 ├── .github/                # CI, templates, Dependabot, CODEOWNERS
 ├── LICENSE                 # GNU AGPL v3.0

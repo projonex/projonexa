@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom'
+'use client'
+
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import type { ReactNode } from 'react'
 
@@ -44,7 +46,7 @@ export function Button({
   if (to) {
     return (
       <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-        <Link to={to} className={classes}>
+        <Link href={to} className={classes}>
           {children}
         </Link>
       </motion.div>

@@ -1,5 +1,5 @@
 import { Component, type ErrorInfo, type ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { AlertTriangle } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 
@@ -49,7 +49,7 @@ export class ErrorBoundary extends Component<Props, State> {
             Refresh page
           </Button>
           <Link
-            to="/"
+            href="/"
             className="inline-flex items-center justify-center rounded-full border border-black/[0.08] px-6 py-3 text-sm font-semibold text-zinc-800 dark:border-white/[0.1] dark:text-zinc-200"
             onClick={() => this.setState({ hasError: false })}
           >

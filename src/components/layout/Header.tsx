@@ -1,6 +1,9 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { Link, useLocation } from 'react-router-dom'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowRight, Menu, Moon, Sun, X } from 'lucide-react'
 import { NAV_LINKS } from '@/data/navigation'
@@ -37,7 +40,7 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [mounted, setMounted] = useState(false)
   const { theme, toggleTheme } = useTheme()
-  const location = useLocation()
+  const pathname = usePathname()
 
   useBodyScrollLock(open)
 
@@ -89,11 +92,11 @@ export function Header() {
             aria-label="Main navigation"
           >
             {NAV_LINKS.map((link) => {
-              const active = isNavLinkActive(location.pathname, link.path)
+              const active = isNavLinkActive(pathname, link.path)
               return (
                 <Link
                   key={link.path}
-                  to={link.path}
+                  href={link.path}
                   className={`site-header-nav-link px-3.5 py-2 text-[13px] font-semibold tracking-tight ${
                     active
                       ? 'is-active'
@@ -147,11 +150,11 @@ export function Header() {
                   Menu
                 </p>
                 {NAV_LINKS.map((link) => {
-                  const active = isNavLinkActive(location.pathname, link.path)
+                  const active = isNavLinkActive(pathname, link.path)
                   return (
                     <Link
                       key={link.path}
-                      to={link.path}
+                      href={link.path}
                       onClick={() => setOpen(false)}
                       className={`mobile-nav-link flex items-center justify-between rounded-xl px-4 py-3.5 text-[15px] font-semibold ${
                         active

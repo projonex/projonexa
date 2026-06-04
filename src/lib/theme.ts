@@ -11,6 +11,6 @@ export {
   gradient,
   shadow,
   font,
-} from '../theme/index.ts'
+} from '../theme'
 
-export type { BrandColor, SurfaceColor } from '../theme/index.ts'
+export type { BrandColor, SurfaceColor } from '../theme'

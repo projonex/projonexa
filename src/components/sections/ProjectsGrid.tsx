@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import {
   MY_PROJECTS,
@@ -25,7 +25,7 @@ function ProjectPreviewCard({ project, index }: { project: MyProject; index: num
       className="h-full"
     >
       <Link
-        to={detailPath}
+        href={detailPath}
         className={`project-preview-card group relative flex h-full w-full flex-col overflow-hidden rounded-[1.35rem] border border-black/[0.08] bg-white/60 shadow-card backdrop-blur-xl transition-[transform,box-shadow,border-color] duration-300 ease-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary dark:border-white/[0.1] dark:bg-black/45 dark:shadow-card-dark ${
           reducedMotion
             ? 'hover:border-brand-primary/30'

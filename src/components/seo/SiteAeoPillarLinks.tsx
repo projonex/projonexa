@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 
 export const SITE_AEO_PILLARS = [
@@ -17,7 +17,7 @@ export function SiteAeoPillarLinks({ className = '' }: { className?: string }) {
       {SITE_AEO_PILLARS.map((item) => (
         <Link
           key={item.path}
-          to={item.path}
+          href={item.path}
           className="inline-flex items-center gap-1.5 rounded-full border border-black/[0.08] bg-white/70 px-3.5 py-2 text-xs font-semibold text-zinc-800 transition-colors hover:border-brand-primary/35 hover:text-brand-primary dark:border-white/[0.1] dark:bg-white/[0.04] dark:text-zinc-200 dark:hover:text-brand-accent"
         >
           {item.label}
