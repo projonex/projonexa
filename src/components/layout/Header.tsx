@@ -85,7 +85,7 @@ export function Header() {
         className={`site-header-shell ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-menu-open' : ''}`}
       >
         <div className="container-wide flex h-[4.25rem] shrink-0 items-center justify-between gap-4 px-4 sm:h-16 sm:px-6 lg:px-8">
-          <Logo className="shrink-0" />
+          <Logo className="site-header-brand shrink-0" />
 
           <nav
             className="site-header-nav hidden items-center gap-0.5 rounded-full p-1 lg:flex"

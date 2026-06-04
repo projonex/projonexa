@@ -31,7 +31,7 @@ export function StandaloneAppBar({ backTo, backLabel }: StandaloneAppBarProps) {
           placement="nav"
           layout="inline"
           showName
-          className="pointer-events-auto absolute left-1/2 top-1/2 max-w-[min(52%,12rem)] -translate-x-1/2 -translate-y-1/2 sm:max-w-none"
+          className="standalone-app-bar__logo pointer-events-auto absolute left-1/2 top-1/2 z-[1] -translate-x-1/2 -translate-y-1/2"
         />
 
         <button

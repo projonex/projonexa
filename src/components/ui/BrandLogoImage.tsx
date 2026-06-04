@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { BRAND_LOGO } from '@/constants/brand-assets'
+import { BRAND_LOGO, BRAND_LOGO_SIZES } from '@/constants/brand-assets'
 
 interface BrandLogoImageProps {
   className?: string
@@ -16,12 +16,11 @@ export function BrandLogoImage({
 }: BrandLogoImageProps) {
   return (
     <Image
-      src={BRAND_LOGO.src}
+      src={BRAND_LOGO_SIZES.md}
       alt={decorative ? '' : BRAND_LOGO.alt}
-      width={256}
-      height={256}
-      className={className}
-      sizes="(max-width: 640px) 44px, 42px"
+      fill
+      className={`site-logo-image object-contain ${className}`.trim()}
+      sizes="(max-width: 640px) 40px, 42px"
       priority={priority}
       draggable={false}
       {...(decorative ? { 'aria-hidden': true } : {})}
