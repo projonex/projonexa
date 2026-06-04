@@ -322,6 +322,8 @@ export const WHY_CARDS = [
       'Scalable APIs',
     ],
     accent: '#00c8ff',
+    gradientLight:
+      'linear-gradient(155deg, #f0fbff 0%, #dff4fc 38%, #c5ebf8 72%, #a8e0f4 100%)',
     gradient: 'linear-gradient(145deg, #0a1628 0%, #0d2847 42%, #1a4a6e 100%)',
     animation: 'vertical',
   },
@@ -338,6 +340,8 @@ export const WHY_CARDS = [
       'Presentation decks',
     ],
     accent: '#6c63ff',
+    gradientLight:
+      'linear-gradient(155deg, #f5f3ff 0%, #ebe8ff 38%, #ddd6fe 72%, #cfc4ff 100%)',
     gradient: 'linear-gradient(145deg, #120a28 0%, #1e1248 42%, #3d2a7a 100%)',
     featured: true,
     animation: 'stacked',
@@ -355,6 +359,8 @@ export const WHY_CARDS = [
       'Launch support',
     ],
     accent: '#00e5a0',
+    gradientLight:
+      'linear-gradient(155deg, #edfff8 0%, #d8faef 38%, #bdf5e4 72%, #9fefd6 100%)',
     gradient: 'linear-gradient(145deg, #0a1f18 0%, #0d3d2e 42%, #145a42 100%)',
     animation: 'orbit',
   },

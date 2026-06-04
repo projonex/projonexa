@@ -47,8 +47,8 @@ function Pill({
     <span
       className={`why-crisp-text inline-flex max-w-full items-center justify-center whitespace-nowrap rounded-full border font-semibold leading-none tracking-tight transition-all duration-300 ${sizeClass} ${className} ${
         active
-          ? 'border-white/50 bg-white text-zinc-900 shadow-[0_6px_24px_-6px_rgba(0,0,0,0.4)]'
-          : 'border-white/15 bg-white/[0.1] text-white/80'
+          ? 'border-black/[0.1] bg-white text-zinc-900 shadow-[0_8px_28px_-10px_rgba(0,80,120,0.22)] dark:border-white/50 dark:shadow-[0_6px_24px_-6px_rgba(0,0,0,0.4)]'
+          : 'border-black/[0.08] bg-white/75 text-zinc-600 dark:border-white/15 dark:bg-white/[0.1] dark:text-white/80'
       }`}
       style={active ? ({ color: accent } as CSSProperties) : undefined}
     >
@@ -83,8 +83,8 @@ function VerticalScrollAnimation({
     <div className="relative mx-auto w-full">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-1/2 z-10 h-[52px] -translate-y-1/2 rounded-full border border-white/30 bg-white/[0.08]"
-        style={{ boxShadow: `inset 0 0 0 1px ${accent}50` }}
+        className="pointer-events-none absolute inset-x-0 top-1/2 z-10 h-[52px] -translate-y-1/2 rounded-full border border-brand-primary/25 bg-white/90 shadow-[0_4px_20px_-8px_rgba(0,120,180,0.2)] dark:border-white/30 dark:bg-white/[0.08] dark:shadow-none"
+        style={{ boxShadow: `inset 0 0 0 1px color-mix(in srgb, ${accent} 35%, transparent)` }}
       />
       <div className="relative overflow-hidden" style={{ height: viewportHeight }}>
         <div className="why-vertical-fade-top" aria-hidden />
@@ -216,14 +216,14 @@ function StackedProgressAnimation({
                   key={`${label}-${row}`}
                   className={`why-crisp-text rounded-2xl border px-3 py-2.5 transition-all duration-300 sm:px-3.5 sm:py-3 ${
                     isActive
-                      ? 'border-white/35 bg-white shadow-[0_8px_28px_-8px_rgba(0,0,0,0.45)]'
-                      : 'border-white/12 bg-white/[0.07]'
+                      ? 'border-black/[0.1] bg-white shadow-[0_8px_28px_-10px_rgba(0,80,120,0.18)] dark:border-white/35 dark:shadow-[0_8px_28px_-8px_rgba(0,0,0,0.45)]'
+                      : 'border-black/[0.06] bg-white/55 dark:border-white/12 dark:bg-white/[0.07]'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2">
                     <span
                       className={`min-w-0 truncate text-[13px] font-semibold leading-tight sm:text-sm ${
-                        isActive ? 'text-zinc-900' : 'text-white/75'
+                        isActive ? 'text-zinc-900' : 'text-zinc-500 dark:text-white/75'
                       }`}
                       style={isActive ? ({ color: accent } as CSSProperties) : undefined}
                     >
@@ -231,13 +231,13 @@ function StackedProgressAnimation({
                     </span>
                     <span
                       className={`shrink-0 text-[11px] font-bold tabular-nums sm:text-xs ${
-                        isActive ? 'text-zinc-600' : 'text-white/40'
+                        isActive ? 'text-zinc-500' : 'text-zinc-400 dark:text-white/40'
                       }`}
                     >
                       {Math.round(rowProgress)}%
                     </span>
                   </div>
-                  <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-zinc-200/90">
+                  <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-zinc-200/95 dark:bg-zinc-200/90">
                     <motion.div
                       className="h-full rounded-full"
                       style={{ backgroundColor: accent, width: `${rowProgress}%` }}
@@ -372,34 +372,42 @@ function WhyPremiumCard({
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.55, delay: 0.1 + index * 0.08, ease: easeSmooth }}
       whileHover={{ scale: featured ? 1 : 1.012 }}
-      className={`why-premium-card group relative flex min-w-0 cursor-default flex-col justify-end overflow-hidden rounded-[1.75rem] border border-white/10 shadow-[0_24px_60px_-28px_rgba(0,0,0,0.55)] transition-[transform,box-shadow] duration-500 ease-out aspect-[370/446] ${
-        featured ? 'z-10 flex-[1.05] sm:flex-[1.08]' : 'flex-[0.92] sm:scale-[0.99]'
+      className={`why-premium-card group relative flex min-w-0 cursor-default flex-col overflow-hidden rounded-[1.75rem] border border-black/[0.08] bg-white transition-[transform,box-shadow] duration-500 ease-out aspect-[370/446] dark:border-white/10 dark:bg-transparent${
+        featured ? ' why-premium-card--featured z-10 flex-[1.05] sm:flex-[1.08]' : ' flex-[0.92] sm:scale-[0.99]'
       }`}
-      style={{ background: card.gradient }}
+      style={
+        {
+          '--why-accent': card.accent,
+          '--why-bg-light': card.gradientLight,
+          '--why-bg-dark': card.gradient,
+        } as CSSProperties
+      }
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-80"
-        style={{
-          background: `radial-gradient(ellipse 80% 60% at 50% 38%, ${card.accent}33 0%, transparent 70%)`,
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(8,12,20,0)_0%,rgba(0,0,0,0.55)_58%,rgba(0,0,0,0.92)_100%)]"
-      />
+      <div className="why-card-media relative flex min-h-0 flex-1 flex-col">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-90 dark:opacity-80"
+          style={{
+            background: `radial-gradient(ellipse 85% 65% at 50% 32%, color-mix(in srgb, ${card.accent} 22%, transparent) 0%, transparent 72%)`,
+          }}
+        />
+        <div
+          aria-hidden
+          className="why-card-media-scrim pointer-events-none absolute inset-0 dark:bg-[linear-gradient(180deg,rgba(8,12,20,0)_0%,rgba(0,0,0,0.35)_55%,rgba(0,0,0,0.72)_100%)]"
+        />
 
-      <div className="why-card-stage pointer-events-none absolute inset-x-0 bottom-[25%] top-[11%] z-[1] px-4 sm:px-5">
-        <div className="why-card-stage-inner mx-auto">
-          <CardAnimation card={card} />
+        <div className="why-card-stage relative z-[1] flex flex-1 items-center px-4 py-5 sm:px-5 sm:py-6">
+          <div className="why-card-stage-inner mx-auto w-full">
+            <CardAnimation card={card} />
+          </div>
         </div>
       </div>
 
-      <div className="why-premium-card-footer relative z-10 px-4 pb-6 pt-4 sm:px-6 sm:pb-8 sm:pt-8">
-        <h3 className="why-crisp-text text-center text-xl font-bold leading-tight text-white transition-opacity duration-300 ease-out group-hover:opacity-0 sm:text-2xl">
+      <div className="why-premium-card-footer relative z-10 shrink-0 px-4 pb-6 pt-4 sm:px-6 sm:pb-7 sm:pt-5">
+        <h3 className="why-crisp-text text-center text-xl font-bold leading-tight text-zinc-900 transition-opacity duration-300 ease-out group-hover:opacity-0 dark:text-white sm:text-2xl">
           {card.title}
         </h3>
-        <p className="why-crisp-text absolute inset-x-4 bottom-6 flex items-end justify-center px-2 text-center text-sm leading-snug text-white/90 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 sm:inset-x-6 sm:bottom-8 sm:text-[15px]">
+        <p className="why-crisp-text absolute inset-x-4 bottom-6 flex items-end justify-center px-2 text-center text-sm leading-snug text-zinc-600 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 dark:text-white/90 sm:inset-x-6 sm:bottom-7 sm:text-[15px]">
           {card.hoverDescription}
         </p>
       </div>
@@ -417,11 +425,11 @@ export function WhyChoose({ variant = 'section', className }: WhyChooseProps) {
     <>
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-24 top-1/4 h-72 w-72 rounded-full bg-brand-primary/10 blur-[100px]"
+        className="pointer-events-none absolute -right-24 top-1/4 h-72 w-72 rounded-full bg-brand-primary/[0.14] blur-[100px] dark:bg-brand-primary/10"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-20 bottom-0 h-64 w-64 rounded-full bg-brand-secondary/10 blur-[90px]"
+        className="pointer-events-none absolute -left-20 bottom-0 h-64 w-64 rounded-full bg-brand-secondary/[0.12] blur-[90px] dark:bg-brand-secondary/10"
       />
 
       <div className="container-wide relative">
@@ -483,8 +491,8 @@ export function WhyChoose({ variant = 'section', className }: WhyChooseProps) {
     <section
       className={
         className
-          ? `section-padding section-frosted overflow-hidden pb-16 sm:pb-20 lg:pb-24 ${className}`
-          : 'section-padding section-frosted overflow-hidden pb-16 sm:pb-20 lg:pb-24'
+          ? `why-section section-padding section-frosted overflow-hidden pb-16 sm:pb-20 lg:pb-24 ${className}`
+          : 'why-section section-padding section-frosted overflow-hidden pb-16 sm:pb-20 lg:pb-24'
       }
       aria-labelledby="why-projonexa-heading"
     >
