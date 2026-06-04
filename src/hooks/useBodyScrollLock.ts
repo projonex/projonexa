@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect } from 'react'
 
 /** Prevent background scroll while overlays (e.g. mobile nav) are open. */

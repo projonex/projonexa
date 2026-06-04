@@ -2,7 +2,7 @@ import { FOUNDER, FOUNDER_SECTION } from '@/data/brand'
 import { Mail } from 'lucide-react'
 import { GitHubIcon, LinkedInIcon } from '@/components/ui/SocialIcons'
 
-import founderPhoto from '@/assets/img/nisargalokhande.png'
+const founderPhoto = '/img/nisargalokhande.jpg'
 import { Button } from '@/components/ui/Button'
 import { motion } from 'framer-motion'
 

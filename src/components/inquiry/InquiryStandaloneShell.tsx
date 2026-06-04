@@ -1,17 +1,16 @@
+'use client'
+
 import { ApplyPageBrand } from '@/components/careers/ApplyPageBrand'
-import { SEO } from '@/components/seo/SEO'
 import { BrandWordmark } from '@/components/ui/BrandWordmark'
 import { useTheme } from '@/context/ThemeContext'
-import type { PageSEO } from '@/data/seo'
 import { motion } from 'framer-motion'
 import { ArrowLeft, Moon, Sun } from 'lucide-react'
 import { useEffect, type ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 
 const easeSmooth = [0.22, 1, 0.36, 1] as const
 
 interface InquiryStandaloneShellProps {
-  seo: PageSEO
   eyebrow: string
   title: string
   description?: string
@@ -30,7 +29,6 @@ interface InquiryStandaloneShellProps {
 }
 
 export function InquiryStandaloneShell({
-  seo,
   eyebrow,
   title,
   description,
@@ -72,8 +70,6 @@ export function InquiryStandaloneShell({
     <div
       className={`careers-apply-standalone relative min-h-screen text-zinc-900 dark:text-zinc-100${desktopSplit ? ' inquiry-standalone-split' : ''}`}
     >
-      <SEO seo={seo} />
-
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand-primary/[0.06] via-transparent to-brand-secondary/[0.08] dark:from-brand-primary/[0.08] dark:to-brand-secondary/[0.06]"
@@ -84,7 +80,7 @@ export function InquiryStandaloneShell({
       />
 
       <Link
-        to={backTo}
+        href={backTo}
         className="absolute left-3 top-[max(0.75rem,env(safe-area-inset-top))] z-20 inline-flex h-10 max-w-[calc(100%-5.5rem)] items-center gap-2 rounded-full border border-black/[0.08] bg-white/80 px-3 text-sm font-medium text-zinc-600 shadow-sm backdrop-blur-md transition-colors hover:border-brand-primary/30 hover:text-brand-primary dark:border-white/[0.1] dark:bg-zinc-900/80 dark:text-zinc-300 dark:hover:text-brand-accent sm:left-6 sm:top-6 sm:max-w-none sm:px-4"
       >
         <ArrowLeft className="h-4 w-4 shrink-0" aria-hidden />

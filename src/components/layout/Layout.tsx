@@ -1,13 +1,15 @@
-import { Outlet, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+'use client'
+
+import { usePathname } from 'next/navigation'
+import { useEffect, type ReactNode } from 'react'
 import { Header } from './Header'
 import { Footer } from './Footer'
 import { SiteAmbientBackground } from './SiteAmbientBackground'
 import { useSiteCursor } from '@/hooks/useSiteCursor'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 
-export function Layout() {
-  const { pathname } = useLocation()
+export function Layout({ children }: { children: ReactNode }) {
+  const pathname = usePathname()
   const reducedMotion = useReducedMotion()
   const showCursor = !reducedMotion
 
@@ -48,7 +50,7 @@ export function Layout() {
         className="relative z-10 min-w-0 overflow-x-clip"
         tabIndex={-1}
       >
-        <Outlet />
+        {children}
       </main>
       <Footer />
     </div>

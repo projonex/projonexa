@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { BrandLogoImage } from '@/components/ui/BrandLogoImage'
 import { BrandNameWordmark } from '@/components/ui/BrandNameWordmark'
 
@@ -29,7 +29,7 @@ export function Logo({
 
   return (
     <Link
-      to="/"
+      href="/"
       className={[
         'site-brand-link group',
         isStacked ? 'site-brand-link--stacked' : 'site-brand-link--inline',

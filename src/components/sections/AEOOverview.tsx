@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { ChevronDown, ArrowRight } from 'lucide-react'
 import { AEO_HOME_FAQ } from '@/data/seo'
 import {
@@ -256,28 +256,28 @@ export function AEOOverview() {
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link
-                  to="/college-projects"
+                  href="/college-projects"
                   className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/50 px-5 py-2.5 text-sm font-semibold text-zinc-800 backdrop-blur-sm transition-colors hover:border-brand-primary/30 hover:text-brand-primary dark:border-white/[0.1] dark:bg-black/40 dark:text-zinc-100"
                 >
                   College projects
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
-                  to="/client-projects"
+                  href="/client-projects"
                   className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/50 px-5 py-2.5 text-sm font-semibold text-zinc-800 backdrop-blur-sm transition-colors hover:border-brand-primary/30 hover:text-brand-primary dark:border-white/[0.1] dark:bg-black/40 dark:text-zinc-100"
                 >
                   Client & MVP
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
-                  to="/inquiry/students"
+                  href="/inquiry/students"
                   className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/50 px-5 py-2.5 text-sm font-semibold text-zinc-800 backdrop-blur-sm transition-colors hover:border-brand-primary/30 hover:text-brand-primary dark:border-white/[0.1] dark:bg-black/40 dark:text-zinc-100"
                 >
                   Student inquiry
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
-                  to="/contact"
+                  href="/contact"
                   className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white shadow-glow-sm transition-opacity hover:opacity-95"
                 >
                   Contact us

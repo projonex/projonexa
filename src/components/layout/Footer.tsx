@@ -5,7 +5,7 @@ import { GitHubIcon, LinkedInIcon } from '@/components/ui/SocialIcons'
 import { BrandWordmark } from '@/components/ui/BrandWordmark'
 import { SiteAeoPillarLinks } from '@/components/seo/SiteAeoPillarLinks'
 import { FOOTER_LINKS } from '@/data/navigation'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { Logo } from '@/components/ui/Logo'
 import type { ReactNode } from 'react'
 
@@ -80,7 +80,7 @@ export function Footer() {
               <ul className="space-y-2.5">
                 {FOOTER_LINKS.company.map((link) => (
                   <li key={link.path}>
-                    <Link to={link.path} className="footer-link text-sm text-zinc-600 dark:text-zinc-400">
+                    <Link href={link.path} className="footer-link text-sm text-zinc-600 dark:text-zinc-400">
                       {link.label}
                     </Link>
                   </li>
@@ -92,7 +92,7 @@ export function Footer() {
               <ul className="space-y-2.5">
                 {FOOTER_LINKS.resources.map((link) => (
                   <li key={link.path}>
-                    <Link to={link.path} className="footer-link text-sm text-zinc-600 dark:text-zinc-400">
+                    <Link href={link.path} className="footer-link text-sm text-zinc-600 dark:text-zinc-400">
                       {link.label}
                     </Link>
                   </li>
@@ -104,7 +104,7 @@ export function Footer() {
               <ul className="space-y-2.5">
                 {FOOTER_LINKS.support.map((link) => (
                   <li key={link.path}>
-                    <Link to={link.path} className="footer-link text-sm text-zinc-600 dark:text-zinc-400">
+                    <Link href={link.path} className="footer-link text-sm text-zinc-600 dark:text-zinc-400">
                       {link.label}
                     </Link>
                   </li>

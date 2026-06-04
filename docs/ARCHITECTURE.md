@@ -1,102 +1,93 @@
 # Projonexa Website — Architecture
 
-## Tech Stack
+## Tech stack
 
-| Layer        | Technology        |
-|--------------|-------------------|
-| Framework    | React 19          |
-| Language     | TypeScript        |
-| Build        | Vite 5            |
-| Styling      | Tailwind CSS 3    |
-| Animation    | Framer Motion     |
-| Routing      | React Router 7    |
-| SEO          | react-helmet-async|
-| Icons        | Lucide React      |
+| Layer | Technology |
+|-------|------------|
+| Framework | Next.js 15 (App Router) |
+| UI | React 19 |
+| Language | TypeScript |
+| Styling | Tailwind CSS 3 + design tokens (`src/theme/`) |
+| Animation | Framer Motion |
+| SEO | `generateMetadata` + JSON-LD (`src/lib/seo/`) |
+| Icons | Lucide React, Simple Icons (tech cloud) |
+| Deploy | Vercel (recommended) |
 
-## Folder Structure
+## Folder structure
 
-```
-projonexa/
-├── public/                 # Static assets, robots.txt, sitemap.xml
-├── docs/                   # Brand guidelines, architecture, SEO strategy
-├── src/
-│   ├── components/
-│   │   ├── layout/         # Header, Footer, Layout shell
-│   │   ├── sections/       # Page sections (Hero, Stats, Services, …)
-│   │   ├── seo/            # SEO / structured data
-│   │   └── ui/             # Button, Logo, Skeleton, SectionHeading
-│   ├── context/            # ThemeProvider (dark/light)
-│   ├── data/               # Content & configuration (single source of truth)
-│   ├── hooks/              # useInView, useCountUp
-│   ├── pages/              # Route-level page components
-│   ├── App.tsx             # Router definition
-│   ├── main.tsx            # Entry point
-│   └── index.css           # Tailwind theme tokens & utilities
-├── index.html
-├── vite.config.ts
-└── package.json
-```
+See **[PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md)** for the full tree and conventions.
 
-## Component Architecture
+## Request flow
 
 ```
-App
-└── HelmetProvider
-    └── ThemeProvider
-        └── BrowserRouter
-            └── Layout (Header + Outlet + Footer)
-                ├── HomePage → [Hero, Stats, ServicesGrid, …]
-                ├── AboutPage
-                ├── ServicesPage
-                └── … (one page component per route)
+HTTP request
+    → src/app/**/page.tsx     (metadata + route shell)
+    → src/views/*Page.tsx     (page UI, client where needed)
+    → src/components/         (sections, layout, forms)
+    → src/data/               (content & PAGE_SEO)
 ```
 
-**Sections** are composable blocks used on Home and reused across pages (e.g. `Founder`, `CTA`, `Stats`).
+**Route groups**
 
-**Data layer** (`src/data/`) centralizes copy, services, SEO metadata, and navigation — update content without touching layout code.
+- `(site)/` — pages with `Layout` (header, footer, ambient background).
+- `careers/apply`, `inquiry/*` — standalone flows without the main marketing shell.
 
 ## Routing
 
-| Path        | Page           |
-|-------------|----------------|
-| `/`         | Home           |
-| `/about`    | About          |
-| `/services` | Services       |
-| `/projects` | Projects       |
-| `/research` | Research       |
-| `/blog`     | Blog           |
-| `/portfolio`| Portfolio      |
-| `/pricing`  | Pricing        |
-| `/careers`  | Careers        |
-| `/faq`      | FAQ            |
-| `/contact`  | Contact        |
+| Path | View / notes |
+|------|----------------|
+| `/` | Home |
+| `/about` | About |
+| `/services` | Services |
+| `/projects` | Projects listing |
+| `/projects/[slug]` | Project detail (SSG via `generateStaticParams`) |
+| `/blog` | Blog |
+| `/portfolio` | Portfolio |
+| `/pricing` | Pricing |
+| `/careers` | Careers |
+| `/careers/apply` | Application form (dynamic metadata by `?role=`) |
+| `/faq` | FAQ |
+| `/contact` | Contact |
+| `/college-projects` | Student projects hub |
+| `/client-projects` | Client / MVP hub |
+| `/affiliate-program` | Affiliate Q&A |
+| `/inquiry/students` | Student inquiry |
+| `/inquiry/corporate` | Corporate inquiry |
+| `/inquiry/affiliate` | Affiliate application |
+| `/404` | Explicit 404 URL |
+| *unknown* | `not-found.tsx` (with site layout) |
 
-## Design System (CSS)
+**Redirects** (`next.config.ts`): `/final-year-projects` → `/college-projects`, `/research` → `/services`.
 
-Custom tokens in `src/index.css` via Tailwind `@theme`:
+## SEO, AEO & GEO
 
-- Brand colors: `--color-brand-primary`, etc.
-- Utilities: `.text-gradient`, `.bg-brand-gradient`, `.glass`, `.section-padding`
+| Concern | Implementation |
+|---------|----------------|
+| Meta tags | `buildPageMetadata()` in `src/lib/seo/page-metadata.ts` |
+| JSON-LD | `PageSeo` → `JsonLd` → `buildStructuredData()` |
+| Config | `PAGE_SEO` in `src/data/seo.ts` |
+| Sitemap | `src/app/sitemap.ts` + `npm run sitemap:generate` → `public/sitemap.xml` |
+| Robots | `src/app/robots.ts` + `public/robots.txt` (AI crawlers allowed) |
+| GEO | Meta + `LocalBusiness` / `Organization` schema, India coordinates |
+| AEO | FAQ schema, `llms.txt`, homepage FAQ block, pillar links |
 
-## SEO Strategy
+## Design system
 
-- Per-route meta via `SEO` component + `PAGE_SEO` in `src/data/seo.ts`
-- JSON-LD Organization schema on every page
-- `public/sitemap.xml` and `public/robots.txt`
-- Canonical URLs use `BRAND.url` (update when domain is live)
-- Target keywords embedded in titles, descriptions, and structured `knowsAbout`
+- Tokens: `src/theme/colors.json` → `tailwind.preset.js` → `src/index.css`
+- Dark/light: `ThemeProvider` (`src/context/ThemeContext.tsx`)
 
 ## Deployment
 
-1. `npm run build` → `dist/`
-2. Deploy to Vercel, Netlify, or static host
-3. Set `BRAND.url` in `src/data/brand.ts` to production domain
-4. Add `public/og-image.png` (1200×630) for social previews
+1. `npm run build` → `.next/` (static pages pre-rendered where possible)
+2. `npm start` or Vercel (framework: Next.js)
+3. Production domain: `BRAND.url` in `src/data/brand.ts`
+4. OG images: `public/og/` (generated by `npm run og:generate`)
 
-## Future Enhancements
+Details: [VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md)
 
-- CMS for blog posts (Sanity, Contentlayer)
-- Backend contact form API
-- Real tech stack SVG logos (Simple Icons)
+## Future enhancements
+
+- CMS for blog (Contentlayer / Sanity)
+- Contact form API route
 - Analytics (Plausible / GA4)
 - i18n for regional audiences
