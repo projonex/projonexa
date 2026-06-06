@@ -5,12 +5,13 @@ import { Button } from '@/components/ui/Button'
 interface ReferralCodeDisplayProps {
   code: string
   shareUrl: string
+  corporateShareUrl?: string
 }
 
-export function ReferralCodeDisplay({ code, shareUrl }: ReferralCodeDisplayProps) {
-  const [copiedField, setCopiedField] = useState<'code' | 'link' | null>(null)
+export function ReferralCodeDisplay({ code, shareUrl, corporateShareUrl }: ReferralCodeDisplayProps) {
+  const [copiedField, setCopiedField] = useState<'code' | 'student' | 'corporate' | null>(null)
 
-  const copy = async (text: string, field: 'code' | 'link') => {
+  const copy = async (text: string, field: 'code' | 'student' | 'corporate') => {
     try {
       await navigator.clipboard.writeText(text)
       setCopiedField(field)
@@ -32,20 +33,20 @@ export function ReferralCodeDisplay({ code, shareUrl }: ReferralCodeDisplayProps
         {code}
       </p>
       <p className="mt-3 text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">
-        Share this code with students booking a project inquiry. They can enter it on the student
-        inquiry form (optional field).
+        Share this code when students or corporate clients book a project inquiry (optional field on
+        the form).
       </p>
-      <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+      <div className="mt-4 flex flex-col gap-2">
         <Button
           type="button"
           variant="primary"
-          className="w-full sm:flex-1"
+          className="w-full"
           onClick={() => copy(code, 'code')}
         >
           {copiedField === 'code' ? (
             <>
               <Check className="h-4 w-4" aria-hidden />
-              Copied
+              Code copied
             </>
           ) : (
             <>
@@ -57,23 +58,48 @@ export function ReferralCodeDisplay({ code, shareUrl }: ReferralCodeDisplayProps
         <Button
           type="button"
           variant="secondary"
-          className="w-full sm:flex-1"
-          onClick={() => copy(shareUrl, 'link')}
+          className="w-full"
+          onClick={() => copy(shareUrl, 'student')}
         >
-          {copiedField === 'link' ? (
+          {copiedField === 'student' ? (
             <>
               <Check className="h-4 w-4" aria-hidden />
-              Link copied
+              Student link copied
             </>
           ) : (
             <>
               <Copy className="h-4 w-4" aria-hidden />
-              Copy share link
+              Copy student inquiry link
             </>
           )}
         </Button>
+        {corporateShareUrl ? (
+          <Button
+            type="button"
+            variant="secondary"
+            className="w-full"
+            onClick={() => copy(corporateShareUrl, 'corporate')}
+          >
+            {copiedField === 'corporate' ? (
+              <>
+                <Check className="h-4 w-4" aria-hidden />
+                Corporate link copied
+              </>
+            ) : (
+              <>
+                <Copy className="h-4 w-4" aria-hidden />
+                Copy corporate inquiry link
+              </>
+            )}
+          </Button>
+        ) : null}
       </div>
       <p className="mt-3 break-all font-mono text-[11px] text-zinc-500 dark:text-zinc-500">{shareUrl}</p>
+      {corporateShareUrl ? (
+        <p className="mt-1 break-all font-mono text-[11px] text-zinc-500 dark:text-zinc-500">
+          {corporateShareUrl}
+        </p>
+      ) : null}
     </div>
   )
 }

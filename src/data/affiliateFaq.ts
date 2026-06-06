@@ -95,16 +95,16 @@ export const AFFILIATE_FAQ_CATEGORIES: FAQCategory[] = [
     items: [
       {
         question: 'How do I join the Projonexa Affiliate Program?',
-        answer: `Complete the Affiliate Program application form at ${BRAND.url}${AFFILIATE_APPLY_PATH}. Provide your contact details, how you plan to promote, and confirm eligibility. After submission, you receive a unique referral code and referral URL on the confirmation screen. Projonexa also shares your official referral code and link via email and WhatsApp for ongoing use.`,
+        answer: `Complete the Affiliate Program application form at ${BRAND.url}${AFFILIATE_APPLY_PATH}. Provide your contact details, how you plan to promote, and confirm eligibility. Verify your email with the OTP sent to you — then you receive a unique referral code (NS109XXX) and share links on the confirmation screen. Projonexa also sends your code via email and WhatsApp.`,
       },
       {
         question: 'How do I get my Projonexa affiliate referral code?',
         answer:
-          'Your unique referral code (format PX-XXXXXXXX) and personal referral URL are generated when you submit the affiliate application form. Save them from the success screen and from the confirmation message sent to your email and WhatsApp. Share the URL or code with students booking a project inquiry so your referral is tracked.',
+          'Your unique referral code (format NS109XXX, e.g. NS109001) and personal referral URL are generated after you verify your email in the affiliate application form. Save them from the success screen and from the confirmation message sent to your email and WhatsApp. Share the URL or code with students and corporate clients booking a project inquiry so your referral is tracked.',
       },
       {
         question: 'Where should referred students enter my referral code?',
-        answer: `Referred students should use your share link or open the student project inquiry form at ${BRAND.url}/inquiry/students and enter your code in the optional Referral code field. If they use your full referral URL with ?ref=YOUR-CODE, the field may be pre-filled automatically.`,
+        answer: `Referred students should use your share link or open the student project inquiry form at ${BRAND.url}/inquiry/students and enter your code in the optional Referral code field. Corporate clients can use ${BRAND.url}/inquiry/corporate with the same code. If they use your full referral URL with ?ref=YOUR-CODE, the field may be pre-filled automatically.`,
       },
       {
         question: 'Can I share my referral link on WhatsApp and social media?',

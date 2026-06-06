@@ -25,7 +25,7 @@ import {
   AFFILIATE_FAQ_SECTION,
   AFFILIATE_PROGRAM_HIGHLIGHTS,
 } from '@/data/affiliateFaq'
-import { AFFILIATE_INQUIRY_PATH } from '@/data/affiliateProgram'
+import { AFFILIATE_INQUIRY_PATH, AFFILIATE_ELIGIBILITY_PATH } from '@/data/affiliateProgram'
 
 const easeSmooth = [0.22, 1, 0.36, 1] as const
 
@@ -78,6 +78,9 @@ export function AffiliateProgramPage() {
                 <HandCoins className="h-4 w-4" aria-hidden />
                 Apply for affiliate program
                 <ArrowUpRight className="h-4 w-4 opacity-80" aria-hidden />
+              </Button>
+              <Button to={AFFILIATE_ELIGIBILITY_PATH} variant="secondary">
+                Check eligibility
               </Button>
               <Button to="/inquiry/students" variant="secondary">
                 Student project inquiry

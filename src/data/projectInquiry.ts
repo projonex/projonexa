@@ -22,8 +22,12 @@ export function studentInquiryPath(referralCode?: string) {
   return `${base}?ref=${encodeURIComponent(ref)}`
 }
 
-export function corporateInquiryPath() {
-  return INQUIRY_PATHS.corporate
+export function corporateInquiryPath(referralCode?: string) {
+  const base = INQUIRY_PATHS.corporate
+  if (!referralCode) return base
+  const ref = normalizeReferralCode(referralCode)
+  if (!ref) return base
+  return `${base}?ref=${encodeURIComponent(ref)}`
 }
 
 export const STUDENT_INQUIRY_SECTION = {

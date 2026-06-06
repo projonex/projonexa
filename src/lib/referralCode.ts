@@ -1,13 +1,8 @@
-const REFERRAL_PREFIX = 'PX'
+export const REFERRAL_PREFIX = 'NS109'
 
-/** Client-generated affiliate referral code (e.g. PX-A1B2C3D4). */
-export function generateReferralCode(): string {
-  const bytes = crypto.getRandomValues(new Uint8Array(4))
-  const segment = Array.from(bytes, (b) => b.toString(16).padStart(2, '0'))
-    .join('')
-    .toUpperCase()
-    .slice(0, 8)
-  return `${REFERRAL_PREFIX}-${segment}`
+/** Display example for affiliate referral codes (e.g. NS109001). */
+export function exampleReferralCode(): string {
+  return `${REFERRAL_PREFIX}001`
 }
 
 export function normalizeReferralCode(input: string): string {
@@ -17,5 +12,9 @@ export function normalizeReferralCode(input: string): string {
 export function isValidReferralCodeFormat(code: string): boolean {
   const normalized = normalizeReferralCode(code)
   if (!normalized) return true
-  return /^PX-[A-Z0-9]{6,12}$/.test(normalized)
+  return /^(NS109[0-9]{3,6}|PX-[A-Z0-9]{6,12})$/.test(normalized)
+}
+
+export function referralCodeFormatHint(): string {
+  return 'NS109XXX (e.g. NS109001)'
 }

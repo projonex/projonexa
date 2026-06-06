@@ -2,6 +2,8 @@ import { INQUIRY_PATHS } from './projectInquiry'
 
 export const AFFILIATE_INQUIRY_PATH = INQUIRY_PATHS.affiliate
 
+export const AFFILIATE_ELIGIBILITY_PATH = '/affiliate-program/eligibility' as const
+
 export function affiliateInquiryPath() {
   return AFFILIATE_INQUIRY_PATH
 }

@@ -26,7 +26,7 @@ import {
   STUDENT_BUDGET_OPTIONS,
   STUDENT_PROJECT_TYPES,
 } from '@/data/projectInquiry'
-import { isValidReferralCodeFormat, normalizeReferralCode } from '@/lib/referralCode'
+import { isValidReferralCodeFormat, normalizeReferralCode, referralCodeFormatHint } from '@/lib/referralCode'
 
 const easeSmooth = [0.22, 1, 0.36, 1] as const
 
@@ -118,7 +118,7 @@ export function StudentProjectInquiryForm({
     setError('')
     const rawReferral = normalizeReferralCode(referralCode)
     if (rawReferral && !isValidReferralCodeFormat(rawReferral)) {
-      setReferralError('Use format PX-XXXXXXXX (letters and numbers only).')
+      setReferralError(`Use format ${referralCodeFormatHint()}.`)
       return
     }
     setReferralError('')
@@ -456,7 +456,7 @@ export function StudentProjectInquiryForm({
                 }}
                 autoComplete="off"
                 className={`${inquiryInputClass} pl-10 font-mono uppercase tracking-wide`}
-                placeholder="PX-XXXXXXXX"
+                placeholder={referralCodeFormatHint()}
                 aria-invalid={referralError ? true : undefined}
                 aria-describedby={referralError ? 'student-referral-error' : 'student-referral-hint'}
               />

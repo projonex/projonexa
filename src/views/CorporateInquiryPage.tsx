@@ -4,9 +4,15 @@ import { CorporateProjectInquiryForm } from '@/components/inquiry/CorporateProje
 import { InquiryStandaloneShell } from '@/components/inquiry/InquiryStandaloneShell'
 import { CLIENT_PROJECTS_PATH } from '@/data/clientProjectsFaq'
 import { CORPORATE_INQUIRY_SECTION } from '@/data/projectInquiry'
+import { normalizeReferralCode } from '@/lib/referralCode'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 
 export function CorporateInquiryPage() {
+  const searchParams = useSearchParams()
+  const refParam = searchParams.get('ref') ?? searchParams.get('referral')
+  const referralCode = refParam ? normalizeReferralCode(refParam) : ''
+
   return (
     <InquiryStandaloneShell
       eyebrow={CORPORATE_INQUIRY_SECTION.eyebrow}
@@ -21,10 +27,11 @@ export function CorporateInquiryPage() {
           <span aria-hidden>→</span>
         </Link>
       }
+      badge={referralCode ? `Referred by affiliate · ${referralCode}` : undefined}
       backTo="/contact"
       backLabel="Back to contact"
     >
-      <CorporateProjectInquiryForm />
+      <CorporateProjectInquiryForm initialReferralCode={referralCode} />
     </InquiryStandaloneShell>
   )
 }
