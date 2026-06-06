@@ -127,3 +127,30 @@ export async function confirmCorporateSchedule(input: {
 
   return (await response.json()) as CorporateScheduleConfirmResponse
 }
+
+export async function resendCorporateScheduleOtp(input: {
+  bookingId: string
+  email: string
+}): Promise<CorporateScheduleInitResponse> {
+  const baseUrl = getApiBaseUrl()
+  let response: Response
+  try {
+    response = await fetch(`${baseUrl}/api/v1/forms/corporate-inquiry/resend-otp`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'X-Platform': 'website',
+      },
+      body: JSON.stringify(input),
+    })
+  } catch {
+    throw new CorporateInquiryError('Could not reach the server. Check your connection.')
+  }
+
+  if (!response.ok) {
+    throw new CorporateInquiryError(await parseError(response))
+  }
+
+  return (await response.json()) as CorporateScheduleInitResponse
+}

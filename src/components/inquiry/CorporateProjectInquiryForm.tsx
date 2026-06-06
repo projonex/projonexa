@@ -15,6 +15,7 @@ import {
   CorporateInquiryError,
   fetchConsultationSlots,
   initiateCorporateSchedule,
+  resendCorporateScheduleOtp,
 } from '@/lib/api/corporateInquiry'
 import { formatCorporateSuccessMessage } from '@/lib/formNotifications'
 import {
@@ -43,6 +44,7 @@ export function CorporateProjectInquiryForm() {
   const [slotsLoading, setSlotsLoading] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [confirming, setConfirming] = useState(false)
+  const [resending, setResending] = useState(false)
   const [error, setError] = useState('')
   const [bookingId, setBookingId] = useState('')
   const [pendingEmail, setPendingEmail] = useState('')
@@ -150,9 +152,29 @@ export function CorporateProjectInquiryForm() {
       setWhatsappSent(Boolean(result.notifications?.whatsapp))
       setStep('success')
     } catch (err) {
-      setError(err instanceof CorporateInquiryError ? err.message : 'Verification failed.')
+      const message =
+        err instanceof CorporateInquiryError ? err.message : 'Verification failed.'
+      setError(message)
     } finally {
       setConfirming(false)
+    }
+  }
+
+  const handleResendOtp = async () => {
+    if (!bookingId || !pendingEmail) return
+    setError('')
+    setResending(true)
+    try {
+      const result = await resendCorporateScheduleOtp({
+        bookingId,
+        email: pendingEmail,
+      })
+      setOtpMessage(result.message)
+      setOtp('')
+    } catch (err) {
+      setError(err instanceof CorporateInquiryError ? err.message : 'Could not resend code.')
+    } finally {
+      setResending(false)
     }
   }
 
@@ -534,15 +556,26 @@ export function CorporateProjectInquiryForm() {
               <Button
                 type="submit"
                 variant="primary"
-                disabled={confirming || otp.length !== OTP_CODE_LENGTH}
+                disabled={confirming || resending || otp.length !== OTP_CODE_LENGTH}
                 className="mt-6 w-full"
               >
                 {confirming ? 'Confirming & scheduling…' : 'Confirm & schedule Google Meet'}
               </Button>
 
-              <p className="mt-4 text-center text-xs text-zinc-500 dark:text-zinc-400">
-                Your selected time slot is reserved for a few minutes while you verify.
-              </p>
+              <div className="mt-4 flex flex-col items-center gap-2 text-center">
+                <button
+                  type="button"
+                  onClick={() => void handleResendOtp()}
+                  disabled={confirming || resending}
+                  className="text-sm font-medium text-brand-primary hover:underline disabled:cursor-not-allowed disabled:opacity-50 dark:text-brand-accent"
+                >
+                  {resending ? 'Sending new code…' : "Didn't receive a code? Resend"}
+                </button>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                  Your time slot stays reserved while you verify. If scheduling fails, you can retry
+                  with the same code.
+                </p>
+              </div>
             </motion.form>
           </motion.div>
         ) : null}
