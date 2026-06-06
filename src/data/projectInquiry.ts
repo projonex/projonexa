@@ -1,5 +1,8 @@
 import { CONTACT_EMAIL } from '@/data/contact'
 import { normalizeReferralCode } from '@/lib/referralCode'
+import { minMeetingDateIso } from '@/lib/meetingDate'
+
+export { minMeetingDateIso }
 
 export const PROJECT_INQUIRY_EMAIL = CONTACT_EMAIL
 
@@ -54,9 +57,7 @@ export function formatMeetingDate(isoDate: string): string {
   })
 }
 
-export function minMeetingDateIso(): string {
-  return new Date().toISOString().split('T')[0] ?? ''
-}
+export const RESCHEDULE_CONSULTATION_PATH = '/consultation/reschedule' as const
 
 export const CORPORATE_INQUIRY_SECTION = {
   eyebrow: 'Corporate & startup inquiry',

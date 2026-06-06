@@ -4,7 +4,7 @@ import { ArrowUpRight, CheckCircle2, Mail, Send } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { FormSubmitError } from '@/components/forms/FormSubmitError'
 import { useFormSubmission } from '@/hooks/useFormSubmission'
-import { FORM_CATEGORIES, type FormNotificationStatus } from '@/lib/api/forms'
+import { FORM_CATEGORIES } from '@/lib/api/forms'
 import { formatContactSuccessMessage } from '@/lib/formNotifications'
 
 const easeSmooth = [0.22, 1, 0.36, 1] as const

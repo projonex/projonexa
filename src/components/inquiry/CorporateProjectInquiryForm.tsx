@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowUpRight, CalendarClock, CheckCircle2, Mail, X } from 'lucide-react'
+import { ArrowUpRight, CalendarClock, CheckCircle2, Mail, MessageCircle, X } from 'lucide-react'
 import { FormSelectField } from '@/components/careers/FormSelectField'
 import {
   inquiryInputClass,
@@ -16,6 +16,7 @@ import {
   fetchConsultationSlots,
   initiateCorporateSchedule,
 } from '@/lib/api/corporateInquiry'
+import { formatCorporateSuccessMessage } from '@/lib/formNotifications'
 import {
   CORPORATE_BUDGET_OPTIONS,
   CORPORATE_BUILD_OPTIONS,
@@ -50,6 +51,8 @@ export function CorporateProjectInquiryForm() {
   const [meetLink, setMeetLink] = useState('')
   const [scheduleLabel, setScheduleLabel] = useState('')
   const [successMessage, setSuccessMessage] = useState('')
+  const [emailSent, setEmailSent] = useState(false)
+  const [whatsappSent, setWhatsappSent] = useState(false)
 
   const minDate = useMemo(() => minMeetingDateIso(), [])
 
@@ -140,7 +143,11 @@ export function CorporateProjectInquiryForm() {
       })
       setMeetLink(result.meetLink)
       setScheduleLabel(result.scheduleLabel)
-      setSuccessMessage(result.message)
+      setSuccessMessage(
+        formatCorporateSuccessMessage(result.message, result.notifications),
+      )
+      setEmailSent(Boolean(result.notifications?.userEmail))
+      setWhatsappSent(Boolean(result.notifications?.whatsapp))
       setStep('success')
     } catch (err) {
       setError(err instanceof CorporateInquiryError ? err.message : 'Verification failed.')
@@ -158,6 +165,8 @@ export function CorporateProjectInquiryForm() {
     setMeetLink('')
     setScheduleLabel('')
     setSuccessMessage('')
+    setEmailSent(false)
+    setWhatsappSent(false)
     setError('')
   }
 
@@ -182,6 +191,22 @@ export function CorporateProjectInquiryForm() {
           {successMessage ||
             'Your Google Meet consultation is confirmed. Check your email and WhatsApp for the invite.'}
         </p>
+        {(emailSent || whatsappSent) && (
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+            {emailSent ? (
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-black/[0.08] bg-white/80 px-3 py-1.5 text-xs font-medium text-zinc-500 dark:border-white/[0.1] dark:bg-zinc-900/80 dark:text-zinc-400">
+                <Mail className="h-3.5 w-3.5" aria-hidden />
+                Confirmation email sent
+              </span>
+            ) : null}
+            {whatsappSent ? (
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-black/[0.08] bg-white/80 px-3 py-1.5 text-xs font-medium text-zinc-500 dark:border-white/[0.1] dark:bg-zinc-900/80 dark:text-zinc-400">
+                <MessageCircle className="h-3.5 w-3.5" aria-hidden />
+                WhatsApp message sent
+              </span>
+            ) : null}
+          </div>
+        )}
         {meetLink ? (
           <a
             href={meetLink}

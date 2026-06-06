@@ -35,3 +35,24 @@ export function formatCareerSuccessMessage(
 
   return parts.join(' ')
 }
+
+export function formatCorporateSuccessMessage(
+  message: string,
+  notifications?: { userEmail?: boolean; whatsapp?: boolean },
+): string {
+  if (message.trim()) {
+    return message
+  }
+
+  const parts = ['Your consultation is confirmed.']
+
+  if (notifications?.userEmail && notifications?.whatsapp) {
+    parts.push('Meeting details have been sent to your email and WhatsApp.')
+  } else if (notifications?.userEmail) {
+    parts.push('A confirmation email with your Google Meet link has been sent.')
+  } else if (notifications?.whatsapp) {
+    parts.push('Meeting details have been sent to your WhatsApp.')
+  }
+
+  return parts.join(' ')
+}

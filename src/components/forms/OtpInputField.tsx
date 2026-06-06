@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState, type KeyboardEvent } from 'react'
+import { useCallback, useRef, type KeyboardEvent } from 'react'
 import { inquiryInputClass } from '@/components/inquiry/inquiryFormShared'
 
 const OTP_LENGTH = 6
