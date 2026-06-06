@@ -65,7 +65,7 @@ export function CorporateProjectInquiryForm() {
     }
     setSlotsLoading(true)
     try {
-      const data = await fetchConsultationSlots(date)
+      const data = await fetchConsultationSlots(date, 'corporate')
       setBookedTimes(data.booked)
       if (data.booked.includes(meetingTime) && data.available.length > 0) {
         setMeetingTime(data.available[0])
