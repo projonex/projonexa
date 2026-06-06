@@ -16,12 +16,21 @@ export interface SubmitFormInput {
   payload: Record<string, string | boolean>
 }
 
+export interface FormNotificationStatus {
+  adminEmail: boolean
+  userEmail: boolean
+  whatsapp: boolean
+  userEmailConfigured: boolean
+  whatsappConfigured: boolean
+}
+
 export interface SubmitFormResponse {
   id: string
   category: FormCategory
   status: string
   message: string
   referralCode?: string
+  notifications?: FormNotificationStatus
 }
 
 export class FormSubmissionError extends Error {

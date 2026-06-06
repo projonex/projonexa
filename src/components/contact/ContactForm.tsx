@@ -1,15 +1,11 @@
 import { useState, type FormEvent } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowUpRight, CheckCircle2, Send } from 'lucide-react'
-import { FormSelectField } from '@/components/careers/FormSelectField'
+import { ArrowUpRight, CheckCircle2, Mail, Send } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { FormSubmitError } from '@/components/forms/FormSubmitError'
 import { useFormSubmission } from '@/hooks/useFormSubmission'
-import { FORM_CATEGORIES } from '@/lib/api/forms'
-import {
-  CONTACT_PROJECT_TYPES,
-  CONTACT_TIMELINE_OPTIONS,
-} from '@/data/contact'
+import { FORM_CATEGORIES, type FormNotificationStatus } from '@/lib/api/forms'
+import { formatContactSuccessMessage } from '@/lib/formNotifications'
 
 const easeSmooth = [0.22, 1, 0.36, 1] as const
 
@@ -20,8 +16,8 @@ const labelClass = 'mb-2 block text-sm font-semibold text-zinc-800 dark:text-zin
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false)
-  const [projectType, setProjectType] = useState<string>(CONTACT_PROJECT_TYPES[0].value)
-  const [timeline, setTimeline] = useState<string>(CONTACT_TIMELINE_OPTIONS[2].value)
+  const [successMessage, setSuccessMessage] = useState('')
+  const [emailSent, setEmailSent] = useState(false)
   const { submitting, error, submit, clearError } = useFormSubmission()
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -31,22 +27,19 @@ export function ContactForm() {
     const name = String(data.get('name') ?? '').trim()
     const email = String(data.get('email') ?? '').trim()
     const phone = String(data.get('phone') ?? '').trim()
-    const projectTypeValue = String(data.get('subject') ?? '').trim()
-    const timelineValue = String(data.get('timeline') ?? '').trim()
+    const subject = String(data.get('subject') ?? '').trim()
     const message = String(data.get('message') ?? '').trim()
 
     try {
-      await submit({
+      const response = await submit({
         category: FORM_CATEGORIES.contact,
         name,
         email,
         phone,
-        payload: {
-          projectType: projectTypeValue,
-          timeline: timelineValue,
-          message,
-        },
+        payload: { subject, message },
       })
+      setSuccessMessage(formatContactSuccessMessage(response.message, response.notifications))
+      setEmailSent(Boolean(response.notifications?.userEmail))
       setSubmitted(true)
     } catch {
       // Error state handled by hook
@@ -63,19 +56,28 @@ export function ContactForm() {
       >
         <CheckCircle2 className="h-14 w-14 text-emerald-500" aria-hidden />
         <h2 className="mt-5 text-xl font-bold text-zinc-900 dark:text-white sm:text-2xl">
-          Inquiry submitted
+          Message sent
         </h2>
         <p className="mt-2 max-w-md text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-          Thank you for reaching out. Our team has received your project inquiry and will get back
-          to you soon.
+          {successMessage}
         </p>
+        {emailSent && (
+          <span className="mt-5 inline-flex items-center gap-1.5 rounded-full border border-black/[0.08] bg-white/80 px-3 py-1.5 text-xs font-medium text-zinc-500 dark:border-white/[0.1] dark:bg-zinc-900/80 dark:text-zinc-400">
+            <Mail className="h-3.5 w-3.5" aria-hidden />
+            Confirmation email sent
+          </span>
+        )}
         <Button
           type="button"
           variant="secondary"
           className="mt-8 w-full sm:w-auto"
-          onClick={() => setSubmitted(false)}
+          onClick={() => {
+            setSubmitted(false)
+            setSuccessMessage('')
+            setEmailSent(false)
+          }}
         >
-          Send another inquiry
+          Send another message
         </Button>
       </motion.div>
     )
@@ -91,15 +93,13 @@ export function ContactForm() {
     >
       <div className="mb-6 border-b border-black/[0.06] pb-6 dark:border-white/[0.08] sm:mb-8">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-primary dark:text-brand-accent">
-          Project inquiry
+          Contact us
         </p>
         <h2 className="mt-2 text-xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-2xl">
-          Tell us about your project
+          Send us a message
         </h2>
         <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-          Fields marked with{' '}
-          <span className="font-semibold text-brand-primary dark:text-brand-accent">*</span> are
-          required.
+          Fill in your details and we&apos;ll get back to you as soon as possible.
         </p>
       </div>
 
@@ -135,7 +135,7 @@ export function ContactForm() {
           </div>
           <div className="min-w-0">
             <label htmlFor="contact-phone" className={labelClass}>
-              Phone / WhatsApp
+              Phone <span className="font-normal text-zinc-500">(optional)</span>
             </label>
             <input
               id="contact-phone"
@@ -148,47 +148,22 @@ export function ContactForm() {
           </div>
         </div>
 
-        <FormSelectField
-          id="contact-subject"
-          name="subject"
-          required
-          value={projectType}
-          onChange={(e) => setProjectType(e.target.value)}
-          label={
-            <>
-              Project type <span className="text-brand-primary dark:text-brand-accent">*</span>
-            </>
-          }
-        >
-          {CONTACT_PROJECT_TYPES.map((type) => (
-            <option key={type.value} value={type.value}>
-              {type.label}
-            </option>
-          ))}
-        </FormSelectField>
-
-        <FormSelectField
-          id="contact-timeline"
-          name="timeline"
-          required
-          value={timeline}
-          onChange={(e) => setTimeline(e.target.value)}
-          label={
-            <>
-              Expected timeline <span className="text-brand-primary dark:text-brand-accent">*</span>
-            </>
-          }
-        >
-          {CONTACT_TIMELINE_OPTIONS.map((opt) => (
-            <option key={opt.value} value={opt.value}>
-              {opt.label}
-            </option>
-          ))}
-        </FormSelectField>
+        <div>
+          <label htmlFor="contact-subject" className={labelClass}>
+            Subject <span className="text-brand-primary dark:text-brand-accent">*</span>
+          </label>
+          <input
+            id="contact-subject"
+            name="subject"
+            required
+            className={inputClass}
+            placeholder="What is your message about?"
+          />
+        </div>
 
         <div>
           <label htmlFor="contact-message" className={labelClass}>
-            Project details <span className="text-brand-primary dark:text-brand-accent">*</span>
+            Message <span className="text-brand-primary dark:text-brand-accent">*</span>
           </label>
           <textarea
             id="contact-message"
@@ -196,7 +171,7 @@ export function ContactForm() {
             required
             rows={5}
             className={`${inputClass} resize-none`}
-            placeholder="Describe your idea, features, college deadline, and any documentation or viva support you need…"
+            placeholder="Tell us how we can help you…"
           />
         </div>
       </div>
@@ -204,8 +179,8 @@ export function ContactForm() {
       <FormSubmitError message={error} />
 
       <p className="mt-6 text-xs leading-relaxed text-zinc-500 dark:text-zinc-400">
-        By submitting, you agree to share this information with Projonexa for project consultation
-        purposes only.
+        By submitting, you agree to share this information with Projonexa so we can respond to your
+        inquiry. You will receive a confirmation email shortly.
       </p>
 
       <Button
@@ -215,7 +190,7 @@ export function ContactForm() {
         className="mt-6 w-full shadow-glow-sm sm:w-auto"
       >
         <Send className="h-4 w-4" aria-hidden />
-        {submitting ? 'Sending…' : 'Send inquiry'}
+        {submitting ? 'Sending…' : 'Send message'}
         <ArrowUpRight className="h-4 w-4 opacity-80" aria-hidden />
       </Button>
     </motion.form>

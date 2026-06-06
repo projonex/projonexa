@@ -1,11 +1,12 @@
 import { useEffect, useState, type FormEvent } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowUpRight, CheckCircle2, Send } from 'lucide-react'
+import { ArrowUpRight, CheckCircle2, Mail, Send } from 'lucide-react'
 import { FormSelectField } from '@/components/careers/FormSelectField'
 import { Button } from '@/components/ui/Button'
 import { FormSubmitError } from '@/components/forms/FormSubmitError'
 import { useFormSubmission } from '@/hooks/useFormSubmission'
 import { FORM_CATEGORIES } from '@/lib/api/forms'
+import { formatCareerSuccessMessage } from '@/lib/formNotifications'
 import {
   CAREER_AVAILABILITY_OPTIONS,
   CAREER_EXPERIENCE_LEVELS,
@@ -29,6 +30,8 @@ export function CareerApplicationForm({
   variant = 'embedded',
 }: CareerApplicationFormProps) {
   const [submitted, setSubmitted] = useState(false)
+  const [successMessage, setSuccessMessage] = useState('')
+  const [emailSent, setEmailSent] = useState(false)
   const [roleId, setRoleId] = useState(initialRoleId)
   const [experience, setExperience] = useState('student')
   const [availability, setAvailability] = useState('freelance')
@@ -52,7 +55,7 @@ export function CareerApplicationForm({
     const motivation = String(data.get('motivation') ?? '').trim()
 
     try {
-      await submit({
+      const response = await submit({
         category: FORM_CATEGORIES.careerApplication,
         name,
         email,
@@ -67,6 +70,8 @@ export function CareerApplicationForm({
           motivation,
         },
       })
+      setSuccessMessage(formatCareerSuccessMessage(response.message, response.notifications))
+      setEmailSent(Boolean(response.notifications?.userEmail))
       setSubmitted(true)
     } catch {
       // Error state handled by hook
@@ -93,13 +98,23 @@ export function CareerApplicationForm({
           Application submitted
         </h2>
         <p className="mt-2 max-w-md text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-          Thank you for applying. Our team has received your application and will review it soon.
+          {successMessage}
         </p>
+        {emailSent && (
+          <span className="mt-5 inline-flex items-center gap-1.5 rounded-full border border-black/[0.08] bg-white/80 px-3 py-1.5 text-xs font-medium text-zinc-500 dark:border-white/[0.1] dark:bg-zinc-900/80 dark:text-zinc-400">
+            <Mail className="h-3.5 w-3.5" aria-hidden />
+            Confirmation email sent
+          </span>
+        )}
         <Button
           type="button"
           variant="secondary"
           className="mt-8 w-full sm:w-auto"
-          onClick={() => setSubmitted(false)}
+          onClick={() => {
+            setSubmitted(false)
+            setSuccessMessage('')
+            setEmailSent(false)
+          }}
         >
           Submit another application
         </Button>
@@ -172,7 +187,7 @@ export function CareerApplicationForm({
 
           <div className="careers-form-field min-w-0">
             <label htmlFor="career-phone" className={labelClass}>
-              Phone / WhatsApp
+              Phone <span className="font-normal text-zinc-500">(optional)</span>
             </label>
             <input
               id="career-phone"
@@ -305,7 +320,7 @@ export function CareerApplicationForm({
 
       <p className="mt-5 text-xs leading-relaxed text-zinc-500 dark:text-zinc-400 sm:mt-6">
         By submitting, you agree to share this information with the Projonexa team for recruitment
-        purposes only.
+        purposes only. You will receive a confirmation email shortly.
       </p>
 
       <div className={isStandalone ? 'mt-6 sm:mt-8' : 'mt-6'}>

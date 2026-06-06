@@ -62,8 +62,27 @@ export const CORPORATE_INQUIRY_SECTION = {
   eyebrow: 'Corporate & startup inquiry',
   title: 'Build your product with Projonexa',
   description:
-    'MVPs, custom software, web & mobile apps — share your business goals, timeline, and scope.',
+    'MVPs, websites, apps, and custom software — share what you want to build, your timeline, and book a consultation.',
 } as const
+
+/** Corporate / startup delivery timeline (form only). */
+export const CORPORATE_TIMELINE_OPTIONS = [
+  { value: 'urgent-4w', label: 'Urgent — within 4 weeks' },
+  { value: 'standard-6-8w', label: 'Standard — 6 to 8 weeks' },
+  { value: 'extended-8-12w', label: 'Extended — 8 to 12 weeks' },
+  { value: 'quarter-plus', label: '3 months or more' },
+  { value: 'flexible', label: 'Flexible / exploring options' },
+] as const
+
+/** Corporate / startup budget ranges (form only). */
+export const CORPORATE_BUDGET_OPTIONS = [
+  { value: 'under-50k', label: 'Under ₹50,000' },
+  { value: '50k-1l', label: '₹50,000 – ₹1,00,000' },
+  { value: '1l-2l', label: '₹1,00,000 – ₹2,00,000' },
+  { value: '2l-5l', label: '₹2,00,000 – ₹5,00,000' },
+  { value: '5l-plus', label: '₹5,00,000+' },
+  { value: 'undecided', label: 'Not decided yet' },
+] as const
 
 export const INQUIRY_TIMELINE_OPTIONS = [
   { value: 'urgent-1-2w', label: 'Urgent — within 2 weeks' },
@@ -118,22 +137,14 @@ export const STUDENT_VIVA_SUPPORT_OPTIONS = [
   { value: 'unsure', label: 'Not sure yet' },
 ] as const
 
-export const CORPORATE_INQUIRY_TYPES = [
-  { value: 'startup-mvp', label: 'Startup MVP' },
-  { value: 'web-app', label: 'Web Application' },
-  { value: 'mobile-app', label: 'Mobile Application' },
-  { value: 'ai-ml', label: 'AI / ML Solution' },
+export const CORPORATE_BUILD_OPTIONS = [
+  { value: 'website', label: 'Website' },
+  { value: 'app', label: 'Mobile / Web App' },
+  { value: 'crm', label: 'CRM / ERP System' },
+  { value: 'ecommerce', label: 'E-commerce Platform' },
   { value: 'custom-software', label: 'Custom Software' },
-  { value: 'product-enhancement', label: 'Product Enhancement' },
-  { value: 'consulting', label: 'Technical Consulting' },
+  { value: 'ai-ml', label: 'AI / ML Solution' },
   { value: 'other', label: 'Other' },
-] as const
-
-export const CORPORATE_TEAM_SIZE_OPTIONS = [
-  { value: 'solo', label: 'Solo founder / individual' },
-  { value: '2-10', label: '2 – 10 people' },
-  { value: '11-50', label: '11 – 50 people' },
-  { value: '50-plus', label: '50+ people' },
 ] as const
 
 export const CORPORATE_ROLE_OPTIONS = [

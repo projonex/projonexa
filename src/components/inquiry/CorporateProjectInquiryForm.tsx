@@ -1,6 +1,6 @@
-import { useState, type FormEvent } from 'react'
+import { useMemo, useState, type FormEvent } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowUpRight, CheckCircle2, Send } from 'lucide-react'
+import { ArrowUpRight, CalendarClock, CheckCircle2 } from 'lucide-react'
 import { FormSelectField } from '@/components/careers/FormSelectField'
 import {
   inquiryInputClass,
@@ -12,23 +12,27 @@ import { FormSubmitError } from '@/components/forms/FormSubmitError'
 import { useFormSubmission } from '@/hooks/useFormSubmission'
 import { FORM_CATEGORIES } from '@/lib/api/forms'
 import {
-  CORPORATE_INQUIRY_TYPES,
+  CORPORATE_BUDGET_OPTIONS,
+  CORPORATE_BUILD_OPTIONS,
   CORPORATE_ROLE_OPTIONS,
-  CORPORATE_TEAM_SIZE_OPTIONS,
-  INQUIRY_BUDGET_OPTIONS,
-  INQUIRY_TIMELINE_OPTIONS,
+  CORPORATE_TIMELINE_OPTIONS,
+  MEETING_TIME_SLOTS,
+  minMeetingDateIso,
 } from '@/data/projectInquiry'
 
 const easeSmooth = [0.22, 1, 0.36, 1] as const
 
 export function CorporateProjectInquiryForm() {
   const [submitted, setSubmitted] = useState(false)
-  const [inquiryType, setInquiryType] = useState<string>(CORPORATE_INQUIRY_TYPES[0].value)
+  const [buildType, setBuildType] = useState<string>(CORPORATE_BUILD_OPTIONS[0].value)
   const [role, setRole] = useState<string>(CORPORATE_ROLE_OPTIONS[0].value)
-  const [teamSize, setTeamSize] = useState<string>(CORPORATE_TEAM_SIZE_OPTIONS[0].value)
-  const [timeline, setTimeline] = useState<string>(INQUIRY_TIMELINE_OPTIONS[1].value)
-  const [budget, setBudget] = useState<string>(INQUIRY_BUDGET_OPTIONS[2].value)
+  const [timeline, setTimeline] = useState<string>(CORPORATE_TIMELINE_OPTIONS[1].value)
+  const [budget, setBudget] = useState<string>(CORPORATE_BUDGET_OPTIONS[0].value)
+  const [meetingDate, setMeetingDate] = useState('')
+  const [meetingTime, setMeetingTime] = useState<string>(MEETING_TIME_SLOTS[3].value)
   const { submitting, error, submit, clearError } = useFormSubmission()
+
+  const minDate = useMemo(() => minMeetingDateIso(), [])
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -50,10 +54,11 @@ export function CorporateProjectInquiryForm() {
         payload: {
           company,
           role: String(data.get('role') ?? '').trim(),
-          inquiryType: String(data.get('inquiryType') ?? '').trim(),
-          teamSize: String(data.get('teamSize') ?? '').trim(),
+          buildType: String(data.get('buildType') ?? '').trim(),
           timeline: String(data.get('timeline') ?? '').trim(),
           budget: String(data.get('budget') ?? '').trim(),
+          meetingDate: String(data.get('meetingDate') ?? '').trim(),
+          meetingTime: String(data.get('meetingTime') ?? '').trim(),
           website,
           description,
         },
@@ -77,8 +82,8 @@ export function CorporateProjectInquiryForm() {
           Inquiry submitted
         </h2>
         <p className="mt-2 max-w-md text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-          Thank you. Our team has received your corporate project inquiry and will follow up with
-          you soon.
+          Thank you. Our team has received your corporate inquiry and will confirm your consultation
+          shortly.
         </p>
         <Button
           type="button"
@@ -137,7 +142,7 @@ export function CorporateProjectInquiryForm() {
           </div>
           <div className="careers-form-field min-w-0">
             <label htmlFor="corp-phone" className={inquiryLabelClass}>
-              Phone / WhatsApp <InquiryRequired />
+              Phone <InquiryRequired />
             </label>
             <input
               id="corp-phone"
@@ -164,59 +169,38 @@ export function CorporateProjectInquiryForm() {
           />
         </div>
 
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-          <FormSelectField
-            id="corp-role"
-            name="role"
-            required
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-            label={
-              <>
-                Your role <InquiryRequired />
-              </>
-            }
-          >
-            {CORPORATE_ROLE_OPTIONS.map((opt) => (
-              <option key={opt.value} value={opt.value}>
-                {opt.label}
-              </option>
-            ))}
-          </FormSelectField>
-
-          <FormSelectField
-            id="corp-team"
-            name="teamSize"
-            required
-            value={teamSize}
-            onChange={(e) => setTeamSize(e.target.value)}
-            label={
-              <>
-                Team size <InquiryRequired />
-              </>
-            }
-          >
-            {CORPORATE_TEAM_SIZE_OPTIONS.map((opt) => (
-              <option key={opt.value} value={opt.value}>
-                {opt.label}
-              </option>
-            ))}
-          </FormSelectField>
-        </div>
-
         <FormSelectField
-          id="corp-inquiry-type"
-          name="inquiryType"
+          id="corp-role"
+          name="role"
           required
-          value={inquiryType}
-          onChange={(e) => setInquiryType(e.target.value)}
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
           label={
             <>
-              What are you building? <InquiryRequired />
+              Your role <InquiryRequired />
             </>
           }
         >
-          {CORPORATE_INQUIRY_TYPES.map((opt) => (
+          {CORPORATE_ROLE_OPTIONS.map((opt) => (
+            <option key={opt.value} value={opt.value}>
+              {opt.label}
+            </option>
+          ))}
+        </FormSelectField>
+
+        <FormSelectField
+          id="corp-build-type"
+          name="buildType"
+          required
+          value={buildType}
+          onChange={(e) => setBuildType(e.target.value)}
+          label={
+            <>
+              What do you want to build? <InquiryRequired />
+            </>
+          }
+        >
+          {CORPORATE_BUILD_OPTIONS.map((opt) => (
             <option key={opt.value} value={opt.value}>
               {opt.label}
             </option>
@@ -236,7 +220,7 @@ export function CorporateProjectInquiryForm() {
               </>
             }
           >
-            {INQUIRY_TIMELINE_OPTIONS.map((opt) => (
+            {CORPORATE_TIMELINE_OPTIONS.map((opt) => (
               <option key={opt.value} value={opt.value}>
                 {opt.label}
               </option>
@@ -255,13 +239,58 @@ export function CorporateProjectInquiryForm() {
               </>
             }
           >
-            {INQUIRY_BUDGET_OPTIONS.map((opt) => (
+            {CORPORATE_BUDGET_OPTIONS.map((opt) => (
               <option key={opt.value} value={opt.value}>
                 {opt.label}
               </option>
             ))}
           </FormSelectField>
         </div>
+
+        <fieldset className="rounded-2xl border border-black/[0.08] bg-black/[0.02] p-4 dark:border-white/[0.08] dark:bg-white/[0.03] sm:p-5">
+          <legend className="px-1 text-sm font-semibold text-zinc-800 dark:text-zinc-200">
+            Preferred consultation <InquiryRequired />
+          </legend>
+          <p className="mb-4 mt-1 px-1 text-xs leading-relaxed text-zinc-500 dark:text-zinc-400">
+            Pick a date and time for your discovery call. All times are in IST.
+          </p>
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+            <div className="careers-form-field min-w-0">
+              <label htmlFor="corp-meeting-date" className={inquiryLabelClass}>
+                Date <InquiryRequired />
+              </label>
+              <input
+                id="corp-meeting-date"
+                name="meetingDate"
+                type="date"
+                required
+                min={minDate}
+                value={meetingDate}
+                onChange={(e) => setMeetingDate(e.target.value)}
+                className={`${inquiryInputClass} careers-form-date`}
+              />
+            </div>
+
+            <FormSelectField
+              id="corp-meeting-time"
+              name="meetingTime"
+              required
+              value={meetingTime}
+              onChange={(e) => setMeetingTime(e.target.value)}
+              label={
+                <>
+                  Time <InquiryRequired />
+                </>
+              }
+            >
+              {MEETING_TIME_SLOTS.map((opt) => (
+                <option key={opt.value} value={opt.value}>
+                  {opt.label}
+                </option>
+              ))}
+            </FormSelectField>
+          </div>
+        </fieldset>
 
         <div className="careers-form-field w-full min-w-0">
           <label htmlFor="corp-website" className={inquiryLabelClass}>
@@ -305,7 +334,7 @@ export function CorporateProjectInquiryForm() {
           disabled={submitting}
           className="w-full shadow-glow-sm sm:min-w-[260px]"
         >
-          <Send className="h-4 w-4" aria-hidden />
+          <CalendarClock className="h-4 w-4" aria-hidden />
           {submitting ? 'Submitting…' : 'Submit corporate inquiry'}
           <ArrowUpRight className="h-4 w-4 opacity-80" aria-hidden />
         </Button>
