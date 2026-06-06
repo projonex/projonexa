@@ -8,14 +8,15 @@ import {
   InquiryRequired,
 } from '@/components/inquiry/inquiryFormShared'
 import { Button } from '@/components/ui/Button'
+import { FormSubmitError } from '@/components/forms/FormSubmitError'
+import { useFormSubmission } from '@/hooks/useFormSubmission'
+import { FORM_CATEGORIES } from '@/lib/api/forms'
 import {
   CORPORATE_INQUIRY_TYPES,
   CORPORATE_ROLE_OPTIONS,
   CORPORATE_TEAM_SIZE_OPTIONS,
   INQUIRY_BUDGET_OPTIONS,
   INQUIRY_TIMELINE_OPTIONS,
-  labelForOption,
-  PROJECT_INQUIRY_EMAIL,
 } from '@/data/projectInquiry'
 
 const easeSmooth = [0.22, 1, 0.36, 1] as const
@@ -27,9 +28,11 @@ export function CorporateProjectInquiryForm() {
   const [teamSize, setTeamSize] = useState<string>(CORPORATE_TEAM_SIZE_OPTIONS[0].value)
   const [timeline, setTimeline] = useState<string>(INQUIRY_TIMELINE_OPTIONS[1].value)
   const [budget, setBudget] = useState<string>(INQUIRY_BUDGET_OPTIONS[2].value)
+  const { submitting, error, submit, clearError } = useFormSubmission()
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    clearError()
     const data = new FormData(e.currentTarget)
     const name = String(data.get('name') ?? '').trim()
     const email = String(data.get('email') ?? '').trim()
@@ -38,33 +41,27 @@ export function CorporateProjectInquiryForm() {
     const website = String(data.get('website') ?? '').trim()
     const description = String(data.get('description') ?? '').trim()
 
-    const body = encodeURIComponent(
-      [
-        'Projonexa — Corporate / Startup Project Inquiry',
-        '────────────────────────',
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Phone / WhatsApp: ${phone}`,
-        `Company / Organization: ${company}`,
-        `Role: ${labelForOption(CORPORATE_ROLE_OPTIONS, String(data.get('role') ?? ''))}`,
-        `Inquiry type: ${labelForOption(CORPORATE_INQUIRY_TYPES, String(data.get('inquiryType') ?? ''))}`,
-        `Team size: ${labelForOption(CORPORATE_TEAM_SIZE_OPTIONS, String(data.get('teamSize') ?? ''))}`,
-        `Timeline: ${labelForOption(INQUIRY_TIMELINE_OPTIONS, String(data.get('timeline') ?? ''))}`,
-        `Budget: ${labelForOption(INQUIRY_BUDGET_OPTIONS, String(data.get('budget') ?? ''))}`,
-        website ? `Website / product link: ${website}` : null,
-        '',
-        'Project scope & requirements:',
-        description,
-      ]
-        .filter(Boolean)
-        .join('\n'),
-    )
-
-    const subject = encodeURIComponent(
-      `Corporate Inquiry — ${labelForOption(CORPORATE_INQUIRY_TYPES, String(data.get('inquiryType') ?? ''))} — ${company}`,
-    )
-    window.location.href = `mailto:${PROJECT_INQUIRY_EMAIL}?subject=${subject}&body=${body}`
-    setSubmitted(true)
+    try {
+      await submit({
+        category: FORM_CATEGORIES.corporateInquiry,
+        name,
+        email,
+        phone,
+        payload: {
+          company,
+          role: String(data.get('role') ?? '').trim(),
+          inquiryType: String(data.get('inquiryType') ?? '').trim(),
+          teamSize: String(data.get('teamSize') ?? '').trim(),
+          timeline: String(data.get('timeline') ?? '').trim(),
+          budget: String(data.get('budget') ?? '').trim(),
+          website,
+          description,
+        },
+      })
+      setSubmitted(true)
+    } catch {
+      // Error state handled by hook
+    }
   }
 
   if (submitted) {
@@ -77,11 +74,11 @@ export function CorporateProjectInquiryForm() {
       >
         <CheckCircle2 className="h-14 w-14 text-emerald-500" aria-hidden />
         <h2 className="mt-5 text-xl font-bold text-zinc-900 dark:text-white sm:text-2xl">
-          Inquiry ready to send
+          Inquiry submitted
         </h2>
         <p className="mt-2 max-w-md text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-          Your email client should open with your details pre-filled. Send the message to complete
-          your corporate project inquiry.
+          Thank you. Our team has received your corporate project inquiry and will follow up with
+          you soon.
         </p>
         <Button
           type="button"
@@ -294,15 +291,22 @@ export function CorporateProjectInquiryForm() {
         </div>
       </div>
 
+      <FormSubmitError message={error} />
+
       <p className="mt-5 text-xs leading-relaxed text-zinc-500 dark:text-zinc-400 sm:mt-6">
         By submitting, you agree to share this information with Projonexa for business consultation
         purposes only.
       </p>
 
       <div className="mt-6 sm:mt-8">
-        <Button type="submit" variant="primary" className="w-full shadow-glow-sm sm:min-w-[260px]">
+        <Button
+          type="submit"
+          variant="primary"
+          disabled={submitting}
+          className="w-full shadow-glow-sm sm:min-w-[260px]"
+        >
           <Send className="h-4 w-4" aria-hidden />
-          Submit corporate inquiry
+          {submitting ? 'Submitting…' : 'Submit corporate inquiry'}
           <ArrowUpRight className="h-4 w-4 opacity-80" aria-hidden />
         </Button>
       </div>

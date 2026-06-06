@@ -5,13 +5,13 @@ import {
     InquiryRequired,
 } from '@/components/inquiry/inquiryFormShared'
 import { Button } from '@/components/ui/Button'
+import { FormSubmitError } from '@/components/forms/FormSubmitError'
+import { useFormSubmission } from '@/hooks/useFormSubmission'
+import { FORM_CATEGORIES } from '@/lib/api/forms'
 import {
-    formatMeetingDate,
     INQUIRY_TIMELINE_OPTIONS,
-    labelForOption,
     MEETING_TIME_SLOTS,
     minMeetingDateIso,
-    PROJECT_INQUIRY_EMAIL,
     STUDENT_BUDGET_OPTIONS,
     STUDENT_PROJECT_TYPES,
 } from '@/data/projectInquiry'
@@ -43,6 +43,7 @@ export function StudentProjectInquiryForm({
     initialReferralCode ? normalizeReferralCode(initialReferralCode) : '',
   )
   const [referralError, setReferralError] = useState('')
+  const { submitting, error, submit, clearError } = useFormSubmission()
 
   const minDate = useMemo(() => minMeetingDateIso(), [])
 
@@ -51,8 +52,9 @@ export function StudentProjectInquiryForm({
       ? 'careers-form-panel w-full min-w-0 rounded-2xl p-5 sm:rounded-3xl sm:p-8 lg:mx-0 lg:max-w-none'
       : 'careers-form-panel mx-auto w-full min-w-0 max-w-2xl rounded-2xl p-5 sm:rounded-3xl sm:p-8'
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    clearError()
     const rawReferral = normalizeReferralCode(referralCode)
     if (rawReferral && !isValidReferralCodeFormat(rawReferral)) {
       setReferralError('Use format PX-XXXXXXXX (letters and numbers only).')
@@ -64,41 +66,27 @@ export function StudentProjectInquiryForm({
     const email = String(data.get('email') ?? '').trim()
     const phone = String(data.get('phone') ?? '').trim()
     const description = String(data.get('description') ?? '').trim()
-    const date = String(data.get('meetingDate') ?? '').trim()
-    const time = String(data.get('meetingTime') ?? '').trim()
-    const meetingDateLabel = formatMeetingDate(date)
-    const meetingTimeLabel = labelForOption(MEETING_TIME_SLOTS, time)
 
-    const body = encodeURIComponent(
-      [
-        'Projonexa — Student Consultation Meeting Request',
-        '────────────────────────',
-        `Name: ${name}`,
-        `Email: ${email}`,
-        phone ? `Phone / WhatsApp: ${phone}` : null,
-        '',
-        'Meeting schedule',
-        `Date: ${meetingDateLabel}`,
-        `Time: ${meetingTimeLabel}`,
-        '',
-        'Project details',
-        `Project type: ${labelForOption(STUDENT_PROJECT_TYPES, String(data.get('projectType') ?? ''))}`,
-        `Timeline: ${labelForOption(INQUIRY_TIMELINE_OPTIONS, String(data.get('timeline') ?? ''))}`,
-        `Budget: ${labelForOption(STUDENT_BUDGET_OPTIONS, String(data.get('budget') ?? ''))}`,
-        rawReferral ? `Referral code: ${rawReferral}` : null,
-        '',
-        'Project idea & requirements:',
-        description,
-      ]
-        .filter(Boolean)
-        .join('\n'),
-    )
-
-    const subject = encodeURIComponent(
-      `Meeting Request — ${labelForOption(STUDENT_PROJECT_TYPES, String(data.get('projectType') ?? ''))} — ${name}`,
-    )
-    window.location.href = `mailto:${PROJECT_INQUIRY_EMAIL}?subject=${subject}&body=${body}`
-    setSubmitted(true)
+    try {
+      await submit({
+        category: FORM_CATEGORIES.studentInquiry,
+        name,
+        email,
+        phone,
+        payload: {
+          projectType: String(data.get('projectType') ?? '').trim(),
+          timeline: String(data.get('timeline') ?? '').trim(),
+          budget: String(data.get('budget') ?? '').trim(),
+          meetingDate: String(data.get('meetingDate') ?? '').trim(),
+          meetingTime: String(data.get('meetingTime') ?? '').trim(),
+          referralCode: rawReferral,
+          description,
+        },
+      })
+      setSubmitted(true)
+    } catch {
+      // Error state handled by hook
+    }
   }
 
   if (submitted) {
@@ -111,11 +99,11 @@ export function StudentProjectInquiryForm({
       >
         <CheckCircle2 className="h-14 w-14 text-emerald-500" aria-hidden />
         <h2 className="mt-5 text-xl font-bold text-zinc-900 dark:text-white sm:text-2xl">
-          Meeting request ready
+          Meeting request submitted
         </h2>
         <p className="mt-2 max-w-md text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-          Your email client should open with your preferred date, time, and project details. Send
-          the message and our team will confirm your consultation shortly.
+          Thank you. Our team has received your consultation request and will confirm your meeting
+          shortly.
         </p>
         <Button
           type="button"
@@ -339,15 +327,22 @@ export function StudentProjectInquiryForm({
         </div>
       </div>
 
+      <FormSubmitError message={error} />
+
       <p className="mt-5 text-xs leading-relaxed text-zinc-500 dark:text-zinc-400 sm:mt-6">
         By scheduling, you agree to share this information with Projonexa for consultation and
         project planning purposes only.
       </p>
 
       <div className="mt-6 sm:mt-8">
-        <Button type="submit" variant="primary" className="w-full shadow-glow-sm sm:min-w-[260px]">
+        <Button
+          type="submit"
+          variant="primary"
+          disabled={submitting}
+          className="w-full shadow-glow-sm sm:min-w-[260px]"
+        >
           <CalendarClock className="h-4 w-4" aria-hidden />
-          Schedule a meet
+          {submitting ? 'Submitting…' : 'Schedule a meet'}
           <ArrowUpRight className="h-4 w-4 opacity-80" aria-hidden />
         </Button>
       </div>

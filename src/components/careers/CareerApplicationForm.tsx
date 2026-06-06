@@ -3,8 +3,10 @@ import { motion } from 'framer-motion'
 import { ArrowUpRight, CheckCircle2, Send } from 'lucide-react'
 import { FormSelectField } from '@/components/careers/FormSelectField'
 import { Button } from '@/components/ui/Button'
+import { FormSubmitError } from '@/components/forms/FormSubmitError'
+import { useFormSubmission } from '@/hooks/useFormSubmission'
+import { FORM_CATEGORIES } from '@/lib/api/forms'
 import {
-  CAREER_APPLICATION_EMAIL,
   CAREER_AVAILABILITY_OPTIONS,
   CAREER_EXPERIENCE_LEVELS,
   CAREER_ROLES,
@@ -31,53 +33,44 @@ export function CareerApplicationForm({
   const [experience, setExperience] = useState('student')
   const [availability, setAvailability] = useState('freelance')
   const isStandalone = variant === 'standalone'
+  const { submitting, error, submit, clearError } = useFormSubmission()
 
   useEffect(() => {
     setRoleId(initialRoleId)
   }, [initialRoleId])
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    clearError()
     const data = new FormData(e.currentTarget)
     const name = String(data.get('name') ?? '').trim()
     const email = String(data.get('email') ?? '').trim()
     const phone = String(data.get('phone') ?? '').trim()
-    const role = CAREER_ROLES.find((r) => r.id === data.get('role'))?.title ?? 'Team Member'
-    const experienceLabel =
-      CAREER_EXPERIENCE_LEVELS.find((l) => l.value === data.get('experience'))?.label ?? ''
-    const availabilityLabel =
-      CAREER_AVAILABILITY_OPTIONS.find((a) => a.value === data.get('availability'))?.label ?? ''
     const location = String(data.get('location') ?? '').trim()
     const portfolio = String(data.get('portfolio') ?? '').trim()
     const skills = String(data.get('skills') ?? '').trim()
     const motivation = String(data.get('motivation') ?? '').trim()
 
-    const body = encodeURIComponent(
-      [
-        'Projonexa Team Application',
-        '────────────────────────',
-        `Name: ${name}`,
-        `Email: ${email}`,
-        phone ? `Phone: ${phone}` : null,
-        `Role: ${role}`,
-        `Experience: ${experienceLabel}`,
-        `Availability: ${availabilityLabel}`,
-        location ? `Location: ${location}` : null,
-        portfolio ? `Portfolio / Links: ${portfolio}` : null,
-        '',
-        'Skills & tools:',
-        skills,
-        '',
-        'Why join Projonexa:',
-        motivation,
-      ]
-        .filter(Boolean)
-        .join('\n'),
-    )
-
-    const subject = encodeURIComponent(`Projonexa Team Application — ${role} — ${name}`)
-    window.location.href = `mailto:${CAREER_APPLICATION_EMAIL}?subject=${subject}&body=${body}`
-    setSubmitted(true)
+    try {
+      await submit({
+        category: FORM_CATEGORIES.careerApplication,
+        name,
+        email,
+        phone,
+        payload: {
+          role: String(data.get('role') ?? '').trim(),
+          experience: String(data.get('experience') ?? '').trim(),
+          availability: String(data.get('availability') ?? '').trim(),
+          location,
+          portfolio,
+          skills,
+          motivation,
+        },
+      })
+      setSubmitted(true)
+    } catch {
+      // Error state handled by hook
+    }
   }
 
   const motionProps = isStandalone
@@ -97,11 +90,10 @@ export function CareerApplicationForm({
       >
         <CheckCircle2 className="h-14 w-14 text-emerald-500" aria-hidden />
         <h2 className="mt-5 text-xl font-bold text-zinc-900 dark:text-white sm:text-2xl">
-          Application ready to send
+          Application submitted
         </h2>
         <p className="mt-2 max-w-md text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-          Your email client should open with your details pre-filled. Send the message to complete
-          your request to join the Projonexa team.
+          Thank you for applying. Our team has received your application and will review it soon.
         </p>
         <Button
           type="button"
@@ -309,15 +301,22 @@ export function CareerApplicationForm({
         </div>
       </div>
 
+      <FormSubmitError message={error} />
+
       <p className="mt-5 text-xs leading-relaxed text-zinc-500 dark:text-zinc-400 sm:mt-6">
         By submitting, you agree to share this information with the Projonexa team for recruitment
         purposes only.
       </p>
 
       <div className={isStandalone ? 'mt-6 sm:mt-8' : 'mt-6'}>
-        <Button type="submit" variant="primary" className="w-full shadow-glow-sm sm:min-w-[260px]">
+        <Button
+          type="submit"
+          variant="primary"
+          disabled={submitting}
+          className="w-full shadow-glow-sm sm:min-w-[260px]"
+        >
           <Send className="h-4 w-4" aria-hidden />
-          Submit application
+          {submitting ? 'Submitting…' : 'Submit application'}
           <ArrowUpRight className="h-4 w-4 opacity-80" aria-hidden />
         </Button>
       </div>

@@ -88,6 +88,9 @@ Details: [VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md)
 ## Future enhancements
 
 - CMS for blog (Contentlayer / Sanity)
-- Contact form API route
 - Analytics (Plausible / GA4)
 - i18n for regional audiences
+
+## Form submissions
+
+Website forms POST to `projonexa-backend` at `POST /api/v1/forms/submit`. Set `NEXT_PUBLIC_API_URL` in `.env.local` (see `.env.example`). Submissions are stored in MongoDB `form_submissions`, sorted by category.

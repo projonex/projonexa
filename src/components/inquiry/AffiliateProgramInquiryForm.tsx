@@ -9,14 +9,15 @@ import {
 } from '@/components/inquiry/inquiryFormShared'
 import { ReferralCodeDisplay } from '@/components/inquiry/ReferralCodeDisplay'
 import { Button } from '@/components/ui/Button'
+import { FormSubmitError } from '@/components/forms/FormSubmitError'
+import { useFormSubmission } from '@/hooks/useFormSubmission'
+import { FORM_CATEGORIES } from '@/lib/api/forms'
 import {
   AFFILIATE_HEAR_ABOUT_OPTIONS,
   AFFILIATE_PROMOTION_CHANNEL_OPTIONS,
-  labelForAffiliateOption,
 } from '@/data/affiliateProgram'
-import { PROJECT_INQUIRY_EMAIL, studentInquiryPath } from '@/data/projectInquiry'
+import { studentInquiryPath } from '@/data/projectInquiry'
 import { BRAND } from '@/data/brand'
-import { generateReferralCode } from '@/lib/referralCode'
 
 const easeSmooth = [0.22, 1, 0.36, 1] as const
 
@@ -33,6 +34,7 @@ export function AffiliateProgramInquiryForm({ layout = 'default' }: AffiliatePro
   )
   const [criteriaAck, setCriteriaAck] = useState(false)
   const [termsAck, setTermsAck] = useState(false)
+  const { submitting, error, submit, clearError } = useFormSubmission()
 
   const panelClass =
     layout === 'split'
@@ -48,42 +50,36 @@ export function AffiliateProgramInquiryForm({ layout = 'default' }: AffiliatePro
     return `${BRAND.url}${path}`
   }, [issuedReferralCode])
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    clearError()
     const data = new FormData(e.currentTarget)
     const name = String(data.get('name') ?? '').trim()
     const email = String(data.get('email') ?? '').trim()
     const phone = String(data.get('phone') ?? '').trim()
     const motivation = String(data.get('motivation') ?? '').trim()
-    const referralCode = generateReferralCode()
 
-    const body = encodeURIComponent(
-      [
-        'Projonexa — Affiliate Program Application',
-        '────────────────────────',
-        `Applicant: ${name}`,
-        `Email: ${email}`,
-        `Phone / WhatsApp: ${phone}`,
-        `How they heard about us: ${labelForAffiliateOption(AFFILIATE_HEAR_ABOUT_OPTIONS, String(data.get('hearAbout') ?? ''))}`,
-        `Planned promotion channel: ${labelForAffiliateOption(AFFILIATE_PROMOTION_CHANNEL_OPTIONS, String(data.get('promotionChannel') ?? ''))}`,
-        '',
-        `Assigned referral code: ${referralCode}`,
-        '',
-        'Why they want to join:',
-        motivation,
-        '',
-        'Confirmations:',
-        '✓ Meets eligibility criteria',
-        '✓ Agrees to affiliate program terms',
-      ]
-        .filter(Boolean)
-        .join('\n'),
-    )
-
-    const subject = encodeURIComponent(`Affiliate Application — ${name} — ${referralCode}`)
-    window.location.href = `mailto:${PROJECT_INQUIRY_EMAIL}?subject=${subject}&body=${body}`
-    setIssuedReferralCode(referralCode)
-    setSubmitted(true)
+    try {
+      const result = await submit({
+        category: FORM_CATEGORIES.affiliateApplication,
+        name,
+        email,
+        phone,
+        payload: {
+          hearAbout: String(data.get('hearAbout') ?? '').trim(),
+          promotionChannel: String(data.get('promotionChannel') ?? '').trim(),
+          motivation,
+          criteriaAck,
+          termsAck,
+        },
+      })
+      if (result.referralCode) {
+        setIssuedReferralCode(result.referralCode)
+      }
+      setSubmitted(true)
+    } catch {
+      // Error state handled by hook
+    }
   }
 
   if (submitted && issuedReferralCode) {
@@ -99,9 +95,8 @@ export function AffiliateProgramInquiryForm({ layout = 'default' }: AffiliatePro
           Application submitted
         </h2>
         <p className="mt-2 max-w-md text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-          Your email client should open with your application details. Send the message to complete
-          your request. Your referral code and URL are shown below — we also share them via email
-          and WhatsApp. Our team will verify eligibility and confirm your affiliate status.
+          Thank you. Our team has received your affiliate application. Your referral code and URL
+          are shown below — we will also confirm your status by email and WhatsApp after review.
         </p>
         <ReferralCodeDisplay code={issuedReferralCode} shareUrl={shareUrl} />
         <p className="mt-6 max-w-md text-xs leading-relaxed text-zinc-500 dark:text-zinc-400">
@@ -279,15 +274,21 @@ export function AffiliateProgramInquiryForm({ layout = 'default' }: AffiliatePro
         </fieldset>
       </div>
 
+      <FormSubmitError message={error} />
+
       <p className="mt-5 text-xs leading-relaxed text-zinc-500 dark:text-zinc-400 sm:mt-6">
-        After you submit, you will receive a unique referral code to share with students. Send the
-        email message to complete your application.
+        After you submit, you will receive a unique referral code to share with students.
       </p>
 
       <div className="mt-6 sm:mt-8">
-        <Button type="submit" variant="primary" className="w-full shadow-glow-sm sm:min-w-[260px]">
+        <Button
+          type="submit"
+          variant="primary"
+          disabled={submitting}
+          className="w-full shadow-glow-sm sm:min-w-[260px]"
+        >
           <HandCoins className="h-4 w-4" aria-hidden />
-          Apply for affiliate program
+          {submitting ? 'Submitting…' : 'Apply for affiliate program'}
           <ArrowUpRight className="h-4 w-4 opacity-80" aria-hidden />
         </Button>
       </div>

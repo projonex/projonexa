@@ -3,8 +3,10 @@ import { motion } from 'framer-motion'
 import { ArrowUpRight, CheckCircle2, Send } from 'lucide-react'
 import { FormSelectField } from '@/components/careers/FormSelectField'
 import { Button } from '@/components/ui/Button'
+import { FormSubmitError } from '@/components/forms/FormSubmitError'
+import { useFormSubmission } from '@/hooks/useFormSubmission'
+import { FORM_CATEGORIES } from '@/lib/api/forms'
 import {
-  CONTACT_EMAIL,
   CONTACT_PROJECT_TYPES,
   CONTACT_TIMELINE_OPTIONS,
 } from '@/data/contact'
@@ -20,38 +22,35 @@ export function ContactForm() {
   const [submitted, setSubmitted] = useState(false)
   const [projectType, setProjectType] = useState<string>(CONTACT_PROJECT_TYPES[0].value)
   const [timeline, setTimeline] = useState<string>(CONTACT_TIMELINE_OPTIONS[2].value)
+  const { submitting, error, submit, clearError } = useFormSubmission()
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    clearError()
     const data = new FormData(e.currentTarget)
     const name = String(data.get('name') ?? '').trim()
     const email = String(data.get('email') ?? '').trim()
     const phone = String(data.get('phone') ?? '').trim()
-    const subject = String(data.get('subject') ?? '').trim()
-    const timelineLabel =
-      CONTACT_TIMELINE_OPTIONS.find((t) => t.value === String(data.get('timeline') ?? ''))?.label ??
-      ''
+    const projectTypeValue = String(data.get('subject') ?? '').trim()
+    const timelineValue = String(data.get('timeline') ?? '').trim()
     const message = String(data.get('message') ?? '').trim()
 
-    const body = encodeURIComponent(
-      [
-        'Projonexa Project Inquiry',
-        '────────────────────────',
-        `Name: ${name}`,
-        `Email: ${email}`,
-        phone ? `Phone: ${phone}` : null,
-        `Project type: ${subject}`,
-        `Timeline: ${timelineLabel}`,
-        '',
-        'Project details:',
-        message,
-      ]
-        .filter(Boolean)
-        .join('\n'),
-    )
-
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${body}`
-    setSubmitted(true)
+    try {
+      await submit({
+        category: FORM_CATEGORIES.contact,
+        name,
+        email,
+        phone,
+        payload: {
+          projectType: projectTypeValue,
+          timeline: timelineValue,
+          message,
+        },
+      })
+      setSubmitted(true)
+    } catch {
+      // Error state handled by hook
+    }
   }
 
   if (submitted) {
@@ -64,11 +63,11 @@ export function ContactForm() {
       >
         <CheckCircle2 className="h-14 w-14 text-emerald-500" aria-hidden />
         <h2 className="mt-5 text-xl font-bold text-zinc-900 dark:text-white sm:text-2xl">
-          Inquiry ready to send
+          Inquiry submitted
         </h2>
         <p className="mt-2 max-w-md text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-          Your email app should open with your message pre-filled. Send it to complete your project
-          inquiry — we&apos;ll get back to you soon.
+          Thank you for reaching out. Our team has received your project inquiry and will get back
+          to you soon.
         </p>
         <Button
           type="button"
@@ -202,14 +201,21 @@ export function ContactForm() {
         </div>
       </div>
 
+      <FormSubmitError message={error} />
+
       <p className="mt-6 text-xs leading-relaxed text-zinc-500 dark:text-zinc-400">
         By submitting, you agree to share this information with Projonexa for project consultation
         purposes only.
       </p>
 
-      <Button type="submit" variant="primary" className="mt-6 w-full shadow-glow-sm sm:w-auto">
+      <Button
+        type="submit"
+        variant="primary"
+        disabled={submitting}
+        className="mt-6 w-full shadow-glow-sm sm:w-auto"
+      >
         <Send className="h-4 w-4" aria-hidden />
-        Send inquiry
+        {submitting ? 'Sending…' : 'Send inquiry'}
         <ArrowUpRight className="h-4 w-4 opacity-80" aria-hidden />
       </Button>
     </motion.form>
