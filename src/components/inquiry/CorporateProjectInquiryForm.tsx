@@ -211,7 +211,9 @@ export function CorporateProjectInquiryForm() {
         ) : null}
         <p className="mt-3 max-w-md text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
           {successMessage ||
-            'Your Google Meet consultation is confirmed. Check your email and WhatsApp for the invite.'}
+            (emailSent
+              ? 'Your Google Meet consultation is confirmed. Check your email for the calendar invite.'
+              : 'Your Google Meet consultation is confirmed. Use the Meet link below to join.')}
         </p>
         {(emailSent || whatsappSent) && (
           <div className="mt-5 flex flex-wrap items-center justify-center gap-2">

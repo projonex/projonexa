@@ -38,7 +38,7 @@ export function formatCareerSuccessMessage(
 
 export function formatCorporateSuccessMessage(
   message: string,
-  notifications?: { userEmail?: boolean; whatsapp?: boolean },
+  notifications?: { userEmail?: boolean; whatsapp?: boolean; whatsappConfigured?: boolean },
 ): string {
   if (message.trim()) {
     return message

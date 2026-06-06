@@ -96,7 +96,7 @@ export function AffiliateProgramInquiryForm({ layout = 'default' }: AffiliatePro
         </h2>
         <p className="mt-2 max-w-md text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
           Thank you. Our team has received your affiliate application. Your referral code and URL
-          are shown below — we will also confirm your status by email and WhatsApp after review.
+          are shown below — we will confirm your status by email after review.
         </p>
         <ReferralCodeDisplay code={issuedReferralCode} shareUrl={shareUrl} />
         <p className="mt-6 max-w-md text-xs leading-relaxed text-zinc-500 dark:text-zinc-400">
