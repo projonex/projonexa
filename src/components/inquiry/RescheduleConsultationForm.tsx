@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { CalendarClock, CheckCircle2, ExternalLink, Loader2 } from 'lucide-react'
@@ -13,10 +13,13 @@ import { Button } from '@/components/ui/Button'
 import {
   ConsultationRescheduleError,
   confirmConsultationReschedule,
-  fetchConsultationSlots,
   fetchRescheduleDetails,
   type RescheduleDetailsResponse,
 } from '@/lib/api/consultationReschedule'
+import {
+  consultationSlotOptionSuffix,
+  useConsultationSlotAvailability,
+} from '@/lib/hooks/useConsultationSlotAvailability'
 import {
   formatMeetingDate,
   MEETING_TIME_SLOTS,
@@ -36,9 +39,12 @@ export function RescheduleConsultationForm() {
 
   const [meetingDate, setMeetingDate] = useState(minMeetingDateIso())
   const [meetingTime, setMeetingTime] = useState<string>(MEETING_TIME_SLOTS[3].value)
-  const [availableSlots, setAvailableSlots] = useState<string[]>([])
-  const [bookedSlots, setBookedSlots] = useState<string[]>([])
-  const [loadingSlots, setLoadingSlots] = useState(false)
+  const slotAvailability = useConsultationSlotAvailability(
+    meetingDate,
+    'corporate',
+    meetingTime,
+    setMeetingTime,
+  )
 
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState('')
@@ -58,31 +64,14 @@ export function RescheduleConsultationForm() {
       .finally(() => setLoadingDetails(false))
   }, [token])
 
-  const loadSlots = useCallback(async (date: string) => {
-    if (!date) return
-    setLoadingSlots(true)
-    try {
-      const response = await fetchConsultationSlots(date)
-      setAvailableSlots(response.available)
-      setBookedSlots(response.booked)
-      if (response.available.length > 0 && !response.available.includes(meetingTime)) {
-        setMeetingTime(response.available[0])
-      }
-    } catch {
-      setAvailableSlots([])
-      setBookedSlots([])
-    } finally {
-      setLoadingSlots(false)
-    }
-  }, [meetingTime])
-
-  useEffect(() => {
-    void loadSlots(meetingDate)
-  }, [meetingDate, loadSlots])
-
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault()
     if (!token) return
+    const slotError = slotAvailability.validateSelectedTime(meetingTime)
+    if (slotError) {
+      setSubmitError(slotError)
+      return
+    }
     setSubmitting(true)
     setSubmitError('')
     try {
@@ -219,22 +208,29 @@ export function RescheduleConsultationForm() {
               value={meetingTime}
               onChange={(e) => setMeetingTime(e.target.value)}
               className={inquiryInputClass}
-              disabled={loadingSlots || availableSlots.length === 0}
+              disabled={slotAvailability.loading || slotAvailability.availableSlots.length === 0}
             >
               {MEETING_TIME_SLOTS.map((opt) => {
-                const booked = bookedSlots.includes(opt.value)
-                const available = availableSlots.includes(opt.value)
+                const suffix = consultationSlotOptionSuffix(
+                  opt.value,
+                  slotAvailability.availableSlots,
+                  slotAvailability.bookedSlots,
+                  slotAvailability.blockedSlots,
+                  slotAvailability.wholeDayBlocked,
+                )
                 return (
-                  <option key={opt.value} value={opt.value} disabled={!available}>
+                  <option key={opt.value} value={opt.value} disabled={!slotAvailability.availableSlots.includes(opt.value)}>
                     {opt.label}
-                    {booked ? ' — Booked' : !available ? ' — Unavailable' : ''}
+                    {suffix}
                   </option>
                 )
               })}
             </select>
-            {loadingSlots ? (
+            {slotAvailability.loading ? (
               <p className="mt-1.5 text-xs text-zinc-500">Loading availability…</p>
-            ) : availableSlots.length === 0 ? (
+            ) : slotAvailability.wholeDayBlocked ? (
+              <p className="mt-1.5 text-xs text-amber-600">This day is fully unavailable — try another date.</p>
+            ) : slotAvailability.availableSlots.length === 0 ? (
               <p className="mt-1.5 text-xs text-amber-600">No open slots on this date — try another day.</p>
             ) : null}
           </div>
@@ -246,7 +242,7 @@ export function RescheduleConsultationForm() {
           </p>
         ) : null}
 
-        <Button type="submit" disabled={submitting || availableSlots.length === 0} className="mt-8 w-full sm:w-auto">
+        <Button type="submit" disabled={submitting || slotAvailability.availableSlots.length === 0} className="mt-8 w-full sm:w-auto">
           {submitting ? 'Confirming…' : 'Confirm new consultation time'}
         </Button>
 

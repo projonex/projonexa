@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState, type FormEvent } from 'react'
+import { useMemo, useState, type FormEvent } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUpRight, CalendarClock, CheckCircle2, Mail, MessageCircle, Tag, X } from 'lucide-react'
 import { FormSelectField } from '@/components/careers/FormSelectField'
@@ -10,10 +10,11 @@ import {
 import { Button } from '@/components/ui/Button'
 import { FormSubmitError } from '@/components/forms/FormSubmitError'
 import { OtpInputField, OTP_CODE_LENGTH } from '@/components/forms/OtpInputField'
+import { ConsultationTimeField } from '@/components/inquiry/ConsultationTimeField'
+import { useConsultationSlotAvailability } from '@/lib/hooks/useConsultationSlotAvailability'
 import {
   confirmCorporateSchedule,
   CorporateInquiryError,
-  fetchConsultationSlots,
   initiateCorporateSchedule,
   resendCorporateScheduleOtp,
 } from '@/lib/api/corporateInquiry'
@@ -55,8 +56,6 @@ export function CorporateProjectInquiryForm({
     initialReferralCode ? normalizeReferralCode(initialReferralCode) : '',
   )
   const [referralError, setReferralError] = useState('')
-  const [bookedTimes, setBookedTimes] = useState<string[]>([])
-  const [slotsLoading, setSlotsLoading] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [confirming, setConfirming] = useState(false)
   const [resending, setResending] = useState(false)
@@ -73,28 +72,12 @@ export function CorporateProjectInquiryForm({
 
   const minDate = useMemo(() => minMeetingDateIso(), [])
 
-  const loadSlots = useCallback(async (date: string) => {
-    if (!date) {
-      setBookedTimes([])
-      return
-    }
-    setSlotsLoading(true)
-    try {
-      const data = await fetchConsultationSlots(date, 'corporate')
-      setBookedTimes(data.booked)
-      if (data.booked.includes(meetingTime) && data.available.length > 0) {
-        setMeetingTime(data.available[0])
-      }
-    } catch {
-      setBookedTimes([])
-    } finally {
-      setSlotsLoading(false)
-    }
-  }, [meetingTime])
-
-  useEffect(() => {
-    void loadSlots(meetingDate)
-  }, [meetingDate, loadSlots])
+  const slotAvailability = useConsultationSlotAvailability(
+    meetingDate,
+    'corporate',
+    meetingTime,
+    setMeetingTime,
+  )
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -116,8 +99,9 @@ export function CorporateProjectInquiryForm({
     const selectedDate = String(data.get('meetingDate') ?? '').trim()
     const selectedTime = String(data.get('meetingTime') ?? '').trim()
 
-    if (bookedTimes.includes(selectedTime)) {
-      setError('This time slot is no longer available. Please choose another time.')
+    const slotError = slotAvailability.validateSelectedTime(selectedTime)
+    if (slotError) {
+      setError(slotError)
       return
     }
 
@@ -456,30 +440,12 @@ export function CorporateProjectInquiryForm({
                 ) : null}
               </div>
 
-              <FormSelectField
+              <ConsultationTimeField
                 id="corp-meeting-time"
-                name="meetingTime"
-                required
                 value={meetingTime}
-                onChange={(e) => setMeetingTime(e.target.value)}
-                label={
-                  <>
-                    Time <InquiryRequired />
-                    {slotsLoading ? (
-                      <span className="ml-1 font-normal text-zinc-400">(checking availability…)</span>
-                    ) : null}
-                  </>
-                }
-              >
-                {MEETING_TIME_SLOTS.map((opt) => {
-                  const taken = bookedTimes.includes(opt.value)
-                  return (
-                    <option key={opt.value} value={opt.value} disabled={taken}>
-                      {taken ? `${opt.label} — Booked` : opt.label}
-                    </option>
-                  )
-                })}
-              </FormSelectField>
+                onChange={setMeetingTime}
+                slots={slotAvailability}
+              />
             </div>
           </fieldset>
 

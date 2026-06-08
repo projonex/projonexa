@@ -3,6 +3,8 @@ export interface ConsultationSlotsResponse {
   scope?: string
   available: string[]
   booked: string[]
+  blocked?: string[]
+  wholeDayBlocked?: boolean
 }
 
 export interface ScheduleInitResponse {
