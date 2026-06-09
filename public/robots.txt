@@ -32,5 +32,8 @@ Allow: /
 # Sitemap
 Sitemap: https://projonexa.com/sitemap.xml
 
+# LLM / AEO site guide (GEO)
+# https://projonexa.com/llms.txt
+
 # Crawl-delay (optional — remove if using CDN)
 # Crawl-delay: 1

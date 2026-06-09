@@ -4,24 +4,12 @@ import { buildPageMetadata } from '@/lib/seo/page-metadata'
 import { Suspense } from 'react'
 import { AffiliateEligibilityPage } from '@/views/AffiliateEligibilityPage'
 
-export const metadata = buildPageMetadata({
-  ...PAGE_SEO.affiliateProgram,
-  title: 'Affiliate Eligibility & Referral Tracker | Projonexa',
-  description:
-    'Check your Projonexa affiliate referral progress, successful referrals, and eligibility for the full affiliate program after 5 completed projects.',
-  path: '/affiliate-program/eligibility',
-})
+export const metadata = buildPageMetadata(PAGE_SEO.affiliateProgramEligibility)
 
 export default function Page() {
   return (
     <>
-      <PageSeo
-        seo={{
-          ...PAGE_SEO.affiliateProgram,
-          title: 'Affiliate Eligibility & Referral Tracker | Projonexa',
-          path: '/affiliate-program/eligibility',
-        }}
-      />
+      <PageSeo seo={PAGE_SEO.affiliateProgramEligibility} />
       <Suspense fallback={null}>
         <AffiliateEligibilityPage />
       </Suspense>

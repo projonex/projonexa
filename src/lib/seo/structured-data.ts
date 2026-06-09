@@ -44,19 +44,21 @@ export function organizationSchema(description: string) {
     })),
     sameAs: [FOUNDER.linkedin, FOUNDER.github, 'https://github.com/projonexa/projonexa'],
     knowsAbout: [
+      'Projonexa',
       'Final Year Projects',
+      'College Engineering Projects',
       'Engineering Projects',
       'Artificial Intelligence',
       'Machine Learning',
       'Startup MVP Development',
-      'Web Development',
+      'Web Application Development',
       'Mobile Application Development',
       'IoT Development',
       'Technical Documentation',
       'Student Affiliate Program',
       'Referral Commission Programs',
-      'Startup MVP Development',
       'Production-Ready Software Development',
+      'Custom Software for Startups',
     ],
     contactPoint: {
       '@type': 'ContactPoint',
@@ -209,6 +211,68 @@ export function serviceCatalogSchema() {
   }
 }
 
+export function collegeProjectsServiceSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${BRAND.url}/college-projects#service`,
+    name: 'College Engineering Project Development',
+    serviceType: 'Final Year and Mini Engineering Projects',
+    provider: { '@id': `${BRAND.url}/#organization` },
+    areaServed: GEO.areaServed,
+    audience: {
+      '@type': 'EducationalAudience',
+      educationalRole: 'student',
+    },
+    description:
+      'End-to-end final year and mini engineering college projects in India with source code, SRS, report, PPT, deployment support, and viva preparation.',
+    url: `${BRAND.url}/college-projects`,
+    offers: {
+      '@type': 'Offer',
+      url: `${BRAND.url}/inquiry/students`,
+      availability: 'https://schema.org/InStock',
+    },
+  }
+}
+
+export function clientProjectsServiceSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${BRAND.url}/client-projects#service`,
+    name: 'Startup MVP and Custom App Development',
+    serviceType: 'Web and Mobile Application Development for Startups',
+    provider: { '@id': `${BRAND.url}/#organization` },
+    areaServed: GEO.areaServed,
+    audience: {
+      '@type': 'BusinessAudience',
+    },
+    description:
+      'Production-ready startup MVPs and custom web or mobile applications in India with scoped quotes, documentation, deployment, and handover.',
+    url: `${BRAND.url}/client-projects`,
+    offers: {
+      '@type': 'Offer',
+      url: `${BRAND.url}/inquiry/corporate`,
+      availability: 'https://schema.org/InStock',
+    },
+  }
+}
+
+export function speakableWebPageSchema(path: string, cssSelectors: string[]) {
+  const url = `${BRAND.url}${path}`
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${url}/#speakable`,
+    url,
+    isPartOf: { '@id': `${BRAND.url}/#website` },
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: cssSelectors,
+    },
+  }
+}
+
 export function buildStructuredData(options: {
   title: string
   description: string
@@ -225,6 +289,38 @@ export function buildStructuredData(options: {
     localBusinessSchema(),
     webPageSchema(options.title, options.description, options.path),
   ]
+
+  if (options.path === '/college-projects') {
+    schemas.push(collegeProjectsServiceSchema())
+    schemas.push(
+      speakableWebPageSchema(options.path, [
+        'h1',
+        '[itemProp="headline"]',
+        '[itemProp="description"]',
+      ]),
+    )
+  }
+
+  if (options.path === '/client-projects') {
+    schemas.push(clientProjectsServiceSchema())
+    schemas.push(
+      speakableWebPageSchema(options.path, [
+        'h1',
+        '[itemProp="headline"]',
+        '[itemProp="description"]',
+      ]),
+    )
+  }
+
+  if (options.path === '/') {
+    schemas.push(
+      speakableWebPageSchema(options.path, [
+        'h2',
+        '[itemProp="description"]',
+        '#aeo-overview-heading',
+      ]),
+    )
+  }
 
   if (options.breadcrumb?.length) {
     schemas.push(breadcrumbSchema(options.breadcrumb))

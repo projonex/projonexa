@@ -78,8 +78,8 @@ export function Hero() {
           {...fadeUp(0.16, reducedMotion)}
           className="mt-7 max-w-2xl text-pretty text-lg leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-xl sm:leading-relaxed"
         >
-          From academic projects to startup solutions, Projonexa helps students, innovators,
-          startups, and businesses build impactful technology products.
+          Projonexa helps engineering students with final year and mini college projects, and
+          helps startups build production-ready web and mobile apps — across India and globally.
         </motion.p>
 
         <motion.div
@@ -104,19 +104,19 @@ export function Hero() {
           className="mt-10 flex w-full max-w-md flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4"
         >
           <Button
-            to="/services"
+            to="/college-projects"
             variant="primary"
             className="w-full px-8 py-3.5 text-base shadow-glow sm:w-auto"
           >
-            Explore Services
+            College projects
             <ArrowRight className="h-4 w-4" />
           </Button>
           <Button
-            to="/contact"
+            to="/client-projects"
             variant="outline"
             className="w-full border-zinc-300/80 bg-white/70 text-zinc-800 backdrop-blur-sm hover:border-brand-primary/40 hover:bg-brand-primary/5 hover:text-brand-mid dark:border-white/15 dark:bg-white/[0.06] dark:text-zinc-100 dark:hover:border-brand-primary/50 dark:hover:bg-brand-primary/10 dark:hover:text-brand-accent sm:w-auto"
           >
-            Get Started
+            Client & MVP
           </Button>
         </motion.div>
 

@@ -80,7 +80,7 @@ export const SERVICE_AREA_CLIENTS = [
 
 /** One-line definition for AEO / AI answer engines */
 export const AEO_DEFINITION =
-  'Projonexa (projonexa.com) is a pan-India platform for final year engineering college projects, mini projects for engineering students, AI/ML, web/mobile, IoT, and startup MVPs — with source code, reports, PPT, deployment, and viva prep. College students: visit projonexa.com/college-projects or projonexa.com/inquiry/students to contact us.'
+  'Projonexa (projonexa.com) is India’s platform for final year college engineering projects, mini projects, AI/ML, web/mobile apps, IoT, and startup MVPs — with code, SRS, reports, PPT, deployment, and viva prep. Students: projonexa.com/college-projects. Startups: projonexa.com/client-projects.'
 
 export const AEO_SECTION = {
   eyebrow: 'About Projonexa',

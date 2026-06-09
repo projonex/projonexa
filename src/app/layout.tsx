@@ -34,6 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang={GEO.language} className="dark" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM site guide for Projonexa" />
       </head>
       <body className={`${inter.variable} ${nunito.variable} font-sans antialiased`}>
         <AppProviders>{children}</AppProviders>
