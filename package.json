@@ -34,7 +34,7 @@
     "npm": ">=9.0.0"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --hostname 127.0.0.1",
     "build": "npm run sitemap:generate && npm run seo:validate && npm run og:generate && next build",
     "start": "next start",
     "og:generate": "node scripts/generate-og-images.mjs",

@@ -65,6 +65,9 @@ export function buildRootSiteMetadata(): Metadata {
     alternates: {
       canonical: BRAND.url,
       languages: { 'en-IN': BRAND.url },
+      types: {
+        'text/plain': '/llms.txt',
+      },
     },
     openGraph: {
       type: 'website',
