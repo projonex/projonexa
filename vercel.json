@@ -6,12 +6,6 @@
   "installCommand": "npm ci",
   "redirects": [
     {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.projonexa.com" }],
-      "destination": "https://projonexa.com/:path*",
-      "permanent": true
-    },
-    {
       "source": "/favicon.ico",
       "destination": "/favicon-32.png",
       "permanent": true

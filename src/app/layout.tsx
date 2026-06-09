@@ -1,9 +1,11 @@
 import type { Viewport } from 'next'
 import { Inter, Nunito } from 'next/font/google'
+import Script from 'next/script'
 import { AppProviders } from '@/components/providers/AppProviders'
 import { GEO } from '@/data/brand'
 import { buildRootSiteMetadata } from '@/lib/seo/site-metadata'
 import { THEME_INIT_SCRIPT } from '@/lib/theme-init'
+import '@/theme/theme.css'
 import '@/index.css'
 
 const inter = Inter({
@@ -32,11 +34,12 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang={GEO.language} className="dark" suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
-        <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM site guide for Projonexa" />
-      </head>
       <body className={`${inter.variable} ${nunito.variable} font-sans antialiased`}>
+        <Script
+          id="projonexa-theme-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }}
+        />
         <AppProviders>{children}</AppProviders>
       </body>
     </html>

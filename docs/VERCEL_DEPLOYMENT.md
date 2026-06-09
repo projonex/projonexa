@@ -41,9 +41,13 @@ Copy from [`.env.example`](../.env.example). Do **not** commit `.env` or `.env.l
 1. Vercel project → **Settings** → **Domains**
 2. Add `projonexa.com` (apex) and `www.projonexa.com`
 3. Point DNS to Vercel (A/CNAME per dashboard)
-4. `vercel.json` redirects **www → apex** (`https://projonexa.com`)
+4. Pick **one** primary host in Vercel and redirect the other — do **not** configure both directions (that creates a redirect loop and breaks `/_next/static/*` CSS/JS).
 
-Ensure `BRAND.url` in `src/data/brand.ts` is `https://projonexa.com` (canonical for SEO, OG, JSON-LD, sitemap).
+**Current production setup:** `www.projonexa.com` is primary; `projonexa.com` redirects to www in Vercel Domains. There is **no** opposing www → apex rule in `vercel.json`.
+
+**If you switch primary to apex later:** set `projonexa.com` as primary in Vercel Domains (www → apex), then add a single www → apex redirect in `vercel.json` — never apex → www in Vercel **and** www → apex in `vercel.json` at the same time.
+
+Ensure `BRAND.url` in `src/data/brand.ts` matches your chosen canonical host (currently `https://projonexa.com` for SEO, OG, JSON-LD, sitemap).
 
 ## SEO / AEO / GEO on Vercel
 
@@ -71,7 +75,6 @@ Submit `https://projonexa.com/sitemap.xml` in [Google Search Console](https://se
 
 ## Redirects & caching (`vercel.json`)
 
-- `www.projonexa.com` → `https://projonexa.com`
 - `/favicon.ico` → `/favicon-32.png`
 - `/final-year-projects` → `/college-projects`
 - `/research` → `/services`
