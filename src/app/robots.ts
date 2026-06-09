@@ -3,6 +3,7 @@ import { BRAND } from '@/data/brand'
 
 export default function robots(): MetadataRoute.Robots {
   return {
+    host: BRAND.url,
     rules: [
       {
         userAgent: '*',
