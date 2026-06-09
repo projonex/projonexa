@@ -1,12 +1,15 @@
 {
+  "id": "/",
   "name": "Projonexa",
   "short_name": "Projonexa",
-  "description": "Where Innovation Meets Execution. Final year projects, AI/ML, startup MVPs & research assistance — India.",
+  "description": "Projonexa — final year college engineering projects, mini projects, and startup MVP development in India. Code, reports, PPT, viva prep, and custom web/mobile apps.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#0A0F1C",
   "theme_color": "#0A0F1C",
   "lang": "en-IN",
+  "dir": "ltr",
   "orientation": "portrait-primary",
   "icons": [
     {
@@ -33,6 +36,5 @@
       "type": "image/png"
     }
   ],
-  "categories": ["business", "education", "productivity"],
-  "scope": "/"
+  "categories": ["business", "education", "productivity"]
 }

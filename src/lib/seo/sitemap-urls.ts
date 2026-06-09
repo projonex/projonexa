@@ -43,6 +43,8 @@ export function collectSitemapEntries(date = new Date()): SitemapEntry[] {
 
 export function sitemapPriority(pathname: string, intent: PageSEO['intent']): number {
   if (pathname === '/') return 1
+  if (pathname === '/college-projects' || pathname === '/client-projects') return 0.98
+  if (pathname === '/inquiry/students' || pathname === '/inquiry/corporate') return 0.96
   if (intent === 'transactional') return 0.95
   if (intent === 'commercial') return 0.9
   if (intent === 'navigational') return 0.7

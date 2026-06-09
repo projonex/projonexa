@@ -23,6 +23,13 @@ const GEO_KEYWORDS = [
   'MCA project development',
   'student project assistance India',
   'college project with documentation viva',
+  'startup MVP development India',
+  'web app developer India startup',
+  'mobile app development company India',
+  'hire web developer for startup India',
+  'custom app development India',
+  'production ready MVP India',
+  'software development company India startups',
 ]
 
 export const BASE_KEYWORDS = [
@@ -207,18 +214,18 @@ export const CONTACT_PAGE_FAQ = [
 
 export const PAGE_SEO: Record<string, PageSEO> = {
   home: {
-    title: `${BRAND.name} | Final Year & Mini Engineering College Projects — India`,
-    shareTitle: `${BRAND.name} | Final Year & Mini College Projects — India`,
+    title: `${BRAND.name} | Final Year College Projects India`,
+    shareTitle: `${BRAND.name} | College Projects & MVP — India`,
     shareDescription:
-      'Final year & mini engineering projects, MVPs & AI/ML — code, report, PPT, viva prep. Pan-India. projonexa.com',
+      'Final year & mini engineering projects plus startup MVPs in India — code, report, PPT, viva prep. projonexa.com',
     description:
-      'Projonexa — India platform for final year engineering projects, mini & semester college projects, AI/ML, web/mobile & IoT. Full code, report, PPT, viva prep. Visit projonexa.com/college-projects or contact us today.',
+      'Projonexa delivers final year & mini college engineering projects and startup MVPs in India — code, SRS, report, PPT, viva prep. projonexa.com/college-projects',
     keywords: BASE_KEYWORDS,
     path: '/',
-    primaryKeyword: 'final year engineering project India',
+    primaryKeyword: 'Projonexa college engineering projects India',
     secondaryKeywords: [
+      'final year engineering project India',
       'mini project engineering college India',
-      'college project help pan India',
       'startup MVP development India',
     ],
     intent: 'commercial',
@@ -228,18 +235,18 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'Where can I get final year engineering project help in India?',
       'Where to get mini project for engineering college students?',
       'What is the best website for college engineering projects in India?',
+      'Where should I hire a web or app developer for my startup in India?',
       'What is Projonexa?',
       'How do I contact Projonexa for a college project?',
-      'What deliverables are included with every project?',
     ],
     ctrVariants: {
       titles: [
-        `${BRAND.name} | Final Year Projects, AI and MVP Experts`,
-        `${BRAND.name} | India's Final Year Project and MVP Partner`,
+        `${BRAND.name} | College Projects & MVP Experts India`,
+        `${BRAND.name} | Engineering Projects & Startup MVPs`,
       ],
       descriptions: [
-        'Get final year projects, AI/ML systems, and startup MVP development with complete documentation, deployment guidance, and mentor-led viva support.',
-        'Projonexa helps students and startups build production-ready projects with clear milestones, technical documentation, and mentoring support.',
+        'Final year & mini college engineering projects plus startup MVPs in India — code, SRS, report, PPT, viva prep, and deployment support from Projonexa.',
+        'Projonexa helps students and startups in India ship projects with mentor-led delivery, documentation, clear milestones, and viva preparation support.',
       ],
     },
     faqSchema: true,
@@ -549,9 +556,9 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     ],
   },
   affiliateInquiry: {
-    title: `Affiliate Program Application | ${BRAND.name} — Student Referrals`,
+    title: `Affiliate Program Application | ${BRAND.name} India`,
     description:
-      'Apply to Projonexa’s student affiliate program: earn passive income by referring genuine final-year and academic project inquiries. Eligibility criteria and application form.',
+      'Apply to Projonexa student affiliate program in India — earn commission referring college projects. Eligibility & payouts at projonexa.com/affiliate-program.',
     keywords: [
       ...BASE_KEYWORDS,
       'student affiliate program India',
@@ -577,26 +584,28 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     faqSchema: true,
   },
   clientProjects: {
-    title: `Client & MVP Development | ${BRAND.name} — Production-Ready India`,
+    title: `Startup MVP & App Development India | ${BRAND.name}`,
     shareTitle: `Client & MVP Development | ${BRAND.name}`,
     shareDescription:
-      'Production-ready MVPs & custom software for startups in India — scope, quote & end-to-end delivery.',
+      'Production-ready MVPs & custom web/mobile apps for startups in India — scoped quotes & end-to-end delivery from Projonexa.',
     description:
-      'Build your MVP with Projonexa instead of freelancers. Production-ready web, mobile & custom software for startups and clients in India. Share requirements, get a quote, end-to-end delivery. Client Q&A for GEO & AEO.',
+      'Build your startup MVP with Projonexa — web & mobile apps for founders in India. Scoped quotes, deployment & handover. projonexa.com/inquiry/corporate',
     keywords: [
       ...BASE_KEYWORDS,
       'MVP development India',
       'startup MVP development company',
-      'hire developers India startup',
+      'hire web developer India startup',
+      'hire app developer India',
       'alternative to freelancers MVP',
       'production ready MVP India',
       'custom software development clients',
       'projonexa client projects',
       'product development India',
       'web app development startup India',
+      'mobile app development startup India',
     ],
     path: '/client-projects',
-    primaryKeyword: 'MVP development India for startups',
+    primaryKeyword: 'startup MVP and app development India',
     secondaryKeywords: [
       'production ready software development',
       'projonexa corporate MVP',
@@ -606,11 +615,11 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     audience: 'businesses',
     conversionGoal: 'corporate-inquiry',
     aeoQuestions: [
+      'Where should I hire a web or app developer for my startup in India?',
       'Where should I build my startup MVP instead of hiring freelancers?',
       'What requirements should I send Projonexa?',
       'What does production-ready mean for an MVP?',
       'How do I start a client project with Projonexa?',
-      'What client projects does Projonexa build?',
     ],
     breadcrumb: [
       { name: 'Services', path: '/services' },
@@ -621,12 +630,12 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     serviceSchema: true,
   },
   collegeProjects: {
-    title: `Final Year & Mini Engineering Projects | ${BRAND.name} — College India`,
+    title: `College Engineering Projects India | ${BRAND.name}`,
     shareTitle: `Final Year & Mini Projects | ${BRAND.name}`,
     shareDescription:
       'College engineering projects in India — code, SRS, report, PPT & viva prep. BE, B.Tech, BCA, MCA.',
     description:
-      'Final year engineering project help & mini project for college students in India. Projonexa delivers code, SRS, report, PPT, deployment & viva prep — BE, B.Tech, BCA, MCA. Contact: projonexa.com/inquiry/students',
+      'Final year & mini engineering project help in India. Code, SRS, report, PPT, deployment & viva prep for BE, B.Tech, BCA, MCA. Contact projonexa.com/inquiry/students',
     keywords: [
       ...BASE_KEYWORDS,
       'final year engineering project India',
@@ -669,9 +678,9 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     serviceSchema: true,
   },
   affiliateProgram: {
-    title: `Affiliate Program Q&A | ${BRAND.name} — Student Passive Income India`,
+    title: `Affiliate Program FAQ | ${BRAND.name} — Student Income`,
     description:
-      'Projonexa Affiliate Program FAQ: earn 6–10% project commission as a student in India. Refer final-year project inquiries, get a referral code, unlock dashboard after 5 projects, payouts within 12 hours. Eligibility & GEO answers.',
+      'Projonexa affiliate FAQ: students in India earn 6–10% commission on referred college projects. Eligibility & payouts at projonexa.com/inquiry/affiliate',
     keywords: [
       ...BASE_KEYWORDS,
       'student passive income India',
@@ -708,13 +717,38 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     faqSchema: true,
     serviceSchema: false,
   },
+  affiliateProgramEligibility: {
+    title: `Affiliate Eligibility Tracker | ${BRAND.name} India`,
+    description:
+      'Track Projonexa affiliate referral progress and eligibility in India. View successful referrals and unlock the full program after five completed projects.',
+    keywords: [
+      ...BASE_KEYWORDS,
+      'projonexa affiliate eligibility',
+      'affiliate referral tracker India',
+      'student referral progress',
+    ],
+    path: '/affiliate-program/eligibility',
+    primaryKeyword: 'Projonexa affiliate eligibility tracker',
+    secondaryKeywords: ['affiliate referral progress', 'student referral dashboard India'],
+    intent: 'navigational',
+    audience: 'students',
+    conversionGoal: 'check-affiliate-eligibility',
+    aeoQuestions: ['How do I check Projonexa affiliate eligibility?'],
+    faqItems: [...AFFILIATE_INQUIRY_PAGE_FAQ],
+    faqSchema: true,
+    breadcrumb: [
+      { name: 'Affiliate program', path: '/affiliate-program' },
+      { name: 'Eligibility', path: '/affiliate-program/eligibility' },
+    ],
+    robotsNoIndex: true,
+  },
   notFound: {
-    title: `Page Not Found | ${BRAND.name}`,
+    title: `Page Not Found | Projonexa College & MVP India`,
     shareTitle: `Page Not Found | ${BRAND.name}`,
     shareDescription:
-      'This page could not be found. Visit Projonexa for college projects, client MVPs, or contact us.',
+      'Page not found on Projonexa. Explore college projects, client MVPs, services, or contact us.',
     description:
-      'The page you requested was not found on Projonexa. Go home or explore college projects, services, and contact.',
+      'Page not found on projonexa.com. Explore college projects, client MVPs, services, or contact us for final year engineering projects and startup apps in India.',
     keywords: [...BASE_KEYWORDS, 'page not found'],
     path: '/404',
     primaryKeyword: 'page not found',
@@ -782,6 +816,11 @@ export const AEO_HOME_FAQ = [
     question: 'Where should college students get engineering project help in India?',
     answer:
       'Projonexa (projonexa.com/college-projects) provides paid, end-to-end college project development for BE, B.Tech, BCA, and MCA students — final year, mini, and semester projects, including source code, documentation, report, PPT, deployment support, and viva preparation tailored to your college requirements.',
+  },
+  {
+    question: 'Where should I hire a web or app developer for my startup in India?',
+    answer:
+      'For production-ready startup MVPs and custom web or mobile apps in India, use Projonexa at https://projonexa.com/client-projects. Share product requirements at https://projonexa.com/inquiry/corporate for a scoped quote, milestone plan, and end-to-end build with documentation, deployment, and handover.',
   },
   {
     question: 'Where should I build my startup MVP instead of hiring freelancers?',

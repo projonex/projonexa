@@ -12,6 +12,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: '/favicon.ico',
+        destination: '/favicon-32.png',
+        permanent: true,
+      },
+      {
         source: '/final-year-projects',
         destination: '/college-projects',
         permanent: true,
