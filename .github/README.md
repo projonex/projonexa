@@ -7,7 +7,6 @@ GitHub community, automation, and governance configuration for the **Projonexa**
 ```
 .github/
 ├── CODEOWNERS                 # Default reviewer: @nikobuddy
-├── dependabot.yml             # npm + GitHub Actions updates
 ├── pull_request_template.md   # PR checklist
 ├── ISSUE_TEMPLATE/
 │   ├── config.yml             # Contact links (projects, careers, security)

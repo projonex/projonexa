@@ -420,7 +420,7 @@ Full tree → [`docs/PROJECT_STRUCTURE.md`](docs/PROJECT_STRUCTURE.md) · Archit
 | **LinkedIn** | [linkedin.com/in/nslokhande](https://www.linkedin.com/in/nslokhande/) |
 | **Location** | India (pan-India) |
 
----
+-------
 
 ## License
 

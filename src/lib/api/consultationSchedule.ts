@@ -33,6 +33,22 @@ export class ConsultationScheduleError extends Error {
   }
 }
 
+/** @deprecated Use ConsultationScheduleError */
+export class CorporateInquiryError extends ConsultationScheduleError {
+  constructor(message: string) {
+    super(message)
+    this.name = 'CorporateInquiryError'
+  }
+}
+
+/** @deprecated Use ConsultationScheduleError */
+export class StudentInquiryError extends ConsultationScheduleError {
+  constructor(message: string) {
+    super(message)
+    this.name = 'StudentInquiryError'
+  }
+}
+
 function getApiBaseUrl(): string {
   const url = process.env.NEXT_PUBLIC_API_URL?.trim()
   if (!url) {
@@ -80,9 +96,12 @@ export interface InitiateScheduleInput {
   payload: Record<string, string>
 }
 
+type ConsultationScheduleErrorCtor = new (message: string) => ConsultationScheduleError
+
 async function postSchedule(
   path: string,
   input: InitiateScheduleInput,
+  ErrorType: ConsultationScheduleErrorCtor = ConsultationScheduleError,
 ): Promise<ScheduleInitResponse> {
   const baseUrl = getApiBaseUrl()
   let response: Response
@@ -97,11 +116,11 @@ async function postSchedule(
       body: JSON.stringify({ ...input, _hp: '' }),
     })
   } catch {
-    throw new ConsultationScheduleError('Could not reach the server. Check your connection.')
+    throw new ErrorType('Could not reach the server. Check your connection.')
   }
 
   if (!response.ok) {
-    throw new ConsultationScheduleError(await parseError(response))
+    throw new ErrorType(await parseError(response))
   }
 
   return (await response.json()) as ScheduleInitResponse
@@ -110,6 +129,7 @@ async function postSchedule(
 async function postConfirm(
   path: string,
   input: { bookingId: string; email: string; otp: string },
+  ErrorType: ConsultationScheduleErrorCtor = ConsultationScheduleError,
 ): Promise<ScheduleConfirmResponse> {
   const baseUrl = getApiBaseUrl()
   let response: Response
@@ -124,11 +144,11 @@ async function postConfirm(
       body: JSON.stringify(input),
     })
   } catch {
-    throw new ConsultationScheduleError('Could not reach the server. Check your connection.')
+    throw new ErrorType('Could not reach the server. Check your connection.')
   }
 
   if (!response.ok) {
-    throw new ConsultationScheduleError(await parseError(response))
+    throw new ErrorType(await parseError(response))
   }
 
   return (await response.json()) as ScheduleConfirmResponse
@@ -137,6 +157,7 @@ async function postConfirm(
 async function postResendOtp(
   path: string,
   input: { bookingId: string; email: string },
+  ErrorType: ConsultationScheduleErrorCtor = ConsultationScheduleError,
 ): Promise<ScheduleInitResponse> {
   const baseUrl = getApiBaseUrl()
   let response: Response
@@ -151,18 +172,18 @@ async function postResendOtp(
       body: JSON.stringify(input),
     })
   } catch {
-    throw new ConsultationScheduleError('Could not reach the server. Check your connection.')
+    throw new ErrorType('Could not reach the server. Check your connection.')
   }
 
   if (!response.ok) {
-    throw new ConsultationScheduleError(await parseError(response))
+    throw new ErrorType(await parseError(response))
   }
 
   return (await response.json()) as ScheduleInitResponse
 }
 
 export function initiateCorporateSchedule(input: InitiateScheduleInput) {
-  return postSchedule('/api/v1/forms/corporate-inquiry/schedule', input)
+  return postSchedule('/api/v1/forms/corporate-inquiry/schedule', input, CorporateInquiryError)
 }
 
 export function confirmCorporateSchedule(input: {
@@ -170,15 +191,15 @@ export function confirmCorporateSchedule(input: {
   email: string
   otp: string
 }) {
-  return postConfirm('/api/v1/forms/corporate-inquiry/confirm', input)
+  return postConfirm('/api/v1/forms/corporate-inquiry/confirm', input, CorporateInquiryError)
 }
 
 export function resendCorporateScheduleOtp(input: { bookingId: string; email: string }) {
-  return postResendOtp('/api/v1/forms/corporate-inquiry/resend-otp', input)
+  return postResendOtp('/api/v1/forms/corporate-inquiry/resend-otp', input, CorporateInquiryError)
 }
 
 export function initiateStudentSchedule(input: InitiateScheduleInput) {
-  return postSchedule('/api/v1/forms/student-inquiry/schedule', input)
+  return postSchedule('/api/v1/forms/student-inquiry/schedule', input, StudentInquiryError)
 }
 
 export function confirmStudentSchedule(input: {
@@ -186,27 +207,11 @@ export function confirmStudentSchedule(input: {
   email: string
   otp: string
 }) {
-  return postConfirm('/api/v1/forms/student-inquiry/confirm', input)
+  return postConfirm('/api/v1/forms/student-inquiry/confirm', input, StudentInquiryError)
 }
 
 export function resendStudentScheduleOtp(input: { bookingId: string; email: string }) {
-  return postResendOtp('/api/v1/forms/student-inquiry/resend-otp', input)
-}
-
-/** @deprecated Use ConsultationScheduleError */
-export class CorporateInquiryError extends ConsultationScheduleError {
-  constructor(message: string) {
-    super(message)
-    this.name = 'CorporateInquiryError'
-  }
-}
-
-/** @deprecated Use ConsultationScheduleError */
-export class StudentInquiryError extends ConsultationScheduleError {
-  constructor(message: string) {
-    super(message)
-    this.name = 'StudentInquiryError'
-  }
+  return postResendOtp('/api/v1/forms/student-inquiry/resend-otp', input, StudentInquiryError)
 }
 
 export type CorporateScheduleInitResponse = ScheduleInitResponse
