@@ -97,12 +97,14 @@ export function StudentProjectInquiryForm({
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setError('')
+    const form = e.currentTarget
+
     const referralOk = await referralField.validateBeforeSubmit()
     if (!referralOk) {
       return
     }
 
-    const data = new FormData(e.currentTarget)
+    const data = new FormData(form)
     const rawReferral = normalizeReferralCode(referralField.code)
     const name = String(data.get('name') ?? '').trim()
     const email = String(data.get('email') ?? '').trim()
