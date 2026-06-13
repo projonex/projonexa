@@ -252,9 +252,23 @@ export function AEOOverview() {
 
             <div className="mt-8 flex flex-col gap-4 border-t border-black/[0.06] pt-8 dark:border-white/[0.06] sm:flex-row sm:items-center sm:justify-between">
               <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                Final year or mini engineering project? See our college guide or contact us.
+                Explore our full service portfolio or choose a specialized solution track.
               </p>
               <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/services"
+                  className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white shadow-glow-sm transition-opacity hover:opacity-95"
+                >
+                  All services
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  href="/client-projects"
+                  className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/50 px-5 py-2.5 text-sm font-semibold text-zinc-800 backdrop-blur-sm transition-colors hover:border-brand-primary/30 hover:text-brand-primary dark:border-white/[0.1] dark:bg-black/40 dark:text-zinc-100"
+                >
+                  Client solutions
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
                 <Link
                   href="/college-projects"
                   className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/50 px-5 py-2.5 text-sm font-semibold text-zinc-800 backdrop-blur-sm transition-colors hover:border-brand-primary/30 hover:text-brand-primary dark:border-white/[0.1] dark:bg-black/40 dark:text-zinc-100"
@@ -263,22 +277,8 @@ export function AEOOverview() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
-                  href="/client-projects"
-                  className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/50 px-5 py-2.5 text-sm font-semibold text-zinc-800 backdrop-blur-sm transition-colors hover:border-brand-primary/30 hover:text-brand-primary dark:border-white/[0.1] dark:bg-black/40 dark:text-zinc-100"
-                >
-                  Client & MVP
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  href="/inquiry/students"
-                  className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/50 px-5 py-2.5 text-sm font-semibold text-zinc-800 backdrop-blur-sm transition-colors hover:border-brand-primary/30 hover:text-brand-primary dark:border-white/[0.1] dark:bg-black/40 dark:text-zinc-100"
-                >
-                  Student inquiry
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white shadow-glow-sm transition-opacity hover:opacity-95"
+                  className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/50 px-5 py-2.5 text-sm font-semibold text-zinc-800 backdrop-blur-sm transition-colors hover:border-brand-primary/30 hover:text-brand-primary dark:border-white/[0.1] dark:bg-black/40 dark:text-zinc-100"
                 >
                   Contact us
                   <ArrowRight className="h-4 w-4" />

@@ -41,8 +41,8 @@ export function Footer() {
               {BRAND.tagline}
             </p>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-              End-to-end project development for students, colleges, startups, and businesses —
-              across India and globally.
+              Premium software and project development for businesses, startups, and students —
+              custom software, MVPs, AI/ML, and academic projects under one trusted brand.
             </p>
             <SiteAeoPillarLinks className="mt-4" />
             <div className="mt-5 flex items-center gap-1">

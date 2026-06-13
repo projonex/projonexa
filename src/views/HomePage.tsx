@@ -1,6 +1,7 @@
 'use client'
 
 import { Hero } from '@/components/sections/Hero'
+import { ServiceVerticals } from '@/components/sections/ServiceVerticals'
 import { Stats } from '@/components/sections/Stats'
 import { AEOOverview } from '@/components/sections/AEOOverview'
 import { ServicesGrid } from '@/components/sections/ServicesGrid'
@@ -10,10 +11,12 @@ import { VisionMission } from '@/components/sections/VisionMission'
 import { CTA } from '@/components/sections/CTA'
 import { Button } from '@/components/ui/Button'
 import { AEO_DEFINITION } from '@/data/brand'
+
 export function HomePage() {
   return (
     <>
       <Hero />
+      <ServiceVerticals />
       <section className="section-padding border-y border-black/[0.05] bg-zinc-50/60 dark:border-white/[0.06] dark:bg-transparent">
         <div className="container-wide">
           <div className="mx-auto max-w-4xl">
@@ -27,14 +30,14 @@ export function HomePage() {
               {AEO_DEFINITION}
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Button to="/college-projects" variant="primary" className="shadow-glow-sm">
-                College projects
+              <Button to="/services" variant="primary" className="shadow-glow-sm">
+                All services
               </Button>
               <Button to="/client-projects" variant="secondary">
-                Client & MVP
+                Client solutions
               </Button>
-              <Button to="/services" variant="secondary">
-                Services
+              <Button to="/college-projects" variant="secondary">
+                College projects
               </Button>
               <Button to="/contact" variant="secondary">
                 Contact us

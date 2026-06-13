@@ -9,9 +9,9 @@ import { Button } from '@/components/ui/Button'
 const easeSmooth = [0.22, 1, 0.36, 1] as const
 
 const QUICK_LINKS = [
-  { label: 'College projects', path: '/college-projects' },
-  { label: 'Client & MVP', path: '/client-projects' },
   { label: 'Services', path: '/services' },
+  { label: 'Client solutions', path: '/client-projects' },
+  { label: 'College projects', path: '/college-projects' },
   { label: 'FAQ', path: '/faq' },
   { label: 'Contact', path: '/contact' },
 ] as const
@@ -37,7 +37,7 @@ export function NotFoundPage() {
             </h1>
             <p className="mt-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
               The link may be outdated or mistyped. Head back home or choose one of our main pages
-              below — college projects, client MVPs, pricing, and contact are all one click away.
+              below — services, client solutions, college projects, and contact are all one click away.
             </p>
             <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap">
               <Button to="/" variant="primary" className="shadow-glow-sm">

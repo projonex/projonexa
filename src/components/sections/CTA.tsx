@@ -27,8 +27,8 @@ export function CTA() {
           Ready to Build Something Extraordinary?
         </h2>
         <p className="relative z-10 mx-auto mt-4 max-w-xl text-white/90">
-          Join hundreds of students and innovators who trust Projonexa to turn their ideas into
-          reality. Your next breakthrough starts with a conversation.
+          Join businesses, startups, and innovators who trust Projonexa as their complete technology
+          partner. Your next breakthrough starts with a conversation.
         </p>
         <div className="relative z-10 mt-8 flex w-full max-w-sm flex-col items-stretch gap-3 sm:mx-auto sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4">
           <Button to="/contact" variant="secondary" className="w-full !bg-white !text-brand-dark sm:w-auto">

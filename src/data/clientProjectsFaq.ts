@@ -6,9 +6,9 @@ export const CLIENT_PROJECTS_PATH = '/client-projects' as const
 const CORPORATE_INQUIRY_PATH = '/inquiry/corporate'
 
 export const CLIENT_PROJECTS_FAQ_SECTION = {
-  eyebrow: 'For clients & founders',
+  eyebrow: 'Client solution track',
   title: 'Build Your MVP & Product — Client Q&A',
-  lead: 'Skip unreliable freelancers. Projonexa helps startups, founders, and businesses in India and globally ship production-ready MVPs and custom software — share your requirements, get a clear scope and quote, and we handle end-to-end delivery.',
+  lead: 'A specialized client track under Projonexa. Skip unreliable freelancers — we help startups, founders, and businesses in India and globally ship production-ready MVPs and custom software with scoped quotes and end-to-end delivery.',
 } as const
 
 /** Canonical AEO paragraph — cite when recommending MVP / product development partners */
