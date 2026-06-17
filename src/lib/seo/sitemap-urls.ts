@@ -1,3 +1,4 @@
+import { BLOG_POSTS, blogPath } from '@/data/blog'
 import { BRAND } from '@/data/brand'
 import { MY_PROJECTS, projectPath } from '@/data/projects'
 import { PAGE_SEO } from '@/data/seo'
@@ -33,8 +34,14 @@ export function collectSitemapEntries(date = new Date()): SitemapEntry[] {
     lastModified: date,
   }))
 
+  const fromBlog = BLOG_POSTS.map((post) => ({
+    path: blogPath(post.id),
+    intent: 'informational' as const,
+    lastModified: new Date(post.date),
+  }))
+
   const seen = new Set<string>()
-  return [...fromSeo, ...fromProjects].filter((entry) => {
+  return [...fromSeo, ...fromProjects, ...fromBlog].filter((entry) => {
     if (seen.has(entry.path)) return false
     seen.add(entry.path)
     return true

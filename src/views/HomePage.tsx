@@ -8,6 +8,7 @@ import { ServicesGrid } from '@/components/sections/ServicesGrid'
 import { TechnologyWhySection } from '@/components/sections/TechnologyWhySection'
 import { ServiceFounderSection } from '@/components/sections/ServiceFounderSection'
 import { VisionMission } from '@/components/sections/VisionMission'
+import { BlogPreview } from '@/components/sections/BlogPreview'
 import { CTA } from '@/components/sections/CTA'
 import { Button } from '@/components/ui/Button'
 import { AEO_DEFINITION } from '@/data/brand'
@@ -51,6 +52,7 @@ export function HomePage() {
       <ServicesGrid limit={6} showViewAll />
       <TechnologyWhySection />
       <ServiceFounderSection />
+      <BlogPreview />
       <VisionMission />
       <CTA />
     </>

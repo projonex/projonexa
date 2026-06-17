@@ -1,5 +1,5 @@
 import { AEO_DEFINITION, BRAND, FOUNDER, GEO } from '@/data/brand';
-import type { BreadcrumbItem, SearchIntent } from './seo-types'
+import type { ArticleMeta, BreadcrumbItem, SearchIntent } from './seo-types'
 
 import { SERVICES } from '@/data/services';
 
@@ -259,6 +259,30 @@ export function clientProjectsServiceSchema() {
   }
 }
 
+/** BlogPosting schema for article pages — AEO / rich results */
+export function blogPostingSchema(path: string, article: ArticleMeta, description: string) {
+  const url = `${BRAND.url}${path}`
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    '@id': `${url}/#article`,
+    headline: article.headline,
+    description,
+    datePublished: article.datePublished,
+    dateModified: article.dateModified ?? article.datePublished,
+    author: {
+      '@type': 'Person',
+      name: article.author,
+      url: FOUNDER.linkedin,
+    },
+    publisher: { '@id': `${BRAND.url}/#organization` },
+    mainEntityOfPage: { '@id': `${url}/#webpage` },
+    inLanguage: GEO.language,
+    keywords: article.keywords.join(', '),
+    url,
+  }
+}
+
 export function speakableWebPageSchema(path: string, cssSelectors: string[]) {
   const url = `${BRAND.url}${path}`
   return {
@@ -283,6 +307,7 @@ export function buildStructuredData(options: {
   faqSchema?: boolean
   serviceSchema?: boolean
   faqItems?: FAQ[]
+  article?: ArticleMeta
 }) {
   const schemas: object[] = [
     organizationSchema(options.description),
@@ -325,6 +350,17 @@ export function buildStructuredData(options: {
 
   if (options.breadcrumb?.length) {
     schemas.push(breadcrumbSchema(options.breadcrumb))
+  }
+
+  if (options.article) {
+    schemas.push(blogPostingSchema(options.path, options.article, options.description))
+    schemas.push(
+      speakableWebPageSchema(options.path, [
+        'h1',
+        '[itemProp="headline"]',
+        '[data-aeo="quick-answer"]',
+      ]),
+    )
   }
 
   if (options.faqSchema) {

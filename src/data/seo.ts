@@ -120,12 +120,17 @@ export const BLOG_PAGE_FAQ = [
   {
     question: 'What topics does the Projonexa blog cover?',
     answer:
-      'Guides on final year projects, mini projects, AI development, startup MVPs, and engineering career insights for students in India.',
+      'Guides across seven categories: Academic & Final Year, AI & Machine Learning, Startups & MVP, Web & Mobile, IoT & Embedded, Career & Placements, and Best Practices — for engineering students and founders in India.',
   },
   {
     question: 'Where should I go for project help instead of only reading the blog?',
     answer:
       'Use projonexa.com/college-projects for student Q&A or projonexa.com/client-projects for MVP and startup help, then contact via projonexa.com/contact.',
+  },
+  {
+    question: 'How often does Projonexa publish new blog articles?',
+    answer:
+      'We publish practical guides on final year projects, AI trends, startup MVPs, and engineering best practices. Browse projonexa.com/blog for the latest articles across all categories.',
   },
 ] as const
 
@@ -331,17 +336,18 @@ export const PAGE_SEO: Record<string, PageSEO> = {
   blog: {
     title: `Blog | ${BRAND.name} — Project Guides & Tech Insights`,
     description:
-      'Expert guides on final year projects, AI development, startup MVPs, and engineering trends — from the Projonexa team serving students across India.',
-    keywords: [...BASE_KEYWORDS, 'tech blog', 'final year project guide'],
+      'Guides on final year projects, AI, startup MVPs, IoT, web & mobile, and engineering careers — practical insights for students and founders across India.',
+    keywords: [...BASE_KEYWORDS, 'tech blog', 'final year project guide', 'engineering blog India'],
     path: '/blog',
     primaryKeyword: 'final year project guide',
-    secondaryKeywords: ['AI development blog India', 'startup MVP insights'],
+    secondaryKeywords: ['AI development blog India', 'startup MVP insights', 'engineering project blog'],
     intent: 'informational',
     audience: 'students',
     conversionGoal: 'read-blog',
     aeoQuestions: [
       'What does the Projonexa blog cover?',
       'Where to get final year project help in India?',
+      'What are good AI project ideas for engineering students?',
     ],
     faqItems: [...BLOG_PAGE_FAQ],
     faqSchema: true,
