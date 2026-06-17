@@ -70,8 +70,14 @@ export function Hero() {
           {...fadeUp(0.08, reducedMotion)}
           className="max-w-5xl text-balance text-3xl font-bold leading-[1.1] tracking-tight text-zinc-900 dark:text-white sm:text-5xl md:text-6xl lg:text-[4.25rem] lg:leading-[1.05]"
         >
-          {HERO.headline.lead} —{' '}
-          <span className="text-gradient">{HERO.headline.highlight}</span>
+          {HERO.headline.highlight ? (
+            <>
+              {HERO.headline.lead} —{' '}
+              <span className="text-gradient">{HERO.headline.highlight}</span>
+            </>
+          ) : (
+            HERO.headline.lead
+          )}
         </motion.h1>
 
         <motion.p

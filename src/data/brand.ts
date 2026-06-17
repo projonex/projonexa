@@ -1,11 +1,11 @@
 export const BRAND = {
   name: 'Projonexa',
-  tagline: 'Your Complete Technology Partner.',
+  tagline: 'Where Innovation Meets Execution.',
   /** Hero display — same message, split for typographic emphasis */
   taglineHero: {
-    prefix: 'Your Complete',
-    bridge: 'Technology',
-    suffix: 'Partner.',
+    prefix: 'Where Innovation',
+    bridge: 'Meets',
+    suffix: 'Execution.',
   },
   url: 'https://projonexa.com',
   email: 'nisargalokhande@gmail.com',
@@ -15,8 +15,8 @@ export const BRAND = {
 /** Homepage hero — premium full-service company positioning */
 export const HERO = {
   headline: {
-    lead: 'Your Complete Technology Partner',
-    highlight: 'From Idea to Production',
+    lead: 'Transform Your Ideas Into Real-World Innovation',
+    highlight: '',
   },
   description:
     'Projonexa is a premium software and project development company — custom software, AI/ML, web and mobile apps, IoT, and startup MVPs delivered end-to-end. College and client projects are specialized tracks under one trusted brand.',
