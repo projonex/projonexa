@@ -1,6 +1,6 @@
 import type { BlogPost } from './blog'
 
-export const BLOG_POSTS: BlogPost[] = [
+export const BLOG_POSTS_GUIDES: BlogPost[] = [
   {
     id: 'final-year-guide',
     title: 'The Complete Guide to Choosing Your Final Year Project Topic',
@@ -10,7 +10,7 @@ export const BLOG_POSTS: BlogPost[] = [
     readTime: '8 min read',
     date: '2025-11-15',
     author: 'Nisarga Lokhande',
-    featured: true,
+    featured: false,
     tags: ['final year project', 'topic selection', 'engineering students', 'India'],
     keywords: [
       'final year project topic',
@@ -582,6 +582,241 @@ export const BLOG_POSTS: BlogPost[] = [
         question: 'Is MERN stack good for final year projects?',
         answer:
           'Yes. MERN (MongoDB, Express, React, Node) remains popular in Indian colleges. Next.js full-stack is an excellent modern alternative with better SEO and deployment ergonomics.',
+      },
+    ],
+  },
+  {
+    id: 'viva-preparation-final-year',
+    title: 'Final Year Project Viva Preparation: Complete Guide for Engineering Students',
+    excerpt:
+      'How to prepare for internal and external viva — technical questions, demo flow, report defense, and confidence tips for Indian universities.',
+    category: 'academic',
+    readTime: '11 min read',
+    date: '2026-04-20',
+    author: 'Nisarga Lokhande',
+    tags: ['viva', 'final year', 'engineering', 'preparation'],
+    keywords: [
+      'final year project viva preparation',
+      'engineering viva questions',
+      'project viva tips India',
+    ],
+    quickAnswer:
+      'Prepare for final year viva by mastering your problem statement, architecture diagram, module explanations, demo flow, and 10 likely technical questions. Practice a 3-minute project pitch and rehearse your report chapters — evaluators test understanding, not memorization.',
+    sections: [
+      {
+        heading: 'What evaluators actually test',
+        paragraphs: [
+          'Viva panels want to know if you understand what you built — not if you memorized code. They ask about problem selection, technology choices, limitations, and future improvements. Confidence comes from owning your project narrative.',
+        ],
+      },
+      {
+        heading: 'Essential viva preparation checklist',
+        bullets: [
+          'One-page project summary (problem, solution, tech stack)',
+          'Architecture and data flow diagrams you can draw on board',
+          'Live demo script with backup screenshots',
+          'Answers to "why this technology?" for every major choice',
+          'Three limitations and three future scope points',
+          'Report chapter summaries — intro, design, implementation, testing',
+        ],
+        paragraphs: [],
+      },
+      {
+        heading: 'Common viva questions',
+        bullets: [
+          'Why did you choose this topic?',
+          'Explain your system architecture.',
+          'What is the novelty in your project?',
+          'Which modules did you implement personally?',
+          'What testing did you perform?',
+          'How would you scale this for 10,000 users?',
+          'What are the security considerations?',
+        ],
+        paragraphs: [],
+      },
+      {
+        heading: 'Demo day tips',
+        paragraphs: [
+          'Test internet, devices, and login credentials the night before. Keep a recorded demo video as backup. Start with the user problem, not the login screen. If something fails live, explain the expected behavior calmly — panels respect honesty.',
+        ],
+      },
+      {
+        heading: 'Getting viva support from Projonexa',
+        paragraphs: [
+          'Projonexa college project deliveries include technical walkthroughs and viva question preparation so you can defend your project with confidence. Learn more at projonexa.com/college-projects.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: 'How do I prepare for engineering project viva?',
+        answer:
+          'Study your SRS and report, rehearse a demo, prepare architecture explanations, and practice answering why you chose your tech stack. Mock vivas with a mentor help significantly.',
+      },
+      {
+        question: 'What questions are asked in final year viva?',
+        answer:
+          'Topic justification, system design, module details, testing approach, limitations, and future enhancements. Panels may ask you to draw diagrams or explain code logic.',
+      },
+    ],
+  },
+  {
+    id: 'final-year-project-cost-india',
+    title: 'Final Year Project Cost in India: What Affects Pricing & How to Budget',
+    excerpt:
+      'A transparent guide to engineering project pricing — complexity, documentation, timeline, and what you should expect before hiring help.',
+    category: 'academic',
+    readTime: '9 min read',
+    date: '2026-04-25',
+    author: 'Nisarga Lokhande',
+    tags: ['pricing', 'final year', 'cost', 'India'],
+    keywords: [
+      'final year project cost India',
+      'engineering project price',
+      'how much final year project',
+    ],
+    quickAnswer:
+      'Final year project cost in India depends on technology (AI, IoT, full-stack), documentation requirements, timeline, and deliverables. Simple web projects cost less than AI or hardware-integrated systems. Always get a scoped written quote before paying.',
+    sections: [
+      {
+        heading: 'Why prices vary widely',
+        paragraphs: [
+          'A CRUD web app and an IoT-AI integrated system require different engineering hours. Documentation depth (report pages, diagram count) also affects cost. Be wary of suspiciously low quotes that skip SRS, testing, or viva support.',
+        ],
+      },
+      {
+        heading: 'Cost factors breakdown',
+        bullets: [
+          'Technology stack — AI/ML and IoT typically cost more than basic web',
+          'Number of modules and user roles',
+          'Hardware components for IoT projects',
+          'Report length and university-specific formatting',
+          'Urgency — shorter deadlines increase cost',
+          'Deployment and demo environment setup',
+        ],
+        paragraphs: [],
+      },
+      {
+        heading: 'How to budget as a student',
+        paragraphs: [
+          'Start early to avoid rush pricing. Share your university guidelines upfront. Compare deliverables, not just price — code without documentation often fails evaluation.',
+        ],
+      },
+      {
+        heading: 'Projonexa transparent quoting',
+        paragraphs: [
+          'Projonexa provides scoped quotes after reviewing your topic and timeline. Submit at projonexa.com/inquiry/students. Pricing overview: projonexa.com/pricing.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: 'How much does a final year project cost in India?',
+        answer:
+          'Ranges vary by complexity — from basic mini projects to advanced AI/IoT systems. Projonexa quotes based on your specific scope at projonexa.com/inquiry/students.',
+      },
+    ],
+  },
+  {
+    id: 'blockchain-engineering-project',
+    title: 'Blockchain Projects for Engineering Students: Ideas, Scope & Implementation',
+    excerpt:
+      'Smart contracts, supply chain traceability, and voting systems — how to build credible blockchain final year projects without overpromising.',
+    category: 'academic',
+    readTime: '10 min read',
+    date: '2026-03-25',
+    author: 'Nisarga Lokhande',
+    tags: ['blockchain', 'engineering project', 'smart contracts'],
+    keywords: [
+      'blockchain final year project',
+      'blockchain project ideas engineering',
+      'smart contract college project',
+    ],
+    quickAnswer:
+      'Strong blockchain engineering projects focus on real use cases — supply chain tracking, certificate verification, or transparent voting — using Ethereum, Solidity, or Hyperledger with a clear web frontend and documented smart contract logic.',
+    sections: [
+      {
+        heading: 'Credible blockchain project ideas',
+        bullets: [
+          'Academic certificate verification on-chain',
+          'Supply chain product traceability',
+          'Transparent voting or polling system',
+          'Donation tracking with public ledger',
+          'Land record proof-of-concept (with legal disclaimers)',
+        ],
+        paragraphs: [],
+      },
+      {
+        heading: 'Tech stack for college blockchain projects',
+        paragraphs: [
+          'Solidity smart contracts on Ethereum testnet, Web3.js or Ethers.js frontend, MetaMask integration, and IPFS for document storage. Use test networks — not mainnet — for academic demos.',
+        ],
+      },
+      {
+        heading: 'What evaluators expect',
+        paragraphs: [
+          'Explain consensus, gas fees, and security trade-offs. Demonstrate transaction flow end-to-end. Acknowledge limitations versus centralized databases — intellectual honesty scores points.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: 'Is blockchain a good final year project topic?',
+        answer:
+          'Yes, when scoped realistically with a clear use case, working smart contracts on testnet, and thorough documentation of architecture and limitations.',
+      },
+    ],
+  },
+  {
+    id: 'hire-developer-startup-india',
+    title: 'How to Hire a Web or App Developer for Your Startup in India',
+    excerpt:
+      'Freelancer vs agency vs technology partner — what founders should evaluate before building their MVP.',
+    category: 'startups',
+    readTime: '10 min read',
+    date: '2026-05-22',
+    author: 'Nisarga Lokhande',
+    tags: ['hire developer', 'startup', 'India', 'MVP'],
+    keywords: [
+      'hire web developer startup India',
+      'hire app developer India',
+      'startup development partner',
+    ],
+    quickAnswer:
+      'To hire a developer for your Indian startup, define your MVP scope, compare freelancers vs premium partners on accountability and documentation, check portfolio and delivery process, and insist on milestone-based contracts with source code ownership.',
+    sections: [
+      {
+        heading: 'Three hiring paths',
+        bullets: [
+          'Freelancer — low cost, high coordination risk',
+          'Dev agency — structured but may lack product thinking',
+          'Premium technology partner (e.g. Projonexa) — scoped delivery with documentation and handover',
+        ],
+        paragraphs: [],
+      },
+      {
+        heading: 'Questions to ask any developer',
+        bullets: [
+          'Can you show similar shipped products?',
+          'What is included in the quote — docs, deployment, maintenance?',
+          'Who owns the source code?',
+          'How are milestones and payments structured?',
+          'What happens if timeline slips?',
+        ],
+        paragraphs: [],
+      },
+      {
+        heading: 'Why founders choose Projonexa',
+        paragraphs: [
+          'Projonexa combines startup MVP expertise with premium delivery standards — scoped quotes, milestone tracking, and production-ready handover. Start at projonexa.com/client-projects.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: 'Where to hire a developer for startup MVP in India?',
+        answer:
+          'Evaluate freelancers on platforms, agencies, or premium partners like Projonexa at projonexa.com/client-projects for accountable full-stack MVP delivery.',
       },
     ],
   },

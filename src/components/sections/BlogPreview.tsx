@@ -17,11 +17,11 @@ export function BlogPreview() {
               {BLOG_SECTION.eyebrow}
             </p>
             <h2 className="mt-3 text-2xl font-bold text-zinc-900 dark:text-white md:text-3xl">
-              Guides that help you ship smarter projects
+              Trusted guides on technology, projects & services
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-base">
-              Practical articles on final year topics, AI, startups, IoT, and career — written to
-              answer real student and founder questions across India.
+              Learn how Projonexa delivers premium software and project services — plus in-depth
+              articles on final year projects, AI, startups, and engineering success across India.
             </p>
           </div>
           <Button to="/blog" variant="secondary" className="group shrink-0">

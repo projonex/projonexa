@@ -2,11 +2,11 @@
 
 import { useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
-import { BookOpen } from 'lucide-react'
 import { BlogCard } from '@/components/blog/BlogCard'
 import { BlogCategoryFilter } from '@/components/blog/BlogCategoryFilter'
 import { SiteAeoBlock } from '@/components/seo/SiteAeoBlock'
 import { PageHeader } from '@/components/ui/PageHeader'
+import { BLOG_AEO_DEFINITION } from '@/data/blog-aeo'
 import {
   BLOG_CATEGORIES,
   BLOG_SECTION,
@@ -35,10 +35,6 @@ export function BlogPage() {
 
       <section className="border-b border-black/[0.06] pb-10 dark:border-white/[0.06]">
         <div className="container-wide">
-          <div className="mb-6 flex items-center gap-2 text-sm font-medium text-zinc-600 dark:text-zinc-400">
-            <BookOpen className="h-4 w-4 text-brand-primary dark:text-brand-accent" aria-hidden />
-            <span>{BLOG_CATEGORIES.length} categories · practical guides for SEO, AEO & GEO</span>
-          </div>
           <BlogCategoryFilter
             categories={BLOG_CATEGORIES}
             active={activeCategory}
@@ -91,8 +87,12 @@ export function BlogPage() {
             Browse by topic
           </p>
           <h2 className="mt-2 text-2xl font-bold text-zinc-900 dark:text-white">
-            Seven categories for every stage of your journey
+            Find the guidance you need
           </h2>
+          <p className="mt-2 max-w-2xl text-sm text-zinc-600 dark:text-zinc-400">
+            From understanding Projonexa services to mastering final year projects, AI, and startup
+            builds — pick a topic and read in depth.
+          </p>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {BLOG_CATEGORIES.map((category) => (
               <button
@@ -115,7 +115,9 @@ export function BlogPage() {
       </section>
 
       <SiteAeoBlock
-        headline="Projonexa blog — final year, mini projects & engineering guides"
+        eyebrow="About Projonexa"
+        headline="Projonexa — Premium Technology Services in India"
+        definition={BLOG_AEO_DEFINITION}
         faqItems={BLOG_PAGE_FAQ}
         className="border-t border-black/[0.06] dark:border-white/[0.06]"
       />

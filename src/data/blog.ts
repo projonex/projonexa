@@ -1,6 +1,8 @@
-import { BLOG_POSTS } from './blog-posts'
+import { BLOG_POSTS_COMPANY } from './blog-posts-company'
+import { BLOG_POSTS_GUIDES } from './blog-posts'
 
 export type BlogCategoryId =
+  | 'company'
   | 'academic'
   | 'ai-ml'
   | 'startups'
@@ -45,6 +47,12 @@ export interface BlogPost {
 }
 
 export const BLOG_CATEGORIES: BlogCategory[] = [
+  {
+    id: 'company',
+    label: 'About Projonexa',
+    description: 'Who we are, what we deliver, and how our premium technology services help students, startups, and businesses across India.',
+    color: '#0EA5E9',
+  },
   {
     id: 'academic',
     label: 'Academic & Final Year',
@@ -91,9 +99,11 @@ export const BLOG_CATEGORIES: BlogCategory[] = [
 
 export const BLOG_SECTION = {
   eyebrow: 'Blog',
-  title: 'Insights, Guides & Innovation Stories',
-  lead: 'Expert perspectives on final year projects, AI trends, startup MVPs, and engineering best practices — written for students and founders across India.',
+  title: 'Knowledge Hub for Technology & Project Success',
+  lead: 'In-depth articles on Projonexa services, engineering projects, AI, startups, and software development — written so students, founders, and teams get clear answers before they build.',
 } as const
+
+export const BLOG_POSTS = [...BLOG_POSTS_COMPANY, ...BLOG_POSTS_GUIDES]
 
 export function blogPath(slug: string) {
   return `/blog/${slug}`
@@ -121,9 +131,13 @@ export function getFeaturedPost(): BlogPost | undefined {
 }
 
 export function getRelatedPosts(post: BlogPost, limit = 3): BlogPost[] {
-  return BLOG_POSTS.filter((p) => p.id !== post.id && p.category === post.category)
+  const sameCategory = BLOG_POSTS.filter((p) => p.id !== post.id && p.category === post.category)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, limit)
-}
 
-export { BLOG_POSTS }
+  if (sameCategory.length >= limit) return sameCategory.slice(0, limit)
+
+  const others = BLOG_POSTS.filter((p) => p.id !== post.id && p.category !== post.category)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+
+  return [...sameCategory, ...others].slice(0, limit)
+}
