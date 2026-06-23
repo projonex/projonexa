@@ -4,6 +4,8 @@ export const NAV_LINKS = [
   { label: 'Services', path: '/services' },
   { label: 'Client solutions', path: '/client-projects' },
   { label: 'College projects', path: '/college-projects' },
+  { label: 'Blog', path: '/blog' },
+  { label: 'Pricing', path: '/pricing' },
   { label: 'Careers', path: '/careers' },
   { label: 'FAQ', path: '/faq' },
   { label: 'Contact', path: '/contact' },
@@ -28,4 +30,5 @@ export const FOOTER_LINKS = {
     { label: 'Pricing', path: '/pricing' },
     { label: 'Contact', path: '/contact' },
   ],
+  legal: [{ label: 'Privacy Policy', path: '/privacy' }],
 } as const

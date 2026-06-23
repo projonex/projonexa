@@ -2,6 +2,7 @@ import { AEO_DEFINITION, BRAND, FOUNDER, GEO } from '@/data/brand';
 import type { ArticleMeta, BreadcrumbItem, SearchIntent } from './seo-types'
 
 import { SERVICES } from '@/data/services';
+import { brandLogoImageObject } from './brand-logo-schema';
 
 type FAQ = { question: string; answer: string }
 
@@ -35,12 +36,8 @@ export function organizationSchema(description: string) {
     '@id': `${BRAND.url}/#organization`,
     name: BRAND.name,
     url: BRAND.url,
-    logo: {
-      '@type': 'ImageObject',
-      url: `${BRAND.url}/logo.png`,
-      width: 1024,
-      height: 1024,
-    },
+    logo: brandLogoImageObject('primary'),
+    image: brandLogoImageObject('primary'),
     description,
     slogan: BRAND.tagline,
     email: BRAND.email,
@@ -98,7 +95,7 @@ export function localBusinessSchema() {
     '@type': 'ProfessionalService',
     '@id': `${BRAND.url}/#localbusiness`,
     name: BRAND.name,
-    image: `${BRAND.url}/logo.png`,
+    image: `${BRAND.url}/icon-512.png`,
     url: BRAND.url,
     email: BRAND.email,
     description: AEO_DEFINITION,

@@ -31,6 +31,7 @@ export function Footer() {
     >
       <meta itemProp="name" content={BRAND.name} />
       <meta itemProp="url" content={BRAND.url} />
+      <link itemProp="logo" href={`${BRAND.url}/icon-512.png`} />
       <link itemProp="sameAs" href={FOUNDER.linkedin} />
 
       <div className="container-wide section-padding !py-12 sm:!py-14">
@@ -75,7 +76,7 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="grid gap-8 sm:grid-cols-2 lg:col-span-8 lg:grid-cols-3 lg:gap-10">
+          <div className="grid gap-8 sm:grid-cols-2 lg:col-span-8 lg:grid-cols-4 lg:gap-10">
             <FooterColumn title="Company">
               <ul className="space-y-2.5">
                 {FOOTER_LINKS.company.map((link) => (
@@ -136,12 +137,27 @@ export function Footer() {
                 </li>
               </ul>
             </FooterColumn>
+
+            <FooterColumn title="Legal">
+              <ul className="space-y-2.5">
+                {FOOTER_LINKS.legal.map((link) => (
+                  <li key={link.path}>
+                    <Link href={link.path} className="footer-link text-sm text-zinc-600 dark:text-zinc-400">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </FooterColumn>
           </div>
         </div>
 
         <div className="footer-divider footer-bottom mt-10 pt-8 sm:mt-12">
           <p className="footer-bottom-copy text-sm leading-snug text-zinc-500 dark:text-zinc-500">
-            © {year} {BRAND.name}. All rights reserved.
+            © {year} {BRAND.name}. All rights reserved.{' '}
+            <Link href="/privacy" className="footer-link hover:text-zinc-700 dark:hover:text-zinc-300">
+              Privacy Policy
+            </Link>
           </p>
 
           <BrandWordmark variant="subtle" className="footer-wordmark" />

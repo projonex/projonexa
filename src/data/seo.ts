@@ -732,6 +732,32 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     ],
     robotsNoIndex: true,
   },
+  privacy: {
+    title: `Privacy Policy & Data Protection | ${BRAND.name} India`,
+    description:
+      'Projonexa Privacy Policy — how we collect, use, and protect your data for contact forms, inquiries, consultations, analytics, and affiliate applications in India.',
+    keywords: [...BASE_KEYWORDS, 'projonexa privacy policy', 'website privacy India'],
+    path: '/privacy',
+    primaryKeyword: 'Projonexa privacy policy',
+    secondaryKeywords: ['data protection projonexa', 'contact form privacy India'],
+    intent: 'informational',
+    audience: 'mixed',
+    conversionGoal: 'read-privacy-policy',
+    breadcrumb: [{ name: 'Privacy Policy', path: '/privacy' }],
+  },
+  rescheduleConsultation: {
+    title: `Reschedule Your Consultation | ${BRAND.name} India`,
+    description:
+      'Reschedule your Projonexa Google Meet consultation using your secure email link — pick a new date and time with our expert project team in India.',
+    keywords: [...BASE_KEYWORDS, 'reschedule consultation projonexa'],
+    path: '/consultation/reschedule',
+    primaryKeyword: 'reschedule Projonexa consultation',
+    secondaryKeywords: ['consultation reschedule link', 'Google Meet reschedule'],
+    intent: 'navigational',
+    audience: 'mixed',
+    conversionGoal: 'reschedule-consultation',
+    robotsNoIndex: true,
+  },
   notFound: {
     title: `Page Not Found | Projonexa College & MVP India`,
     shareTitle: `Page Not Found | ${BRAND.name}`,

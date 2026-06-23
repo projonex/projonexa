@@ -2,14 +2,16 @@ import type { Metadata } from 'next'
 import { BRAND_ICONS, BRAND_LOGO } from '@/constants/brand-assets'
 import { BRAND, FOUNDER, GEO } from '@/data/brand'
 import { PAGE_SEO } from '@/data/seo'
+import { brandLogoAbsoluteUrl } from '@/lib/seo/brand-logo-schema'
 import { resolveShareMeta } from './social-share'
 
 /** Shared favicon / PWA icons — set once on the root layout. */
 export const SITE_ICONS: NonNullable<Metadata['icons']> = {
   icon: [
+    { url: BRAND_ICONS.pwa512, sizes: '512x512', type: 'image/png' },
     { url: BRAND_ICONS.favicon32, sizes: '32x32', type: 'image/png' },
     { url: BRAND_ICONS.favicon16, sizes: '16x16', type: 'image/png' },
-    { url: BRAND_LOGO.src, sizes: '512x512', type: 'image/png' },
+    { url: BRAND_LOGO.src, sizes: '1024x1024', type: 'image/png' },
   ],
   shortcut: BRAND_ICONS.favicon32,
   apple: { url: BRAND_ICONS.appleTouch, sizes: '180x180', type: 'image/png' },
@@ -46,6 +48,8 @@ const GEO_OTHER: Metadata['other'] = {
 export function buildRootSiteMetadata(): Metadata {
   const home = PAGE_SEO.home
   const share = resolveShareMeta(home)
+
+  const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim()
 
   return {
     metadataBase: new URL(BRAND.url),
@@ -89,13 +93,24 @@ export function buildRootSiteMetadata(): Metadata {
           height: 630,
           alt: share.imageAlt,
         },
+        {
+          url: brandLogoAbsoluteUrl('primary'),
+          secureUrl: brandLogoAbsoluteUrl('primary'),
+          type: 'image/png',
+          width: 512,
+          height: 512,
+          alt: `${BRAND.name} logo`,
+        },
       ],
     },
     twitter: {
       card: 'summary_large_image',
       title: share.title,
       description: share.description,
-      images: [{ url: share.image, alt: share.imageAlt }],
+      images: [
+        { url: share.image, alt: share.imageAlt },
+        { url: brandLogoAbsoluteUrl('primary'), alt: `${BRAND.name} logo` },
+      ],
     },
     icons: SITE_ICONS,
     manifest: '/site.webmanifest',
@@ -106,5 +121,6 @@ export function buildRootSiteMetadata(): Metadata {
       statusBarStyle: 'black-translucent',
     },
     other: GEO_OTHER,
+    ...(googleVerification ? { verification: { google: googleVerification } } : {}),
   }
 }

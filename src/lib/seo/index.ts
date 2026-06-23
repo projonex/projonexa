@@ -10,6 +10,11 @@ export { buildRootSiteMetadata, SITE_ICONS } from './site-metadata'
 export { buildProjectSEO } from './project-seo'
 export { buildCareersApplySeo } from './careers-apply-seo'
 export {
+  brandLogoAbsoluteUrl,
+  brandLogoImageObject,
+  BRAND_LOGO_SCHEMA,
+} from './brand-logo-schema'
+export {
   absoluteUrl,
   collectSitemapEntries,
   formatSitemapLastMod,

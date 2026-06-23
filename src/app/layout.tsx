@@ -2,6 +2,7 @@ import type { Viewport } from 'next'
 import { Inter, Nunito } from 'next/font/google'
 import Script from 'next/script'
 import { AppProviders } from '@/components/providers/AppProviders'
+import { SiteAnalytics } from '@/components/analytics/SiteAnalytics'
 import { GEO } from '@/data/brand'
 import { buildRootSiteMetadata } from '@/lib/seo/site-metadata'
 import { THEME_INIT_SCRIPT } from '@/lib/theme-init'
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }}
         />
         <AppProviders>{children}</AppProviders>
+        <SiteAnalytics />
       </body>
     </html>
   )

@@ -96,6 +96,12 @@
     <priority>0.80</priority>
   </url>
   <url>
+    <loc>https://www.projonexa.com/privacy</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
     <loc>https://www.projonexa.com/projects</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>monthly</changefreq>
