@@ -2,9 +2,9 @@ import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 
 export const SITE_AEO_PILLARS = [
+  { label: 'Services', path: '/services', hint: 'Full technology portfolio' },
+  { label: 'Client solutions', path: '/client-projects', hint: 'Startups & businesses' },
   { label: 'College projects', path: '/college-projects', hint: 'Final year & mini engineering' },
-  { label: 'Client & MVP', path: '/client-projects', hint: 'Startups & businesses' },
-  { label: 'Affiliate program', path: '/affiliate-program', hint: 'Student referrals' },
   { label: 'Contact', path: '/contact', hint: 'Get a response in 24h' },
 ] as const
 

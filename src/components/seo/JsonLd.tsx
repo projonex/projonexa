@@ -20,6 +20,7 @@ export function JsonLd({ seo }: { seo: PageSEO }) {
     faqSchema: seo.faqSchema,
     serviceSchema: seo.serviceSchema,
     faqItems,
+    article: seo.article,
   })
 
   return (

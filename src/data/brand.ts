@@ -7,9 +7,22 @@ export const BRAND = {
     bridge: 'Meets',
     suffix: 'Execution.',
   },
-  url: 'https://projonexa.com',
+  url: 'https://www.projonexa.com',
   email: 'nisargalokhande@gmail.com',
   location: 'India',
+} as const
+
+/** Homepage hero — premium full-service company positioning */
+export const HERO = {
+  headline: {
+    lead: 'Transform Your Ideas Into Real-World Innovation',
+    highlight: '',
+  },
+  description:
+    'Projonexa is a premium software and project development company — custom software, AI/ML, web and mobile apps, IoT, and startup MVPs delivered end-to-end. College and client projects are specialized tracks under one trusted brand.',
+  badge: 'Serving businesses, startups & students across India',
+  primaryCta: { label: 'Explore Services', path: '/services' },
+  secondaryCta: { label: 'Start Your Project', path: '/contact' },
 } as const
 
 /** Geographic & local SEO configuration (GEO) — pan-India delivery */
@@ -26,11 +39,55 @@ export const GEO = {
   serviceRadius: 'Pan-India and worldwide',
 } as const
 
+/** Service verticals — specialized tracks under the Projonexa brand */
+export const SERVICE_VERTICALS_SECTION = {
+  eyebrow: 'Solutions',
+  title: 'Specialized Tracks Under One Premium Brand',
+  lead: 'Projonexa is your full-service technology partner. Client product development and academic college projects are dedicated solution tracks — each with the same structured delivery, mentor support, and professional standards.',
+} as const
+
+export const SERVICE_VERTICALS = [
+  {
+    id: 'client',
+    title: 'Client & Product Solutions',
+    subtitle: 'For startups, founders & businesses',
+    description:
+      'Production-ready MVPs, custom software, web and mobile apps, and AI/ML systems — scoped, quoted, and delivered end-to-end for real users and investors.',
+    path: '/client-projects',
+    inquiryPath: '/inquiry/corporate',
+    cta: 'Explore client solutions',
+    features: [
+      'Startup MVPs & product builds',
+      'Custom enterprise software',
+      'Web, mobile & AI/ML delivery',
+      'Deployment, docs & handover',
+    ],
+    accent: '#00C8FF',
+  },
+  {
+    id: 'academic',
+    title: 'Academic & College Projects',
+    subtitle: 'For engineering & CS students',
+    description:
+      'Final year, mini, and semester projects with complete source code, SRS, reports, PPT, deployment support, and viva preparation — aligned to your university requirements.',
+    path: '/college-projects',
+    inquiryPath: '/inquiry/students',
+    cta: 'Explore college projects',
+    features: [
+      'Final year & mini projects',
+      'BE, B.Tech, BCA, MCA streams',
+      'Documentation & viva prep',
+      'Pan-India student delivery',
+    ],
+    accent: '#6C63FF',
+  },
+] as const
+
 /** Service Area section — home page */
 export const SERVICE_AREA_SECTION = {
   eyebrow: 'Service Area',
-  title: 'Serving Students & Clients Across India and Globally',
-  lead: 'Remote delivery for students, colleges, startups, and businesses — across India and internationally.',
+  title: 'Pan-India & Global Delivery for Every Client Type',
+  lead: 'Remote-first project delivery for businesses, startups, colleges, and students — across India and internationally.',
 } as const
 
 export const SERVICE_AREA_DELIVERY = [
@@ -65,43 +122,43 @@ export const SERVICE_AREA_CLIENTS = [
     detail: 'MVPs, prototypes, and product validation',
   },
   {
-    title: 'Businesses & international clients',
+    title: 'Businesses & enterprises',
     detail: 'Custom software, AI systems, and long-term delivery',
   },
   {
-    title: 'Engineering & CS students',
-    detail: 'BE, BTech, MCA, BCA — final year and mini projects',
+    title: 'International clients',
+    detail: 'Remote collaboration with timezone-friendly communication',
   },
   {
-    title: 'Colleges & universities',
-    detail: 'Department partnerships and bulk student project support',
+    title: 'Students & colleges',
+    detail: 'Final year, mini projects, and institutional partnerships',
   },
 ] as const
 
 /** One-line definition for AEO / AI answer engines */
 export const AEO_DEFINITION =
-  'Projonexa (projonexa.com) is India’s platform for final year college engineering projects, mini projects, AI/ML, web/mobile apps, IoT, and startup MVPs — with code, SRS, reports, PPT, deployment, and viva prep. Students: projonexa.com/college-projects. Startups: projonexa.com/client-projects.'
+  'Projonexa (projonexa.com) is a premium software and project development company in India — custom software, AI/ML, web and mobile apps, IoT, startup MVPs, and end-to-end project delivery under one brand. Client solutions: projonexa.com/client-projects. College projects: projonexa.com/college-projects.'
 
 export const AEO_SECTION = {
   eyebrow: 'About Projonexa',
   title: 'What Is Projonexa?',
-  lead: 'Clear answers for students, clients, colleges, and search engines.',
+  lead: 'Clear answers for businesses, startups, students, and search engines.',
   summary:
-    'We combine academic rigor, industry-grade engineering, and mentor-led delivery so every project is evaluation-ready and portfolio-worthy — not just a prototype that barely runs.',
+    'We combine industry-grade engineering, structured delivery, and expert mentorship so every engagement — from a startup MVP to a final-year submission — ships with production quality, professional documentation, and confidence.',
 } as const
 
 export const AEO_HIGHLIGHTS = [
   {
-    title: 'Academic & final-year projects',
-    description: 'BE, BTech, MCA, and mini projects with SRS, reports, and viva prep.',
+    title: 'Full-service technology company',
+    description: 'Custom software, MVPs, AI/ML, web, mobile, and IoT — one partner from scope to deployment.',
   },
   {
-    title: 'AI, web, mobile & IoT',
-    description: 'Modern stacks from machine learning pipelines to deployed cloud apps.',
+    title: 'Client & product solutions',
+    description: 'Production-ready builds for startups, founders, and businesses with scoped quotes and milestones.',
   },
   {
-    title: 'Startups & MVPs',
-    description: 'Investor-ready products for founders — prototypes, demos, and scalable foundations.',
+    title: 'Academic & college projects',
+    description: 'Final year and mini projects with SRS, reports, viva prep, and university-aligned delivery.',
   },
   {
     title: 'India & global delivery',
@@ -112,7 +169,7 @@ export const AEO_HIGHLIGHTS = [
 export const FOUNDER_SECTION = {
   eyebrow: 'Founder',
   title: 'Meet the Vision Behind Projonexa',
-  lead: 'A platform built from real project challenges — focused on delivery, mentorship, and outcomes clients can trust.',
+  lead: 'A premium technology company built from real delivery challenges — focused on quality, mentorship, and outcomes every client can trust.',
 } as const
 
 export const FOUNDER = {
@@ -124,11 +181,11 @@ export const FOUNDER = {
   location: 'India',
   story: `Hi, I'm Nisarga Lokhande.
 
-Like many students, I once struggled to turn ideas into working projects — missing the right guidance, documentation, and technical support when it mattered most.
+I started Projonexa after seeing how often great ideas stall — whether from a startup founder, a business team, or a student with a final-year deadline — because the right technical partner, documentation, and delivery structure were missing.
 
-That experience led me to build Projonexa: a place where students, startups, and businesses get structured delivery, expert mentorship, and production-ready results — not half-finished prototypes.
+Today, Projonexa is a premium technology company that brings everything under one roof: custom software, AI/ML, web and mobile apps, startup MVPs, and specialized college project tracks — all with structured delivery, expert mentorship, and production-ready results.
 
-Our mission is simple: make innovation accessible to everyone.`,
+Our mission is simple: be the complete technology partner that turns every idea into something real.`,
 } as const
 
 export const VISION_MISSION_SECTION = {
@@ -140,13 +197,13 @@ export const VISION_MISSION_SECTION = {
 export const VISION = {
   title: 'Our Vision',
   statement:
-    "To become the world's leading innovation platform connecting students, freelancers, startups, and businesses through technology-driven project development.",
+    "To become the world's most trusted premium technology partner — delivering end-to-end software, products, and projects for businesses, startups, and academic innovators through one unified brand.",
 } as const
 
 export const MISSION = {
   title: 'Our Mission',
   statement:
-    'To empower students and innovators by providing access to technical expertise, mentorship, development resources, and end-to-end project execution.',
+    'To provide businesses, startups, and students with a single premium partner for custom software, product development, and project execution — combining technical expertise, mentorship, and structured delivery in one place.',
 } as const
 
 export const PURPOSE_CARDS = [
@@ -196,10 +253,10 @@ export const PURPOSE_CARDS = [
     animation: 'audience',
     audiences: [
       {
-        label: 'Students',
-        detail: 'Final-year & academic projects',
-        summary: 'University-ready projects with documentation, viva prep, and mentor guidance built in.',
-        points: ['IEEE & university formats', 'Plagiarism-safe original code', 'Viva & presentation coaching'],
+        label: 'Businesses',
+        detail: 'Custom software & integrations',
+        summary: 'Enterprise-grade builds — portals, dashboards, APIs, and integrations that fit your ops.',
+        points: ['Custom web & mobile apps', 'API & third-party integrations', 'Ongoing maintenance options'],
       },
       {
         label: 'Startups',
@@ -208,10 +265,10 @@ export const PURPOSE_CARDS = [
         points: ['MVP in weeks, not months', 'Pitch-ready product demos', 'Scalable foundation for growth'],
       },
       {
-        label: 'Businesses',
-        detail: 'Custom software & integrations',
-        summary: 'Enterprise-grade builds — portals, dashboards, APIs, and integrations that fit your ops.',
-        points: ['Custom web & mobile apps', 'API & third-party integrations', 'Ongoing maintenance options'],
+        label: 'Students',
+        detail: 'Final-year & academic projects',
+        summary: 'University-ready projects with documentation, viva prep, and mentor guidance built in.',
+        points: ['IEEE & university formats', 'Plagiarism-safe original code', 'Viva & presentation coaching'],
       },
     ],
   },
@@ -255,8 +312,8 @@ export const PURPOSE_CARDS = [
 export const STATS_SECTION = {
   eyebrow: 'Impact',
   title: 'Numbers That Define Our Growth',
-  lead: 'Trusted by students, startups, and institutions across India and beyond.',
-  body: `Projonexa has grown into a trusted innovation partner — delivering real projects, building a strong freelancer network, and supporting learners from first idea to final submission. These numbers reflect the scale, depth, and commitment behind every engagement.`,
+  lead: 'Trusted by businesses, startups, students, and institutions across India and beyond.',
+  body: `Projonexa has grown into a premium technology partner — delivering production software, startup MVPs, and academic projects through a network of expert developers and mentors. These numbers reflect the scale, depth, and commitment behind every engagement.`,
 } as const
 
 export const STATS = [
@@ -288,8 +345,8 @@ export const STATS = [
 
 export const WHY_SECTION = {
   eyebrow: 'Why Projonexa',
-  title: 'The Premium Choice for Project Excellence',
-  lead: 'We combine technical depth, academic rigor, and startup velocity in every engagement.',
+  title: 'The Premium Choice for Technology Delivery',
+  lead: 'We combine enterprise-grade engineering, structured delivery, and expert mentorship — whether you are shipping a product or submitting a final-year project.',
 } as const
 
 export const WHY_PILLARS = [

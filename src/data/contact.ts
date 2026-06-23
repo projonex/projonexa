@@ -1,19 +1,19 @@
 export const CONTACT_SECTION = {
   eyebrow: 'Contact',
   title: "Let's Build Your Next Project",
-  lead: 'Share your idea, deadline, and requirements — we respond within 24 hours with clear next steps.',
+  lead: 'Share your requirements, timeline, and goals — we respond within 24 hours with clear next steps for businesses, startups, and students.',
 } as const
 
 export const CONTACT_EMAIL = 'nisargalokhande@gmail.com'
 
 export const CONTACT_PROJECT_TYPES = [
-  { value: 'Final Year Project Inquiry', label: 'Final Year Project' },
-  { value: 'Mini Project Inquiry', label: 'Mini Project' },
-  { value: 'AI/ML Project Inquiry', label: 'AI / ML Project' },
-  { value: 'Web or Mobile App Inquiry', label: 'Web or Mobile App' },
-  { value: 'IoT Project Inquiry', label: 'IoT / Embedded' },
   { value: 'Startup MVP Inquiry', label: 'Startup MVP' },
   { value: 'Custom Software Inquiry', label: 'Custom Software' },
+  { value: 'Web or Mobile App Inquiry', label: 'Web or Mobile App' },
+  { value: 'AI/ML Project Inquiry', label: 'AI / ML Project' },
+  { value: 'IoT Project Inquiry', label: 'IoT / Embedded' },
+  { value: 'Final Year Project Inquiry', label: 'Final Year Project' },
+  { value: 'Mini Project Inquiry', label: 'Mini Project' },
   { value: 'Documentation Inquiry', label: 'Documentation Only' },
   { value: 'Other Inquiry', label: 'Other' },
 ] as const
@@ -43,7 +43,7 @@ export const CONTACT_INFO_CARDS: {
     id: 'location',
     title: 'Based in',
     detail: 'India (pan-India delivery)',
-    description: 'Serving students and clients across India and globally.',
+    description: 'Serving businesses, startups, and students across India and globally.',
   },
   {
     id: 'response',
@@ -61,13 +61,13 @@ export const CONTACT_FORM_HINTS = [
 ] as const
 
 export const CONTACT_QUICK_LINKS = [
+  { label: 'Explore services', path: '/services' },
+  { label: 'Client solutions Q&A', path: '/client-projects' },
   { label: 'College project Q&A', path: '/college-projects' },
-  { label: 'Client & MVP Q&A', path: '/client-projects' },
+  { label: 'Corporate inquiry', path: '/inquiry/corporate' },
   { label: 'Student inquiry', path: '/inquiry/students' },
   { label: 'Affiliate program Q&A', path: '/affiliate-program' },
   { label: 'Apply as affiliate', path: '/inquiry/affiliate' },
-  { label: 'Corporate inquiry', path: '/inquiry/corporate' },
   { label: 'View pricing', path: '/pricing' },
   { label: 'Browse FAQ', path: '/faq' },
-  { label: 'Explore services', path: '/services' },
 ] as const

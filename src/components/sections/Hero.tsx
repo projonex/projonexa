@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, MapPin } from 'lucide-react'
-import { BRAND } from '@/data/brand'
+import { BRAND, HERO } from '@/data/brand'
 import { Button } from '@/components/ui/Button'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { easeSmooth } from '@/lib/motion'
@@ -70,16 +70,21 @@ export function Hero() {
           {...fadeUp(0.08, reducedMotion)}
           className="max-w-5xl text-balance text-3xl font-bold leading-[1.1] tracking-tight text-zinc-900 dark:text-white sm:text-5xl md:text-6xl lg:text-[4.25rem] lg:leading-[1.05]"
         >
-          Transform Your Ideas Into{' '}
-          <span className="text-gradient">Real-World Innovation</span>
+          {HERO.headline.highlight ? (
+            <>
+              {HERO.headline.lead} —{' '}
+              <span className="text-gradient">{HERO.headline.highlight}</span>
+            </>
+          ) : (
+            HERO.headline.lead
+          )}
         </motion.h1>
 
         <motion.p
           {...fadeUp(0.16, reducedMotion)}
           className="mt-7 max-w-2xl text-pretty text-lg leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-xl sm:leading-relaxed"
         >
-          Projonexa helps engineering students with final year and mini college projects, and
-          helps startups build production-ready web and mobile apps — across India and globally.
+          {HERO.description}
         </motion.p>
 
         <motion.div
@@ -89,7 +94,7 @@ export function Hero() {
           <span className="text-base leading-none" role="img" aria-label="India">
             🇮🇳
           </span>
-          <span>Serving students &amp; clients across India</span>
+          <span>{HERO.badge}</span>
           <span className="hidden text-zinc-300 sm:inline dark:text-zinc-600" aria-hidden>
             ·
           </span>
@@ -104,19 +109,19 @@ export function Hero() {
           className="mt-10 flex w-full max-w-md flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4"
         >
           <Button
-            to="/college-projects"
+            to={HERO.primaryCta.path}
             variant="primary"
             className="w-full px-8 py-3.5 text-base shadow-glow sm:w-auto"
           >
-            College projects
+            {HERO.primaryCta.label}
             <ArrowRight className="h-4 w-4" />
           </Button>
           <Button
-            to="/client-projects"
+            to={HERO.secondaryCta.path}
             variant="outline"
             className="w-full border-zinc-300/80 bg-white/70 text-zinc-800 backdrop-blur-sm hover:border-brand-primary/40 hover:bg-brand-primary/5 hover:text-brand-mid dark:border-white/15 dark:bg-white/[0.06] dark:text-zinc-100 dark:hover:border-brand-primary/50 dark:hover:bg-brand-primary/10 dark:hover:text-brand-accent sm:w-auto"
           >
-            Client & MVP
+            {HERO.secondaryCta.label}
           </Button>
         </motion.div>
 

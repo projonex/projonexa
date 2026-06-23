@@ -1,6 +1,6 @@
 import { useMemo, useState, type FormEvent } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowUpRight, CalendarClock, CheckCircle2, Mail, MessageCircle, Tag, X } from 'lucide-react'
+import { ArrowUpRight, CalendarClock, CheckCircle2, Mail, MessageCircle, X } from 'lucide-react'
 import { FormSelectField } from '@/components/careers/FormSelectField'
 import {
   inquiryInputClass,
@@ -11,7 +11,9 @@ import { Button } from '@/components/ui/Button'
 import { FormSubmitError } from '@/components/forms/FormSubmitError'
 import { OtpInputField, OTP_CODE_LENGTH } from '@/components/forms/OtpInputField'
 import { ConsultationTimeField } from '@/components/inquiry/ConsultationTimeField'
+import { ReferralCodeField } from '@/components/inquiry/ReferralCodeField'
 import { useConsultationSlotAvailability } from '@/lib/hooks/useConsultationSlotAvailability'
+import { useReferralCodeField } from '@/lib/hooks/useReferralCodeField'
 import {
   confirmCorporateSchedule,
   CorporateInquiryError,
@@ -28,11 +30,7 @@ import {
   MEETING_TIME_SLOTS,
   minMeetingDateIso,
 } from '@/data/projectInquiry'
-import {
-  isValidReferralCodeFormat,
-  normalizeReferralCode,
-  referralCodeFormatHint,
-} from '@/lib/referralCode'
+import { normalizeReferralCode } from '@/lib/referralCode'
 
 const easeSmooth = [0.22, 1, 0.36, 1] as const
 
@@ -52,10 +50,7 @@ export function CorporateProjectInquiryForm({
   const [budget, setBudget] = useState<string>(CORPORATE_BUDGET_OPTIONS[0].value)
   const [meetingDate, setMeetingDate] = useState('')
   const [meetingTime, setMeetingTime] = useState<string>(MEETING_TIME_SLOTS[3].value)
-  const [referralCode, setReferralCode] = useState(() =>
-    initialReferralCode ? normalizeReferralCode(initialReferralCode) : '',
-  )
-  const [referralError, setReferralError] = useState('')
+  const referralField = useReferralCodeField(initialReferralCode)
   const [submitting, setSubmitting] = useState(false)
   const [confirming, setConfirming] = useState(false)
   const [resending, setResending] = useState(false)
@@ -82,14 +77,15 @@ export function CorporateProjectInquiryForm({
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setError('')
-    const rawReferral = normalizeReferralCode(referralCode)
-    if (rawReferral && !isValidReferralCodeFormat(rawReferral)) {
-      setReferralError(`Use format ${referralCodeFormatHint()}.`)
+    const form = e.currentTarget
+
+    const referralOk = await referralField.validateBeforeSubmit()
+    if (!referralOk) {
       return
     }
-    setReferralError('')
 
-    const data = new FormData(e.currentTarget)
+    const data = new FormData(form)
+    const rawReferral = normalizeReferralCode(referralField.code)
     const name = String(data.get('name') ?? '').trim()
     const email = String(data.get('email') ?? '').trim()
     const phone = String(data.get('phone') ?? '').trim()
@@ -197,8 +193,7 @@ export function CorporateProjectInquiryForm({
     setEmailSent(false)
     setWhatsappSent(false)
     setError('')
-    setReferralCode(initialReferralCode ? normalizeReferralCode(initialReferralCode) : '')
-    setReferralError('')
+    referralField.reset(initialReferralCode ? normalizeReferralCode(initialReferralCode) : '')
   }
 
   if (step === 'success') {
@@ -462,41 +457,7 @@ export function CorporateProjectInquiryForm({
             />
           </div>
 
-          <div className="careers-form-field w-full min-w-0">
-            <label htmlFor="corp-referral" className={inquiryLabelClass}>
-              Referral code{' '}
-              <span className="font-normal text-zinc-500 dark:text-zinc-500">(optional)</span>
-            </label>
-            <div className="relative">
-              <Tag
-                className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400"
-                aria-hidden
-              />
-              <input
-                id="corp-referral"
-                name="referralCode"
-                value={referralCode}
-                onChange={(e) => {
-                  setReferralCode(normalizeReferralCode(e.target.value))
-                  setReferralError('')
-                }}
-                autoComplete="off"
-                className={`${inquiryInputClass} pl-10 font-mono uppercase tracking-wide`}
-                placeholder={referralCodeFormatHint()}
-                aria-invalid={referralError ? true : undefined}
-                aria-describedby={referralError ? 'corp-referral-error' : 'corp-referral-hint'}
-              />
-            </div>
-            {referralError ? (
-              <p id="corp-referral-error" className="mt-1.5 text-xs text-red-600 dark:text-red-400">
-                {referralError}
-              </p>
-            ) : (
-              <p id="corp-referral-hint" className="mt-1.5 text-xs text-zinc-500 dark:text-zinc-400">
-                Referred by a Projonexa affiliate? Enter their code here.
-              </p>
-            )}
-          </div>
+          <ReferralCodeField id="corp-referral" field={referralField} />
 
           <div className="careers-form-field w-full min-w-0">
             <label htmlFor="corp-description" className={inquiryLabelClass}>

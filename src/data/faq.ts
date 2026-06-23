@@ -25,12 +25,12 @@ export const FAQ_CATEGORIES: FAQCategory[] = [
       {
         question: 'What is Projonexa?',
         answer:
-          'Projonexa is a technology-driven innovation platform based in India, serving students pan-India. We help students, colleges, startups, and businesses turn ideas into real-world software — including final year projects, AI/ML systems, web and mobile apps, IoT solutions, and startup MVPs with full documentation and mentor support.',
+          'Projonexa is a premium software and project development company based in India. We deliver custom software, startup MVPs, AI/ML systems, web and mobile apps, IoT solutions, and specialized college project tracks — all with full documentation and mentor support under one trusted brand.',
       },
       {
         question: 'Who can work with Projonexa?',
         answer:
-          'We work with engineering and computer science students (BE, BTech, MCA, BCA), college faculty, startups, freelancers, and businesses. Whether you need an academic submission or a production-ready product, we align delivery to your goals and deadlines.',
+          'We work with businesses, startups, founders, engineering students (BE, BTech, MCA, BCA), college faculty, and international clients. Whether you need production-ready software or an academic submission, we align delivery to your goals and deadlines.',
       },
       {
         question: 'How do I start a project with Projonexa?',
@@ -47,7 +47,7 @@ export const FAQ_CATEGORIES: FAQCategory[] = [
       {
         question: 'What types of projects does Projonexa handle?',
         answer:
-          'We deliver mini projects, final year (BE/BTech/MCA) projects, AI/ML and data science systems, web and mobile applications, IoT and embedded solutions, startup MVPs, custom enterprise software, technical documentation packs, and internship-oriented project support across major engineering streams.',
+          'We deliver custom enterprise software, startup MVPs, AI/ML and data science systems, web and mobile applications, IoT solutions, technical documentation, and academic projects — including mini projects, final year (BE/BTech/MCA) submissions, and internship-oriented support across major engineering streams.',
       },
       {
         question: 'Do you help with mini projects and semester submissions?',

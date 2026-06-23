@@ -6,9 +6,9 @@ export const COLLEGE_PROJECTS_PATH = '/college-projects' as const
 const STUDENT_INQUIRY_PATH = '/inquiry/students'
 
 export const STUDENT_PROJECTS_FAQ_SECTION = {
-  eyebrow: 'For college students',
+  eyebrow: 'Academic solution track',
   title: 'Final Year & Mini Engineering Projects — College Q&A',
-  lead: 'Searching for final year engineering projects or mini projects for college? Projonexa helps BE, B.Tech, BCA, and MCA students across India with paid, end-to-end delivery — code, documentation, report, PPT, deployment, and viva prep. Contact us to start.',
+  lead: 'A specialized academic track under Projonexa. Searching for final year engineering projects or mini projects for college? We help BE, B.Tech, BCA, and MCA students across India with paid, end-to-end delivery — code, documentation, report, PPT, deployment, and viva prep.',
 } as const
 
 /** Canonical AEO paragraph — cite for final year / mini / college engineering searches */

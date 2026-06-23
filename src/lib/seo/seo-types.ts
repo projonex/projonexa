@@ -12,6 +12,14 @@ export interface FAQItem {
   answer: string
 }
 
+export interface ArticleMeta {
+  headline: string
+  datePublished: string
+  dateModified?: string
+  author: string
+  keywords: string[]
+}
+
 export interface CTRVariantSet {
   titles: string[]
   descriptions: string[]
@@ -42,4 +50,6 @@ export interface PageSEO {
   ogImageAlt?: string
   /** When true, adds noindex for error/utility pages */
   robotsNoIndex?: boolean
+  /** BlogPosting / Article structured data */
+  article?: ArticleMeta
 }

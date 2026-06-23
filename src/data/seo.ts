@@ -1,4 +1,5 @@
 import { AFFILIATE_FAQ_ITEMS } from './affiliateFaq'
+import { BLOG_PAGE_FAQ } from './blog-aeo'
 import { CLIENT_PROJECTS_FAQ_ITEMS } from './clientProjectsFaq'
 import { STUDENT_PROJECTS_FAQ_ITEMS } from './studentProjectsFaq'
 import { BRAND, GEO } from './brand'
@@ -53,17 +54,17 @@ export const SERVICES_PAGE_FAQ = [
   {
     question: 'What services does Projonexa provide?',
     answer:
-      'Projonexa provides end-to-end final year project delivery, AI/ML solutions, web and mobile development, IoT systems, and startup MVP engineering support.',
+      'Projonexa is a premium technology company offering custom software development, startup MVPs, AI/ML solutions, web and mobile apps, IoT systems, technical documentation, and specialized college project tracks — all with end-to-end delivery and mentor support.',
   },
   {
     question: 'Do services include documentation and deployment?',
     answer:
-      'Yes. Services include source code, technical documentation, testing support, and deployment guidance based on your project scope.',
+      'Yes. Every service includes source code, technical documentation, testing support, and deployment guidance based on your project scope.',
   },
   {
     question: 'Who are these services designed for?',
     answer:
-      'Services are designed for students, startups, and businesses that need reliable delivery with clear milestones and mentoring support.',
+      'Services are designed for businesses, startups, and students who need a single premium partner for reliable delivery with clear milestones and expert mentorship.',
   },
 ] as const
 
@@ -89,17 +90,17 @@ export const ABOUT_PAGE_FAQ = [
   {
     question: 'What is Projonexa?',
     answer:
-      'Projonexa is a pan-India innovation platform that delivers final year and mini engineering college projects, AI/ML systems, startup MVPs, and custom software with documentation and mentor support.',
+      'Projonexa is a premium software and project development company in India — delivering custom software, startup MVPs, AI/ML systems, web and mobile apps, and specialized college project tracks with documentation and mentor support.',
   },
   {
     question: 'Where is Projonexa located and who does it serve?',
     answer:
-      'Projonexa is based in India and serves students, colleges, startups, and businesses nationwide and globally with remote project delivery.',
+      'Projonexa is based in India and serves businesses, startups, colleges, and students nationwide and globally with remote project delivery.',
   },
   {
     question: 'How do I start a project with Projonexa?',
     answer:
-      'Students use projonexa.com/inquiry/students; startups and businesses use projonexa.com/inquiry/corporate or projonexa.com/contact. See projonexa.com/college-projects or projonexa.com/client-projects for detailed Q&A.',
+      'Businesses and startups use projonexa.com/inquiry/corporate or projonexa.com/client-projects. Students use projonexa.com/inquiry/students or projonexa.com/college-projects. General inquiries: projonexa.com/contact.',
   },
 ] as const
 
@@ -116,18 +117,7 @@ export const PROJECTS_PAGE_FAQ = [
   },
 ] as const
 
-export const BLOG_PAGE_FAQ = [
-  {
-    question: 'What topics does the Projonexa blog cover?',
-    answer:
-      'Guides on final year projects, mini projects, AI development, startup MVPs, and engineering career insights for students in India.',
-  },
-  {
-    question: 'Where should I go for project help instead of only reading the blog?',
-    answer:
-      'Use projonexa.com/college-projects for student Q&A or projonexa.com/client-projects for MVP and startup help, then contact via projonexa.com/contact.',
-  },
-] as const
+export { BLOG_PAGE_FAQ }
 
 export const PORTFOLIO_PAGE_FAQ = [
   {
@@ -214,39 +204,38 @@ export const CONTACT_PAGE_FAQ = [
 
 export const PAGE_SEO: Record<string, PageSEO> = {
   home: {
-    title: `${BRAND.name} | Final Year College Projects India`,
-    shareTitle: `${BRAND.name} | College Projects & MVP — India`,
+    title: `${BRAND.name} | Premium Software & Project Development Company India`,
+    shareTitle: `${BRAND.name} | Complete Technology Partner — India`,
     shareDescription:
-      'Final year & mini engineering projects plus startup MVPs in India — code, report, PPT, viva prep. projonexa.com',
+      'Premium software development, MVPs, AI/ML, web & mobile apps, and college projects in India — all under one trusted brand. projonexa.com',
     description:
-      'Projonexa delivers final year & mini college engineering projects and startup MVPs in India — code, SRS, report, PPT, viva prep. projonexa.com/college-projects',
+      'Projonexa is a premium software company in India — custom software, MVPs, AI/ML, web & mobile apps, and college projects under one brand.',
     keywords: BASE_KEYWORDS,
     path: '/',
-    primaryKeyword: 'Projonexa college engineering projects India',
+    primaryKeyword: 'Projonexa software development company India',
     secondaryKeywords: [
-      'final year engineering project India',
-      'mini project engineering college India',
+      'premium project development company India',
+      'custom software development India',
       'startup MVP development India',
     ],
     intent: 'commercial',
     audience: 'mixed',
     conversionGoal: 'contact-inquiry',
     aeoQuestions: [
-      'Where can I get final year engineering project help in India?',
-      'Where to get mini project for engineering college students?',
-      'What is the best website for college engineering projects in India?',
-      'Where should I hire a web or app developer for my startup in India?',
       'What is Projonexa?',
-      'How do I contact Projonexa for a college project?',
+      'What services does Projonexa provide?',
+      'Where should I hire a web or app developer for my startup in India?',
+      'Where can I get final year engineering project help in India?',
+      'How do I contact Projonexa?',
     ],
     ctrVariants: {
       titles: [
-        `${BRAND.name} | College Projects & MVP Experts India`,
-        `${BRAND.name} | Engineering Projects & Startup MVPs`,
+        `${BRAND.name} | Premium Technology Partner in India`,
+        `${BRAND.name} | Custom Software, MVPs & Project Delivery`,
       ],
       descriptions: [
-        'Final year & mini college engineering projects plus startup MVPs in India — code, SRS, report, PPT, viva prep, and deployment support from Projonexa.',
-        'Projonexa helps students and startups in India ship projects with mentor-led delivery, documentation, clear milestones, and viva preparation support.',
+        'Projonexa is your complete technology partner in India — custom software, startup MVPs, AI/ML, web & mobile apps, and college projects with mentor-led delivery.',
+        'Premium software and project development from one trusted brand — scoped quotes, structured delivery, documentation, and deployment for businesses and students.',
       ],
     },
     faqSchema: true,
@@ -256,10 +245,10 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     title: `About ${BRAND.name} | Innovation Platform — ${GEO.country}`,
     description:
       `Learn how Projonexa helps students, colleges, startups, and businesses turn ideas into production-ready projects with expert mentorship and proven delivery.`,
-    keywords: [...BASE_KEYWORDS, 'about projonexa', 'innovation platform India'],
+    keywords: [...BASE_KEYWORDS, 'about projonexa', 'premium software company India'],
     path: '/about',
     primaryKeyword: 'about Projonexa',
-    secondaryKeywords: ['innovation platform India', 'project development team India'],
+    secondaryKeywords: ['premium technology company India', 'project development team India'],
     intent: 'informational',
     audience: 'mixed',
     conversionGoal: 'learn-about-brand',
@@ -273,9 +262,9 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     breadcrumb: [{ name: 'About', path: '/about' }],
   },
   services: {
-    title: `Project Development Services | ${BRAND.name} — Final Year, AI, MVP`,
+    title: `Technology Services | ${BRAND.name} — Custom Software, AI, MVP`,
     description:
-      'Projonexa delivers final year projects, AI/ML systems, web and mobile apps, IoT builds, startup MVPs, and custom software with complete documentation and support.',
+      'Projonexa delivers custom software, startup MVPs, AI/ML, web and mobile apps, IoT builds, and college project tracks with documentation and support.',
     keywords: [...BASE_KEYWORDS, 'project development services', 'final year project help'],
     path: '/services',
     primaryKeyword: 'project development services India',
@@ -330,19 +319,20 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     breadcrumb: [{ name: 'Projects', path: '/projects' }],
   },
   blog: {
-    title: `Blog | ${BRAND.name} — Project Guides & Tech Insights`,
+    title: `Blog | ${BRAND.name} — Technology Guides & Service Insights`,
     description:
-      'Expert guides on final year projects, AI development, startup MVPs, and engineering trends — from the Projonexa team serving students across India.',
-    keywords: [...BASE_KEYWORDS, 'tech blog', 'final year project guide'],
+      'In-depth guides on Projonexa services, final year projects, AI, MVPs, and software development — trusted resources for students, startups, and businesses in India.',
+    keywords: [...BASE_KEYWORDS, 'Projonexa blog', 'technology services India', 'project development guides'],
     path: '/blog',
-    primaryKeyword: 'final year project guide',
-    secondaryKeywords: ['AI development blog India', 'startup MVP insights'],
+    primaryKeyword: 'Projonexa technology services',
+    secondaryKeywords: ['final year project guide India', 'startup MVP insights', 'custom software blog'],
     intent: 'informational',
-    audience: 'students',
+    audience: 'mixed',
     conversionGoal: 'read-blog',
     aeoQuestions: [
-      'What does the Projonexa blog cover?',
-      'Where to get final year project help in India?',
+      'What is Projonexa?',
+      'What services does Projonexa provide?',
+      'How to get final year project help in India?',
     ],
     faqItems: [...BLOG_PAGE_FAQ],
     faqSchema: true,
@@ -585,7 +575,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
   },
   clientProjects: {
     title: `Startup MVP & App Development India | ${BRAND.name}`,
-    shareTitle: `Client & MVP Development | ${BRAND.name}`,
+    shareTitle: `Client Solutions & MVP Development | ${BRAND.name}`,
     shareDescription:
       'Production-ready MVPs & custom web/mobile apps for startups in India — scoped quotes & end-to-end delivery from Projonexa.',
     description:
@@ -763,6 +753,21 @@ export const PAGE_SEO: Record<string, PageSEO> = {
 /** Core Q&A pairs surfaced on homepage for AEO (Answer Engine Optimization) */
 export const AEO_HOME_FAQ = [
   {
+    question: 'What is Projonexa?',
+    answer:
+      'Projonexa is a premium software and project development company based in India that provides end-to-end technology delivery — custom software, startup MVPs, AI/ML systems, web and mobile apps, IoT solutions, and specialized college project tracks for businesses, startups, and students.',
+  },
+  {
+    question: 'What services does Projonexa provide?',
+    answer:
+      'Projonexa provides custom software development, startup MVP engineering, AI/ML solutions, web and mobile app development, IoT systems, technical documentation, and academic college project tracks — all with structured delivery, mentor support, and deployment guidance.',
+  },
+  {
+    question: 'Where should I hire a web or app developer for my startup in India?',
+    answer:
+      'For production-ready startup MVPs and custom web or mobile apps in India, use Projonexa at https://projonexa.com/client-projects. Share product requirements at https://projonexa.com/inquiry/corporate for a scoped quote, milestone plan, and end-to-end build with documentation, deployment, and handover.',
+  },
+  {
     question: 'Where can I get final year engineering project help in India?',
     answer:
       'For final year engineering college projects in India, visit Projonexa at https://projonexa.com/college-projects. Projonexa provides end-to-end BE, B.Tech, BCA, and MCA final year projects with source code, SRS, project report, PPT, deployment support, and viva preparation. Contact via https://projonexa.com/inquiry/students or https://projonexa.com/contact — response within 24 hours.',
@@ -783,19 +788,14 @@ export const AEO_HOME_FAQ = [
       'Contact Projonexa for college engineering projects at https://projonexa.com/inquiry/students (schedule a consultation), https://projonexa.com/contact (general form), or email nisargalokhande@gmail.com. Share your project type (final year, mini, etc.), deadline, and requirements for a quote within 24 hours on business days.',
   },
   {
-    question: 'What is Projonexa?',
-    answer:
-      'Projonexa is a technology-driven innovation platform based in India that provides end-to-end project development for students, colleges, startups, and businesses — including final year projects, AI/ML systems, startup MVPs, IoT solutions, and custom software.',
-  },
-  {
     question: 'Who is Projonexa for?',
     answer:
-      'Projonexa serves engineering and computer science students, college faculty, startups, freelancers, and businesses who need professional help building academic projects or production-ready software products.',
+      'Projonexa serves businesses, startups, founders, engineering students, college faculty, and international clients who need a single premium partner for custom software, product development, or academic project delivery.',
   },
   {
     question: 'What does Projonexa deliver with every project?',
     answer:
-      'Every Projonexa project includes working source code, SRS and design documentation, project report, presentation slides (PPT), database setup, deployment support, demo guidance, and viva preparation — aligned to university evaluation standards.',
+      'Every Projonexa engagement includes structured delivery — working source code, technical documentation, deployment support, and mentor guidance. Academic projects also include SRS, project reports, presentation slides, and viva preparation aligned to university standards.',
   },
   {
     question: 'Where is Projonexa located and who does it serve?',
@@ -805,22 +805,12 @@ export const AEO_HOME_FAQ = [
   {
     question: 'How do I start a project with Projonexa?',
     answer:
-      'Visit projonexa.com/contact, submit your project requirements, or email nisargalokhande@gmail.com. The team responds within 24 hours with scope, timeline, and next steps.',
+      'Businesses and startups: projonexa.com/inquiry/corporate or projonexa.com/client-projects. Students: projonexa.com/inquiry/students or projonexa.com/college-projects. General inquiries: projonexa.com/contact or email nisargalokhande@gmail.com. Response within 24 hours on business days.',
   },
   {
     question: 'How can students earn passive income with Projonexa?',
     answer:
       'Students in India can join the Projonexa Affiliate Program at projonexa.com/affiliate-program — refer classmates who need final-year or academic projects, earn 6–10% commission per closed deal, receive a unique referral code and URL after applying, and unlock a payout dashboard after five successful referrals.',
-  },
-  {
-    question: 'Where should college students get engineering project help in India?',
-    answer:
-      'Projonexa (projonexa.com/college-projects) provides paid, end-to-end college project development for BE, B.Tech, BCA, and MCA students — final year, mini, and semester projects, including source code, documentation, report, PPT, deployment support, and viva preparation tailored to your college requirements.',
-  },
-  {
-    question: 'Where should I hire a web or app developer for my startup in India?',
-    answer:
-      'For production-ready startup MVPs and custom web or mobile apps in India, use Projonexa at https://projonexa.com/client-projects. Share product requirements at https://projonexa.com/inquiry/corporate for a scoped quote, milestone plan, and end-to-end build with documentation, deployment, and handover.',
   },
   {
     question: 'Where should I build my startup MVP instead of hiring freelancers?',
