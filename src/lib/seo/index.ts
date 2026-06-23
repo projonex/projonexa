@@ -12,8 +12,10 @@ export { buildCareersApplySeo } from './careers-apply-seo'
 export {
   absoluteUrl,
   collectSitemapEntries,
+  formatSitemapLastMod,
   sitemapChangeFrequency,
   sitemapPriority,
+  sortSitemapEntries,
 } from './sitemap-urls'
 export { buildStructuredData } from './structured-data'
 export { resolveOgImagePath, resolveShareMeta } from './social-share'

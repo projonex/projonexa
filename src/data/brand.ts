@@ -7,7 +7,7 @@ export const BRAND = {
     bridge: 'Meets',
     suffix: 'Execution.',
   },
-  url: 'https://projonexa.com',
+  url: 'https://www.projonexa.com',
   email: 'nisargalokhande@gmail.com',
   location: 'India',
 } as const
