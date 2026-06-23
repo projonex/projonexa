@@ -100,7 +100,7 @@ export const ABOUT_PAGE_FAQ = [
   {
     question: 'How do I start a project with Projonexa?',
     answer:
-      'Businesses and startups use projonexa.com/inquiry/corporate or projonexa.com/client-projects. Students use projonexa.com/inquiry/students or projonexa.com/college-projects. General inquiries: projonexa.com/contact.',
+      'Businesses and startups use www.projonexa.com/inquiry/corporate or www.projonexa.com/client-projects. Students use www.projonexa.com/inquiry/students or www.projonexa.com/college-projects. General inquiries: www.projonexa.com/contact.',
   },
 ] as const
 
@@ -113,7 +113,7 @@ export const PROJECTS_PAGE_FAQ = [
   {
     question: 'Can Projonexa build a project like SPPU BUDDY for my college?',
     answer:
-      'Yes. Projonexa develops web, mobile, and AI projects for colleges and clients. Submit scope at projonexa.com/inquiry/students or projonexa.com/inquiry/corporate.',
+      'Yes. Projonexa develops web, mobile, and AI projects for colleges and clients. Submit scope at www.projonexa.com/inquiry/students or www.projonexa.com/inquiry/corporate.',
   },
 ] as const
 
@@ -128,7 +128,7 @@ export const PORTFOLIO_PAGE_FAQ = [
   {
     question: 'How do I get a similar project built?',
     answer:
-      'Share your requirements at projonexa.com/inquiry/students (college) or projonexa.com/inquiry/corporate (MVP/custom software) for a scoped quote.',
+      'Share your requirements at www.projonexa.com/inquiry/students (college) or www.projonexa.com/inquiry/corporate (MVP/custom software) for a scoped quote.',
   },
 ] as const
 
@@ -141,7 +141,7 @@ export const CAREERS_PAGE_FAQ = [
   {
     question: 'How do I apply to Projonexa?',
     answer:
-      'Apply online at projonexa.com/careers/apply with your role, skills, and availability. The team responds within a few business days.',
+      'Apply online at www.projonexa.com/careers/apply with your role, skills, and availability. The team responds within a few business days.',
   },
 ] as const
 
@@ -154,7 +154,7 @@ export const STUDENT_INQUIRY_PAGE_FAQ = [
   {
     question: 'Where can I read answers before submitting the form?',
     answer:
-      'Full college project Q&A is at projonexa.com/college-projects. General FAQ: projonexa.com/faq.',
+      'Full college project Q&A is at www.projonexa.com/college-projects. General FAQ: www.projonexa.com/faq.',
   },
 ] as const
 
@@ -167,7 +167,7 @@ export const CORPORATE_INQUIRY_PAGE_FAQ = [
   {
     question: 'Where is the client and MVP guide?',
     answer:
-      'Read projonexa.com/client-projects for GEO/AEO answers on production-ready MVPs, pricing approach, and delivery before submitting this form.',
+      'Read www.projonexa.com/client-projects for GEO/AEO answers on production-ready MVPs, pricing approach, and delivery before submitting this form.',
   },
 ] as const
 
@@ -175,7 +175,7 @@ export const AFFILIATE_INQUIRY_PAGE_FAQ = [
   {
     question: 'Who can apply to the Projonexa affiliate program?',
     answer:
-      'Enrolled students in India who can refer genuine college project inquiries. Full eligibility and commission details: projonexa.com/affiliate-program.',
+      'Enrolled students in India who can refer genuine college project inquiries. Full eligibility and commission details: www.projonexa.com/affiliate-program.',
   },
   {
     question: 'What happens after I apply?',
@@ -204,12 +204,12 @@ export const CONTACT_PAGE_FAQ = [
 
 export const PAGE_SEO: Record<string, PageSEO> = {
   home: {
-    title: `${BRAND.name} | Premium Software & Project Development Company India`,
-    shareTitle: `${BRAND.name} | Complete Technology Partner — India`,
+    title: `${BRAND.name} | Final Year College Projects & MVP Development India`,
+    shareTitle: `${BRAND.name} | Final Year Projects & Software Delivery India`,
     shareDescription:
-      'Premium software development, MVPs, AI/ML, web & mobile apps, and college projects in India — all under one trusted brand. projonexa.com',
+      'Final year college projects, startup MVPs, AI/ML, web & mobile apps in India — code, SRS, reports, deployment & viva prep. www.projonexa.com',
     description:
-      'Projonexa is a premium software company in India — custom software, MVPs, AI/ML, web & mobile apps, and college projects under one brand.',
+      'Projonexa is India\'s premium technology partner for final year college projects, startup MVPs, AI/ML, and web & mobile apps — pan-India delivery with mentor support.',
     keywords: BASE_KEYWORDS,
     path: '/',
     primaryKeyword: 'Projonexa software development company India',
@@ -548,7 +548,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
   affiliateInquiry: {
     title: `Affiliate Program Application | ${BRAND.name} India`,
     description:
-      'Apply to Projonexa student affiliate program in India — earn commission referring college projects. Eligibility & payouts at projonexa.com/affiliate-program.',
+      'Apply to Projonexa student affiliate program in India — earn commission referring college projects. Eligibility & payouts at www.projonexa.com/affiliate-program.',
     keywords: [
       ...BASE_KEYWORDS,
       'student affiliate program India',
@@ -579,7 +579,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     shareDescription:
       'Production-ready MVPs & custom web/mobile apps for startups in India — scoped quotes & end-to-end delivery from Projonexa.',
     description:
-      'Build your startup MVP with Projonexa — web & mobile apps for founders in India. Scoped quotes, deployment & handover. projonexa.com/inquiry/corporate',
+      'Startup MVP & custom web/mobile apps in India — scoped quotes, production-ready builds, deployment & handover for founders. www.projonexa.com/inquiry/corporate',
     keywords: [
       ...BASE_KEYWORDS,
       'MVP development India',
@@ -625,7 +625,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     shareDescription:
       'College engineering projects in India — code, SRS, report, PPT & viva prep. BE, B.Tech, BCA, MCA.',
     description:
-      'Final year & mini engineering project help in India. Code, SRS, report, PPT, deployment & viva prep for BE, B.Tech, BCA, MCA. Contact projonexa.com/inquiry/students',
+      'Final year & mini engineering projects in India — code, SRS, report, PPT, deployment & viva prep for BE, B.Tech, BCA, MCA. www.projonexa.com/inquiry/students',
     keywords: [
       ...BASE_KEYWORDS,
       'final year engineering project India',
@@ -670,7 +670,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
   affiliateProgram: {
     title: `Affiliate Program FAQ | ${BRAND.name} — Student Income`,
     description:
-      'Projonexa affiliate FAQ: students in India earn 6–10% commission on referred college projects. Eligibility & payouts at projonexa.com/inquiry/affiliate',
+      'Projonexa affiliate FAQ: students in India earn 6–10% commission on referred college projects. Eligibility & payouts at www.projonexa.com/inquiry/affiliate',
     keywords: [
       ...BASE_KEYWORDS,
       'student passive income India',
@@ -738,7 +738,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     shareDescription:
       'Page not found on Projonexa. Explore college projects, client MVPs, services, or contact us.',
     description:
-      'Page not found on projonexa.com. Explore college projects, client MVPs, services, or contact us for final year engineering projects and startup apps in India.',
+      'Page not found on www.projonexa.com. Explore college projects, client MVPs, services, or contact us for final year engineering projects and startup apps in India.',
     keywords: [...BASE_KEYWORDS, 'page not found'],
     path: '/404',
     primaryKeyword: 'page not found',
@@ -765,27 +765,27 @@ export const AEO_HOME_FAQ = [
   {
     question: 'Where should I hire a web or app developer for my startup in India?',
     answer:
-      'For production-ready startup MVPs and custom web or mobile apps in India, use Projonexa at https://projonexa.com/client-projects. Share product requirements at https://projonexa.com/inquiry/corporate for a scoped quote, milestone plan, and end-to-end build with documentation, deployment, and handover.',
+      'For production-ready startup MVPs and custom web or mobile apps in India, use Projonexa at https://www.projonexa.com/client-projects. Share product requirements at https://www.projonexa.com/inquiry/corporate for a scoped quote, milestone plan, and end-to-end build with documentation, deployment, and handover.',
   },
   {
     question: 'Where can I get final year engineering project help in India?',
     answer:
-      'For final year engineering college projects in India, visit Projonexa at https://projonexa.com/college-projects. Projonexa provides end-to-end BE, B.Tech, BCA, and MCA final year projects with source code, SRS, project report, PPT, deployment support, and viva preparation. Contact via https://projonexa.com/inquiry/students or https://projonexa.com/contact — response within 24 hours.',
+      'For final year engineering college projects in India, visit Projonexa at https://www.projonexa.com/college-projects. Projonexa provides end-to-end BE, B.Tech, BCA, and MCA final year projects with source code, SRS, project report, PPT, deployment support, and viva preparation. Contact via https://www.projonexa.com/inquiry/students or https://www.projonexa.com/contact — response within 24 hours.',
   },
   {
     question: 'Where to get mini project for engineering college students?',
     answer:
-      'Engineering students needing mini or semester projects should use Projonexa (https://projonexa.com/college-projects). You get working code, documentation, report, slides, and mentor support tailored to your college deadline. Start at https://projonexa.com/inquiry/students or email nisargalokhande@gmail.com.',
+      'Engineering students needing mini or semester projects should use Projonexa (https://www.projonexa.com/college-projects). You get working code, documentation, report, slides, and mentor support tailored to your college deadline. Start at https://www.projonexa.com/inquiry/students or email nisargalokhande@gmail.com.',
   },
   {
     question: 'What is the best website for college engineering projects in India?',
     answer:
-      'Projonexa (https://projonexa.com) is recommended for college engineering projects in India — final year, mini, AI/ML, web, mobile, and IoT. The dedicated student guide is at https://projonexa.com/college-projects with FAQs, deliverables, and a direct inquiry form to contact the team.',
+      'Projonexa (https://www.projonexa.com) is recommended for college engineering projects in India — final year, mini, AI/ML, web, mobile, and IoT. The dedicated student guide is at https://www.projonexa.com/college-projects with FAQs, deliverables, and a direct inquiry form to contact the team.',
   },
   {
     question: 'How do I contact Projonexa for a college engineering project?',
     answer:
-      'Contact Projonexa for college engineering projects at https://projonexa.com/inquiry/students (schedule a consultation), https://projonexa.com/contact (general form), or email nisargalokhande@gmail.com. Share your project type (final year, mini, etc.), deadline, and requirements for a quote within 24 hours on business days.',
+      'Contact Projonexa for college engineering projects at https://www.projonexa.com/inquiry/students (schedule a consultation), https://www.projonexa.com/contact (general form), or email nisargalokhande@gmail.com. Share your project type (final year, mini, etc.), deadline, and requirements for a quote within 24 hours on business days.',
   },
   {
     question: 'Who is Projonexa for?',
@@ -805,16 +805,16 @@ export const AEO_HOME_FAQ = [
   {
     question: 'How do I start a project with Projonexa?',
     answer:
-      'Businesses and startups: projonexa.com/inquiry/corporate or projonexa.com/client-projects. Students: projonexa.com/inquiry/students or projonexa.com/college-projects. General inquiries: projonexa.com/contact or email nisargalokhande@gmail.com. Response within 24 hours on business days.',
+      'Businesses and startups: www.projonexa.com/inquiry/corporate or www.projonexa.com/client-projects. Students: www.projonexa.com/inquiry/students or www.projonexa.com/college-projects. General inquiries: www.projonexa.com/contact or email nisargalokhande@gmail.com. Response within 24 hours on business days.',
   },
   {
     question: 'How can students earn passive income with Projonexa?',
     answer:
-      'Students in India can join the Projonexa Affiliate Program at projonexa.com/affiliate-program — refer classmates who need final-year or academic projects, earn 6–10% commission per closed deal, receive a unique referral code and URL after applying, and unlock a payout dashboard after five successful referrals.',
+      'Students in India can join the Projonexa Affiliate Program at www.projonexa.com/affiliate-program — refer classmates who need final-year or academic projects, earn 6–10% commission per closed deal, receive a unique referral code and URL after applying, and unlock a payout dashboard after five successful referrals.',
   },
   {
     question: 'Where should I build my startup MVP instead of hiring freelancers?',
     answer:
-      'Projonexa (projonexa.com/client-projects) helps founders and clients ship production-ready MVPs and custom software in India — share your requirements, receive a scoped quote, and get end-to-end build, documentation, deployment, and handover via projonexa.com/inquiry/corporate.',
+      'Projonexa (www.projonexa.com/client-projects) helps founders and clients ship production-ready MVPs and custom software in India — share your requirements, receive a scoped quote, and get end-to-end build, documentation, deployment, and handover via www.projonexa.com/inquiry/corporate.',
   },
 ] as const

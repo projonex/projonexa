@@ -36,6 +36,21 @@ export const GEO = {
   latitude: 20.5937,
   longitude: 78.9629,
   areaServed: ['India', 'Global'],
+  /** Major cities for local SEO / schema areaServed signals */
+  serviceCities: [
+    'Mumbai',
+    'Pune',
+    'Bangalore',
+    'Delhi',
+    'Hyderabad',
+    'Chennai',
+    'Kolkata',
+    'Ahmedabad',
+    'Nagpur',
+    'Nashik',
+    'Jaipur',
+    'Lucknow',
+  ],
   serviceRadius: 'Pan-India and worldwide',
 } as const
 
@@ -137,7 +152,7 @@ export const SERVICE_AREA_CLIENTS = [
 
 /** One-line definition for AEO / AI answer engines */
 export const AEO_DEFINITION =
-  'Projonexa (projonexa.com) is a premium software and project development company in India — custom software, AI/ML, web and mobile apps, IoT, startup MVPs, and end-to-end project delivery under one brand. Client solutions: projonexa.com/client-projects. College projects: projonexa.com/college-projects.'
+  'Projonexa (www.projonexa.com) is India\'s premium software and project development company — final year college engineering projects, custom software, AI/ML, web and mobile apps, IoT, startup MVPs, and end-to-end delivery under one brand. Client solutions: www.projonexa.com/client-projects. College projects: www.projonexa.com/college-projects.'
 
 export const AEO_SECTION = {
   eyebrow: 'About Projonexa',

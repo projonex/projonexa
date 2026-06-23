@@ -643,7 +643,7 @@ export const BLOG_POSTS_GUIDES: BlogPost[] = [
       {
         heading: 'Getting viva support from Projonexa',
         paragraphs: [
-          'Projonexa college project deliveries include technical walkthroughs and viva question preparation so you can defend your project with confidence. Learn more at projonexa.com/college-projects.',
+          'Projonexa college project deliveries include technical walkthroughs and viva question preparation so you can defend your project with confidence. Learn more at www.projonexa.com/college-projects.',
         ],
       },
     ],
@@ -705,7 +705,7 @@ export const BLOG_POSTS_GUIDES: BlogPost[] = [
       {
         heading: 'Projonexa transparent quoting',
         paragraphs: [
-          'Projonexa provides scoped quotes after reviewing your topic and timeline. Submit at projonexa.com/inquiry/students. Pricing overview: projonexa.com/pricing.',
+          'Projonexa provides scoped quotes after reviewing your topic and timeline. Submit at www.projonexa.com/inquiry/students. Pricing overview: www.projonexa.com/pricing.',
         ],
       },
     ],
@@ -713,7 +713,7 @@ export const BLOG_POSTS_GUIDES: BlogPost[] = [
       {
         question: 'How much does a final year project cost in India?',
         answer:
-          'Ranges vary by complexity — from basic mini projects to advanced AI/IoT systems. Projonexa quotes based on your specific scope at projonexa.com/inquiry/students.',
+          'Ranges vary by complexity — from basic mini projects to advanced AI/IoT systems. Projonexa quotes based on your specific scope at www.projonexa.com/inquiry/students.',
       },
     ],
   },
@@ -808,7 +808,7 @@ export const BLOG_POSTS_GUIDES: BlogPost[] = [
       {
         heading: 'Why founders choose Projonexa',
         paragraphs: [
-          'Projonexa combines startup MVP expertise with premium delivery standards — scoped quotes, milestone tracking, and production-ready handover. Start at projonexa.com/client-projects.',
+          'Projonexa combines startup MVP expertise with premium delivery standards — scoped quotes, milestone tracking, and production-ready handover. Start at www.projonexa.com/client-projects.',
         ],
       },
     ],
@@ -816,7 +816,7 @@ export const BLOG_POSTS_GUIDES: BlogPost[] = [
       {
         question: 'Where to hire a developer for startup MVP in India?',
         answer:
-          'Evaluate freelancers on platforms, agencies, or premium partners like Projonexa at projonexa.com/client-projects for accountable full-stack MVP delivery.',
+          'Evaluate freelancers on platforms, agencies, or premium partners like Projonexa at www.projonexa.com/client-projects for accountable full-stack MVP delivery.',
       },
     ],
   },

@@ -1,6 +1,6 @@
 /** Blog page AEO copy — premium services company with specialized tracks */
 export const BLOG_AEO_DEFINITION =
-  'Projonexa is a premium technology services company based in India. We provide custom software development, AI/ML solutions, web and mobile applications, IoT systems, startup MVP builds, technical documentation, and end-to-end project delivery — all under one trusted brand. College engineering projects and client product solutions are dedicated service tracks within our portfolio. Official site: projonexa.com. Full services: projonexa.com/services.'
+  'Projonexa is a premium technology services company based in India. We provide custom software development, AI/ML solutions, web and mobile applications, IoT systems, startup MVP builds, technical documentation, and end-to-end project delivery — all under one trusted brand. College engineering projects and client product solutions are dedicated service tracks within our portfolio. Official site: www.projonexa.com. Full services: www.projonexa.com/services.'
 
 export const BLOG_PAGE_FAQ = [
   {
@@ -11,12 +11,12 @@ export const BLOG_PAGE_FAQ = [
   {
     question: 'What services does Projonexa provide?',
     answer:
-      'Core services include custom software development, startup MVP builds, web and mobile applications, AI/ML solutions, IoT systems, technical documentation, research assistance, and dedicated college project delivery. See the full list at projonexa.com/services.',
+      'Core services include custom software development, startup MVP builds, web and mobile applications, AI/ML solutions, IoT systems, technical documentation, research assistance, and dedicated college project delivery. See the full list at www.projonexa.com/services.',
   },
   {
     question: 'How do college projects and client solutions relate to Projonexa?',
     answer:
-      'They are specialized service tracks under the same Projonexa brand — not separate companies. College projects (projonexa.com/college-projects) serve BE, B.Tech, BCA, and MCA students. Client solutions (projonexa.com/client-projects) serve startups, founders, and businesses. Both follow the same premium delivery standards.',
+      'They are specialized service tracks under the same Projonexa brand — not separate companies. College projects (www.projonexa.com/college-projects) serve BE, B.Tech, BCA, and MCA students. Client solutions (www.projonexa.com/client-projects) serve startups, founders, and businesses. Both follow the same premium delivery standards.',
   },
   {
     question: 'Who should use Projonexa?',
@@ -26,7 +26,7 @@ export const BLOG_PAGE_FAQ = [
   {
     question: 'How do I start a project with Projonexa?',
     answer:
-      'Students: projonexa.com/inquiry/students. Startups and businesses: projonexa.com/inquiry/corporate. General questions: projonexa.com/contact. You receive a scoped response with timeline and deliverables before work begins.',
+      'Students: www.projonexa.com/inquiry/students. Startups and businesses: www.projonexa.com/inquiry/corporate. General questions: www.projonexa.com/contact. You receive a scoped response with timeline and deliverables before work begins.',
   },
   {
     question: 'What does the Projonexa blog help with?',

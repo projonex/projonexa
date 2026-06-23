@@ -5,6 +5,29 @@ import { SERVICES } from '@/data/services';
 
 type FAQ = { question: string; answer: string }
 
+/** Pages with SpeakableSpecification for voice / AI answer engines (AEO). */
+const SPEAKABLE_PAGES: Record<string, string[]> = {
+  '/': ['h2', '[itemProp="description"]', '#aeo-overview-heading'],
+  '/college-projects': ['h1', '[itemProp="headline"]', '[itemProp="description"]'],
+  '/client-projects': ['h1', '[itemProp="headline"]', '[itemProp="description"]'],
+  '/services': ['h1', '[itemProp="description"]'],
+  '/faq': ['h1', '[itemProp="name"]'],
+  '/pricing': ['h1', '[itemProp="description"]'],
+  '/about': ['h1', '[itemProp="description"]'],
+}
+
+function geoAreaServedSchema() {
+  return [
+    { '@type': 'Country', name: GEO.country },
+    { '@type': 'Place', name: 'Global' },
+    ...GEO.serviceCities.map((city) => ({
+      '@type': 'City',
+      name: city,
+      containedInPlace: { '@type': 'Country', name: GEO.country },
+    })),
+  ]
+}
+
 export function organizationSchema(description: string) {
   return {
     '@context': 'https://schema.org',
@@ -38,10 +61,7 @@ export function organizationSchema(description: string) {
       latitude: GEO.latitude,
       longitude: GEO.longitude,
     },
-    areaServed: GEO.areaServed.map((place) => ({
-      '@type': 'Place',
-      name: place,
-    })),
+    areaServed: geoAreaServedSchema(),
     sameAs: [FOUNDER.linkedin, FOUNDER.github, 'https://github.com/projonexa/projonexa'],
     knowsAbout: [
       'Projonexa',
@@ -92,7 +112,7 @@ export function localBusinessSchema() {
       latitude: GEO.latitude,
       longitude: GEO.longitude,
     },
-    areaServed: GEO.areaServed,
+    areaServed: geoAreaServedSchema(),
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'Projonexa Project Development Services',
@@ -205,7 +225,7 @@ export function serviceCatalogSchema() {
         name: s.title,
         description: s.description,
         provider: { '@id': `${BRAND.url}/#organization` },
-        areaServed: GEO.areaServed,
+        areaServed: geoAreaServedSchema(),
         serviceType: s.title,
       },
     })),
@@ -220,7 +240,7 @@ export function collegeProjectsServiceSchema() {
     name: 'College Engineering Project Development',
     serviceType: 'Final Year and Mini Engineering Projects',
     provider: { '@id': `${BRAND.url}/#organization` },
-    areaServed: GEO.areaServed,
+    areaServed: geoAreaServedSchema(),
     audience: {
       '@type': 'EducationalAudience',
       educationalRole: 'student',
@@ -244,7 +264,7 @@ export function clientProjectsServiceSchema() {
     name: 'Startup MVP and Custom App Development',
     serviceType: 'Web and Mobile Application Development for Startups',
     provider: { '@id': `${BRAND.url}/#organization` },
-    areaServed: GEO.areaServed,
+    areaServed: geoAreaServedSchema(),
     audience: {
       '@type': 'BusinessAudience',
     },
@@ -318,34 +338,15 @@ export function buildStructuredData(options: {
 
   if (options.path === '/college-projects') {
     schemas.push(collegeProjectsServiceSchema())
-    schemas.push(
-      speakableWebPageSchema(options.path, [
-        'h1',
-        '[itemProp="headline"]',
-        '[itemProp="description"]',
-      ]),
-    )
   }
 
   if (options.path === '/client-projects') {
     schemas.push(clientProjectsServiceSchema())
-    schemas.push(
-      speakableWebPageSchema(options.path, [
-        'h1',
-        '[itemProp="headline"]',
-        '[itemProp="description"]',
-      ]),
-    )
   }
 
-  if (options.path === '/') {
-    schemas.push(
-      speakableWebPageSchema(options.path, [
-        'h2',
-        '[itemProp="description"]',
-        '#aeo-overview-heading',
-      ]),
-    )
+  const speakableSelectors = SPEAKABLE_PAGES[options.path]
+  if (speakableSelectors) {
+    schemas.push(speakableWebPageSchema(options.path, speakableSelectors))
   }
 
   if (options.breadcrumb?.length) {

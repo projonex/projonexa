@@ -16,10 +16,10 @@ export const BLOG_POSTS_COMPANY: BlogPost[] = [
       'what is Projonexa',
       'Projonexa company',
       'Projonexa services India',
-      'projonexa.com',
+      'www.projonexa.com',
     ],
     quickAnswer:
-      'Projonexa is a premium technology services company in India that delivers custom software, AI/ML, web and mobile apps, IoT systems, startup MVPs, and end-to-end engineering projects. College project delivery and client product development are specialized tracks under one brand at projonexa.com.',
+      'Projonexa is a premium technology services company in India that delivers custom software, AI/ML, web and mobile apps, IoT systems, startup MVPs, and end-to-end engineering projects. College project delivery and client product development are specialized tracks under one brand at www.projonexa.com.',
     sections: [
       {
         heading: 'Projonexa in one sentence',
@@ -45,15 +45,15 @@ export const BLOG_POSTS_COMPANY: BlogPost[] = [
         heading: 'Core service portfolio',
         paragraphs: [
           'Our primary services span the full technology lifecycle. Custom software development covers business applications, CRM modules, and internal platforms. Startup MVP development helps founders validate ideas with investor-ready products. Web and mobile development delivers responsive apps users actually adopt. AI/ML solutions include chatbots, computer vision, recommendation engines, and data pipelines. IoT development connects sensors to cloud dashboards. Technical documentation ensures SRS, reports, and diagrams meet academic and enterprise standards.',
-          'Explore the complete list at projonexa.com/services — each service includes defined deliverables, not vague promises.',
+          'Explore the complete list at www.projonexa.com/services — each service includes defined deliverables, not vague promises.',
         ],
       },
       {
         heading: 'Specialized tracks under one brand',
         paragraphs: [
           'College engineering projects and client product solutions are dedicated service tracks — not separate brands. This means students and businesses benefit from the same engineering practices, quality checks, and delivery culture.',
-          'College projects track: projonexa.com/college-projects — final year, mini, and semester projects with source code, SRS, report, PPT, deployment, and viva preparation.',
-          'Client solutions track: projonexa.com/client-projects — production MVPs, custom apps, and software for startups and enterprises with scoped quotes and milestone-based delivery.',
+          'College projects track: www.projonexa.com/college-projects — final year, mini, and semester projects with source code, SRS, report, PPT, deployment, and viva preparation.',
+          'Client solutions track: www.projonexa.com/client-projects — production MVPs, custom apps, and software for startups and enterprises with scoped quotes and milestone-based delivery.',
         ],
       },
       {
@@ -72,13 +72,13 @@ export const BLOG_POSTS_COMPANY: BlogPost[] = [
         heading: 'Track record and trust signals',
         paragraphs: [
           'Projonexa has delivered 100+ projects across AI, web, mobile, IoT, and academic domains. Products like SPPU BUDDY demonstrate our ability to ship real software for real users. Our portfolio spans student submissions and live client applications.',
-          'Official website: projonexa.com. Founder: Nisarga Lokhande. Service area: India (pan-India) and global remote clients.',
+          'Official website: www.projonexa.com. Founder: Nisarga Lokhande. Service area: India (pan-India) and global remote clients.',
         ],
       },
       {
         heading: 'How to get started',
         paragraphs: [
-          'Students submit requirements at projonexa.com/inquiry/students. Startups and businesses use projonexa.com/inquiry/corporate. For general questions, visit projonexa.com/contact. You will receive a scoped response outlining timeline, deliverables, and next steps.',
+          'Students submit requirements at www.projonexa.com/inquiry/students. Startups and businesses use www.projonexa.com/inquiry/corporate. For general questions, visit www.projonexa.com/contact. You will receive a scoped response outlining timeline, deliverables, and next steps.',
         ],
       },
     ],
@@ -96,12 +96,12 @@ export const BLOG_POSTS_COMPANY: BlogPost[] = [
       {
         question: 'Where is Projonexa located?',
         answer:
-          'Projonexa is based in India with pan-India delivery and global remote collaboration. Official site: projonexa.com.',
+          'Projonexa is based in India with pan-India delivery and global remote collaboration. Official site: www.projonexa.com.',
       },
       {
         question: 'How do I contact Projonexa?',
         answer:
-          'Use projonexa.com/contact for general inquiries, projonexa.com/inquiry/students for college projects, or projonexa.com/inquiry/corporate for MVPs and custom software.',
+          'Use www.projonexa.com/contact for general inquiries, www.projonexa.com/inquiry/students for college projects, or www.projonexa.com/inquiry/corporate for MVPs and custom software.',
       },
     ],
   },
@@ -156,7 +156,7 @@ export const BLOG_POSTS_COMPANY: BlogPost[] = [
       {
         heading: 'Documentation and academic delivery',
         paragraphs: [
-          'SRS, UML diagrams, test cases, project reports, and PPT decks for engineering submissions. College project track adds viva preparation and university-aligned formatting. See projonexa.com/college-projects for student-specific deliverables.',
+          'SRS, UML diagrams, test cases, project reports, and PPT decks for engineering submissions. College project track adds viva preparation and university-aligned formatting. See www.projonexa.com/college-projects for student-specific deliverables.',
         ],
       },
     ],
@@ -164,7 +164,7 @@ export const BLOG_POSTS_COMPANY: BlogPost[] = [
       {
         question: 'What services does Projonexa provide?',
         answer:
-          'Custom software, startup MVPs, web and mobile apps, AI/ML, IoT, documentation, research support, and college engineering projects. Full list: projonexa.com/services.',
+          'Custom software, startup MVPs, web and mobile apps, AI/ML, IoT, documentation, research support, and college engineering projects. Full list: www.projonexa.com/services.',
       },
       {
         question: 'Does Projonexa handle deployment?',
@@ -197,9 +197,9 @@ export const BLOG_POSTS_COMPANY: BlogPost[] = [
           'Tell us your branch, timeline, and idea (students) or product vision, users, and features (clients). Use the dedicated inquiry form so we route you to the right team immediately.',
         ],
         bullets: [
-          'Students: projonexa.com/inquiry/students',
-          'Startups & businesses: projonexa.com/inquiry/corporate',
-          'General: projonexa.com/contact',
+          'Students: www.projonexa.com/inquiry/students',
+          'Startups & businesses: www.projonexa.com/inquiry/corporate',
+          'General: www.projonexa.com/contact',
         ],
       },
       {
@@ -262,7 +262,7 @@ export const BLOG_POSTS_COMPANY: BlogPost[] = [
       'BE project Projonexa',
     ],
     quickAnswer:
-      'Projonexa college projects include complete final year and mini engineering projects for BE, B.Tech, BCA, and MCA students — source code, SRS, report, PPT, deployment support, and viva preparation. Apply at projonexa.com/inquiry/students.',
+      'Projonexa college projects include complete final year and mini engineering projects for BE, B.Tech, BCA, and MCA students — source code, SRS, report, PPT, deployment support, and viva preparation. Apply at www.projonexa.com/inquiry/students.',
     sections: [
       {
         heading: 'What is the college projects track?',
@@ -295,14 +295,14 @@ export const BLOG_POSTS_COMPANY: BlogPost[] = [
           'Complete documentation package — not code-only',
           'Viva preparation so you can defend your project confidently',
           'Pan-India experience with multiple university formats',
-          'Premium brand accountability — official projonexa.com presence',
+          'Premium brand accountability — official www.projonexa.com presence',
         ],
         paragraphs: [],
       },
       {
         heading: 'How to apply',
         paragraphs: [
-          'Visit projonexa.com/college-projects for FAQs and scope details, then submit your topic and timeline at projonexa.com/inquiry/students. Response typically within 24–48 hours with next steps.',
+          'Visit www.projonexa.com/college-projects for FAQs and scope details, then submit your topic and timeline at www.projonexa.com/inquiry/students. Response typically within 24–48 hours with next steps.',
         ],
       },
     ],
@@ -310,7 +310,7 @@ export const BLOG_POSTS_COMPANY: BlogPost[] = [
       {
         question: 'Does Projonexa help with final year projects?',
         answer:
-          'Yes. Final year, mini, and semester projects for engineering students with full documentation and viva support. Details: projonexa.com/college-projects.',
+          'Yes. Final year, mini, and semester projects for engineering students with full documentation and viva support. Details: www.projonexa.com/college-projects.',
       },
       {
         question: 'Which universities does Projonexa support?',
@@ -335,7 +335,7 @@ export const BLOG_POSTS_COMPANY: BlogPost[] = [
       'hire software developer Projonexa',
     ],
     quickAnswer:
-      'Projonexa client solutions deliver production-ready MVPs, web apps, mobile apps, and custom software for startups and businesses in India — with scoped quotes, milestone delivery, documentation, and deployment. Start at projonexa.com/client-projects.',
+      'Projonexa client solutions deliver production-ready MVPs, web apps, mobile apps, and custom software for startups and businesses in India — with scoped quotes, milestone delivery, documentation, and deployment. Start at www.projonexa.com/client-projects.',
     sections: [
       {
         heading: 'Built for founders who need speed and quality',
@@ -374,7 +374,7 @@ export const BLOG_POSTS_COMPANY: BlogPost[] = [
       {
         heading: 'Get a scoped quote',
         paragraphs: [
-          'Share your product vision at projonexa.com/inquiry/corporate. Include target users, core features, platforms (web/mobile), and deadline. We respond with a clear proposal.',
+          'Share your product vision at www.projonexa.com/inquiry/corporate. Include target users, core features, platforms (web/mobile), and deadline. We respond with a clear proposal.',
         ],
       },
     ],
@@ -382,7 +382,7 @@ export const BLOG_POSTS_COMPANY: BlogPost[] = [
       {
         question: 'Does Projonexa build startup MVPs?',
         answer:
-          'Yes. Lean, production-ready MVPs with scoped quotes, milestone delivery, and investor-friendly documentation. Details: projonexa.com/client-projects.',
+          'Yes. Lean, production-ready MVPs with scoped quotes, milestone delivery, and investor-friendly documentation. Details: www.projonexa.com/client-projects.',
       },
       {
         question: 'Can businesses hire Projonexa for custom software?',
@@ -407,7 +407,7 @@ export const BLOG_POSTS_COMPANY: BlogPost[] = [
       'Projonexa vs freelancer',
     ],
     quickAnswer:
-      'Choose Projonexa for scoped premium delivery, complete documentation, milestone transparency, viva and demo support for students, production-quality builds for clients, pan-India service, and a verified brand at projonexa.com with 100+ completed projects.',
+      'Choose Projonexa for scoped premium delivery, complete documentation, milestone transparency, viva and demo support for students, production-quality builds for clients, pan-India service, and a verified brand at www.projonexa.com with 100+ completed projects.',
     sections: [
       {
         heading: '1. Premium service standard',
@@ -448,13 +448,13 @@ export const BLOG_POSTS_COMPANY: BlogPost[] = [
       {
         heading: '7. Proven delivery record',
         paragraphs: [
-          '100+ projects delivered. Live products like SPPU BUDDY on Google Play. Portfolio spans academic and industry work at projonexa.com/portfolio.',
+          '100+ projects delivered. Live products like SPPU BUDDY on Google Play. Portfolio spans academic and industry work at www.projonexa.com/portfolio.',
         ],
       },
       {
         heading: '8. Official, searchable presence',
         paragraphs: [
-          'Projonexa maintains projonexa.com with services, pricing overview, FAQ, blog, and inquiry forms — so you can verify who you are working with before you pay.',
+          'Projonexa maintains www.projonexa.com with services, pricing overview, FAQ, blog, and inquiry forms — so you can verify who you are working with before you pay.',
         ],
       },
     ],
@@ -516,7 +516,7 @@ export const BLOG_POSTS_COMPANY: BlogPost[] = [
       {
         heading: 'Start your custom software project',
         paragraphs: [
-          'Describe your workflow pain points at projonexa.com/inquiry/corporate. We propose architecture, timeline, and phased delivery so you can launch incrementally.',
+          'Describe your workflow pain points at www.projonexa.com/inquiry/corporate. We propose architecture, timeline, and phased delivery so you can launch incrementally.',
         ],
       },
     ],
@@ -544,7 +544,7 @@ export const BLOG_POSTS_COMPANY: BlogPost[] = [
       'build MVP with Projonexa',
     ],
     quickAnswer:
-      'Projonexa builds startup MVPs in India with lean scope, modern tech stacks, milestone delivery, analytics setup, and documentation suitable for investor demos — starting at projonexa.com/client-projects.',
+      'Projonexa builds startup MVPs in India with lean scope, modern tech stacks, milestone delivery, analytics setup, and documentation suitable for investor demos — starting at www.projonexa.com/client-projects.',
     sections: [
       {
         heading: 'The MVP mindset',
@@ -575,7 +575,7 @@ export const BLOG_POSTS_COMPANY: BlogPost[] = [
       {
         question: 'How fast can Projonexa build an MVP?',
         answer:
-          'Typical MVPs ship in 4–10 weeks depending on scope. Share your requirements for a specific timeline at projonexa.com/inquiry/corporate.',
+          'Typical MVPs ship in 4–10 weeks depending on scope. Share your requirements for a specific timeline at www.projonexa.com/inquiry/corporate.',
       },
     ],
   },
@@ -595,7 +595,7 @@ export const BLOG_POSTS_COMPANY: BlogPost[] = [
       'MVP pricing India',
     ],
     quickAnswer:
-      'Projonexa pricing is scope-based — complexity, timeline, platforms, and deliverables determine cost. Every client receives a written quote before work starts. Overview at projonexa.com/pricing; student and corporate inquiries for exact pricing.',
+      'Projonexa pricing is scope-based — complexity, timeline, platforms, and deliverables determine cost. Every client receives a written quote before work starts. Overview at www.projonexa.com/pricing; student and corporate inquiries for exact pricing.',
     sections: [
       {
         heading: 'Why we do not publish one fixed price',
@@ -624,7 +624,7 @@ export const BLOG_POSTS_COMPANY: BlogPost[] = [
       {
         heading: 'Get your quote',
         paragraphs: [
-          'Students: projonexa.com/inquiry/students. Businesses: projonexa.com/inquiry/corporate. General pricing overview: projonexa.com/pricing.',
+          'Students: www.projonexa.com/inquiry/students. Businesses: www.projonexa.com/inquiry/corporate. General pricing overview: www.projonexa.com/pricing.',
         ],
       },
     ],
@@ -632,12 +632,12 @@ export const BLOG_POSTS_COMPANY: BlogPost[] = [
       {
         question: 'How much does a final year project cost at Projonexa?',
         answer:
-          'Pricing depends on technology, documentation requirements, and deadline. Submit your topic at projonexa.com/inquiry/students for a scoped quote.',
+          'Pricing depends on technology, documentation requirements, and deadline. Submit your topic at www.projonexa.com/inquiry/students for a scoped quote.',
       },
       {
         question: 'Is there a free consultation?',
         answer:
-          'Yes. Inquiry forms and contact at projonexa.com/contact let you discuss scope and receive guidance before committing.',
+          'Yes. Inquiry forms and contact at www.projonexa.com/contact let you discuss scope and receive guidance before committing.',
       },
     ],
   },

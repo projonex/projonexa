@@ -37,6 +37,9 @@ const GEO_OTHER: Metadata['other'] = {
   ICBM: `${GEO.latitude}, ${GEO.longitude}`,
   language: 'English',
   'content-language': GEO.language,
+  coverage: GEO.country,
+  distribution: 'global',
+  target: 'all',
 }
 
 /** Root layout defaults — inherited and overridden by per-route metadata. */
