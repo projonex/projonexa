@@ -21,14 +21,15 @@ import {
   StudentInquiryError,
 } from '@/lib/api/studentInquiry'
 import { formatStudentSuccessMessage } from '@/lib/formNotifications'
+import { StudentProjectCategoryFields } from '@/components/inquiry/StudentProjectCategoryFields'
 import {
   formatMeetingDate,
   INQUIRY_TIMELINE_OPTIONS,
   MEETING_TIME_SLOTS,
   minMeetingDateIso,
   STUDENT_BUDGET_OPTIONS,
-  STUDENT_PROJECT_TYPES,
 } from '@/data/projectInquiry'
+import type { ProjectClassificationPayload } from '@/lib/studentProjectCategoryUtils'
 import { normalizeReferralCode } from '@/lib/referralCode'
 
 const easeSmooth = [0.22, 1, 0.36, 1] as const
@@ -45,7 +46,10 @@ export function StudentProjectInquiryForm({
   initialReferralCode = '',
 }: StudentProjectInquiryFormProps) {
   const [step, setStep] = useState<Step>('form')
-  const [projectType, setProjectType] = useState<string>(STUDENT_PROJECT_TYPES[0].value)
+  const [classificationPayload, setClassificationPayload] = useState<ProjectClassificationPayload | null>(
+    null,
+  )
+  const [classificationValid, setClassificationValid] = useState(false)
   const [timeline, setTimeline] = useState<string>(INQUIRY_TIMELINE_OPTIONS[2].value)
   const [budget, setBudget] = useState<string>('undecided')
   const [meetingDate, setMeetingDate] = useState('')
@@ -119,6 +123,13 @@ export function StudentProjectInquiryForm({
       return
     }
 
+    if (!classificationValid || !classificationPayload) {
+      setError(
+        'Please complete all project classification fields. If you selected Other on any step, enter your details in the text field shown.',
+      )
+      return
+    }
+
     setSubmitting(true)
     try {
       const result = await initiateStudentSchedule({
@@ -126,7 +137,7 @@ export function StudentProjectInquiryForm({
         email,
         phone,
         payload: {
-          projectType: String(data.get('projectType') ?? '').trim(),
+          ...classificationPayload,
           timeline: String(data.get('timeline') ?? '').trim(),
           budget: String(data.get('budget') ?? '').trim(),
           meetingDate: selectedDate,
@@ -307,45 +318,29 @@ export function StudentProjectInquiryForm({
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-            <FormSelectField
-              id="student-project-type"
-              name="projectType"
-              required
-              value={projectType}
-              onChange={(e) => setProjectType(e.target.value)}
-              label={
-                <>
-                  Project type <InquiryRequired />
-                </>
-              }
-            >
-              {STUDENT_PROJECT_TYPES.map((opt) => (
-                <option key={opt.value} value={opt.value}>
-                  {opt.label}
-                </option>
-              ))}
-            </FormSelectField>
+          <StudentProjectCategoryFields
+            onPayloadChange={setClassificationPayload}
+            onValidityChange={setClassificationValid}
+          />
 
-            <FormSelectField
-              id="student-timeline"
-              name="timeline"
-              required
-              value={timeline}
-              onChange={(e) => setTimeline(e.target.value)}
-              label={
-                <>
-                  Submission deadline / timeline <InquiryRequired />
-                </>
-              }
-            >
-              {INQUIRY_TIMELINE_OPTIONS.map((opt) => (
-                <option key={opt.value} value={opt.value}>
-                  {opt.label}
-                </option>
-              ))}
-            </FormSelectField>
-          </div>
+          <FormSelectField
+            id="student-timeline"
+            name="timeline"
+            required
+            value={timeline}
+            onChange={(e) => setTimeline(e.target.value)}
+            label={
+              <>
+                Submission deadline / timeline <InquiryRequired />
+              </>
+            }
+          >
+            {INQUIRY_TIMELINE_OPTIONS.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
+          </FormSelectField>
 
           <FormSelectField
             id="student-budget"
