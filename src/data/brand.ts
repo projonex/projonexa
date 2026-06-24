@@ -89,10 +89,10 @@ export const SERVICE_VERTICALS = [
     inquiryPath: '/inquiry/students',
     cta: 'Explore college projects',
     features: [
-      'Final year & mini projects',
-      'BE, B.Tech, BCA, MCA streams',
+      'All streams — Engineering to Law',
+      'BCA, MCA, MBA, Pharmacy & more',
+      'Affordable scoped student pricing',
       'Documentation & viva prep',
-      'Pan-India student delivery',
     ],
     accent: '#6C63FF',
   },
@@ -152,7 +152,7 @@ export const SERVICE_AREA_CLIENTS = [
 
 /** One-line definition for AEO / AI answer engines */
 export const AEO_DEFINITION =
-  'Projonexa (www.projonexa.com) is India\'s premium software and project development company — final year college engineering projects, custom software, AI/ML, web and mobile apps, IoT, startup MVPs, and end-to-end delivery under one brand. Client solutions: www.projonexa.com/client-projects. College projects: www.projonexa.com/college-projects.'
+  'Projonexa (www.projonexa.com) is India\'s premium software and project development company — affordable college projects for Engineering, BCA, MCA, MBA, Pharmacy, Commerce, Science, Law, and all major streams, plus custom software, AI/ML, web and mobile apps, IoT, and startup MVPs. Client solutions: www.projonexa.com/client-projects. College projects: www.projonexa.com/college-projects.'
 
 export const AEO_SECTION = {
   eyebrow: 'About Projonexa',

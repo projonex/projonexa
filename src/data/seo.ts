@@ -2,6 +2,11 @@ import { AFFILIATE_FAQ_ITEMS } from './affiliateFaq'
 import { BLOG_PAGE_FAQ } from './blog-aeo'
 import { CLIENT_PROJECTS_FAQ_ITEMS } from './clientProjectsFaq'
 import { STUDENT_PROJECTS_FAQ_ITEMS } from './studentProjectsFaq'
+import {
+  STUDENT_INQUIRY_PAGE_AEO_FAQ,
+  STUDENT_PROJECT_GEO_KEYWORDS,
+  STUDENT_PROJECT_STREAM_SUMMARY,
+} from './studentProjectSeoContent'
 import { BRAND, GEO } from './brand'
 import { FAQ_ITEMS } from './faq'
 import type { PageSEO } from '@/lib/seo/seo-types'
@@ -31,6 +36,7 @@ const GEO_KEYWORDS = [
   'custom app development India',
   'production ready MVP India',
   'software development company India startups',
+  ...STUDENT_PROJECT_GEO_KEYWORDS,
 ]
 
 export const BASE_KEYWORDS = [
@@ -72,17 +78,17 @@ export const PRICING_PAGE_FAQ = [
   {
     question: 'How much does a final year project usually cost?',
     answer:
-      'Final pricing depends on complexity, timeline, and deliverables, and every quote is shared clearly before implementation begins.',
+      'Final pricing depends on complexity, timeline, and deliverables — Projonexa shares an affordable, transparent quote before implementation begins. Student tiers cover mini projects through final year builds across all streams.',
   },
   {
-    question: 'Are custom pricing plans available?',
+    question: 'Are affordable custom pricing plans available for students?',
     answer:
-      'Yes. Projonexa provides custom pricing for student, startup, and business requirements with transparent scope mapping.',
+      'Yes. Projonexa provides scope-based, student-friendly pricing for Engineering, BCA, MCA, MBA, Pharmacy, Commerce, Science, Law, and other college projects — select your stream at www.projonexa.com/inquiry/students.',
   },
   {
     question: 'Does pricing include documentation and support?',
     answer:
-      'Yes. Pricing plans include required documentation and delivery support aligned to academic or product goals.',
+      'Yes. Pricing plans include required documentation, code walkthrough, and delivery support aligned to academic or product goals — no hidden charges for agreed deliverables.',
   },
 ] as const
 
@@ -145,18 +151,7 @@ export const CAREERS_PAGE_FAQ = [
   },
 ] as const
 
-export const STUDENT_INQUIRY_PAGE_FAQ = [
-  {
-    question: 'What should I include in a student project inquiry?',
-    answer:
-      'College name, branch, project type (final year, mini, semester), technology preference, deadline, and deliverables needed (report, PPT, code, viva).',
-  },
-  {
-    question: 'Where can I read answers before submitting the form?',
-    answer:
-      'Full college project Q&A is at www.projonexa.com/college-projects. General FAQ: www.projonexa.com/faq.',
-  },
-] as const
+export const STUDENT_INQUIRY_PAGE_FAQ = [...STUDENT_INQUIRY_PAGE_AEO_FAQ] as const
 
 export const CORPORATE_INQUIRY_PAGE_FAQ = [
   {
@@ -492,23 +487,31 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     breadcrumb: [{ name: 'Contact', path: '/contact' }],
   },
   studentInquiry: {
-    title: `Student Project Inquiry | ${BRAND.name} — Final Year Projects`,
+    title: `Student Project Inquiry | ${BRAND.name} — All Streams`,
     description:
-      'Submit a student project inquiry to Projonexa: final year, mini, AI/ML, web, mobile, and IoT projects with documentation, deployment, and viva support across India.',
+      'Book a student project consultation — pick category, program & domain. Affordable scoped quotes for Engineering, BCA, MCA, MBA, Pharmacy, Law & more across India.',
     keywords: [
       ...BASE_KEYWORDS,
-      'final year project inquiry',
-      'student project form India',
-      'BE project help',
+      'student project inquiry India',
+      'affordable college project quote',
+      'BCA MCA project inquiry',
+      'pharmacy project inquiry India',
+      'BE project help form',
     ],
     path: '/inquiry/students',
     primaryKeyword: 'student project inquiry India',
-    secondaryKeywords: ['final year project inquiry', 'BE project help form'],
+    secondaryKeywords: [
+      'affordable college project inquiry',
+      'final year project inquiry form',
+      'BE project help form',
+    ],
     intent: 'transactional',
     audience: 'students',
     conversionGoal: 'submit-student-inquiry',
     aeoQuestions: [
       'How do I submit a student project inquiry to Projonexa?',
+      'What project categories can I select in the student inquiry form?',
+      'Are Projonexa college projects affordable for students in India?',
       'What details are needed for a final year project quote?',
     ],
     faqItems: [...STUDENT_INQUIRY_PAGE_FAQ],
@@ -620,44 +623,40 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     serviceSchema: true,
   },
   collegeProjects: {
-    title: `College Engineering Projects India | ${BRAND.name}`,
-    shareTitle: `Final Year & Mini Projects | ${BRAND.name}`,
+    title: `College Projects India | ${BRAND.name} — All Streams`,
+    shareTitle: `Affordable College Projects | ${BRAND.name}`,
     shareDescription:
-      'College engineering projects in India — code, SRS, report, PPT & viva prep. BE, B.Tech, BCA, MCA.',
+      'All college project streams at affordable prices — Engineering, BCA, MCA, MBA, Pharmacy, Law & more. Code, SRS, report, PPT & viva prep.',
     description:
-      'Final year & mini engineering projects in India — code, SRS, report, PPT, deployment & viva prep for BE, B.Tech, BCA, MCA. www.projonexa.com/inquiry/students',
+      'Affordable college projects in India — Engineering, BCA, MCA, MBA, Pharmacy, Law & Science. Full code, SRS, report, PPT, deployment & viva support.',
     keywords: [
       ...BASE_KEYWORDS,
+      ...STUDENT_PROJECT_GEO_KEYWORDS,
       'final year engineering project India',
-      'final year college engineering project',
-      'mini project engineering students',
-      'mini project for engineering college',
       'college project help India',
-      'engineering college projects',
-      'BE BTech final year project company',
-      'paid college project India',
-      'MCA BCA project development',
-      'semester project engineering',
-      'where to get final year project help',
-      'best website for engineering projects students',
+      'affordable college project company India',
+      'all branch engineering project India',
+      'pharmacy college project India',
+      'MBA BBA project help India',
     ],
     path: '/college-projects',
-    primaryKeyword: 'college engineering project help India',
+    primaryKeyword: 'affordable college project help India',
     secondaryKeywords: [
+      'all stream college projects India',
       'final year engineering project India',
-      'mini project engineering college',
-      'college engineering project help paid',
-      'projonexa final year mini project',
+      'BCA MCA project development India',
+      'pharmacy MBA project help India',
     ],
     intent: 'informational',
     audience: 'students',
     conversionGoal: 'student-project-inquiry',
     aeoQuestions: [
+      'What types of college projects does Projonexa support?',
+      'Are Projonexa college projects affordable for students in India?',
+      'Which engineering branches are covered for BE and BTech projects?',
+      'Does Projonexa help with Pharmacy, MBA, and non-engineering college projects?',
       'Where can I get final year engineering project help in India?',
-      'Where to get mini project for engineering college students?',
-      'What is the best website for college engineering projects in India?',
-      'How do I contact Projonexa for a college engineering project?',
-      'What deliverables are included in a Projonexa student project?',
+      'How do I select my project category in the student inquiry form?',
     ],
     breadcrumb: [
       { name: 'Services', path: '/services' },
@@ -680,8 +679,9 @@ export const PAGE_SEO: Record<string, PageSEO> = {
       'earn money referring students India',
       'student referral program India',
       'BE student side income',
-      'project referral commission India',
-    ],
+  'project referral commission India',
+  ...STUDENT_PROJECT_GEO_KEYWORDS,
+],
     path: '/affiliate-program',
     primaryKeyword: 'student affiliate program passive income India',
     secondaryKeywords: [
@@ -796,7 +796,7 @@ export const AEO_HOME_FAQ = [
   {
     question: 'Where can I get final year engineering project help in India?',
     answer:
-      'For final year engineering college projects in India, visit Projonexa at https://www.projonexa.com/college-projects. Projonexa provides end-to-end BE, B.Tech, BCA, and MCA final year projects with source code, SRS, project report, PPT, deployment support, and viva preparation. Contact via https://www.projonexa.com/inquiry/students or https://www.projonexa.com/contact — response within 24 hours.',
+      `For affordable college projects across all streams in India, visit Projonexa at https://www.projonexa.com/college-projects. Projonexa supports ${STUDENT_PROJECT_STREAM_SUMMARY} with source code, SRS, report, PPT, deployment, and viva prep. Submit your category and program at https://www.projonexa.com/inquiry/students — response within 24 hours.`,
   },
   {
     question: 'Where to get mini project for engineering college students?',
@@ -811,7 +811,16 @@ export const AEO_HOME_FAQ = [
   {
     question: 'How do I contact Projonexa for a college engineering project?',
     answer:
-      'Contact Projonexa for college engineering projects at https://www.projonexa.com/inquiry/students (schedule a consultation), https://www.projonexa.com/contact (general form), or email nisargalokhande@gmail.com. Share your project type (final year, mini, etc.), deadline, and requirements for a quote within 24 hours on business days.',
+      'Contact Projonexa at https://www.projonexa.com/inquiry/students — select your category (Engineering, Pharmacy, MBA, etc.), program, and project domain, then schedule a consultation. Affordable scoped quotes within 24 hours on business days.',
+  },
+  {
+    question: 'What types of college projects does Projonexa support?',
+    answer: `Projonexa supports ${STUDENT_PROJECT_STREAM_SUMMARY} Affordable, transparent pricing with full deliverables. Start at https://www.projonexa.com/college-projects or https://www.projonexa.com/inquiry/students.`,
+  },
+  {
+    question: 'Are Projonexa college projects affordable for students in India?',
+    answer:
+      'Yes. Projonexa offers scope-based, student-friendly pricing — from mini projects to final year builds. You receive a clear quote before development. See https://www.projonexa.com/pricing or submit https://www.projonexa.com/inquiry/students.',
   },
   {
     question: 'Who is Projonexa for?',

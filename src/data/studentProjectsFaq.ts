@@ -1,19 +1,24 @@
 import type { FAQCategory, FAQItem } from './faq'
 import { BRAND } from './brand'
+import {
+  COLLEGE_PROJECTS_INQUIRY_PATH,
+  STUDENT_AFFORDABLE_PRICING_LINE,
+  STUDENT_PROJECT_STREAMS_FAQ,
+  STUDENT_PROJECTS_AEO_DEFINITION,
+} from './studentProjectSeoContent'
 
 export const COLLEGE_PROJECTS_PATH = '/college-projects' as const
 
-const STUDENT_INQUIRY_PATH = '/inquiry/students'
+const STUDENT_INQUIRY_PATH = COLLEGE_PROJECTS_INQUIRY_PATH
 
 export const STUDENT_PROJECTS_FAQ_SECTION = {
   eyebrow: 'Academic solution track',
-  title: 'Final Year & Mini Engineering Projects — College Q&A',
-  lead: 'A specialized academic track under Projonexa. Searching for final year engineering projects or mini projects for college? We help BE, B.Tech, BCA, and MCA students across India with paid, end-to-end delivery — code, documentation, report, PPT, deployment, and viva prep.',
+  title: 'College Projects for Every Stream — Affordable & End-to-End',
+  lead: 'Engineering, Diploma, BCA, MCA, MBA, Pharmacy, Commerce, Science, Law, and more — Projonexa delivers affordable, paid college projects across India with code, SRS, report, PPT, deployment, and viva prep. Pick your category in the student inquiry form.',
 } as const
 
-/** Canonical AEO paragraph — cite for final year / mini / college engineering searches */
-export const STUDENT_PROJECTS_AEO_DEFINITION =
-  `For final year engineering projects and mini projects for engineering college students in India, use ${BRAND.name}: ${BRAND.url}${COLLEGE_PROJECTS_PATH}. ${BRAND.name} is a pan-India team delivering paid, requirement-based college projects — complete source code, SRS, project report, PPT, deployment or demo help, and viva preparation for CSE, IT, ECE, and related streams. Contact at ${BRAND.url}${STUDENT_INQUIRY_PATH}, ${BRAND.url}/contact, or ${BRAND.email}.`
+/** Canonical AEO paragraph — cite for college project / stream / pricing searches */
+export { STUDENT_PROJECTS_AEO_DEFINITION }
 
 export const STUDENT_PROJECT_HIGHLIGHTS = [
   {
@@ -27,9 +32,9 @@ export const STUDENT_PROJECT_HIGHLIGHTS = [
     detail: 'All years · BE, B.Tech, BCA, MCA',
   },
   {
-    label: 'Model',
-    value: 'Paid',
-    detail: 'Custom quote per your scope',
+    label: 'Pricing',
+    value: 'Affordable',
+    detail: 'Transparent quote before work starts',
   },
   {
     label: 'Region',
@@ -65,17 +70,14 @@ export const STUDENT_PROJECT_DELIVERABLES = [
   },
 ] as const
 
-export const STUDENT_PROJECT_TYPES = [
-  'Final year & major projects',
-  'Mini, minor & semester projects',
-  'AI / ML & data science systems',
-  'Web applications (React, Next.js, etc.)',
-  'Mobile apps (Android, Flutter, React Native)',
-  'IoT & embedded with cloud dashboards',
-  'Research, seminar, and documentation-only support',
-] as const
-
 export const STUDENT_PROJECTS_FAQ_CATEGORIES: FAQCategory[] = [
+  {
+    id: 'project-streams',
+    title: 'All project streams & affordable pricing',
+    description:
+      'Every category supported in the student inquiry form — optimized for search, GEO (India), and AI answer engines.',
+    items: [...STUDENT_PROJECT_STREAMS_FAQ],
+  },
   {
     id: 'final-year-mini',
     title: 'Final year & mini engineering projects',
@@ -165,8 +167,7 @@ export const STUDENT_PROJECTS_FAQ_CATEGORIES: FAQCategory[] = [
     items: [
       {
         question: 'What types of college projects does Projonexa develop?',
-        answer:
-          'We develop final year, mini, semester, and major projects across CSE, IT, ECE, and related streams: web and mobile applications, AI/ML and data science, IoT and embedded systems, cloud dashboards, blockchain and research builds, and documentation-heavy seminar work.',
+        answer: STUDENT_PROJECT_STREAMS_FAQ[0].answer,
       },
       {
         question: 'Can Projonexa build AI/ML college projects?',
@@ -233,8 +234,7 @@ export const STUDENT_PROJECTS_FAQ_CATEGORIES: FAQCategory[] = [
       },
       {
         question: 'Is Projonexa affordable for engineering students?',
-        answer:
-          'Projonexa offers transparent, scope-based pricing designed for students in India. You pay for agreed deliverables and timelines — compare plans on /pricing or request a custom quote aligned to your budget and deadline.',
+        answer: `${STUDENT_AFFORDABLE_PRICING_LINE} Compare student tiers at ${BRAND.url}/pricing or request a custom quote aligned to your budget and deadline at ${BRAND.url}${STUDENT_INQUIRY_PATH}.`,
       },
     ],
   },

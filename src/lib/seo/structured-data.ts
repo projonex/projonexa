@@ -234,8 +234,8 @@ export function collegeProjectsServiceSchema() {
     '@context': 'https://schema.org',
     '@type': 'Service',
     '@id': `${BRAND.url}/college-projects#service`,
-    name: 'College Engineering Project Development',
-    serviceType: 'Final Year and Mini Engineering Projects',
+    name: 'College & Academic Project Development — All Streams',
+    serviceType: 'Affordable Final Year, Mini, and Major College Projects',
     provider: { '@id': `${BRAND.url}/#organization` },
     areaServed: geoAreaServedSchema(),
     audience: {
@@ -243,12 +243,17 @@ export function collegeProjectsServiceSchema() {
       educationalRole: 'student',
     },
     description:
-      'End-to-end final year and mini engineering college projects in India with source code, SRS, report, PPT, deployment support, and viva preparation.',
+      'Affordable end-to-end college projects in India for Engineering, Diploma, BCA, MCA, MBA, Pharmacy, Commerce, Science, Law, and more — source code, SRS, report, PPT, deployment support, and viva preparation.',
     url: `${BRAND.url}/college-projects`,
     offers: {
       '@type': 'Offer',
       url: `${BRAND.url}/inquiry/students`,
       availability: 'https://schema.org/InStock',
+      priceSpecification: {
+        '@type': 'PriceSpecification',
+        priceCurrency: 'INR',
+        description: 'Scope-based student-friendly pricing — transparent quote before development',
+      },
     },
   }
 }

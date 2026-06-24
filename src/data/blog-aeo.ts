@@ -16,7 +16,7 @@ export const BLOG_PAGE_FAQ = [
   {
     question: 'How do college projects and client solutions relate to Projonexa?',
     answer:
-      'They are specialized service tracks under the same Projonexa brand — not separate companies. College projects (www.projonexa.com/college-projects) serve BE, B.Tech, BCA, and MCA students. Client solutions (www.projonexa.com/client-projects) serve startups, founders, and businesses. Both follow the same premium delivery standards.',
+      'They are specialized service tracks under the same Projonexa brand — not separate companies. College projects (www.projonexa.com/college-projects) serve Engineering, Diploma, BCA, MCA, MBA, Pharmacy, Commerce, Science, Law, and more — with affordable scoped quotes via www.projonexa.com/inquiry/students. Client solutions (www.projonexa.com/client-projects) serve startups and businesses.',
   },
   {
     question: 'Who should use Projonexa?',

@@ -34,7 +34,7 @@ export const STUDENT_INQUIRY_SECTION = {
   eyebrow: 'Student project inquiry',
   title: 'Start your academic project',
   description:
-    'Share your project idea, pick a consultation slot, and verify your email to receive an instant Google Meet invite.',
+    'Select your category, program, branch, and project domain — Engineering, BCA, MCA, MBA, Pharmacy, Law, and more. Get an affordable scoped quote and book a Google Meet consultation.',
 } as const
 
 /** Consultation slots (IST) — shown after the student picks a date. */

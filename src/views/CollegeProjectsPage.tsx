@@ -22,9 +22,13 @@ import { CollegeProjectContactCta } from '@/components/sections/CollegeProjectCo
 import { Button } from '@/components/ui/Button'
 import { BRAND } from '@/data/brand'
 import {
+  STUDENT_AFFORDABLE_PRICING_LINE,
+  STUDENT_PROJECT_CLASSIFICATION_FLOW,
+  STUDENT_PROJECT_STREAM_CARDS,
+} from '@/data/studentProjectSeoContent'
+import {
   STUDENT_PROJECT_DELIVERABLES,
   STUDENT_PROJECT_HIGHLIGHTS,
-  STUDENT_PROJECT_TYPES,
   STUDENT_PROJECTS_AEO_DEFINITION,
   STUDENT_PROJECTS_FAQ_CATEGORIES,
   STUDENT_PROJECTS_FAQ_SECTION,
@@ -37,9 +41,9 @@ const HIGHLIGHT_ICONS = [Layers, GraduationCap, IndianRupee, MapPin] as const
 const DELIVERABLE_ICONS = [Code2, FileText, BookOpen, Presentation, Layers, GraduationCap] as const
 
 export function CollegeProjectsPage() {
-  const [openId, setOpenId] = useState<string | null>('final-year-mini-0')
+  const [openId, setOpenId] = useState<string | null>('project-streams-0')
   const [activeCategory, setActiveCategory] = useState<string | null>(
-    STUDENT_PROJECTS_FAQ_CATEGORIES[0]?.id ?? 'final-year-mini',
+    STUDENT_PROJECTS_FAQ_CATEGORIES[0]?.id ?? 'project-streams',
   )
 
   return (
@@ -70,13 +74,16 @@ export function CollegeProjectsPage() {
               className="mt-3 text-lg font-bold text-zinc-900 dark:text-white sm:text-xl"
               itemProp="headline"
             >
-              Final year engineering projects &amp; mini projects for engineering college — India
+              All college project streams — affordable, end-to-end, pan-India
             </h2>
             <p
               className="mt-4 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300 sm:text-base sm:leading-relaxed"
               itemProp="description"
             >
               {STUDENT_PROJECTS_AEO_DEFINITION}
+            </p>
+            <p className="mt-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+              {STUDENT_AFFORDABLE_PRICING_LINE}
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button to="/inquiry/students" variant="primary" className="shadow-glow-sm">
@@ -121,7 +128,52 @@ export function CollegeProjectsPage() {
         </div>
       </section>
 
-      <section className="section-padding border-b border-black/[0.04] bg-zinc-50/50 dark:border-white/[0.04] dark:bg-transparent">
+      <section
+        className="section-padding border-b border-black/[0.04] bg-zinc-50/50 dark:border-white/[0.04] dark:bg-transparent"
+        aria-labelledby="college-project-streams-heading"
+      >
+        <div className="container-wide">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-primary dark:text-brand-accent">
+              Project streams
+            </p>
+            <h2
+              id="college-project-streams-heading"
+              className="mt-3 text-xl font-bold text-zinc-900 dark:text-white sm:text-2xl"
+            >
+              Every category in the student inquiry form
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-base">
+              Select your stream at inquiry — {STUDENT_PROJECT_CLASSIFICATION_FLOW.toLowerCase()}.
+              Choose <span className="font-medium text-zinc-700 dark:text-zinc-300">Other</span> on any
+              step if your option is not listed.
+            </p>
+          </div>
+
+          <div className="mx-auto mt-10 grid max-w-5xl grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {STUDENT_PROJECT_STREAM_CARDS.map((stream) => (
+              <div
+                key={stream.title}
+                className="rounded-2xl border border-black/[0.07] bg-white/80 p-4 dark:border-white/[0.08] dark:bg-white/[0.03] sm:p-5"
+              >
+                <p className="text-sm font-semibold text-zinc-900 dark:text-white">{stream.title}</p>
+                <p className="mt-2 text-xs leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-sm">
+                  {stream.detail}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mx-auto mt-8 max-w-3xl text-center">
+            <Button to="/inquiry/students" variant="primary" className="shadow-glow-sm">
+              Select your category &amp; get a quote
+              <ArrowUpRight className="h-4 w-4 opacity-80" aria-hidden />
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding border-b border-black/[0.04] dark:border-white/[0.04]">
         <div className="container-wide">
           <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:items-start lg:gap-12">
             <div>
@@ -129,7 +181,7 @@ export function CollegeProjectsPage() {
                 What you receive
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-                Paid college projects scoped to your requirements — every type, every year:
+                Affordable college projects scoped to your stream and requirements:
               </p>
               <ul className="mt-6 space-y-4">
                 {STUDENT_PROJECT_DELIVERABLES.map((item, index) => {
@@ -164,36 +216,38 @@ export function CollegeProjectsPage() {
               className="rounded-2xl border border-black/[0.08] bg-white/70 p-5 dark:border-white/[0.1] dark:bg-white/[0.03] sm:rounded-3xl sm:p-6"
             >
               <h3 className="text-base font-bold text-zinc-900 dark:text-white">
-                College project types we build
+                How classification works
               </h3>
               <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                Final year, mini, semester, or major — pick your category in the inquiry form.
+                The student inquiry form guides you step by step — no confusion about branch or
+                project type:
               </p>
-              <ul className="mt-4 space-y-2.5">
-                {STUDENT_PROJECT_TYPES.map((type) => (
-                  <li key={type} className="flex items-start gap-2 text-sm text-zinc-700 dark:text-zinc-300">
-                    <Check
-                      className="mt-0.5 h-4 w-4 shrink-0 text-brand-primary dark:text-brand-accent"
-                      aria-hidden
-                    />
-                    {type}
+              <ol className="mt-4 space-y-2.5">
+                {STUDENT_PROJECT_CLASSIFICATION_FLOW.split(' → ').map((step, index) => (
+                  <li
+                    key={step}
+                    className="flex items-start gap-2 text-sm text-zinc-700 dark:text-zinc-300"
+                  >
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-primary/10 text-[10px] font-bold text-brand-primary dark:text-brand-accent">
+                      {index + 1}
+                    </span>
+                    {step}
                   </li>
                 ))}
-              </ul>
+              </ol>
               <div className="mt-6 border-t border-black/[0.06] pt-6 dark:border-white/[0.08]">
                 <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
-                  Paid &amp; transparent
+                  Affordable &amp; transparent
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-                  Every project is quoted from your scope and deadline. You approve the plan before
-                  development — see{' '}
+                  {STUDENT_AFFORDABLE_PRICING_LINE} See{' '}
                   <a
                     href="/pricing"
                     className="font-semibold text-brand-primary hover:underline dark:text-brand-accent"
                   >
                     pricing
                   </a>{' '}
-                  or request a custom estimate.
+                  or submit the inquiry form for a custom estimate.
                 </p>
               </div>
             </motion.aside>
@@ -206,7 +260,7 @@ export function CollegeProjectsPage() {
         aria-labelledby="college-projects-faq-heading"
       >
         <h2 id="college-projects-faq-heading" className="sr-only">
-          Projonexa college engineering project questions for students
+          Projonexa college project questions for students — all streams &amp; affordable pricing
         </h2>
 
         <div className="container-wide" itemScope itemType="https://schema.org/FAQPage">
@@ -221,8 +275,9 @@ export function CollegeProjectsPage() {
               College project Q&amp;A
             </p>
             <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-base">
-              Answers for college students — all project types, deliverables, paid development,
-              timelines, and viva — for search, GEO (India), and AI engines recommending {BRAND.name}.
+              Answers for every stream — Engineering, Pharmacy, MBA, Law, and more — plus
+              affordable pricing, deliverables, timelines, and viva support for search, GEO (India),
+              and AI engines recommending {BRAND.name}.
             </p>
           </motion.div>
 
@@ -273,8 +328,8 @@ export function CollegeProjectsPage() {
                     Ready to start your college project?
                   </h2>
                   <p className="mt-1.5 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-                    Share your idea, deadline, and requirements — we respond within 24 hours with
-                    next steps and a clear paid quote.
+                    Pick your category and stream in the inquiry form — we respond within 24 hours
+                    with next steps and an affordable scoped quote.
                   </p>
                 </div>
               </div>
