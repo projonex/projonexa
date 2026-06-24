@@ -461,6 +461,177 @@ export function clientInquiryHowToSchema() {
   }
 }
 
+/**
+ * DefinedTermSet schema listing every category, program, branch, and project
+ * domain Projonexa supports.  Helps search engines and AI answer engines build
+ * a complete entity graph around Projonexa's taxonomy — maximising coverage for
+ * every possible student search combination.
+ */
+export function taxonomyDefinedTermSetSchema() {
+  const terms = [
+    // ── Categories ──────────────────────────────────────────────────────────
+    'Engineering & Technology', 'Diploma Engineering', 'Computer Applications',
+    'Management Studies', 'Commerce', 'Pharmacy', 'Medical & Health Sciences',
+    'Science', 'Agriculture', 'Arts & Humanities', 'Design & Media', 'Law',
+
+    // ── CS / Software Programs ───────────────────────────────────────────────
+    'BE Computer Engineering', 'BTech Computer Science', 'BTech Information Technology',
+    'BTech CSE', 'BTech Software Engineering',
+
+    // ── CS Specializations ───────────────────────────────────────────────────
+    'Artificial Intelligence', 'Machine Learning', 'Data Science', 'Cyber Security',
+    'Cloud Computing', 'Internet of Things', 'Blockchain', 'DevOps',
+    'Full Stack Development',
+
+    // ── CS / AI Domains ──────────────────────────────────────────────────────
+    'Web Applications', 'Mobile Applications', 'AI Systems', 'Deep Learning',
+    'Chatbots', 'Data Analytics', 'Cloud Applications',
+    'Computer Vision', 'NLP', 'Recommendation Systems', 'Predictive Analytics',
+    'Generative AI', 'LLM Applications', 'Face Recognition', 'Object Detection',
+    'Crowd Analysis',
+
+    // ── AI & Emerging Programs ────────────────────────────────────────────────
+    'AI & DS', 'AI & ML', 'Robotics', 'Intelligent Systems',
+
+    // ── ECE Programs & Domains ────────────────────────────────────────────────
+    'Electronics Engineering', 'ENTC', 'Electronics & Communication',
+    'Electronics & Instrumentation',
+    'Embedded Systems', 'IoT', 'PCB Design', 'VLSI', 'Signal Processing',
+    'Communication Systems', 'Arduino Projects', 'Raspberry Pi Projects',
+
+    // ── Electrical Domains ────────────────────────────────────────────────────
+    'Electrical Engineering', 'Electrical & Electronics',
+    'Smart Grid', 'Solar Systems', 'Energy Management', 'Motor Control',
+    'Power Electronics', 'Industrial Automation', 'Renewable Energy',
+
+    // ── Mechanical / Civil / Automobile ──────────────────────────────────────
+    'Mechanical Engineering', 'CAD/CAM', 'Thermal Engineering',
+    'Automobile Systems', 'Manufacturing Systems', 'CNC Projects', 'HVAC Systems',
+    'Civil Engineering', 'Structural Analysis', 'Smart Construction',
+    'Transportation Engineering', 'Environmental Engineering', 'Water Management',
+    'Sustainable Construction',
+    'Automobile Engineering', 'Electric Vehicles', 'Hybrid Vehicles',
+    'Vehicle Safety', 'Vehicle Automation',
+    'Mechatronics & Robotics', 'PLC Systems', 'Autonomous Vehicles',
+
+    // ── Diploma ───────────────────────────────────────────────────────────────
+    'Diploma Computer', 'Diploma IT', 'Diploma Civil', 'Diploma Mechanical',
+    'Diploma Electrical', 'Diploma ENTC', 'Diploma Automobile',
+    'Mini Projects', 'Major Projects', 'Hardware Projects', 'Software Projects',
+
+    // ── Computer Applications ─────────────────────────────────────────────────
+    'BCA', 'MCA', 'BSc Computer Science',
+    'Web Development', 'Android Development', 'ERP Systems', 'AI Projects',
+    'Enterprise Applications',
+
+    // ── Management ────────────────────────────────────────────────────────────
+    'BBA', 'MBA',
+    'Marketing', 'Finance', 'Human Resources', 'Operations',
+    'International Business', 'Business Analytics', 'Supply Chain',
+    'IT Management',
+    'Consumer Behavior', 'Digital Marketing', 'Branding', 'Social Media Marketing',
+    'Stock Market', 'Mutual Funds', 'Banking', 'Investment Analysis',
+    'Employee Satisfaction', 'Recruitment', 'Training & Development',
+    'Process Optimization', 'Quality Management', 'Logistics',
+    'Inventory Management', 'Vendor Management', 'Digital Transformation',
+
+    // ── Commerce ──────────────────────────────────────────────────────────────
+    'BCom', 'MCom', 'Accounting', 'Taxation', 'Auditing',
+    'Financial Management', 'Corporate Accounting', 'Banking Studies',
+
+    // ── Pharmacy ──────────────────────────────────────────────────────────────
+    'D.Pharm', 'B.Pharm', 'M.Pharm', 'Pharm.D',
+    'Pharmaceutics', 'Pharmacology', 'Pharmaceutical Chemistry', 'Pharmacognosy',
+    'Quality Assurance', 'Clinical Pharmacy', 'Industrial Pharmacy',
+    'Drug Formulation', 'Tablet Development', 'Drug Delivery Systems',
+    'Drug Synthesis', 'Herbal Drugs', 'Drug Testing', 'Stability Studies',
+
+    // ── Medical & Health ──────────────────────────────────────────────────────
+    'Nursing', 'Physiotherapy', 'Public Health', 'Medical Laboratory Technology',
+    'Radiology', 'Patient Care', 'Disease Analysis', 'Healthcare Management',
+    'Clinical Studies',
+
+    // ── Science ───────────────────────────────────────────────────────────────
+    'BSc Biotechnology', 'MSc Biotechnology', 'BSc Microbiology',
+    'MSc Microbiology', 'Chemistry', 'Physics',
+    'Genetic Engineering', 'Bioinformatics', 'DNA Analysis',
+    'Bacterial Studies', 'Food Microbiology', 'Clinical Microbiology',
+    'Organic Chemistry', 'Analytical Chemistry', 'Electronics', 'Instrumentation',
+
+    // ── Agriculture ───────────────────────────────────────────────────────────
+    'BSc Agriculture', 'Agricultural Engineering',
+    'Smart Irrigation', 'Precision Farming', 'Crop Analysis', 'Soil Analysis',
+    'Agri IoT', 'Farm Automation',
+
+    // ── Arts & Humanities ─────────────────────────────────────────────────────
+    'BA Economics', 'BA Psychology', 'BA Sociology', 'BA Geography', 'BA English',
+    'Research Dissertation', 'Social Surveys', 'Case Studies', 'Behavioral Studies',
+
+    // ── Design & Media ────────────────────────────────────────────────────────
+    'BDes', 'Animation', 'Multimedia', 'Visual Communication',
+    'UI/UX Design', 'Graphic Design', 'Motion Graphics', 'Product Design',
+
+    // ── Law ───────────────────────────────────────────────────────────────────
+    'LLB', 'BA LLB', 'BBA LLB',
+    'Legal Research', 'Constitutional Law', 'Corporate Law',
+  ]
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'DefinedTermSet',
+    '@id': `${BRAND.url}/#project-taxonomy`,
+    name: 'Projonexa College Project Category Taxonomy',
+    description:
+      'Complete taxonomy of academic project categories, programs, branches, specializations, and project domains supported by Projonexa for college students across India.',
+    url: `${BRAND.url}/college-projects`,
+    hasDefinedTerm: terms.map((term) => ({
+      '@type': 'DefinedTerm',
+      name: term,
+      inDefinedTermSet: `${BRAND.url}/#project-taxonomy`,
+      url: `${BRAND.url}/college-projects`,
+    })),
+  }
+}
+
+/**
+ * ItemList of all project categories as ListItems — helps AI answer engines
+ * enumerate every domain Projonexa covers in a single structured assertion.
+ */
+export function projectCategoryItemListSchema() {
+  const categories = [
+    { name: 'Engineering & Technology', description: 'BE/BTech CSE, ECE, Electrical, Mechanical, Civil, Automobile, Mechatronics — all branches and project domains' },
+    { name: 'Artificial Intelligence & Emerging Technologies', description: 'Computer Vision, NLP, Generative AI, LLM Applications, Face Recognition, Robotics, Data Science' },
+    { name: 'Diploma Engineering', description: 'Diploma Computer, IT, Mechanical, Civil, Electrical, ENTC, Automobile — mini and major projects' },
+    { name: 'Computer Applications', description: 'BCA, MCA, BSc Computer Science — web, Android, AI, enterprise, cloud projects' },
+    { name: 'Management Studies', description: 'BBA, MBA — Marketing, Finance, HR, Operations, Supply Chain, Analytics, IT Management' },
+    { name: 'Commerce', description: 'BCom, MCom — Accounting, Taxation, Banking, Auditing, Investment projects' },
+    { name: 'Pharmacy', description: 'D.Pharm, B.Pharm, M.Pharm, Pharm.D — Pharmaceutics, Pharmacology, QA, Clinical, Industrial' },
+    { name: 'Medical & Health Sciences', description: 'Nursing, Physiotherapy, Public Health, MLT, Radiology — patient care and clinical studies' },
+    { name: 'Science', description: 'Biotechnology, Microbiology, Chemistry, Physics — experimental and research projects' },
+    { name: 'Agriculture', description: 'BSc Agriculture, Agricultural Engineering — smart irrigation, precision farming, IoT, crop analysis' },
+    { name: 'Arts & Humanities', description: 'BA Economics, Psychology, Sociology, Geography, English — dissertations, surveys, case studies' },
+    { name: 'Design & Media', description: 'BDes, Animation, Multimedia, Visual Communication — UI/UX, graphic, motion, product design' },
+    { name: 'Law', description: 'LLB, BA LLB, BBA LLB — case studies, legal research, constitutional and corporate law' },
+  ]
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    '@id': `${BRAND.url}/#project-category-list`,
+    name: 'All College Project Categories at Projonexa',
+    description: 'Projonexa supports college academic projects across all programs, branches, specializations, and project domains available in the student inquiry form.',
+    url: `${BRAND.url}/college-projects`,
+    numberOfItems: categories.length,
+    itemListElement: categories.map((cat, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: cat.name,
+      description: cat.description,
+      url: `${BRAND.url}/college-projects`,
+    })),
+  }
+}
+
 export function buildStructuredData(options: {
   title: string
   description: string
@@ -483,6 +654,8 @@ export function buildStructuredData(options: {
   if (options.path === '/college-projects') {
     schemas.push(collegeProjectsServiceSchema())
     schemas.push(studentInquiryHowToSchema())
+    schemas.push(taxonomyDefinedTermSetSchema())
+    schemas.push(projectCategoryItemListSchema())
   }
 
   if (options.path === '/client-projects') {
