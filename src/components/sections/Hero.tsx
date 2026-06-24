@@ -1,9 +1,11 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, MapPin } from 'lucide-react'
 import { BRAND, HERO } from '@/data/brand'
 import { Button } from '@/components/ui/Button'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { easeSmooth } from '@/lib/motion'
+import { HeroNodeAnimation } from './HeroNodeAnimation'
 
 const fadeUp = (delay: number, reduced: boolean) =>
   reduced
@@ -60,9 +62,21 @@ function HeroTagline({ reducedMotion }: { reducedMotion: boolean }) {
 
 export function Hero() {
   const reducedMotion = useReducedMotion()
+  const [ctaHovered, setCtaHovered] = useState(false)
 
   return (
     <section className="relative min-h-[100svh] overflow-hidden pt-[calc(4.25rem+env(safe-area-inset-top,0px))] sm:min-h-screen sm:pt-16">
+
+      {/* ── Animated background nodes ── */}
+      <HeroNodeAnimation isConverged={ctaHovered} />
+
+      {/* ── Hero glow radial background ── */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-[60%]"
+        style={{ background: 'radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0,200,255,0.09) 0%, transparent 70%)' }}
+        aria-hidden
+      />
+
       <div className="container-wide relative flex min-h-[calc(100svh-4rem)] flex-col items-center justify-center px-4 py-14 text-center sm:min-h-[calc(100vh-4rem)] sm:px-6 sm:py-24 lg:px-8">
         <HeroTagline reducedMotion={reducedMotion} />
 
@@ -107,6 +121,10 @@ export function Hero() {
         <motion.div
           {...fadeUp(0.3, reducedMotion)}
           className="mt-10 flex w-full max-w-md flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4"
+          onMouseEnter={() => setCtaHovered(true)}
+          onMouseLeave={() => setCtaHovered(false)}
+          onFocus={() => setCtaHovered(true)}
+          onBlur={() => setCtaHovered(false)}
         >
           <Button
             to={HERO.primaryCta.path}
