@@ -29,12 +29,44 @@ function geoAreaServedSchema() {
   ]
 }
 
+/** Full-detail Person schema for founder — EEAT signal for Google Quality Rater guidelines */
+export function founderPersonSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': `${BRAND.url}/#founder`,
+    name: FOUNDER.name,
+    jobTitle: 'Founder & CEO',
+    worksFor: { '@id': `${BRAND.url}/#organization` },
+    url: FOUNDER.linkedin,
+    email: FOUNDER.email,
+    sameAs: [
+      FOUNDER.linkedin,
+      FOUNDER.github,
+    ],
+    knowsAbout: [
+      'Software Engineering',
+      'Startup MVP Development',
+      'Custom Software Development',
+      'Artificial Intelligence',
+      'Machine Learning',
+      'Web Application Development',
+      'Mobile Application Development',
+      'Final Year Engineering Projects',
+      'Academic Project Delivery',
+      'Technical Documentation',
+    ],
+    nationality: { '@type': 'Country', name: GEO.country },
+  }
+}
+
 export function organizationSchema(description: string) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     '@id': `${BRAND.url}/#organization`,
     name: BRAND.name,
+    alternateName: ['Projonexa India', 'Projonexa Technologies'],
     url: BRAND.url,
     logo: brandLogoImageObject('primary'),
     image: brandLogoImageObject('primary'),
@@ -42,16 +74,11 @@ export function organizationSchema(description: string) {
     slogan: BRAND.tagline,
     email: BRAND.email,
     foundingDate: '2026',
-    founder: {
-      '@type': 'Person',
-      name: FOUNDER.name,
-      jobTitle: 'Founder & CEO',
-      url: FOUNDER.linkedin,
-      sameAs: [FOUNDER.linkedin, FOUNDER.github],
-    },
+    founder: { '@id': `${BRAND.url}/#founder` },
     address: {
       '@type': 'PostalAddress',
       addressCountry: GEO.countryCode,
+      addressRegion: 'India',
     },
     geo: {
       '@type': 'GeoCoordinates',
@@ -59,7 +86,12 @@ export function organizationSchema(description: string) {
       longitude: GEO.longitude,
     },
     areaServed: geoAreaServedSchema(),
-    sameAs: [FOUNDER.linkedin, FOUNDER.github, 'https://github.com/projonexa/projonexa'],
+    sameAs: [
+      FOUNDER.linkedin,
+      FOUNDER.github,
+      'https://github.com/projonexa/projonexa',
+      'https://github.com/nikobuddy',
+    ],
     knowsAbout: [
       'Projonexa',
       'Custom Software Development',
@@ -74,7 +106,13 @@ export function organizationSchema(description: string) {
       'Technical Documentation',
       'Final Year Projects',
       'College Engineering Projects',
-      'Engineering Projects',
+      'Engineering Projects for Students',
+      'BCA MCA Final Year Projects',
+      'MBA Project Help India',
+      'Pharmacy College Projects',
+      'Python Machine Learning Projects',
+      'React MERN Stack Projects',
+      'Flutter Mobile App Projects',
       'Student Affiliate Program',
       'Referral Commission Programs',
     ],
@@ -84,6 +122,11 @@ export function organizationSchema(description: string) {
       email: BRAND.email,
       availableLanguage: ['English', 'Hindi'],
       areaServed: GEO.countryCode,
+    },
+    numberOfEmployees: {
+      '@type': 'QuantitativeValue',
+      minValue: 10,
+      maxValue: 200,
     },
   }
 }
@@ -320,6 +363,104 @@ export function speakableWebPageSchema(path: string, cssSelectors: string[]) {
   }
 }
 
+/** HowTo schema — student inquiry process; renders as rich result with numbered steps in Google */
+export function studentInquiryHowToSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How to Get Your College Project from Projonexa',
+    description:
+      'A step-by-step guide to getting an affordable, complete final year or college project from Projonexa — from inquiry to viva preparation.',
+    totalTime: 'P7D',
+    supply: [
+      { '@type': 'HowToSupply', name: 'Project requirements (topic, branch, deadline)' },
+      { '@type': 'HowToSupply', name: 'University guidelines (if specific format needed)' },
+    ],
+    tool: [
+      { '@type': 'HowToTool', name: 'Student inquiry form at projonexa.com/inquiry/students' },
+    ],
+    step: [
+      {
+        '@type': 'HowToStep',
+        position: 1,
+        name: 'Submit Student Inquiry',
+        text: 'Go to https://www.projonexa.com/inquiry/students. Select your category (Engineering, BCA, MCA, MBA, Pharmacy, etc.), program, branch, and project domain. Add your timeline and any specific requirements.',
+        url: `${BRAND.url}/inquiry/students`,
+      },
+      {
+        '@type': 'HowToStep',
+        position: 2,
+        name: 'Receive Scoped Quote',
+        text: 'Projonexa responds within 24 hours with topic suggestions, full scope, pricing, and timeline. You discuss and finalise the project topic and deliverables together.',
+        url: `${BRAND.url}/contact`,
+      },
+      {
+        '@type': 'HowToStep',
+        position: 3,
+        name: 'Confirm & Project Begins',
+        text: 'After you confirm the quote, the assigned developer starts the project. You receive milestone updates — design, development, testing, and documentation.',
+        url: `${BRAND.url}/college-projects`,
+      },
+      {
+        '@type': 'HowToStep',
+        position: 4,
+        name: 'Receive Deliverables',
+        text: 'You receive complete source code, SRS, project report, PPT, and deployment guidance — all formatted to your university guidelines.',
+        url: `${BRAND.url}/college-projects`,
+      },
+      {
+        '@type': 'HowToStep',
+        position: 5,
+        name: 'Viva Preparation',
+        text: 'Projonexa conducts a code walkthrough and mock viva session — covering expected questions, demo script, and presentation coaching so you can explain the project confidently.',
+        url: `${BRAND.url}/college-projects`,
+      },
+    ],
+  }
+}
+
+/** HowTo schema for the client/startup inquiry process */
+export function clientInquiryHowToSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How to Build Your Startup MVP with Projonexa',
+    description:
+      'How founders and businesses submit a product inquiry and get a production-ready MVP or custom software built by Projonexa.',
+    totalTime: 'P21D',
+    step: [
+      {
+        '@type': 'HowToStep',
+        position: 1,
+        name: 'Submit Corporate Inquiry',
+        text: 'Go to https://www.projonexa.com/inquiry/corporate. Describe your product vision, required features, target users, tech preferences, and delivery timeline.',
+        url: `${BRAND.url}/inquiry/corporate`,
+      },
+      {
+        '@type': 'HowToStep',
+        position: 2,
+        name: 'Discovery & Scoping',
+        text: 'Projonexa reviews your requirements and schedules a discovery call. You receive a detailed scope document, recommended tech stack, milestone plan, and transparent quote.',
+        url: `${BRAND.url}/client-projects`,
+      },
+      {
+        '@type': 'HowToStep',
+        position: 3,
+        name: 'Development Milestones',
+        text: 'Sprint-based development with regular updates, demos, and review checkpoints. Architecture, backend, frontend, and integrations delivered iteratively.',
+        url: `${BRAND.url}/client-projects`,
+      },
+      {
+        '@type': 'HowToStep',
+        position: 4,
+        name: 'Deployment & Handover',
+        text: 'Production deployment, technical documentation, architecture diagrams, and a clean handover with post-launch support window so your team can maintain and iterate.',
+        url: `${BRAND.url}/client-projects`,
+      },
+    ],
+  }
+}
+
 export function buildStructuredData(options: {
   title: string
   description: string
@@ -332,6 +473,7 @@ export function buildStructuredData(options: {
   article?: ArticleMeta
 }) {
   const schemas: object[] = [
+    founderPersonSchema(),
     organizationSchema(options.description),
     webSiteSchema(),
     localBusinessSchema(),
@@ -340,10 +482,20 @@ export function buildStructuredData(options: {
 
   if (options.path === '/college-projects') {
     schemas.push(collegeProjectsServiceSchema())
+    schemas.push(studentInquiryHowToSchema())
   }
 
   if (options.path === '/client-projects') {
     schemas.push(clientProjectsServiceSchema())
+    schemas.push(clientInquiryHowToSchema())
+  }
+
+  if (options.path === '/inquiry/students') {
+    schemas.push(studentInquiryHowToSchema())
+  }
+
+  if (options.path === '/inquiry/corporate') {
+    schemas.push(clientInquiryHowToSchema())
   }
 
   const speakableSelectors = SPEAKABLE_PAGES[options.path]

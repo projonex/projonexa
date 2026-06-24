@@ -7,7 +7,7 @@ import {
   STUDENT_PROJECT_GEO_KEYWORDS,
   STUDENT_PROJECT_STREAM_SUMMARY,
 } from './studentProjectSeoContent'
-import { BRAND, GEO } from './brand'
+import { BRAND } from './brand'
 import { FAQ_ITEMS } from './faq'
 import type { PageSEO } from '@/lib/seo/seo-types'
 export type { Audience, BreadcrumbItem, PageSEO, SearchIntent } from '@/lib/seo/seo-types'
@@ -40,6 +40,7 @@ const GEO_KEYWORDS = [
 ]
 
 export const BASE_KEYWORDS = [
+  // Core service terms
   'final year projects',
   'engineering projects',
   'AI projects',
@@ -53,6 +54,80 @@ export const BASE_KEYWORDS = [
   'web development projects',
   'mobile app projects',
   'Projonexa',
+
+  // Branch-specific keywords
+  'CSE final year project India',
+  'IT engineering project India',
+  'ECE final year project India',
+  'mechanical engineering project India',
+  'civil engineering project India',
+  'electrical engineering project India',
+  'BE project help India',
+  'BTech CSE project with source code',
+  'BTech IT final year project',
+  'computer science final year project',
+  'information technology project India',
+  'AI ML project engineering students India',
+  'machine learning project for students India',
+  'deep learning project final year',
+  'data science project final year India',
+  'IoT project with hardware India',
+  'IoT smart home project India',
+  'blockchain final year project',
+  'cybersecurity project engineering',
+  'cloud computing project final year',
+
+  // Technology stack keywords
+  'Python final year project India',
+  'React final year project India',
+  'Node.js final year project',
+  'Django project with source code India',
+  'Flutter mobile app project India',
+  'React Native project India',
+  'Android app final year project India',
+  'MERN stack final year project',
+  'full stack web development project India',
+  'Java Spring Boot project India',
+  'PHP project with source code India',
+  'Arduino IoT project India',
+  'Raspberry Pi project India',
+
+  // City / region keywords
+  'final year project Mumbai',
+  'final year project Pune',
+  'college project Bangalore',
+  'engineering project Delhi',
+  'final year project Nagpur',
+  'BTech project Maharashtra',
+  'college project Hyderabad',
+  'final year project Chennai',
+  'college project Kolkata',
+  'student project Ahmedabad',
+  'final year project Nashik',
+  'college project Jaipur',
+  'engineering project pan India',
+
+  // Non-engineering stream keywords
+  'BCA final year project India',
+  'MCA project with source code India',
+  'MBA project help India',
+  'BBA project India',
+  'pharmacy final year project India',
+  'BCom project India',
+  'law college project India',
+  'science final year project India',
+  'diploma engineering project India',
+
+  // Intent-based keywords
+  'paid college project company India',
+  'project with SRS report PPT India',
+  'college project with documentation India',
+  'final year project with viva preparation',
+  'buy final year project India',
+  'get final year project done India',
+  'hire someone for final year project India',
+  'affordable project help for students India',
+
   ...GEO_KEYWORDS,
 ]
 
@@ -199,8 +274,8 @@ export const CONTACT_PAGE_FAQ = [
 
 export const PAGE_SEO: Record<string, PageSEO> = {
   home: {
-    title: `${BRAND.name} | Final Year College Projects & MVP Development India`,
-    shareTitle: `${BRAND.name} | Final Year Projects & Software Delivery India`,
+    title: `Final Year College Projects & MVP Development India | ${BRAND.name}`,
+    shareTitle: `Final Year Projects & Software Delivery India | ${BRAND.name}`,
     shareDescription:
       'Final year college projects, startup MVPs, AI/ML, web & mobile apps in India — code, SRS, reports, deployment & viva prep. www.projonexa.com',
     description:
@@ -237,7 +312,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     serviceSchema: true,
   },
   about: {
-    title: `About ${BRAND.name} | Innovation Platform — ${GEO.country}`,
+    title: `About Projonexa — Premium Tech Partner India | ${BRAND.name}`,
     description:
       `Learn how Projonexa helps students, colleges, startups, and businesses turn ideas into production-ready projects with expert mentorship and proven delivery.`,
     keywords: [...BASE_KEYWORDS, 'about projonexa', 'premium software company India'],
@@ -257,7 +332,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     breadcrumb: [{ name: 'About', path: '/about' }],
   },
   services: {
-    title: `Technology Services | ${BRAND.name} — Custom Software, AI, MVP`,
+    title: `Custom Software Development India — AI/ML, MVP & Projects | ${BRAND.name}`,
     description:
       'Projonexa delivers custom software, startup MVPs, AI/ML, web and mobile apps, IoT builds, and college project tracks with documentation and support.',
     keywords: [...BASE_KEYWORDS, 'project development services', 'final year project help'],
@@ -288,7 +363,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     serviceSchema: true,
   },
   projects: {
-    title: `Projects Portfolio | ${BRAND.name} — SPPU BUDDY & More`,
+    title: `Live Products Portfolio — SPPU BUDDY & More | ${BRAND.name}`,
     description:
       'Explore live products from Projonexa, including SPPU BUDDY, a free Android app for SPPU students with notes, PYQs, syllabus, dark mode, and SGPA tools.',
     keywords: [
@@ -314,7 +389,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     breadcrumb: [{ name: 'Projects', path: '/projects' }],
   },
   blog: {
-    title: `Blog | ${BRAND.name} — Technology Guides & Service Insights`,
+    title: `Final Year Project & Tech Guides Blog — India | ${BRAND.name}`,
     description:
       'In-depth guides on Projonexa services, final year projects, AI, MVPs, and software development — trusted resources for students, startups, and businesses in India.',
     keywords: [...BASE_KEYWORDS, 'Projonexa blog', 'technology services India', 'project development guides'],
@@ -334,7 +409,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     breadcrumb: [{ name: 'Blog', path: '/blog' }],
   },
   portfolio: {
-    title: `Portfolio | ${BRAND.name} — Academic & Industry Projects`,
+    title: `Project Portfolio India — Academic & Industry Builds | ${BRAND.name}`,
     description:
       'Projonexa portfolio includes 100+ projects across engineering, AI, web, mobile, IoT, and startup domains, trusted by students and innovators.',
     keywords: [...BASE_KEYWORDS, 'project showcase', 'engineering portfolio'],
@@ -354,7 +429,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     breadcrumb: [{ name: 'Portfolio', path: '/portfolio' }],
   },
   pricing: {
-    title: `Pricing | ${BRAND.name} — Affordable Student Project Plans`,
+    title: `Affordable Final Year Project Pricing India — Student Plans | ${BRAND.name}`,
     description:
       'Transparent, student-friendly pricing for mini projects, final year projects, and startup MVPs. Custom quotes aligned to your college deadline and scope.',
     keywords: [...BASE_KEYWORDS, 'project pricing India', 'affordable final year project'],
@@ -384,7 +459,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     breadcrumb: [{ name: 'Pricing', path: '/pricing' }],
   },
   careers: {
-    title: `Careers at ${BRAND.name} | Developers, Mentors and Interns`,
+    title: `Careers at Projonexa India — Developers, Mentors & Interns | ${BRAND.name}`,
     description:
       'Explore roles for developers, designers, QA, mentors, and interns at Projonexa, and apply online to join our innovation team across India and globally.',
     keywords: [...BASE_KEYWORDS, 'freelance developer India', 'projonexa careers'],
@@ -422,7 +497,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     ],
   },
   faq: {
-    title: `FAQ | ${BRAND.name} — Projects, Pricing, Careers & Support`,
+    title: `Final Year Project FAQ India — Projects, Pricing & Support | ${BRAND.name}`,
     description:
       'Projonexa FAQ: project types, deliverables, timelines, student pricing, viva prep, startup MVPs, careers, SPPU BUDDY, and how to contact us in India and globally.',
     keywords: [
@@ -457,7 +532,7 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     faqSchema: true,
   },
   contact: {
-    title: `Contact ${BRAND.name} | Start Your Project — ${GEO.country}`,
+    title: `Contact Projonexa India — Start Your Project Today | ${BRAND.name}`,
     description:
       'Contact Projonexa for final year projects, AI/ML, web and mobile apps, IoT, and startup MVPs. Submit an inquiry for a response within 24 hours.',
     keywords: [...BASE_KEYWORDS, 'contact projonexa', 'project inquiry India'],
@@ -623,8 +698,8 @@ export const PAGE_SEO: Record<string, PageSEO> = {
     serviceSchema: true,
   },
   collegeProjects: {
-    title: `College Projects India | ${BRAND.name} — All Streams`,
-    shareTitle: `Affordable College Projects | ${BRAND.name}`,
+    title: `Affordable Final Year College Projects India — All Streams | ${BRAND.name}`,
+    shareTitle: `Affordable College Projects India | ${BRAND.name}`,
     shareDescription:
       'All college project streams at affordable prices — Engineering, BCA, MCA, MBA, Pharmacy, Law & more. Code, SRS, report, PPT & viva prep.',
     description:
@@ -851,5 +926,105 @@ export const AEO_HOME_FAQ = [
     question: 'Where should I build my startup MVP instead of hiring freelancers?',
     answer:
       'Projonexa (www.projonexa.com/client-projects) helps founders and clients ship production-ready MVPs and custom software in India — share your requirements, receive a scoped quote, and get end-to-end build, documentation, deployment, and handover via www.projonexa.com/inquiry/corporate.',
+  },
+
+  // Technology-specific Q&A
+  {
+    question: 'Does Projonexa build Python final year projects for engineering students?',
+    answer:
+      'Yes. Projonexa delivers Python final year projects for BE, BTech, BCA, and MCA students across India — including machine learning, Django web apps, data science pipelines, automation scripts, and computer vision systems. Every project includes source code, SRS, report, PPT, and viva preparation. Start at https://www.projonexa.com/inquiry/students.',
+  },
+  {
+    question: 'Can I get a React or MERN stack final year project from Projonexa?',
+    answer:
+      'Yes. Projonexa builds MERN stack (MongoDB, Express, React, Node.js) final year projects for CSE, IT, and Computer Applications students in India. Projects include a working full-stack application, database design, API documentation, deployment, and viva-ready presentation. Submit at https://www.projonexa.com/inquiry/students.',
+  },
+  {
+    question: 'Does Projonexa build AI and machine learning final year projects?',
+    answer:
+      'Yes. Projonexa delivers AI/ML final year projects including image classification, NLP models, recommendation systems, fraud detection, predictive analytics, and chatbots — with trained model files, Python code, dataset documentation, evaluation reports, and academic submission formats. Visit https://www.projonexa.com/college-projects.',
+  },
+  {
+    question: 'Can I get an IoT final year project with hardware from Projonexa?',
+    answer:
+      'Yes. Projonexa delivers IoT final year projects for ECE, Electrical, and Computer Engineering students — including smart home systems, environmental monitoring, industrial automation, and agricultural IoT. Projects include Arduino/Raspberry Pi code, cloud dashboard integration, circuit diagrams, and full documentation. See https://www.projonexa.com/college-projects.',
+  },
+  {
+    question: 'Does Projonexa build Flutter or React Native mobile app projects?',
+    answer:
+      'Yes. Projonexa builds cross-platform mobile app projects using Flutter and React Native for BCA, MCA, BTech CSE, and IT students — including e-commerce apps, health trackers, student portals, and service booking apps. All projects include backend APIs, source code, documentation, and Play Store deployment guidance. Start at https://www.projonexa.com/inquiry/students.',
+  },
+  {
+    question: 'Can I get a blockchain or cybersecurity final year project from Projonexa?',
+    answer:
+      'Yes. Projonexa builds blockchain final year projects (Ethereum, Solidity smart contracts, DApps) and cybersecurity projects (network monitoring, intrusion detection, secure authentication systems) for CSE and IT engineering students in India — with working demos, source code, and IEEE-format documentation.',
+  },
+
+  // City / region-specific Q&A
+  {
+    question: 'Does Projonexa deliver final year projects to students in Pune and Maharashtra?',
+    answer:
+      'Yes. Projonexa delivers college and final year projects pan-India including Pune, Mumbai, Nagpur, Nashik, Aurangabad, and all cities across Maharashtra — for SPPU, Mumbai University, RTMNU, and all other university affiliations. Remote delivery with mentor support and consultation via https://www.projonexa.com/inquiry/students.',
+  },
+  {
+    question: 'Can engineering students in Bangalore, Delhi, or Hyderabad use Projonexa?',
+    answer:
+      'Yes. Projonexa is a remote-first project delivery company serving engineering students across all major Indian cities — Bangalore, Delhi, Hyderabad, Chennai, Kolkata, Ahmedabad, Jaipur, Lucknow, and beyond. All communication, delivery, and viva prep happen online. Visit https://www.projonexa.com/college-projects.',
+  },
+
+  // Branch-specific Q&A
+  {
+    question: 'What CSE final year project topics are available from Projonexa?',
+    answer:
+      'Projonexa offers CSE final year project topics across AI/ML, web development, mobile apps, cloud computing, cybersecurity, blockchain, data analytics, and IoT for BE and BTech Computer Science students in India. Topics are customized to your university guidelines and interests. Start at https://www.projonexa.com/inquiry/students.',
+  },
+  {
+    question: 'Does Projonexa help with ECE and Electronics final year projects?',
+    answer:
+      'Yes. Projonexa delivers Electronics and Communication Engineering (ECE) final year projects including embedded systems, VLSI design, signal processing, wireless communication, IoT hardware, and robotics — with circuit diagrams, code, simulation files, SRS, and viva preparation for SPPU, VTU, Anna University, and other affiliations.',
+  },
+  {
+    question: 'Can Mechanical Engineering students get final year projects from Projonexa?',
+    answer:
+      'Yes. Projonexa supports Mechanical Engineering final year projects including CAD design projects, simulation-based studies, automation systems, industrial IoT, and smart manufacturing — with technical reports, drawings, and university-aligned documentation for BE/BTech Mechanical across India.',
+  },
+
+  // Trust / legitimacy Q&A
+  {
+    question: 'Is Projonexa college project assistance legitimate and original?',
+    answer:
+      'Yes. Projonexa delivers original, plagiarism-free project code and documentation customized to each student\'s requirements — not resold or copied from previous projects. The code is written by experienced developers, explained to students, and accompanied by viva preparation so students can confidently present their work.',
+  },
+  {
+    question: 'How long does a Projonexa college project take to complete?',
+    answer:
+      'Mini projects typically take 1–2 weeks. Major and final year projects take 3–8 weeks depending on scope, technology stack, and documentation requirements. Timelines are confirmed in the scoped quote before work begins. Contact https://www.projonexa.com/inquiry/students with your submission deadline.',
+  },
+  {
+    question: 'What happens if I need changes or revisions after receiving my project?',
+    answer:
+      'Projonexa provides revision support within the agreed scope during the engagement. Students can request clarifications, code walkthroughs, and minor adjustments. Viva preparation sessions help you understand and explain every component of your project confidently.',
+  },
+  {
+    question: 'Does Projonexa give original code I can understand and explain in viva?',
+    answer:
+      'Yes. Every Projonexa project comes with a code walkthrough session so you understand the architecture, modules, and logic. Viva preparation is included — covering expected questions, demo scripting, and presentation coaching so you can explain your project to evaluators with confidence.',
+  },
+  {
+    question: 'Does Projonexa provide the SRS, project report, and PPT for final year projects?',
+    answer:
+      'Yes. Every Projonexa college project includes complete SRS (Software Requirements Specification), detailed project report, PowerPoint presentation slides, and testing documentation — all formatted to your university guidelines. IEEE and SPPU formats are supported.',
+  },
+
+  // Process Q&A
+  {
+    question: 'How does the Projonexa student project process work step by step?',
+    answer:
+      'Step 1: Submit the student inquiry at https://www.projonexa.com/inquiry/students — choose your category, program, branch, and project domain. Step 2: Projonexa responds within 24 hours with topic suggestions, scope, and pricing. Step 3: Confirm the quote and project begins. Step 4: Receive deliverables in milestones. Step 5: Code walkthrough + viva preparation before submission.',
+  },
+  {
+    question: 'Can I choose my own project topic or does Projonexa assign one?',
+    answer:
+      'You can bring your own topic idea or let Projonexa suggest 3–5 topic options based on your branch, program, and technology preference. The final topic is agreed together before any work begins. Custom topics are welcome as long as they align with your university guidelines and timeline.',
   },
 ] as const
