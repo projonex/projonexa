@@ -5,6 +5,8 @@ GitHub community, automation, and governance configuration for the **Projonexa**
 ## Structure
 
 ```
+
+
 .github/
 ├── CODEOWNERS                 # Default reviewer: @nikobuddy
 ├── pull_request_template.md   # PR checklist
